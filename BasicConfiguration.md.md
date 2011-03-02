@@ -5,23 +5,23 @@ A full definition is made up of one or more Scala source files that describe rel
 # Light Configuration
 
 ## By Example
-Create a file with extension `.sbt` in your root project directory (such as `<your-project>/build.sbt`).  This file contains Scala expressions of type `Setting[T]` that are separated by blank lines.  Built-in settings typically have reasonable defaults (an exception is `PublishTo`).  A project typically redefines at least `Name` and `Version` and often `LibraryDependencies`.  All built-in settings are (or will be) listed [in sbt.Keys](https://github.com/harrah/xsbt/blob/0.9/main/Default.scala#L22).
+Create a file with extension `.sbt` in your root project directory (such as `<your-project>/build.sbt`).  This file contains Scala expressions of type `Setting[T]` that are separated by blank lines.  Built-in settings typically have reasonable defaults (an exception is `publishTo`).  A project typically redefines at least `name` and `version` and often `libraryDependencies`.  All built-in settings are (or will be) listed [in sbt.Keys](https://github.com/harrah/xsbt/blob/0.9/main/Keys.scala).
 
 A sample `build.sbt`:
 ```scala
 // Set the project name to the string 'My Project'
-Name := "My Project"
+name := "My Project"
 
 // The := method used in Name and Version is one of two fundamental methods.
 // The other method is <<=
 // All other initialization methods are implemented in terms of these.
-Version := "1.0"
+version := "1.0"
 
 // Add a single dependency
-LibraryDependencies += "junit" % "junit" % "4.8" % "test"
+libraryDependencies += "junit" % "junit" % "4.8" % "test"
 
 // Add multiple dependencies
-LibraryDependencies ++= Seq(
+libraryDependencies ++= Seq(
 	"net.databinder" %% "dispatch-google" % "0.7.8",
 	"net.databinder" %% "dispatch-meetup" % "0.7.8"	
 )
@@ -31,20 +31,20 @@ LibraryDependencies ++= Seq(
 // A similar idea is overriding a member and applying a function to the super value:
 //  override lazy val defaultExcludes = f(super.defaultExcludes)
 //
-DefaultExcludes ~= (filter => filter | "*~")
+defaultExcludes ~= (filter => filter | "*~")
 /*  Some equivalent ways of writing this:
-DefaultExcludes ~= (_ | "*~")
-DefaultExcludes ~= ( (_: FileFilter) | "*~")
-DefaultExcludes ~= ( (filter: FileFilter) => filter | "*~")
+defaultExcludes ~= (_ | "*~")
+defaultExcludes ~= ( (_: FileFilter) | "*~")
+defaultExcludes ~= ( (filter: FileFilter) => filter | "*~")
 */
 
 // Use the name and version to define the jar name.
-JarName <<= (Name, Version) {
+jarName <<= (name, version) {
 	(name: String, version: String) => name + "-" + version + ".jar"
 }
 /* These are equivalent:
-JarName <<= (Name, Version)( (n,v) => n + "-" + v + ".jar")
-JarName <<= (Name, Version)( _ + "-" + _ + ".jar")
+jarName <<= (name, version)( (n,v) => n + "-" + v + ".jar")
+jarName <<= (name, version)( _ + "-" + _ + ".jar")
 */
 ```
 
@@ -53,20 +53,20 @@ JarName <<= (Name, Version)( _ + "-" + _ + ".jar")
 * All initialization methods end with `=` so that they have the lowest possible precedence.  Except when passing a function literal to `~=`, you do not need to use parentheses for either side of the method.
   Ok:
 ```scala
-LibraryDependencies += "junit" % "junit" % "4.8" % "test"
-LibraryDependencies.+=("junit" % "junit" % "4.8" % "test")
-DefaultExcludes ~= (_ | "*~")
-DefaultExcludes ~= (filter => filter | "*~")
+libraryDependencies += "junit" % "junit" % "4.8" % "test"
+libraryDependencies.+=("junit" % "junit" % "4.8" % "test")
+defaultExcludes ~= (_ | "*~")
+defaultExcludes ~= (filter => filter | "*~")
 ```
   Error:
-```scala
-DefaultExcludes ~= _ | "*~"
+```console
+defaultExcludes ~= _ | "*~"
 
-error: missing parameter type for expanded function ((x$1) => DefaultExcludes.$colon$tilde(x$1).$bar("*~"))
-DefaultExcludes ~= _ | "*~"
+error: missing parameter type for expanded function ((x$1) => defaultExcludes.$colon$tilde(x$1).$bar("*~"))
+defaultExcludes ~= _ | "*~"
                    ^
 error: value | is not a member of sbt.Project.Setting[sbt.FileFilter]
-DefaultExcludes ~= _ | "*~"
+defaultExcludes ~= _ | "*~"
                 ^
 ```
 * A block is an expression, with the last statement in the block being the result.  For example, the following is an expression:
@@ -79,7 +79,7 @@ DefaultExcludes ~= _ | "*~"
 ```
 An example of using a block to construct a Setting:
 ```scala
-Version := {
+version := {
 	// Define a regular expression to match the current branch
 	val current = """\*\s+(\w+)""".r
 	// Process the output of 'git branch' to get the current branch
@@ -105,11 +105,11 @@ trait GreatName extends Name {
 
  is similar to:
 ```scala
-Name := "default"
-Name ~= ("The Great " + _)
+name := "default"
+name ~= ("The Great " + _)
 ```
 
-The `JarName` setting in the By Example section is similar to:
+The `jarName` setting in the By Example section is similar to:
 ```scala
 trait Version {
 	lazy val version = version0
@@ -128,9 +128,9 @@ trait MyJarName extends Name with Version with JarName {
 
 * A `Setting[T]` describes how to initialize a value of type T.  The expressions shown in the example are expressions, not statements.  In particular, there is no hidden mutable map that is being modified.  Each `Setting[T]` describes an update to a map.  The actual map is rarely directly referenced by user code.  It is not the final map that is important, but the operations on the map.
 * There are fundamentally two types of initializations, `:=` and `<<=`.  The methods `+=`, `++=`, and `~=` are defined in terms of these.  `:=` assigns a value, overwriting any existing value.  `<<=` uses existing values to initialize a setting.
-  * `Key ~= f` is equivalent to `Key <<= Key(f)`
-  * `Key += value` is equivalent to `Key ~= (_ :+ value)` or `Key <<= Key(_ :+ value)`
-  * `Key ++= value` is equivalent to `Key ~= (_ ++ value)` or `Key <<= Key(_ ++ value)`
+  * `key ~= f` is equivalent to `key <<= key(f)`
+  * `key += value` is equivalent to `key ~= (_ :+ value)` or `key <<= key(_ :+ value)`
+  * `key ++= value` is equivalent to `key ~= (_ ++ value)` or `key <<= key(_ ++ value)`
 * There can be multiple `.sbt` files per project.  This feature can be used, for example, to put user-specific configurations in a separate file.
 * Import clauses are allowed at the beginning of a `.sbt` file.  Since they are clauses, no semicolons are allowed.  The need not be separated by blank lines, but each import must be on one line.  For example,
 ```scala
@@ -144,7 +144,7 @@ import Process._
 import Keys._
 ```
 In addition, the contents of all public `Build` and `Plugin` objects from the full definition are imported.
-* sbt uses the blank lines to separate the expressions and then it sends them off to the Scala compiler.  Each expression is parsed, compiled, and loaded independently.  The settings are combined into a Seq[Setting[_]] and passed to the settings engine.  The engine groups the settings by key, preserving order per key though, and then computes the order in which each setting needs to be evaluated.  Cycles and references to uninitialized settings are detected here and dead settings are dropped.  Finally, the settings are transformed into a function that is applied to an initially empty map.
+* sbt uses the blank lines to separate the expressions and then it sends them off to the Scala compiler.  Each expression is parsed, compiled, and loaded independently.  The settings are combined into a `Seq[Setting[_]]` and passed to the settings engine.  The engine groups the settings by key, preserving order per key though, and then computes the order in which each setting needs to be evaluated.  Cycles and references to uninitialized settings are detected here and dead settings are dropped.  Finally, the settings are transformed into a function that is applied to an initially empty map.
 * Because the expressions can be separated before the compiler, sbt only needs to recompile expressions that change.  So, the work to respond to changes is proportional to the number of settings that changed and not the number of settings defined in the build.  If imports change, all expression in the `.sbt` file need to be recompiled.
 
 ## Implementation Details (even more information)
@@ -166,15 +166,18 @@ In sbt, a Scope is mainly defined by a project reference and a configuration (su
 In order to provide appropriate convenience methods for constructing an initialization operation for each construct, an AttributeKey is constructed through either a SettingKey, TaskKey, or InputKey:
 ```scala
 // underlying key: AttributeKey[String]
-val Name = SettingKey[String]("name")
+val name = SettingKey[String]("name")
 
 // underlying key: AttributeKey[Task[String]]
-val Hello = TaskKey[String]("hello")
+val hello = TaskKey[String]("hello")
 
 // underlying key: AttributeKey[InputTask[String]]
-val HelloArgs = InputKey[String]("hello-with-args")
+val helloArgs = InputKey[String]("hello-with-args")
 ```
 
-In the basic expression `Name := "asdf"`, the `:=` method is implicitly available for a `SettingKey` and accepts an argument that conforms to the type parameter of Name, which is String.
+In the basic expression `name := "asdf"`, the `:=` method is implicitly available for a `SettingKey` and accepts an argument that conforms to the type parameter of name, which is String.
 
 The high-level API for constructing settings is defined in [Structure](https://github.com/harrah/xsbt/blob/0.9/main/Structure.scala).  Scopes are defined in [Scope](https://github.com/harrah/xsbt/blob/0.9/main/Scope.scala).  The underlying engine is in [Settings](https://github.com/harrah/xsbt/blob/0.9/util/collection/Settings.scala) and the heterogeneous map is in [Attributes](https://github.com/harrah/xsbt/blob/0.9/util/collection/Attributes.scala).
+
+Built-in keys are in
+[Keys](https://github.com/harrah/xsbt/blob/0.9/main/Keys.scala) and default settings are defined in [Default](https://github.com/harrah/xsbt/blob/0.9/main/Default.scala).
