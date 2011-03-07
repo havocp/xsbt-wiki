@@ -180,4 +180,4 @@ In the basic expression `name := "asdf"`, the `:=` method is implicitly availabl
 The high-level API for constructing settings is defined in [Structure](https://github.com/harrah/xsbt/blob/0.9/main/Structure.scala).  Scopes are defined in [Scope](https://github.com/harrah/xsbt/blob/0.9/main/Scope.scala).  The underlying engine is in [Settings](https://github.com/harrah/xsbt/blob/0.9/util/collection/Settings.scala) and the heterogeneous map is in [Attributes](https://github.com/harrah/xsbt/blob/0.9/util/collection/Attributes.scala).
 
 Built-in keys are in
-[Keys](https://github.com/harrah/xsbt/blob/0.9/main/Keys.scala) and default settings are defined in [Default](https://github.com/harrah/xsbt/blob/0.9/main/Default.scala).
+[Keys](https://github.com/harrah/xsbt/blob/0.9/main/Keys.scala) and default settings are defined in [Defaults](https://github.com/harrah/xsbt/blob/0.9/main/Defaults.scala).
