@@ -4,6 +4,11 @@
 See [[https://github.com/harrah/xsbt/blob/0.9/main/Command.scala#L31]]
 
 ## Examples
+
+1. Copy the following build definition into `project/Build.scala` for a new project.
+2. Run sbt
+3. Try out the `hello`, `hello-all`, `color`, and `print-state` commands.  (Use tab-completion and the code below as guidance until the documentation fills out.)
+
 ```scala
 import sbt._
 import Keys._
