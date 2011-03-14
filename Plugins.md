@@ -1,3 +1,5 @@
+# Plugins (Draft)
+
 # Introduction
 
 A plugin is essentially a way to use external code in a build definition.
