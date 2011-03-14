@@ -33,7 +33,7 @@ Any session settings the have not been saved are dropped.
 
 # By Example
 
-## Using a library in a build definnition
+## Using a library in a build definition
 As an example, we'll add the Grizzled Scala library as a plugin.  Although this does not provide sbt-specific functionality, it demonstrates how to declare plugins.
 
 ### 1a) Manually managed
