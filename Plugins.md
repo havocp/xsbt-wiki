@@ -31,6 +31,12 @@ This allows manipulating the plugin definition project like a normal project.
 `reload return` changes back to the original build.
 Any session settings the have not been saved are dropped.
 
+### Global plugins
+
+In sbt 0.7.x, a processor was a way to add new commands to sbt and distribute them to users.  A key feature was the ability to have per-user processors so that once declared, it could be used in all projects for that user.  In sbt 0.9, plugins and processors are unified.  Specifically, a plugin can add commands and plugins can be declared globally for a user.
+
+The `~/.sbt/plugins/` directory is treated as a global plugin definition project.  It is a normal sbt project whose classpath is available to all sbt project definitions for that user as described above for per-project plugins.
+
 # By Example
 
 ## Using a library in a build definition
@@ -121,46 +127,40 @@ libraryDependencies ++=
 		Nil
 ```
 
-## Creating a plugin
+# Creating a plugin
 
-### Introduction
+## Introduction
 
-A minimal plugin is a Scala library that is built against the version of Scala the sbt runs (currently, 2.8.1) or a Java library.
+A minimal plugin is a Scala library that is built against the version of Scala that sbt runs (currently, 2.8.1) or a Java library.
 Nothing special needs to be done for this type of library, as shown in the previous section.
-A more typical plugin will provide sbt tasks, commands, or settings, for which it needs to depend on sbt.
-This kind of plugin may provide these settings automatically or make them available for the user to add explicitly.
+A more typical plugin will provide sbt tasks, commands, or settings.  This kind of plugin may provide these settings automatically or make them available for the user to explicitly integrate.
 
-### Description
+## Description
 
-To make a plugin, create a project and depend on sbt.
-Then, write some code and publish your project to a repository.
+To make a plugin, create a project and configure `sbtPlugin` to `true`.
+Then, write the plugin code and publish your project to a repository.
 The plugin can be used as described in the previous section.
 
-An additional mechanism available is implementing Plugin.
-A Plugin module is wildcard imported in `set`, `eval`, and `.sbt` files.
-Typically, this is used to provide new keys (SettingKey, TaskKey, or InputKey) or core methods.
-In addition, the `settings` member is automatically appended to each project's settings.
+A plugin can implement `sbt.Plugin`.
+The contents of a Plugin singleton, declared like `object MyPlugin extends Plugin`, are wildcard imported in `set`, `eval`, and `.sbt` files.
+Typically, this is used to provide new keys (SettingKey, TaskKey, or InputKey) or core methods without requiring an import or qualification.
+In addition, the `settings` member of the `Plugin` is automatically appended to each project's settings.
 This allows a plugin to automatically provide new functionality or new defaults.
-One main use of this feature is to add commands, like a processor in sbt 0.7.x.
-Otherwise, these features should be used sparingly because the automatic activation removes control from the build author.
+One main use of this feature is to globally add commands, like a processor in sbt 0.7.x.
+These features should be used judiciously because the automatic activation removes control from the build author (the user of the plugin).
 
-A plugin that provides Plugin implementations should set the `sbtPlugin` setting to `true` (for example, in `build.sbt`).
-sbt will then detect Plugin modules and generate a `sbt/sbt.plugins` descriptor file.
-This descriptor file is how sbt finds Plugins on the classpath for a build definition.
-
-### Example Plugin
+## Example Plugin
 
 An example of a typical plugin:
 
 `build.sbt`:
 ```scala
-addSbtRepository 
-
-addSbtDependency
-
 sbtPlugin := true
-```
 
+name := "example-plugin"
+
+organization := "org.example"
+```
 
 `MyPlugin.scala`:
 ```scala
@@ -184,7 +184,7 @@ object MyPlugin extends Plugin
 }
 ```
 
-### Usage example
+## Usage example
 
 A build definition that uses this plugin might look like:
 ```scala
@@ -200,13 +200,47 @@ Individual settings could be defined in `MyBuild.scala` above or in a `build.sbt
 newSettings := "overridden"
 ```
 
-### Implementation note
+## Example command plugin
+A basic plugin that adds commands looks like:
 
-The sbt dependency and repository definitions are methods with effectively the following definitions:
+`build.sbt`
 ```scala
-def addSbtDependency: Setting[Seq[ModuleID]] =
-	libraryDependencies += "org.scala-tools.sbt" %% "sbt" % currentSbtVersion
+sbtPlugin := true
 
-def addSbtRepository: Setting[Seq[Resolver]] =
-	resolvers += Resolver.url("sbt-db", new URL("http://databinder.net/repo/"))(Resolver.ivyStylePatterns)
+name := "example-plugin"
+
+organization := "org.example"
 ```
+
+`MyPlugin.scala`
+```scala
+import sbt._
+import Keys._
+object MyPlugin extends Plugin
+{
+  override lazy val settings = Seq(commands += myCommand)
+
+  lazy val myCommand = 
+    Command.command("hello") { (state: State) =>
+      println("Hi!")
+      state
+    }
+}
+```
+
+This example demonstrates how to take a Command (here, `myCommand`) and distribute it in a plugin.  Note that multiple commands can be included in one plugin (for example, use `commands ++= Seq(a,b)`).  See [[Commands]] for defining more useful commands, including ones that accept arguments and affect the execution state.
+
+## Global plugins example
+The simplest global plugin definition is declaring a library or plugin in `~/.sbt/plugins/build.sbt`:
+```scala
+libraryDependencies += "org.example" %% "my-plugin" % "0.1"
+```
+This plugin will be available for every sbt project for the current user.
+
+In addition:
+
+1. Jars may be placed directly in `~/.sbt/plugins/lib/` and will be available to every build definition for the current user.
+2. Dependencies on plugins built from source may be declared in ~/.sbt/plugins/project/Build.scala` as described at [[FullConfiguration]].
+3. A Plugin may be directly defined in Scala source files in `~/.sbt/plugins/`, such as `~/.sbt/plugins/MyPlugin.scala`.
+
+These are all consequences of `~/.sbt/plugins/` being a standard project whose classpath is added to every sbt project's build definition.
