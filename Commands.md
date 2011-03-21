@@ -18,11 +18,11 @@ Finally, basic help information may be provided that is used by the `help` comma
 
 # State and actions
 
-[State](https://github.com/harrah/xsbt/blob/v0.9.2/main/State.scala) is the entry point to all available information in sbt.
+[State](https://github.com/harrah/xsbt/blob/0.9/main/State.scala) is the entry point to all available information in sbt.
 Key methods are
 
-* `processors: Seq[Command]`, which returns all registered Command definitions
-* `commands: Seq[String]`, which returns the remaining commands to be run
+* `definedCommands: Seq[Command]`, which returns all registered Command definitions
+* `remainingCommands: Seq[String]`, which returns the remaining commands to be run
 * `attributes: AttributeMap`, which contains generic data.
 
 An action performs some work and transforms `State`.
@@ -40,8 +40,8 @@ val powerCommands: Seq[Command] = ...
 
 val addPower: State => State =
   (state: State) =>
-    state.copy(processors =
-      (state.processors ++ powerCommands).distinct
+    state.copy(definedCommands =
+      (state.definedCommands ++ powerCommands).distinct
     )
 ```
 
@@ -56,11 +56,11 @@ Some examples of functions that modify the remaining commands to execute:
 ```scala
 val appendCommand: State => State =
   (state: State) =>
-    state.copy(commands = state.commands :+ "cleanup")
+    state.copy(remainingCommands = state.remainingCommands :+ "cleanup")
 
 val insertCommand: State => State =
   (state: State) =>
-    state.copy(commands = "next-command" +: state.commands)
+    state.copy(remainingCommands = "next-command" +: state.remainingCommands)
 ```
 
 The first adds a command that will run after all currently specified commands run.
@@ -87,12 +87,12 @@ val extracted: Extracted = Project.extract(state)
 import extracted._
 ```
 
-[Extracted](https://github.com/harrah/xsbt/blob/v0.9.2/main/Project.scala#L53) provides:
+[Extracted](https://github.com/harrah/xsbt/blob/0.9/main/Project.scala#L53) provides:
 
-* Access to the current build and project (`currentRef, curi, cid, ...`)
+* Access to the current build and project (`currentRef`)
 * Access to initialized project setting data (`structure.data`)
 * Access to session `Setting`s and the original, permanent settings from `.sbt` and `.scala` files (`session.append` and `session.original`)
-* Access to the current [Eval](https://github.com/harrah/xsbt/blob/v0.9.2/compile/Eval.scala) instance for evaluating Scala expressions in the build context.
+* Access to the current [Eval](https://github.com/harrah/xsbt/blob/0.9/compile/Eval.scala) instance for evaluating Scala expressions in the build context.
 
 ## Project data
 All project data is stored in `structure.data`, which is of type `sbt.Settings[Scope]`.
@@ -103,8 +103,8 @@ val scope: Scope
 val value: Option[T] = key in scope get structure.data
 ```
 
-Here, a `SettingKey[T]` is typically obtained from [Keys](https://github.com/harrah/xsbt/blob/v0.9.2/main/Keys.scala) and is the same type that is used to define settings in `.sbt` files, for example.
-[Scope](https://github.com/harrah/xsbt/blob/v0.9.2/main/Scope.scala) selects the scope the key is obtained for.
+Here, a `SettingKey[T]` is typically obtained from [Keys](https://github.com/harrah/xsbt/blob/0.9/main/Keys.scala) and is the same type that is used to define settings in `.sbt` files, for example.
+[Scope](https://github.com/harrah/xsbt/blob/0.9/main/Scope.scala) selects the scope the key is obtained for.
 There are convenience overloads of `in` that can be used to specify only the required scope axes.
 Some examples:
 
@@ -123,7 +123,7 @@ val cp: Seq[Attributed[File]] = fullClasspath in (currentRef, Compile) get struc
 val pkgOpts: Seq[PackageOption] = packageOptions in (currentRef, Test, packageSrc) get structure.data getOrElse Nil
 ```
 
-[BuildStructure](https://github.com/harrah/xsbt/blob/v0.9.2/main/Build.scala#L615) contains information about build and project relationships.
+[BuildStructure](https://github.com/harrah/xsbt/blob/0.9/main/Build.scala#L615) contains information about build and project relationships.
 Key members are:
 
 ```scala
@@ -132,7 +132,7 @@ root: URI
 ```
 
 A `URI` identifies a build and `root` identifies the initial build loaded.
-[LoadedBuildUnit](https://github.com/harrah/xsbt/blob/v0.9.2/main/Build.scala#L602) provides information about a single build.
+[LoadedBuildUnit](https://github.com/harrah/xsbt/blob/0.9/main/Build.scala#L602) provides information about a single build.
 The key members of `LoadedBuildUnit` are:
 
 ```scala
@@ -143,7 +143,7 @@ localBase: File
 defined: Map[String, ResolvedProject]
 ```
 
-[ResolvedProject](https://github.com/harrah/xsbt/blob/v0.9.2/main/Project.scala#L27) has the same information as the `Project` used in a `project/Build.scala` except that [ProjectReferences](https://github.com/harrah/xsbt/blob/v0.9.2/main/Reference.scala) are resolved to `ProjectRef`s.
+[ResolvedProject](https://github.com/harrah/xsbt/blob/0.9/main/Project.scala#L27) has the same information as the `Project` used in a `project/Build.scala` except that [ProjectReferences](https://github.com/harrah/xsbt/blob/0.9/main/Reference.scala) are resolved to `ProjectRef`s.
 
 ## Classpaths
 
@@ -461,7 +461,7 @@ object CommandExample extends Build
 	// A command that demonstrates getting information out of State.
 	def printState = Command.command("print-state") { state =>
 		import state._
-		println(processors.size + " registered commands")
+		println(definedCommands.size + " registered commands")
 		println("commands to run: " + show(commands))
 		println()
 
