@@ -130,4 +130,7 @@ traceLevel := 10
 
 // only show stack traces up to the first sbt stack frame
 traceLevel := 0
+
+// add SWT to the unmanaged classpath
+unmanagedJars in Compile += file("/usr/share/java/swt.jar")
 ```
