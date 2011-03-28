@@ -6,12 +6,12 @@ There are three main aspects to commands:
 
 * The syntax used by the user to invoke the command, including:
     * Tab completion for the syntax
-    * The parser to turn the syntax into an appropriate data structure
-* The action to perform using the parsed data structure, including the build `State` before and after the command runs
+    * The parser to turn input into an appropriate data structure
+* The action to perform using the parsed data structure.  This action transforms the build `State`.
 * Help provided to the user
 
 In sbt, the syntax part, including tab completion, is specified with parser combinators.
-If you are familiar with the parser combinators in Scala's standard library, these will look familiar.
+If you are familiar with the parser combinators in Scala's standard library, these are very similar.
 The action part is a function `(State, T) => State`, where `T` is the data structure produced by the parser.
 `State` provides access to the build state, such as all registered `Command`s, the remaining commands to execute, and all project-related information.
 Finally, basic help information may be provided that is used by the `help` command to display command help.
@@ -19,20 +19,20 @@ Finally, basic help information may be provided that is used by the `help` comma
 # State and actions
 
 [State](https://github.com/harrah/xsbt/blob/0.9/main/State.scala) is the entry point to all available information in sbt.
-Key methods are
+Key methods:
 
-* `definedCommands: Seq[Command]`, which returns all registered Command definitions
-* `remainingCommands: Seq[String]`, which returns the remaining commands to be run
-* `attributes: AttributeMap`, which contains generic data.
+* `definedCommands: Seq[Command]` returns all registered Command definitions
+* `remainingCommands: Seq[String]` returns the remaining commands to be run
+* `attributes: AttributeMap` contains generic data.
 
-An action performs some work and transforms `State`.
+The action part of a command performs work and transforms `State`.
 The following sections discuss `State => State` transformations.
-As mentioned previously, a command typically handles a parsed value as well: `(State, T) => State`.
+As mentioned previously, a command will typically handle a parsed value as well: `(State, T) => State`.
 
 ## Command-related data
 
 A Command can modify the currently registered commands or the commands to be executed.
-This is done in the action part by modifying the (immutable) State provided to the command.
+This is done in the action part by transforming the (immutable) State provided to the command.
 A function that registers additional power commands might look like:
 
 ```scala
@@ -91,7 +91,7 @@ import extracted._
 
 * Access to the current build and project (`currentRef`)
 * Access to initialized project setting data (`structure.data`)
-* Access to session `Setting`s and the original, permanent settings from `.sbt` and `.scala` files (`session.append` and `session.original`)
+* Access to session `Setting`s and the original, permanent settings from `.sbt` and `.scala` files (`session.append` and `session.original`, respectively)
 * Access to the current [Eval](https://github.com/harrah/xsbt/blob/0.9/compile/Eval.scala) instance for evaluating Scala expressions in the build context.
 
 ## Project data
@@ -151,7 +151,7 @@ Classpaths in sbt 0.9 are of type `Seq[Attributed[File]]`.
 This allows tagging arbitrary information to classpath entries.
 sbt currently uses this to associate an `Analysis` with an entry.
 This is how it manages the information needed for multi-project incremental recompilation.
-When you only want the underlying `Seq[File]`, use `Attributed.data`:
+When you only want the underlying `Seq[File]`, use `Attribute.data`:
 
 ```scala
 val attributedClasspath: Seq[Attribute[File]] = ...
@@ -201,15 +201,15 @@ val taskKey: Task[Seq[Attributed[File]]] =
 # Parsing and tab completion
 
 The second key component to a command is parsing and tab completion.
-These are specified using parser combinators or convenience methods for basic cases.
+These are specified using parser combinators or using the convenience methods for basic cases.
 This section describes the parser combinators.
 
 If you are already familiar with Scala's parser combinators, the methods are the same except that their arguments are strict.
 There are two additional methods for controlling tab completion that are discussed at the end of the section.
 
 Parser combinators build up a parser from smaller parsers.
-A `Parser[T]`, in its most basic usage, is a function `String => Option[T]`.
-It accepts a `String` to parse and produces a value wrapped in `Some` if parsing succeeds, or `None` if it fails.
+A `Parser[T]` in its most basic usage is a function `String => Option[T]`.
+It accepts a `String` to parse and produces a value wrapped in `Some` if parsing succeeds or `None` if it fails.
 (Error handling and tab completion make this picture more complicated.)
 
 The following examples assume the imports:
