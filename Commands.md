@@ -462,7 +462,7 @@ object CommandExample extends Build
 	def printState = Command.command("print-state") { state =>
 		import state._
 		println(definedCommands.size + " registered commands")
-		println("commands to run: " + show(commands))
+		println("commands to run: " + show(remainingCommands))
 		println()
 
 		println("original arguments: " + show(configuration.arguments))
