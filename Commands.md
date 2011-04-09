@@ -87,7 +87,7 @@ val extracted: Extracted = Project.extract(state)
 import extracted._
 ```
 
-[Extracted](https://github.com/harrah/xsbt/blob/0.9/main/Project.scala#L53) provides:
+[Extracted](https://github.com/harrah/xsbt/blob/0.9/main/Project.scala#L60) provides:
 
 * Access to the current build and project (`currentRef`)
 * Access to initialized project setting data (`structure.data`)
@@ -123,7 +123,7 @@ val cp: Seq[Attributed[File]] = fullClasspath in (currentRef, Compile) get struc
 val pkgOpts: Seq[PackageOption] = packageOptions in (currentRef, Test, packageSrc) get structure.data getOrElse Nil
 ```
 
-[BuildStructure](https://github.com/harrah/xsbt/blob/0.9/main/Build.scala#L615) contains information about build and project relationships.
+[BuildStructure](https://github.com/harrah/xsbt/blob/0.9/main/Load.scala#L434) contains information about build and project relationships.
 Key members are:
 
 ```scala
@@ -132,7 +132,7 @@ root: URI
 ```
 
 A `URI` identifies a build and `root` identifies the initial build loaded.
-[LoadedBuildUnit](https://github.com/harrah/xsbt/blob/0.9/main/Build.scala#L602) provides information about a single build.
+[LoadedBuildUnit](https://github.com/harrah/xsbt/blob/0.9/main/Load.scala#L421) provides information about a single build.
 The key members of `LoadedBuildUnit` are:
 
 ```scala
@@ -143,7 +143,7 @@ localBase: File
 defined: Map[String, ResolvedProject]
 ```
 
-[ResolvedProject](https://github.com/harrah/xsbt/blob/0.9/main/Project.scala#L27) has the same information as the `Project` used in a `project/Build.scala` except that [ProjectReferences](https://github.com/harrah/xsbt/blob/0.9/main/Reference.scala) are resolved to `ProjectRef`s.
+[ResolvedProject](https://github.com/harrah/xsbt/blob/0.9/main/Project.scala#L58) has the same information as the `Project` used in a `project/Build.scala` except that [ProjectReferences](https://github.com/harrah/xsbt/blob/0.9/main/Reference.scala) are resolved to `ProjectRef`s.
 
 ## Classpaths
 
