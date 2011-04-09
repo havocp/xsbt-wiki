@@ -133,4 +133,21 @@ traceLevel := 0
 
 // add SWT to the unmanaged classpath
 unmanagedJars in Compile += file("/usr/share/java/swt.jar")
+
+// Copy all managed dependencies to <build-root>/lib_managed/
+//   This is essentially a project-local cache and is different
+//   from the lib_managed/ in sbt 0.7.x.  There is only one
+//   lib_managed/ in the build root (not per-project).
+retrieveManaged := true
+
+/* Specify a file containing credentials for publishing. The format is:
+realm=Sonatype Nexus Repository Manager
+host=nexus.scala-tools.org
+user=admin
+password=admin123
+*/
+credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
+
+// Directly specify credentials for publishing.
+credentials += Credentials("Sonatype Nexus Repository Manager", "nexus.scala-tools.org", "admin", "admin123")
 ```
