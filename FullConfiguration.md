@@ -25,9 +25,18 @@ object MyBuild extends Build
 
 	// Declare a project with ID 'sub2' in directory 'b'.
 	// Declare a configuration dependency on the root project.
-	lazy val sub2 = Project("sub2", file("b")) delegates(root)
+	lazy val sub2 = Project("sub2", file("b"), delegates = root :: Nil)
 }
 ```
+
+### Cycles
+(It is probably best to skip this section and come back after reading about project relationships.  It is near the example for easier reference.)
+
+The configuration dependency `sub2 -> root` is specified as an argument to the `delegates` parameter of `Project`, which is by-name and of type `Seq[ProjectReference]` because by-name repeated parameters are not allowed in Scala.
+There are also corresponding by-name parameters `aggregate` and `dependencies` for execution and classpath dependencies.
+By-name parameters, being non-strict, are useful when there are cycles between the projects, as is the case for `root` and `sub2`.
+In the example, there is a *configuration* dependency `sub2 -> root`, a *classpath* dependency `sub1 -> sub2`, and an *execution* dependency `root -> sub1`.
+This causes cycles at the Scala-level, but not within a particular dependency type, which is not allowed.
 
 ## Defining a Build
 
