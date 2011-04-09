@@ -141,6 +141,8 @@ To make a plugin, create a project and configure `sbtPlugin` to `true`.
 Then, write the plugin code and publish your project to a repository.
 The plugin can be used as described in the previous section.
 
+Alternatively, it can be 
+
 A plugin can implement `sbt.Plugin`.
 The contents of a Plugin singleton, declared like `object MyPlugin extends Plugin`, are wildcard imported in `set`, `eval`, and `.sbt` files.
 Typically, this is used to provide new keys (SettingKey, TaskKey, or InputKey) or core methods without requiring an import or qualification.
@@ -241,6 +243,10 @@ In addition:
 
 1. Jars may be placed directly in `~/.sbt/plugins/lib/` and will be available to every build definition for the current user.
 2. Dependencies on plugins built from source may be declared in ~/.sbt/plugins/project/Build.scala` as described at [[FullConfiguration]].
-3. A Plugin may be directly defined in Scala source files in `~/.sbt/plugins/`, such as `~/.sbt/plugins/MyPlugin.scala`.
+3. A Plugin may be directly defined in Scala source files in `~/.sbt/plugins/`, such as `~/.sbt/plugins/MyPlugin.scala`.  `~/.sbt/plugins/build.sbt` should contain `sbtPlugin := true`.  This can be used for quicker turnaround when developing a plugin initially:
+    1. Edit the global plugin code
+    2. `reload` the project you want to use the modified plugin in
+    3.  sbt will rebuild the plugin and use it for the project.  Additionally, the plugin will be available in other projects on the machine without recompiling again.
+This approach skips the overhead of `publish-local` and cleaning the plugins directory of the project using the plugin.
 
 These are all consequences of `~/.sbt/plugins/` being a standard project whose classpath is added to every sbt project's build definition.
