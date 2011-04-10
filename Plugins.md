@@ -141,8 +141,6 @@ To make a plugin, create a project and configure `sbtPlugin` to `true`.
 Then, write the plugin code and publish your project to a repository.
 The plugin can be used as described in the previous section.
 
-Alternatively, it can be 
-
 A plugin can implement `sbt.Plugin`.
 The contents of a Plugin singleton, declared like `object MyPlugin extends Plugin`, are wildcard imported in `set`, `eval`, and `.sbt` files.
 Typically, this is used to provide new keys (SettingKey, TaskKey, or InputKey) or core methods without requiring an import or qualification.
