@@ -134,6 +134,15 @@ traceLevel := 0
 // add SWT to the unmanaged classpath
 unmanagedJars in Compile += file("/usr/share/java/swt.jar")
 
+// publish test jar, sources, and docs
+publishArtifact in Test := true
+
+// disable publishing of main docs
+publishArtifact in (Compile, packageDoc) := false
+
+// change the classifier for the docs artifact
+artifactClassifier in packageDoc := Some("doc")
+
 // Copy all managed dependencies to <build-root>/lib_managed/
 //   This is essentially a project-local cache and is different
 //   from the lib_managed/ in sbt 0.7.x.  There is only one
