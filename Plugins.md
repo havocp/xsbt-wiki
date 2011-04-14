@@ -29,7 +29,7 @@ It is a convenience for plugin consumers and because of the automatic nature, it
 The `reload plugins` command changes the current build to `<current-build>/project/plugins/`.
 This allows manipulating the plugin definition project like a normal project.
 `reload return` changes back to the original build.
-Any session settings the have not been saved are dropped.
+Any session settings for the plugin definition project that have not been saved are dropped.
 
 ### Global plugins
 
@@ -186,12 +186,21 @@ object MyPlugin extends Plugin
 
 ## Usage example
 
-A build definition that uses this plugin might look like:
+A light build definition that uses the plugin might look like:
+```scala
+seq( MyPlugin.newSettings : _*)
+
+newSetting := "light"
+```
+
+A full build definition that uses this plugin might look like:
 ```scala
 object MyBuild extends Build
 {
 	lazy val projects = Seq(root)
-	lazy val root = Project("root", file(".")) settings( MyPlugin.newSettings : _*)
+	lazy val root = Project("root", file(".")) settings( MyPlugin.newSettings : _*) settings(
+		newSetting := "full"
+	)
 }
 ```
 
