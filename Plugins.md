@@ -199,7 +199,7 @@ object MyBuild extends Build
 {
 	lazy val projects = Seq(root)
 	lazy val root = Project("root", file(".")) settings( MyPlugin.newSettings : _*) settings(
-		newSetting := "full"
+		MyPlugin.newSetting := "full"
 	)
 }
 ```
