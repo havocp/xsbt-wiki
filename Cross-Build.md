@@ -57,6 +57,7 @@ libraryDependencies <<= (scalaVersion, libraryDependencies) { (sv, deps) =>
 	val testVersion = versionMap.getOrElse(sv, error("Unsupported Scala version " + sv))
 		// append the ScalaCheck dependency to the existing dependencies
 	deps :+ ("org.scala-tools.testing" % "scalacheck" % testVersion)
+}
 ```
 
 This works because your project definition is reloaded for each version of Scala you are building against.  `scalaVersion` contains the current version of Scala being used to build the project.
