@@ -23,7 +23,7 @@ See [[Triggered Execution]] for details.
 
 Temporarily change the logging level and configure how stack traces are displayed by modifying the `log-level` or `trace-level` settings:
 ```text
-set logLevel := Level.Warn
+> set logLevel := Level.Warn
 ```
 
 Valid `Level` values are `Debug, Info, Warn, Error`.
@@ -88,7 +88,7 @@ Configuration-level tasks are tasks associated with a configuration.  For exampl
   `test:run` runs a main class in the test code.
 * `run-main <main-class> <argument>*`
   Runs the specified main class for the project in the same virtual machine as `sbt`.  The main class is passed the `argument`s provided.  Please see [[Running Project Code]] for details on the use of `System.exit` and multithreading (including GUIs) in code run by this action.
-  `test:run` runs the specified main class in the test code.
+  `test:run-main` runs the specified main class in the test code.
  * `test`
   Runs all tests detected during test compilation.
  * `test-only <test>*`
@@ -109,7 +109,7 @@ Configuration-level tasks are tasks associated with a configuration.  For exampl
 * `< filename`
   Executes the commands in the given file.  Each command should be on its own line.  Empty lines and lines beginning with '#' are ignored
 * `+ <command>`
-  Executes the project specified action or method for all versions of Scala defined in the `cross-scala-versions` settings.
+  Executes the project specified action or method for all versions of Scala defined in the `cross-scala-versions` setting.
 * `++ <version> <command>`
   Temporarily changes the version of Scala building the project and executes the provided command.  `<command>` is optional.  The specified version of Scala is used until the project is reloaded, settings are modified (such as by the `set` or `session` commands), or `++` is run again.  `<version>` does not need to be listed in the build definition, but it must be available in a repository.
 * `; A ; B`
