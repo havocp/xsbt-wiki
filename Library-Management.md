@@ -1,3 +1,9 @@
+[Apache Ivy]: http://ant.apache.org/ivy/
+[Ivy revisions]: http://ant.apache.org/ivy/history/2.2.0/ivyfile/dependency.html#revision
+[Extra attributes]: http://ant.apache.org/ivy/history/2.1.0/concept.html#extra
+
+# Library Management
+
 # Introduction
 
 There are two ways for you to manage libraries with `sbt`: manually or automatically.  These two ways can be mixed as well.  This page discusses the two approaches.  All configurations shown here are settings that go either directly in a [[Basic Configuration]] or are appended to the `settings` of a Project in a [[Full Configuration]].
@@ -35,7 +41,7 @@ This method of dependency management involves specifying the direct dependencies
 * Maven POM files (dependency definitions only- no repositories)
 * Ivy configuration and settings files
 
-`sbt` uses [http://ant.apache.org/ivy/ Apache Ivy] to implement dependency management in all three cases.  The default is to use inline declarations, but external configuration can be explicitly selected.  The following sections describe how to use each method of automatic dependency management.
+`sbt` uses [Apache Ivy] to implement dependency management in all three cases.  The default is to use inline declarations, but external configuration can be explicitly selected.  The following sections describe how to use each method of automatic dependency management.
 
 ## Inline Declarations
 
@@ -67,7 +73,7 @@ libraryDependencies += groupID %% artifactID % revision
 ```
 This will use the right jar for the dependency built with the version of Scala that you are currently using.  If you get an error while resolving this kind of dependency, that dependency probably wasn't published for the version of Scala you are using.  See [[Cross Build]] for details.
 
-Ivy can select the latest revision of a module according to constraints you specify.  Instead of a fixed revision like `"1.6.1"`, you specify `"latest.integration"`, `"2.9.+"`, or `"[1.0,)"`.  See the [http://ant.apache.org/ivy/history/2.1.0/ivyfile/dependency.html#revision Ivy documentation] for details.
+Ivy can select the latest revision of a module according to constraints you specify.  Instead of a fixed revision like `"1.6.1"`, you specify `"latest.integration"`, `"2.9.+"`, or `"[1.0,)"`.  See the [Ivy revisions] documentation for details.
 
 
 ### Repositories
@@ -129,7 +135,7 @@ transitiveClassifiers := Seq("sources")
 
 ### Extra Attributes
 
-[http://ant.apache.org/ivy/history/2.1.0/concept.html#extra Extra attributes] can be specified by passing key/value pairs to the `extra` method.
+[Extra attributes] can be specified by passing key/value pairs to the `extra` method.
 
 To select dependencies by extra attributes:
 ```scala
@@ -174,7 +180,7 @@ fullResolvers <<= (projectResolver, resolvers) map { (pr, rs) =>
 ```
 
 `project-resolver` is used for inter-project dependency management and should (almost) always be included.  `Resolver` contains several methods to assist with default repositories:
-```
+```scala
 	/** Add the local, Maven Central, and Scala Tools releases repositories to the user repositories.  */
 	def withDefaultResolvers(userResolvers: Seq[Resolver]): Seq[Resolver]
 	/** Add the local Ivy and Maven Central repositories to the user repositories.  If `scalaTools` is true, add the Scala Tools releases repository as well.  */
@@ -208,5 +214,6 @@ externalIvySettings()
 
 Maven support is dependent on Ivy's support for Maven POMs.
 Known issues with this support:
+
  * Specifying `relativePath` in the `parent` section of a POM will produce an error.
  * Ivy ignores repositories specified in the POM.  A workaround is to specify repositories inline or in an Ivy `ivysettings.xml` file.
