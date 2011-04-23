@@ -1,6 +1,6 @@
 # Java Sources
 
-`sbt` has support for compiling Java sources in `sbt` with the limitation that dependency tracking is limited to the dependencies present in compiled class files.
+sbt has support for compiling Java sources with the limitation that dependency tracking is limited to the dependencies present in compiled class files.
 
 # Usage
 
@@ -24,11 +24,11 @@ compileOrder := CompileOrder.JavaThenScala
 
 To specify different orders for main and test sources, scope the setting by configuration:
 ```scala
-	// Java then Scala for main sources
+// Java then Scala for main sources
 compileOrder in Compile := CompileOrder.JavaThenScala
 
-	// allow circular dependencies for test sources
+// allow circular dependencies for test sources
 compileOrder in Test := CompileOrder.Mixed
 ```
 
-Note that in an incremental compilation setting, it is not practical to ensure complete isolation between Java sources and Scala sources because they share the same output directory.  So, previously compiled classes may be picked up.  A clean compile will always provide full checking, however.
+Note that in an incremental compilation setting, it is not practical to ensure complete isolation between Java sources and Scala sources because they share the same output directory.  So, previously compiled classes not involved in the current recompilation may be picked up.  A clean compile will always provide full checking, however.

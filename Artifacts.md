@@ -15,25 +15,25 @@ publishArtifact in Test := true
 
 To add them individually:
 ```scala
-  // enable publishing the jar produced by `test:package`
+// enable publishing the jar produced by `test:package`
 publishArtifact in (Test, packageBin) := true
 
-  // enable publishing the test API jar
+// enable publishing the test API jar
 publishArtifact in (Test, packageDoc) := true
 
-  // enable publishing the test sources jar
+// enable publishing the test sources jar
 publishArtifact in (Test, packageSrc) := true
 ```
 
 To disable main artifacts individually:
-```
-  // disable publishing the main jar produced by `package`
+```scala
+// disable publishing the main jar produced by `package`
 publishArtifact in (Compile, packageBin) := false
 
-  // disable publishing the main API jar
+// disable publishing the main API jar
 publishArtifact in (Compile, packageDoc) := false
 
-  // disable publishing the main sources jar
+// disable publishing the main sources jar
 publishArtifact in (Compile, packageSrc) := false
 ```
 
@@ -41,7 +41,7 @@ publishArtifact in (Compile, packageSrc) := false
 # Modifying default artifacts
 
 Each built-in artifact has several configurable settings in addition to `publish-artifact`.
-The basic ones are `artifact (SettingKey[Artifact])`, `mappings (TaskKey[(File,String)])`, and `artifactPath (SettingKey[File])`.
+The basic ones are `artifact` (of type `SettingKey[Artifact]`), `mappings` (of type `TaskKey[(File,String)]`), and `artifactPath` (of type `SettingKey[File]`).
 They are scoped by `(<config>, <task>)` as indicated in the previous section.
 
 To modify the type of the main artifact, for example:
@@ -49,6 +49,7 @@ To modify the type of the main artifact, for example:
 artifact in (Compile, packageBin) ~= { (art: Artifact) =>
   art.copy(`type` = "bundle")
 }
+```
 
 The generated artifact name is determined by the `artifact-name` setting.  This setting is of type `(String, ModuleID, Artifact) => String`, where the String argument is the configuration and the String result is the name of the file to produce.  The default implementation is `Artifact.artifactName _`.  The function may be modified to produce different local names for artifacts without affecting the published name, which is determined by the `artifact` definition combined with the repository pattern.
 
@@ -61,7 +62,7 @@ artifactName := { (config: String, module: ModuleID, artifact: Artifact) =>
 
 (Note that in practice you rarely want to drop the classifier.)
 
-Finally, you can get the `(Artifact, File)` pair for the artifact by mapping the `packaged-artifact` task.  Note that if you don't need the `Artifact`, you can get just the File from the package task (`package`, `package-doc`, or `package-src`.  In both cases, mapping the task to get the file ensures that the artifact is generated first and so the file is guaranteed to be uptodate.
+Finally, you can get the `(Artifact, File)` pair for the artifact by mapping the `packaged-artifact` task.  Note that if you don't need the `Artifact`, you can get just the File from the package task (`package`, `package-doc`, or `package-src`).  In both cases, mapping the task to get the file ensures that the artifact is generated first and so the file is guaranteed to be uptodate.
 
 For example:
 ```scala

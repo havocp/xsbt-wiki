@@ -5,7 +5,7 @@
 
 # Forking
 
-By default, the `run` action runs in the same JVM as `sbt`.  Forking is required under [[certain circumstances|Running-Project-Code], however.  Or, you might want to fork Java processes when implementing new tasks.
+By default, the `run` action runs in the same JVM as sbt.  Forking is required under [[certain circumstances|Running Project Code]], however.  Or, you might want to fork Java processes when implementing new tasks.
 
 By default, a forked process uses the same Java and Scala versions being used for the build and the working directory and JVM options of the current process.  This page discusses how to enable and configure forking.
 
@@ -29,13 +29,13 @@ Similarly, set `fork in Compile := true` to only fork the main `run` tasks.  `ru
 
 To change the working directory when forked, set `baseDirectory in run` or `baseDirectory in (Test, run)`:
 ```scala
-	// sets the working directory for all `run`-like tasks
+// sets the working directory for all `run`-like tasks
 baseDirectory in run := file("/path/to/working/directory/")
 
-	// sets the working directory for `run` and `run-main` only
+// sets the working directory for `run` and `run-main` only
 baseDirectory in (Compile,run) := file("/path/to/working/directory/")
 
-	// sets the working directory for `test:run` and `test:run-main` only
+// sets the working directory for `test:run` and `test:run-main` only
 baseDirectory in (Test,run) := file("/path/to/working/directory/")
 ```
 
@@ -58,7 +58,7 @@ Select the Java installation to use by setting the `java-home` directory:
 javaHome := file("/path/to/jre/")
 ```
 
-Note that if this is set globally, it also sets the Java installation used to compile of Java sources.  You can restrict it to running only by setting it in the `run` scope:
+Note that if this is set globally, it also sets the Java installation used to compile Java sources.  You can restrict it to running only by setting it in the `run` scope:
 ```scala
 javaHome in run := file("/path/to/jre/")
 ```
@@ -71,16 +71,16 @@ By default, forked output is sent to the Logger, with standard output logged at 
 This can be configured with the `output-strategy` setting, which is of type [OutputStrategy].
 
 ```scala
-	// send output to the build's standard output and error
+// send output to the build's standard output and error
 outputStrategy := StdoutOutput
 
-	// send output to the provided OutputStream `someStream`
+// send output to the provided OutputStream `someStream`
 outputStrategy := CustomOutput(someStream: OutputStream)
 
-	// send output to the provided Logger `log` (unbuffered)
+// send output to the provided Logger `log` (unbuffered)
 outputStrategy := LoggedOutput(log: Logger)
 
-	// send output to the provided Logger `log` after the process terminates
+// send output to the provided Logger `log` after the process terminates
 outputStrategy := BufferedOutput(log: Logger)
 ```
 

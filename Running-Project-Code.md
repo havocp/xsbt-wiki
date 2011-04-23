@@ -1,26 +1,26 @@
-# Introduction
+# Running Project Code
 
-The `run` and `console` actions provide a means for running user code in the same virtual machine as `sbt`.  This page describes the problems with doing so, how `sbt` handles these problems, what types of code can use this feature, and what types of code must use a [[forked jvm|Forking]].  Skip to User Code if you just want to see when you should use a [[forked jvm|Forking]].
+The `run` and `console` actions provide a means for running user code in the same virtual machine as sbt.  This page describes the problems with doing so, how sbt handles these problems, what types of code can use this feature, and what types of code must use a [[forked jvm|Forking]].  Skip to User Code if you just want to see when you should use a [[forked jvm|Forking]].
 
 # Problems
 
 ## System.exit
 
-User code can call `System.exit`, which normally shuts down the JVM.  Because the `run` and `console` actions run inside the same JVM as `sbt`, this also ends the build and requires restarting `sbt`.
+User code can call `System.exit`, which normally shuts down the JVM.  Because the `run` and `console` actions run inside the same JVM as sbt, this also ends the build and requires restarting sbt.
 
 ## Threads
 
 User code can also start other threads.  Threads can be left running after the main method returns.  In particular, creating a GUI creates several threads, some of which may not terminate until the JVM terminates.  The program is not completed until either `System.exit` is called or all non-daemon threads terminate.
 
-# `sbt`'s Solutions
+# sbt's Solutions
 
-## `System.exit`
+## System.exit
 
-User code is run with a custom `SecurityManager` that throws a custom `SecurityException` when `System.exit` is called.  This exception is caught by `sbt`.  `sbt` then disposes of all top-level windows, interrupts (not stops) all user-created threads, and handles the exit code.  If the exit code is nonzero, `run` and `console` complete unsuccessfully.  If the exit code is zero, they complete normally.
+User code is run with a custom `SecurityManager` that throws a custom `SecurityException` when `System.exit` is called.  This exception is caught by sbt.  sbt then disposes of all top-level windows, interrupts (not stops) all user-created threads, and handles the exit code.  If the exit code is nonzero, `run` and `console` complete unsuccessfully.  If the exit code is zero, they complete normally.
 
 ## Threads
 
-`sbt` makes a list of all threads running before executing user code.  After the user code returns, `sbt` can then determine the threads created by the user code.  For each user-created thread, `sbt` replaces the uncaught exception handler with a custom one that handles the custom `SecurityException` thrown by calls to `System.exit` and delegates to the original handler for everything else.  `sbt` then waits for each created thread to exit or for `System.exit` to be called.  `sbt` handles a call to `System.exit` as described above.
+sbt makes a list of all threads running before executing user code.  After the user code returns, sbt can then determine the threads created by the user code.  For each user-created thread, sbt replaces the uncaught exception handler with a custom one that handles the custom `SecurityException` thrown by calls to `System.exit` and delegates to the original handler for everything else.  sbt then waits for each created thread to exit or for `System.exit` to be called.  sbt handles a call to `System.exit` as described above.
 
 A user-created thread is one that is not in the `system` thread group and is not an `AWT` implementation thread (e.g. `AWT-XAWT`, `AWT-Windows`).  User-created threads include the `AWT-EventQueue-*` thread(s).
 

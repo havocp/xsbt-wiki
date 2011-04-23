@@ -3,11 +3,11 @@
 
 # Configurations
 
-Ivy configurations are a useful feature for your build when you use managed dependencies.  They are essentially named sets of dependencies.  You can read the [Ivy documentation] for details.  Their use in `sbt` is described on this page.
+Ivy configurations are a useful feature for your build when you use managed dependencies.  They are essentially named sets of dependencies.  You can read the [Ivy documentation] for details.  Their use in sbt is described on this page.
 
 # Usage
 
-The built-in use of configurations in `sbt` is similar to scopes in Maven.  `sbt` adds dependencies to different classpaths by the configuration that they are defined in.  See the description of [Maven Scopes] for details.
+The built-in use of configurations in sbt is similar to scopes in Maven.  sbt adds dependencies to different classpaths by the configuration that they are defined in.  See the description of [Maven Scopes] for details.
 
 You put a dependency in a configuration by selecting one or more of its configurations to map to one or more of your project's configurations.  The most common case is to have one of your configurations `A` use a dependency's configuration `B`.  The mapping for this looks like `"A->B"`.  To apply this mapping to a dependency, add it to the end of your dependency definition:
 ```scala

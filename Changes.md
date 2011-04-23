@@ -19,7 +19,7 @@
 
 ### 0.7.5 to 0.7.6.RC0
 
- * Workaround for Scala issue [#4426|http://lampsvn.epfl.ch/trac/scala/ticket/4426]
+ * Workaround for Scala issue [[#4426|http://lampsvn.epfl.ch/trac/scala/ticket/4426]]
  * Fix issue 156
 
 ### 0.7.4 to 0.7.5
@@ -29,9 +29,9 @@
  * Provide application and boot classpaths to tests and 'run'ning code according to <http://gist.github.com/404272>
  * Fix `provided` configuration.  It is no longer included on the classpath of dependent projects.
  * Scala 2.8.1 is the default version used when starting a new project.
- * Updated to [Ivy 2.2.0|http://ant.apache.org/ivy/history/2.2.0/release-notes.html].
- * Trond's patches that allow configuring [jetty-env.xml|http://github.com/harrah/xsbt/commit/5e41a47f50e6] and [webdefault.xml|http://github.com/harrah/xsbt/commit/030e2ee91bac0]
- * Doug's [patch|http://github.com/harrah/xsbt/commit/aa75ecf7055db] to make 'projects' command show an asterisk next to current project 
+ * Updated to [[Ivy 2.2.0|http://ant.apache.org/ivy/history/2.2.0/release-notes.html]].
+ * Trond's patches that allow configuring [[jetty-env.xml|http://github.com/harrah/xsbt/commit/5e41a47f50e6]] and [[webdefault.xml|http://github.com/harrah/xsbt/commit/030e2ee91bac0]]
+ * Doug's [[patch|http://github.com/harrah/xsbt/commit/aa75ecf7055db]] to make 'projects' command show an asterisk next to current project 
  * Fixed issue 122
  * Implemented issue 118
  * Patch from Viktor and Ross for issue 123
@@ -50,7 +50,7 @@
  * Fix issue with using 2.8.0.RC1 compiler in tests.
  * Precompile compiler interface against 2.8.0.RC2
  * Add `consoleOptions` for specifying options to the console.  It defaults to `compileOptions`.
- * Properly support sftp/ssh repositories using key-based authentication.  See the updated section of the [Resolvers] page.
+ * Properly support sftp/ssh repositories using key-based authentication.  See the updated section of the [[Resolvers]] page.
  * `def ivyUpdateLogging = UpdateLogging.DownloadOnly | Full | Quiet`.  Default is `DownloadOnly`.  `Full` will log metadata resolution and provide a final summary.
  * `offline` property for disabling checking for newer dynamic revisions (like `-SNAPSHOT`).  This allows working offline with remote snapshots.  Not honored for plugins yet.
  * History commands: `!!, !?string, !-n, !n, !string, !:n, !:`  Run `!` to see help.
@@ -128,7 +128,7 @@
    * Basic support for writing out Maven-style repositories to the pom
    * Override the 'pomExtra' method to provide XML (`scala.xml.NodeSeq`) to insert directly into the generated pom.
    * Complete control over repositories is now possible by overriding `ivyRepositories`.
-  * The [interface to Ivy|Ivy-Interface] can be used directly.
+  * The [[interface to Ivy|Ivy-Interface]] can be used directly.
  * Test framework support is now done through a uniform test interface.  Implications:
   * New versions of specs, ScalaCheck, and ScalaTest are supported as soon as they are released.
   * Support is better, since the test framework authors provide the implementation.

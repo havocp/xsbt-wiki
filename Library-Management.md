@@ -1,23 +1,23 @@
 [Apache Ivy]: http://ant.apache.org/ivy/
 [Ivy revisions]: http://ant.apache.org/ivy/history/2.2.0/ivyfile/dependency.html#revision
-[Extra attributes]: http://ant.apache.org/ivy/history/2.1.0/concept.html#extra
+[Extra attributes]: http://ant.apache.org/ivy/history/2.2.0/concept.html#extra
 
 # Library Management
 
 # Introduction
 
-There are two ways for you to manage libraries with `sbt`: manually or automatically.  These two ways can be mixed as well.  This page discusses the two approaches.  All configurations shown here are settings that go either directly in a [[Basic Configuration]] or are appended to the `settings` of a Project in a [[Full Configuration]].
+There are two ways for you to manage libraries with sbt: manually or automatically.  These two ways can be mixed as well.  This page discusses the two approaches.  All configurations shown here are settings that go either directly in a [[Basic Configuration]] or are appended to the `settings` of a Project in a [[Full Configuration]].
 
 # Manual Dependency Management
 
-Manually managing dependencies involves copying any jars that you want to use to the `lib` directory.  `sbt` will put these jars on the classpath during compilation, testing, running, and when using the interpreter.  You are responsible for adding, removing, updating, and otherwise managing the jars in this directory.  No modifications to your project definition are required to use this method unless you would like to change the location of the directory you store the jars in.
+Manually managing dependencies involves copying any jars that you want to use to the `lib` directory.  sbt will put these jars on the classpath during compilation, testing, running, and when using the interpreter.  You are responsible for adding, removing, updating, and otherwise managing the jars in this directory.  No modifications to your project definition are required to use this method unless you would like to change the location of the directory you store the jars in.
 
 To change the directory jars are stored in, change the `unmanaged-base` setting in your project definition.  For example, to use `custom_lib/`:
 ```scala
 unmanagedBase <<= baseDirectory { base => base / "custom_lib" }
 ```
 
-If you want more control and flexibility, override the `unmanaged-jars` task, which ultimately provides the manual dependencies to `sbt`.  The default implementation is roughly:
+If you want more control and flexibility, override the `unmanaged-jars` task, which ultimately provides the manual dependencies to sbt.  The default implementation is roughly:
 ```scala
 unmanagedJars <<= baseDirectory { base => descendents(base, "*.jar").getFiles }
 ```
@@ -31,17 +31,17 @@ unmanagedJars <<= (unmanagedJars, baseDirectory) { (jars, base) =>
 }
 ```
 
-See [Paths] for more information on building up paths.
+See [[Paths]] for more information on building up paths.
 
 # Automatic Dependency Management
 
-This method of dependency management involves specifying the direct dependencies of your project and letting `sbt` handle retrieving and updating your dependencies.  `sbt` supports three ways of specifying these dependencies:
+This method of dependency management involves specifying the direct dependencies of your project and letting sbt handle retrieving and updating your dependencies.  sbt supports three ways of specifying these dependencies:
 
 * Declarations in your project definition
-* Maven POM files (dependency definitions only- no repositories)
+* Maven POM files (dependency definitions only: no repositories)
 * Ivy configuration and settings files
 
-`sbt` uses [Apache Ivy] to implement dependency management in all three cases.  The default is to use inline declarations, but external configuration can be explicitly selected.  The following sections describe how to use each method of automatic dependency management.
+sbt uses [Apache Ivy] to implement dependency management in all three cases.  The default is to use inline declarations, but external configuration can be explicitly selected.  The following sections describe how to use each method of automatic dependency management.
 
 ## Inline Declarations
 
@@ -59,7 +59,7 @@ or
 libraryDependencies += groupID % artifactID % revision % configuration
 ```
 
-See [Configurations] for details on configuration mappings.  Also, several dependencies can be declared together:
+See [[Configurations]] for details on configuration mappings.  Also, several dependencies can be declared together:
 ```scala
 libraryDependencies ++= Seq(
 	groupID %% artifactID % revision,
@@ -67,10 +67,11 @@ libraryDependencies ++= Seq(
 )
 ```
 
-If you are using a dependency that was built with `sbt`, double the first `%` to be `%%`:
+If you are using a dependency that was built with sbt, double the first `%` to be `%%`:
 ```scala
 libraryDependencies += groupID %% artifactID % revision
 ```
+
 This will use the right jar for the dependency built with the version of Scala that you are currently using.  If you get an error while resolving this kind of dependency, that dependency probably wasn't published for the version of Scala you are using.  See [[Cross Build]] for details.
 
 Ivy can select the latest revision of a module according to constraints you specify.  Instead of a fixed revision like `"1.6.1"`, you specify `"latest.integration"`, `"2.9.+"`, or `"[1.0,)"`.  See the [Ivy revisions] documentation for details.
@@ -78,7 +79,7 @@ Ivy can select the latest revision of a module according to constraints you spec
 
 ### Repositories
  
-sbt uses the standard Maven2 repository and the Scala Tools Releases (http://scala-tools.org/repo-releases) repositories by default.
+sbt uses the standard Maven2 repository and the Scala Tools Releases (<http://scala-tools.org/repo-releases>) repositories by default.
 Declare additional repositories with the form:
 ```scala
 resolvers += name at location
@@ -99,10 +100,11 @@ The scala-tools.org snapshots repository can be referenced a bit more convenient
 resolvers += ScalaToolsSnapshots
 ```
 
-`sbt` can search your local Maven repository if you add it as a repository:
+sbt can search your local Maven repository if you add it as a repository:
 ```scala
 resolvers += "Local Maven Repository" at "file://"+Path.userHome+"/.m2/repository"
 ```
+
 See [[Resolvers]] for details on defining other types of repositories.
 
 ### Explicit URL
@@ -151,7 +153,7 @@ projectID <<= projectID { id =>
 
 ### Inline Ivy XML
 
-`sbt` additionally supports directly specifying the configurations or dependencies sections of an Ivy configuration file inline.  You can mix this with inline Scala dependency and repository declarations.
+sbt additionally supports directly specifying the configurations or dependencies sections of an Ivy configuration file inline.  You can mix this with inline Scala dependency and repository declarations.
 
 For example:
 ```scala
@@ -165,7 +167,7 @@ ivyXML :=
 
 ### Override default repositories
 
-`sbt` uses `full-resolvers` to get the inline resolvers to use.  By default, `full-resolvers` combines the default repositories (Maven Central and Scala Tools) with the repositories returned by `resolvers`.  So, to have complete control over repositories, set `full-resolvers`.  To specify repositories in addition to the usual defaults, set `resolvers`.
+sbt uses `full-resolvers` to get the inline resolvers to use.  By default, `full-resolvers` combines the default repositories (Maven Central and Scala Tools) with the repositories returned by `resolvers`.  So, to have complete control over repositories, set `full-resolvers`.  To specify repositories in addition to the usual defaults, set `resolvers`.
 
 For example, to use the Scala Tools snapshots repository in addition to the default repositories,
 ```scala
@@ -200,9 +202,12 @@ Finally, see [[Publishing]] for how to publish your project.
 For this method, create the configuration files as you would for Maven (`pom.xml`) or Ivy (`ivy.xml` and optionally `ivysettings.xml`).
 External configuration is selected by using one of the following expressions.
 
-* For Ivy settings (resolver configuration), use `externalIvySettings()` or `externalIvySettings(baseDirectory(_ / "custom-settings-name.xml"))`.
-* For an Ivy file (dependency configuration), use `externalIvyFile()` or `externalIvyFile(baseDirectory(_ / "custom-name.xml"))`.
-* For a Maven pom (dependencies only), use `externalPom()` or `externalPom(baseDirectory(_ / "custom-name.xml"))`.
+* For Ivy settings (resolver configuration), use `externalIvySettings()` or
+ `externalIvySettings(baseDirectory(_ / "custom-settings-name.xml"))`.
+* For an Ivy file (dependency configuration), use `externalIvyFile()` or
+ `externalIvyFile(baseDirectory(_ / "custom-name.xml"))`.
+* For a Maven pom (dependencies only), use `externalPom()` or
+ `externalPom(baseDirectory(_ / "custom-name.xml"))`.
 
 For example, a `build.sbt` using external Ivy files might look like:
 
