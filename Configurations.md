@@ -11,7 +11,7 @@ The built-in use of configurations in sbt is similar to scopes in Maven.  sbt ad
 
 You put a dependency in a configuration by selecting one or more of its configurations to map to one or more of your project's configurations.  The most common case is to have one of your configurations `A` use a dependency's configuration `B`.  The mapping for this looks like `"A->B"`.  To apply this mapping to a dependency, add it to the end of your dependency definition:
 ```scala
-libraryDependencies += "org.scalatest" % "scalatest" % "1.2" % "test->default"
+libraryDependencies += "org.scalatest" % "scalatest" % "1.2" % "test->compile"
 ```
 
 This says that your project's `test` configuration uses `ScalaTest`'s `default` configuration.  Again, see the [Ivy documentation] for more advanced mappings.  Most projects published to Maven repositories will use the `default` or `compile` configuration.

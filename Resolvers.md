@@ -47,10 +47,10 @@ Construct a repository definition using the factory in `sbt.Resolver` for the de
 
 <table>
 <th>Type</th><th>Factory</th><th>Ivy Docs</th><th>Factory API</th><th>Repository Class API</th>
-<tr></td><td>Filesystem</td><td>`Resolver.file`</td><td>[Ivy filesystem]</td><td>[filesystem factory]</td><td>[FileRepository API]</td><td></tr>
-<tr></td><td>SFTP</td><td>`Resolver.sftp`</td><td>[Ivy sftp]</td><td>[sftp factory]</td><td>[SftpRepository API]</td><td></tr>
-<tr></td><td>SSH</td><td>`Resolver.ssh`</td><td>[Ivy ssh]</td><td>[ssh factory]</td><td>[SshRepository API]</td><td></tr>
-<tr></td><td>URL</td><td>`Resolver.url`</td><td>[Ivy url]</td><td>[url factory]</td><td>[URLRepository API]</td><td></tr>
+<tr></td><td>Filesystem</td><td>`Resolver.file`</td><td>[Ivy filesystem]</td><td>[filesystem factory]</td><td>[FileRepository API]</td></tr>
+<tr></td><td>SFTP</td><td>`Resolver.sftp`</td><td>[Ivy sftp]</td><td>[sftp factory]</td><td>[SftpRepository API]</td></tr>
+<tr></td><td>SSH</td><td>`Resolver.ssh`</td><td>[Ivy ssh]</td><td>[ssh factory]</td><td>[SshRepository API]</td></tr>
+<tr></td><td>URL</td><td>`Resolver.url`</td><td>[Ivy url]</td><td>[url factory]</td><td>[URLRepository API]</td></tr>
 </table>
 
 ## Basic Examples
