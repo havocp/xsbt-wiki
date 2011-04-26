@@ -210,7 +210,7 @@ There are two additional methods for controlling tab completion that are discuss
 Parser combinators build up a parser from smaller parsers.
 A `Parser[T]` in its most basic usage is a function `String => Option[T]`.
 It accepts a `String` to parse and produces a value wrapped in `Some` if parsing succeeds or `None` if it fails.
-(Error handling and tab completion make this picture more complicated.)
+Error handling and tab completion make this picture more complicated, but we'll stick with Option for this discussion.
 
 The following examples assume the imports:
 ```scala
@@ -237,14 +237,15 @@ Other basic parser constructors are the `charClass`, `success` and `failure` met
 
 ```scala
 // A parser that succeeds if the character is a digit, returning the matched Char 
-val digit: Parser[Char] = charClass( (c: Char) => c.isDigit)
+//   The second argument, "digit", describes the parser and is used in error messages
+val digit: Parser[Char] = charClass( (c: Char) => c.isDigit, "digit")
 
 // A parser that produces the value 3 for an empty input string, fails otherwise
 val alwaysSucceed: Parser[Int] = success( 3 )
 
 // Represents failure (always returns None for an input String).
-//  If error handling were implemented, an error message would go here.
-val alwaysFail: Parser[Nothing] = failure("")
+//  The argument is the error message.
+val alwaysFail: Parser[Nothing] = failure("Invalid input.")
 ```
 
 ## Combining parsers
@@ -271,13 +272,13 @@ val setColor: Parser[String ~ Char ~ String] =
 val setColor2: Parser[String ~ String]  =  select ~ (' ' ~> color)
 
 // Match one or more digits, returning a list of the matched characters
-val digits: Parser[Seq[Char]]  =  charClass(_.isDigit).+
+val digits: Parser[Seq[Char]]  =  charClass(_.isDigit, "digit").+
 
 // Match zero or more digits, returning a list of the matched characters
-val digits0: Parser[Seq[Char]]  =  charClass(_.isDigit).*
+val digits0: Parser[Seq[Char]]  =  charClass(_.isDigit, "digit").*
 
 // Optionally match a digit
-val optDigit: Parser[Option[Char]]  =  charClass(_.isDigit).?
+val optDigit: Parser[Option[Char]]  =  charClass(_.isDigit, "digit").?
 ```
 
 ## Transforming results
@@ -292,11 +293,11 @@ Here are examples of `map` and some convenience methods implemented on top of `m
 val num: Parser[Int] = digits map { (chars: Seq[Char]) => chars.mkString.toInt }
 
 // Match a digit character, returning the matched character or return '0' if the input is not a digit
-val digitWithDefault: Parser[Char]  =  charClass(_.isDigit) ?? '0'
+val digitWithDefault: Parser[Char]  =  charClass(_.isDigit, "digit") ?? '0'
 
 // The previous example is equivalent to:
 val digitDefault: Parser[Char] =
-  charClass(_.isDigit).? map { (d: Option[Char]) => d getOrElse '0' }
+  charClass(_.isDigit, "digit").? map { (d: Option[Char]) => d getOrElse '0' }
   
 // Succeed if the input is "blue" and return the value 4
 val blue = "blue" ^^^ 4
@@ -313,7 +314,7 @@ However, it is impractical to determine the valid completions for `charClass`, s
 The `examples` method defines explicit completions for such a parser:
 
 ```scala
-val digit = charClass(_.isDigit).examples("0", "1", "2")
+val digit = charClass(_.isDigit, "digit").examples("0", "1", "2")
 ```
 
 Tab completion will use the examples as suggestions.
