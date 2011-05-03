@@ -6,8 +6,9 @@
 
 sbt 0.9 has a new task system that integrates with the new settings system.
 Both settings and tasks produce values, but there are two major differences between them:
- 1. Settings are evaluated at project load time.  Tasks are executed on demand, often in response to a command from the user.
- 2. At the beginning of project loading, settings and their dependencies are fixed.  Tasks can introduce new tasks during execution, however.  (Tasks have flatMap, but Settings do not.)
+
+1. Settings are evaluated at project load time.  Tasks are executed on demand, often in response to a command from the user.
+2. At the beginning of project loading, settings and their dependencies are fixed.  Tasks can introduce new tasks during execution, however.  (Tasks have flatMap, but Settings do not.)
 
 # Features
 
@@ -21,13 +22,13 @@ There are several features of the task system:
 6. Each task has access to its own Logger that by default persists the logging for that task at a more verbose level than is shown initially on the screen.
 
 These features are discussed in detail in the following sections.
-The context for the code snippets will be either the body of a `Build` object in a [[Full Configuration]] or an expression in a `build.sbt` [[Quick Configuration]].
+The context for the code snippets will be either the body of a `Build` object in a [[Full Configuration]] or an expression in a `build.sbt` [[Basic Configuration]].
 
 # Defining a New Task
 
 ## Define the key
 
-To declare a new task, define a `TaskKey` in your [[Full Configuration]:
+To declare a new task, define a `TaskKey` in your [[Full Configuration]]:
 ```scala
 val sampleTask = TaskKey[Int]("sample-task")
 ```
@@ -114,6 +115,7 @@ sampleTask in Test <<= intTask in Compile map { _ * 3 }
 ### On precedence
 
 As a reminder, method precedence is by the name of the method.
+
 1. Assignment methods have the lowest precedence.  These are methods with names ending in `=`, except for `!=`, `<=`, `>=`, and names that start with `=`.
 2. Methods starting with a letter have the next highest precedence.
 3. Methods with names that start with a symbol and aren't included in 1. have the highest precedence.  (This category is divided further according to the specific character it starts with.  See the Scala specification for details.)
