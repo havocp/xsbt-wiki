@@ -347,6 +347,8 @@ fg_
 bg_
 ```
 
+Be careful not to overlap or nest tokens, as in `token("green" ~ token("blue"))`.  The behavior is unspecified (and should generate an error in the future), but typically the outer most token definition will be used.
+
 # Defining a Command
 
 A command combines a function `State => Parser[T]` with an action `(State, T) => State`.
