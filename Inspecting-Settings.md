@@ -2,7 +2,7 @@
 
 Central to sbt 0.9 is the new configuration system, which is designed to enable extensive customization.
 The goal of this page is to explain the general model behind the configuration system and how to work with it.
-[[BasicConfiguration]] describes how to define settings; this page describes interacting with them and exploring them at the command line.
+[[Basic Configuration]] describes how to define settings; this page describes interacting with them and exploring them at the command line.
 
 # Selecting commands, tasks, and settings
 
