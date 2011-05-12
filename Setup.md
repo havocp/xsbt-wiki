@@ -1,4 +1,4 @@
-[sbt-launch.jar]: http://example.org  (TODO)
+[sbt-launch.jar]: http://typesafe.artifactoryonline.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.9.5/sbt-launch.jar
 [ScalaCheck]: http://code.google.com/p/scalacheck/
 [specs]: http://code.google.com/p/specs/
 [ScalaTest]: http://www.artima.com/scalatest/
@@ -25,6 +25,11 @@ The easiest way to launch sbt is to create a one-line script.  Download [sbt-lau
 **Note**: The encoding used by your terminal may differ from Java's default encoding for your platform.  In this case, you will need to add the option `-Dfile.encoding=<encoding>` in the following scripts to set the encoding.
 
 **Note**: Adjust the JVM options as necessary, especially heap and permgen sizes.
+
+A common set of options is:
+```text
+-Dfile.encoding=UTF8 -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256m
+```
 
 ## Unix
 Put the jar in your `~/bin` directory, put the line:
@@ -81,7 +86,7 @@ With these defaults, you can run `console` to enter the Scala interpreter, or cr
 
 # Configure Build
 
-Basic configuration can be done in a `build.sbt` file.  For example:
+Basic configuration can be done in a `build.sbt` file using Scala code.  For example:
 
 ```scala
 name := "My Project"
@@ -121,14 +126,7 @@ Sbt uses the same directory structure as [Maven] for source files by default (al
 
 Other directories in `src/` will be ignored.  Additionally, all hidden directories will be ignored.
 
-## Dependencies
-
-All manually managed dependencies (jars) go in the
-```text
-  lib/
-```
-
-directory or any subdirectory of `lib`.  Hidden directories will be ignored.  If you want to use [ScalaCheck], [specs], or [ScalaTest] for testing, those jars can go in here.  Alternatively, you can configure `sbt` to automatically manage your dependencies (see [[Library Management]]).
+All manually managed dependencies (jars) go in the `lib` directory by default.  Hidden directories will be ignored.  If you want to use [ScalaCheck], [specs], or [ScalaTest] for testing, those jars can go in here.  Alternatively, you can configure `sbt` to automatically manage your dependencies (see [[Library Management]]).
 
 ## Build Configuration
 
@@ -144,38 +142,23 @@ The `project/boot` directory is where the versions of Scala and `sbt` used to bu
 
 ## Products
 
-Generated files (classes, jars, analysis, and documentation) will be written to the
-```text
-  target/
-```
-
-directory.  If dependency retrieval is enabled, automatically managed dependencies are copied to:
-```text
-  lib_managed/
-```
+Generated files (compiled classes, packaged jars, managed files, caches, and documentation) will be written to the `target` directory by default.
 
 ## Version Control
 
-`sbt` creates and uses several directories that you will normally want to exclude from version control:
+As described in the previous sections, `sbt` creates and uses a couple of directories that you will normally want to exclude from version control:
 ```text
   target/
-  lib_managed/
-  src_managed/
   project/boot/
 ```
 
-A `.gitignore` for an `sbt` project would contain these entries:
-```text
-target/
-*_managed/
-project/boot/
-```
+The above list is suitable as an initial `.gitignore` file for your project.
 
 # Next Step
 
 Read [[Running]] for basic `sbt` usage information.
 
-= Summary =
+# Summary
 
 * Create a script to launch sbt.
 * Create your sources and put jars in `lib/`.
