@@ -1,4 +1,4 @@
-### 0.7.5 to 0.10.0 (under development, currently at 0.9.4)
+### 0.7.5 to 0.10.0 (under development, currently at 0.9.6)
 
 **Major redesign, only prominent changes listed.**
 
