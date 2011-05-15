@@ -127,7 +127,7 @@ In general, these are used when a setting is not defined for a project.
 These settings are declared either by augmenting `Build.settings` or defining settings in the scope of the current build.
 For example, to set the shell prompt to be the id for the current project, the following setting can be added to a `.sbt` file:
 ```scala
-shellPrompt in ThisBuild := { s => Project.extract(s).cid + "> " }
+shellPrompt in ThisBuild := { s => Project.extract(s).currentProject.id + "> " }
 ```
 
 (The value is a function `State => String`.  `State` contains everything about the build and will be discussed elsewhere.)
