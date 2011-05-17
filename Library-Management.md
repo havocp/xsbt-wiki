@@ -77,7 +77,7 @@ This will use the right jar for the dependency built with the version of Scala t
 Ivy can select the latest revision of a module according to constraints you specify.  Instead of a fixed revision like `"1.6.1"`, you specify `"latest.integration"`, `"2.9.+"`, or `"[1.0,)"`.  See the [Ivy revisions] documentation for details.
 
 
-### Repositories
+### Resolvers
  
 sbt uses the standard Maven2 repository and the Scala Tools Releases (<http://scala-tools.org/repo-releases>) repositories by default.
 Declare additional repositories with the form:
@@ -107,6 +107,24 @@ resolvers += "Local Maven Repository" at "file://"+Path.userHome+"/.m2/repositor
 
 See [[Resolvers]] for details on defining other types of repositories.
 
+### Override default resolvers
+
+`resolvers` configures additional, inline user resolvers.  By default, `sbt` combines these resolvers with default repositories (Maven Central, Scala Tools, and the local Ivy repository) to form `external-resolvers`.  To have more control over repositories, set `external-resolvers` directly.  To only specify repositories in addition to the usual defaults, configure `resolvers`.
+
+For example, to use the Scala Tools snapshots repository in addition to the default repositories,
+```scala
+resolvers += ScalaToolsSnapshots
+```
+
+To use the local and Maven Central repositories, but not the Scala Tools releases repository:
+```scala
+externalResolvers <<= resolvers map { rs =>
+  Resolver.withDefaultResolvers(rs, mavenCentral = true, scalaTools = false)
+}
+```
+
+For complete control, configure `full-resolvers`.  This should rarely be modified, however, because `full-resolvers` combines `project-resolver` with `external-resolvers`.  `project-resolver` is used for inter-project dependency management and should (almost) always be included.
+
 ### Explicit URL
 
 If your project requires a dependency that is not present in a repository, a direct URL to its jar can be specified as follows:
@@ -114,6 +132,8 @@ If your project requires a dependency that is not present in a repository, a dir
 ```scala
 libraryDependencies += "slinky" % "slinky" % "2.1" from "http://slinky2.googlecode.com/svn/artifacts/2.1/slinky.jar"
 ```
+
+The URL is only used as a fallback if the dependency cannot be found through the configured repositories.  Also, the explicit URL is not included in published metadata (that is, the pom or ivy.xml).
 
 ### Disable Transitivity
 
@@ -163,34 +183,6 @@ ivyXML :=
       <exclude module="activation"/>
     </dependency>
   </dependencies>
-```
-
-### Override default repositories
-
-sbt uses `full-resolvers` to get the inline resolvers to use.  By default, `full-resolvers` combines the default repositories (Maven Central and Scala Tools) with the repositories returned by `resolvers`.  So, to have complete control over repositories, set `full-resolvers`.  To specify repositories in addition to the usual defaults, set `resolvers`.
-
-For example, to use the Scala Tools snapshots repository in addition to the default repositories,
-```scala
-resolvers += ScalaToolsSnapshots
-```
-
-To exclude the default Scala Tools releases repository, but use the local and Maven Central repositories and the ones defined in `resolvers`:
-```scala
-fullResolvers <<= (projectResolver, resolvers) map { (pr, rs) =>
-  pre +: Resolver.withDefaultResolvers(rs, false)
-}
-```
-
-`project-resolver` is used for inter-project dependency management and should (almost) always be included.  `Resolver` contains several methods to assist with default repositories:
-```scala
-	/** Add the local, Maven Central, and Scala Tools releases repositories to the user repositories.  */
-	def withDefaultResolvers(userResolvers: Seq[Resolver]): Seq[Resolver]
-	/** Add the local Ivy and Maven Central repositories to the user repositories.  If `scalaTools` is true, add the Scala Tools releases repository as well.  */
-	def withDefaultResolvers(userResolvers: Seq[Resolver], scalaTools: Boolean): Seq[Resolver]
-	/** Add the local Ivy repository to the user repositories.
-	* If `scalaTools` is true, add the Scala Tools releases repository.
-	* If `mavenCentral` is true, add the Maven Central repository.  */
-	def withDefaultResolvers(userResolvers: Seq[Resolver], mavenCentral: Boolean, scalaTools: Boolean): Seq[Resolver]
 ```
 
 ### Publishing
