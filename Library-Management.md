@@ -185,6 +185,16 @@ ivyXML :=
   </dependencies>
 ```
 
+### Ivy Home Directory
+
+By default, sbt uses the standard Ivy home directory location `${user.home}/.ivy2/`.
+This can be configured machine-wide, for use by both the sbt launcher and by projects, by setting the system property `sbt.ivy.home` in the sbt startup script (described in [[Setup]]).
+
+For example:
+```text
+java -Dsbt.ivy.home=/tmp/.ivy2/ ...
+```
+
 ### Publishing
 
 Finally, see [[Publishing]] for how to publish your project.
