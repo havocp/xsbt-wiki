@@ -45,13 +45,12 @@ sbt provides an interface to the repository types available in Ivy: file, URL, S
 
 Construct a repository definition using the factory in `sbt.Resolver` for the desired type.  This factory creates a `Repository` object that can be further configured.  The following table contains links to the Ivy documentation for the repository type and the API documentation for the factory and repository class.  The SSH and SFTP repositories are configured identically except for the name of the factory.  Use `Resolver.ssh` for SSH and `Resolver.sftp` for SFTP.
 
-<table>
-<th>Type</th><th>Factory</th><th>Ivy Docs</th><th>Factory API</th><th>Repository Class API</th>
-<tr></td><td>Filesystem</td><td>`Resolver.file`</td><td>[Ivy filesystem]</td><td>[filesystem factory]</td><td>[FileRepository API]</td></tr>
-<tr></td><td>SFTP</td><td>`Resolver.sftp`</td><td>[Ivy sftp]</td><td>[sftp factory]</td><td>[SftpRepository API]</td></tr>
-<tr></td><td>SSH</td><td>`Resolver.ssh`</td><td>[Ivy ssh]</td><td>[ssh factory]</td><td>[SshRepository API]</td></tr>
-<tr></td><td>URL</td><td>`Resolver.url`</td><td>[Ivy url]</td><td>[url factory]</td><td>[URLRepository API]</td></tr>
-</table>
+Type | Factory | Ivy Docs | Factory API | Repository Class API
+-----|---------|----------|-------------|---------------------:
+Filesystem | `Resolver.file` | [Ivy filesystem] | [filesystem factory] | [FileRepository API]</td>
+SFTP | `Resolver.sftp` | [Ivy sftp] | [sftp factory] | [SftpRepository API]</td>
+SSH | `Resolver.ssh` | [Ivy ssh] | [ssh factory] | [SshRepository API]</td>
+URL | `Resolver.url` | [Ivy url] | [url factory] | [URLRepository API]</td>
 
 ## Basic Examples
 
