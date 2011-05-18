@@ -1,17 +1,17 @@
 [patterns]: http://ant.apache.org/ivy/history/latest-milestone/concept.html#patterns
-[Patterns API]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/Patterns$object.html
+[Patterns API]: http://harrah.github.com/xsbt/latest/api/sbt/Patterns$.html
 [Ivy filesystem]: http://ant.apache.org/ivy/history/latest-milestone/resolver/filesystem.html (Ivy)
-[filesystem factory]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/Resolver$object.file$object.html
-[FileRepository API]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/FileRepository.html
+[filesystem factory]: http://harrah.github.com/xsbt/latest/api/sbt/Resolver$$file$.html
+[FileRepository API]: http://harrah.github.com/xsbt/latest/api/sbt/FileRepository.html
 [Ivy sftp]: http://ant.apache.org/ivy/history/latest-milestone/resolver/sftp.html
-[sftp factory]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/Resolver$object.Define.html
-[SftpRepository API]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/SftpRepository.html
+[sftp factory]: http://harrah.github.com/xsbt/latest/api/sbt/Resolver$$Define.html
+[SftpRepository API]: http://harrah.github.com/xsbt/latest/api/sbt/SftpRepository.html
 [Ivy ssh]: http://ant.apache.org/ivy/history/latest-milestone/resolver/ssh.html
-[ssh factory]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/Resolver$object.Define.html
-[SshRepository API]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/SshRepository.html
+[ssh factory]: http://harrah.github.com/xsbt/latest/api/sbt/Resolver$$Define.html
+[SshRepository API]: http://harrah.github.com/xsbt/latest/api/sbt/SshRepository.html
 [Ivy url]: http://ant.apache.org/ivy/history/latest-milestone/resolver/url.html
-[url factory]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/Resolver$object.url$object.html
-[URLRepository API]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/URLRepository.html
+[url factory]: http://harrah.github.com/xsbt/latest/api/sbt/Resolver$$url$.html
+[URLRepository API]: http://harrah.github.com/xsbt/latest/api/sbt/URLRepository.html
 
 # Resolvers
 

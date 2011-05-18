@@ -1,5 +1,5 @@
-[TaskStreams]: https://github.com/harrah/xsbt/blob/0.9/tasks/standard/Streams.scala
-[Logger]: https://github.com/harrah/xsbt/blob/0.9/util/log/Logger.scala
+[TaskStreams]: http://harrah.github.com/xsbt/latest/api/sbt/std/TaskStreams.html
+[Logger]: http://harrah.github.com/xsbt/latest/api/sbt/Logger.html
 # Tasks
 
 # Introduction

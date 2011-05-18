@@ -1,7 +1,7 @@
-[Fork API]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/Fork$object.html
-[ForkJava]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/Fork$object.ForkJava.html
-[ForkScala]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/Fork$object.ForkScala.html
-[OutputStrategy]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/OutputStrategy.html
+[Fork API]: http://harrah.github.com/xsbt/latest/api/sbt/Fork$.html
+[ForkJava]: http://harrah.github.com/xsbt/latest/api/sbt/Fork$.ForkJava.html
+[ForkScala]: http://harrah.github.com/xsbt/latest/api/sbt/Fork$.ForkScala.html
+[OutputStrategy]: http://harrah.github.com/xsbt/latest/api/sbt/OutputStrategy.html
 
 # Forking
 

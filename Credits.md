@@ -12,6 +12,7 @@ The following people have contributed ideas, documentation, or code to sbt:
 * Viktor Klang
 * David R. MacIver
 * Ross McDonald
+* Artyom Olshevskiy
 * Jorge Ortiz
 * Mikko Peltonen
 * Harshad RJ

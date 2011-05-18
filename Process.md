@@ -1,4 +1,4 @@
-[ProcessBuilder API]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/ProcessBuilder.html
+[ProcessBuilder API]: http://harrah.github.com/xsbt/latest/api/sbt/ProcessBuilder.html
 
 # External Processes
 

@@ -1,5 +1,5 @@
 [Ivy documentation]: http://ant.apache.org/ivy/history/2.2.0/ivyfile/dependency-artifact.html
-[Artifact API]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/Artifact$object.html
+[Artifact API]: http://harrah.github.com/xsbt/latest/api/sbt/Artifact$.html
 
 # Artifacts
 

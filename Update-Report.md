@@ -1,6 +1,12 @@
+[sbt.UpdateReport]: http://harrah.github.com/xsbt/latest/api/sbt/UpdateReport.html
+[DependencyFilter]: http://harrah.github.com/xsbt/latest/api/sbt/DependencyFilter.html
+[ConfigurationFilter]: http://harrah.github.com/xsbt/latest/api/sbt/ConfigurationFilter.html
+[ModuleFilter]: http://harrah.github.com/xsbt/latest/api/sbt/ModuleFilter.html
+[ArtifactFilter]: http://harrah.github.com/xsbt/latest/api/sbt/ArtifactFilter.html
+
 # Update Report
 
-`update` and related tasks produce a value of type [sbt.UpdateReport](https://github.com/harrah/xsbt/blob/0.9/ivy/UpdateReport.scala).
+`update` and related tasks produce a value of type [sbt.UpdateReport]
 This data structure provides information about the resolved configurations, modules, and artifacts.
 At the top level, `UpdateReport` provides reports of type `ConfigurationReport` for each resolved configuration.
 A `ConfigurationReport` supplies reports (of type `ModuleReport`) for each module resolved for a given configuration.
@@ -12,7 +18,7 @@ However, it may be non-empty for `update-classifiers` and `update-sbt-classifers
 
 A typical use of `UpdateReport` is to retrieve a list of files matching a filter.
 A conversion of type `UpdateReport => RichUpdateReport` implicitly provides these methods for `UpdateReport`.
-The filters are defined by the [DependencyFilter, ConfigurationFilter, ModuleFilter, and ArtifactFilter](https://github.com/harrah/xsbt/blob/0.9/ivy/DependencyFilter.scala) types.
+The filters are defined by the [DependencyFilter], [ConfigurationFilter], [ModuleFilter], and [ArtifactFilter] types.
 Using these filter types, you can filter by the configuration name, the module organization, name, or revision, and the artifact name, type, extension, or classifier.
 
 The relevant methods (implicitly on `UpdateReport`) are:
