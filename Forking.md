@@ -15,12 +15,12 @@ The following examples demonstrate forking the `run` action and changing the wor
 
 To enable forking all `run`-like methods (`run`, `run-main`, `test:run`, and `test:run-main`), set `fork` to `true`.
 ```scala
-fork := true
+fork in run := true
 ```
 
 To only fork `test:run` and `test:run-main`:
 ```scala
-fork in Test := true
+fork in (Test,run) := true
 ```
 
 Similarly, set `fork in Compile := true` to only fork the main `run` tasks.  `run` and `run-main` share the same configuration and cannot be configured separately.
