@@ -1,4 +1,4 @@
-Listed here are some examples of settings (each setting is independent).  See [[BasicConfiguration]] for details.
+Listed here are some examples of settings (each setting is independent).  See [[Basic Configuration]] for details.
 
 ```scala
 // set the name of the project
@@ -102,6 +102,13 @@ fork in Test := true
 
 // add a JVM option to use when forking a JVM for 'run'
 javaOptions += "-Xmx2G"
+
+// only use a single thread for building
+parallelExecution := false
+
+// Execute tests in the current project serially
+//   Tests from other projects may still run concurrently.
+parallelExecution in Test := false
 
 // set the location of the JDK to use for compiling Java code.
 // if 'fork' is true, this is used for 'run' as well
