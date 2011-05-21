@@ -87,15 +87,14 @@ To switch back to the main project:
 
 This variant shows how to use the external project support in sbt 0.9 to declare a source dependency on a plugin.
 This means that the plugin will be built from source and used on the classpath.
-This is example is currently only for show, since the plugin needs to build with sbt 0.9 for this to work.
 
 Edit `project/plugins/project/Build.scala`
 ```scala
 import sbt._
 object PluginDef extends Build {
 	lazy val projects = Seq(root)
-	lazy val root = Project("plugins", file(".")) dependsOn(grizzled)
-	lazy val grizzled = uri("git://github.com/bmc/grizzled-scala.git")
+	lazy val root = Project("plugins", file(".")) dependsOn( webPlugin )
+	lazy val webPlugin = uri("git://github.com/siasia/xsbt-web-plugin")
 }
 ```
 If sbt is running, run `reload`.
@@ -104,6 +103,11 @@ Note that this approach can be useful used when developing a plugin.
 A project that uses the plugin will rebuild the plugin on `reload`.
 This saves the intermediate steps of `publish-local` and `clean-plugins` required in 0.7.
 It can also be used to work with the development version of a plugin from its repository.
+
+It is recommended to explicitly specify the commit or tag by appending it to the repository as a fragment:
+```scala
+lazy val webPlugin = uri("git://github.com/siasia/xsbt-web-plugin#0.9.7")
+```
 
 ### 2) Use the library
 
