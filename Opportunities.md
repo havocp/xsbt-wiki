@@ -34,3 +34,5 @@ Below is a running list of potential areas of contribution.  This list may becom
 ```
  Also, trace is currently an integer, but should really be an abstract data type.
 8. There is more aggressive incremental compilation in sbt 0.9.  I expect it to be more difficult to reproduce bugs.  It would be helpful to have a mode that generates a diff between successive compilations and records the options passed to scalac.  This could be replayed or inspected to try to find the cause.
+9. Take the webstart support from 0.7 and make it a 0.9 plugin
+10. Take ownership of the 0.7 installer plugin and make it an independent 0.9 plugin
