@@ -1,5 +1,13 @@
 If you haven't been involved in any of the work of designing 0.9.x (and soon 1.0.x) you might find some of the explanation of it's many capabilities a bit overwhelming.  This page is an attempt to explain how to migrate to 0.9.x with the minimum of fuss.  The assumption is that you are familiar with SBT 0.7.x but don't know much if anything about 0.9.x.
 
+## Why would you want to move to 0.9.x at this early stage?
+
+As far as I am concerned these are compelling reasons:
+
+ 1. It's faster at compiling (largely because it is more intelligent at detecting what needs to be re-compiled after a change).
+ 1. For simple projects the simple `build.sbt` in your root directory is more obvious to setup and more straightforward in it's content than `project/build/MyProject.scala` was.
+ 1. It does away with the `lib-managed` directory thereby reducing the size of your projects and simplifying backup / version control management.
+
 # Step 1: Install SBT 0.9.x
 
 At the moment the latest builds of SBT 0.9.x are being announced on the `simple-build-tool` discussion forum: [[https://groups.google.com/forum/#!forum/simple-build-tool]].  At the point of writing this page the release is `0.9.8` and can be downloaded here: <http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.9.8/sbt-launch.jar>.
@@ -51,7 +59,7 @@ Now becomes part of your `build.sbt` file with lines like:
     organization := "org.myproject"
     scalaVersion := "2.8.1"
 
-## Run SBT 0.8.x
+## Run SBT 0.9.x
 
 Once you've created your build file, give it a try by launching SBT 0.9.x in the root directory of your project.  In a perfect world this will just run and your done!  More details of how to debug problems are listed in the hints and tips below.
 
