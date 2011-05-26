@@ -57,7 +57,7 @@ Once you've created your build file, give it a try by launching SBT 0.9.x in the
 
 ## Switching back to SBT 0.7.x
 
-If you get into a mess and you just need your project to work then don't worry about the `build.sbt` file which SBT 0.7.x will not understand or notice, just rename your new `project` directory (created by SBT 0.9.x) to something like `project09` and rename the backup of your old project form `project-old` to `project` again.  Your done!
+If you get into a mess and you just need your project to work then don't worry about the `build.sbt` file which SBT 0.7.x will not understand or notice, just rename your new `project` directory (created by SBT 0.9.x) to something like `project09` and rename the backup of your old project form `project-old` to `project` again.  You're done!
 
 # Other stuff you might want to know!
 
