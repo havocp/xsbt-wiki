@@ -1,4 +1,3 @@
-
 f the work of designing 0.9.x (and soon 1.0.x) you might find some of the explanation of it's many capabilities a bit overwhelming.  This page is an attempt to explain how to migrate to 0.9.x with the minimum of fuss.  The assumption is that you are familiar with SBT 0.7.x but don't know much if anything about 0.9.x.
 
 # Step 1: Install SBT 0.9.x
@@ -50,7 +49,7 @@ Now becomes part of your `build.sbt` file with lines like:
     organization := "org.myproject"
     scalaVersion := "2.8.1"
 
-## Run SBT 0.8.x
+## Run SBT 0.9.x
 
 Once you've created your build file, give it a try by launching SBT 0.9.x in the root directory of your project.  In a perfect world this will just run and your done!  More details of how to debug problems are listed in the hints and tips below.
 
