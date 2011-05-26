@@ -61,9 +61,9 @@ If you get into a mess and you just need your project to work then don't worry a
 
 # Other stuff you might want to know!
 
-## Where has `lib-managed` gone?
+## Where has `lib_managed` gone?
 
-One feature of SBT 0.9.x is that it uses managed libraries directly from your ivy cache and not from copies added to your `lib-managed` directory.  This saves your project directory growing outrageously under the weight of dependencies that are already stored multiple times in other places on your machine.
+One feature of SBT 0.9.x is that it uses managed libraries directly from your ivy cache and not from copies added to your `lib_managed` directory.  This saves your project directory growing outrageously under the weight of dependencies that are already stored multiple times in other places on your machine.
 
 Unfortunately this does mess with your existing solution to sharing your libraries with your favoured IDE.  If you are using IntelliJ IDEA then you might want to try out this SBT 0.9.x plugin that will create your IntelliJ project set up with all your dependencies: [[https://github.com/teigen/plugins]].
 
