@@ -82,7 +82,7 @@ If you get stuck and want to switch back, you can leave your `build.sbt` file al
 
 ## Where has `lib_managed` gone?
 
-SBT 0.9.x loads managed libraries from your ivy cache without copying them to a `lib_managed` directory.  This keeps your project directory small.
+By default, SBT 0.9.x loads managed libraries from your ivy cache without copying them to a `lib_managed` directory. This fixes some bugs with the previous solution and keeps your project directory small. If you want to insulate your builds from the ivy cache being cleared, set `retrieveManaged := true` and the dependencies will be copied to `lib_managed` as a build-local cache (avoiding the issues of `lib_managed` in 0.7.x).
 
 Unfortunately this does mean that existing solutions for sharing libraries with your favoured IDE may not work.  If you are using IntelliJ IDEA then you might want to try out this SBT 0.9.x plugin that will create your IntelliJ project set up with all your dependencies: [[https://github.com/teigen/plugins]].
 
