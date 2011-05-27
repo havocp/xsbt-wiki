@@ -2,7 +2,9 @@
 [mailing list]: http://groups.google.com/group/simple-build-tool/
 [xsbt-web-plugin]: https://github.com/siasia/xsbt-web-plugin
 
-This page will help you migrate to 0.9.x with the minimum of fuss.  If you haven't been exposed to 0.9.x (and soon 0.10.x) you might find its many capabilities a bit overwhelming.  The assumption is that you are familiar with SBT 0.7.x but new to 0.9.x.
+The assumption here is that you are familiar with SBT 0.7.x but new to 0.9.x.
+
+0.9.x's many new capabilities can be a bit overwhelming, but this page should help you migrate to 0.9.x with a minimum of fuss.  
 
 ## Why move to 0.9.x at this early stage?
 
