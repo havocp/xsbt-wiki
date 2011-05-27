@@ -2,15 +2,13 @@
 [mailing list]: http://groups.google.com/group/simple-build-tool/
 [xsbt-web-plugin]: https://github.com/siasia/xsbt-web-plugin
 
-If you haven't been involved in any of the work of designing 0.9.x (and soon 0.10.x) you might find some of the explanation of it's many capabilities a bit overwhelming.  This page is an attempt to explain how to migrate to 0.9.x with the minimum of fuss.  The assumption is that you are familiar with SBT 0.7.x but don't know much if anything about 0.9.x.
+This page will help you migrate to 0.9.x with the minimum of fuss.  If you haven't been exposed to 0.9.x (and soon 0.10.x) you might find its many capabilities a bit overwhelming.  The assumption is that you are familiar with SBT 0.7.x but new to 0.9.x.
 
-## Why would you want to move to 0.9.x at this early stage?
+## Why move to 0.9.x at this early stage?
 
-As far as I am concerned these are compelling reasons:
-
- 1. It's faster at compiling (largely because it is more intelligent at detecting what needs to be re-compiled after a change).
- 1. For simple projects the simple `build.sbt` in your root directory is more obvious to setup and more straightforward in it's content than `project/build/MyProject.scala` was.
- 1. It does away with the `lib_managed` directory thereby reducing the size of your projects and simplifying backup / version control management.
+ 1. Faster builds (because it is smarter at re-compiling only what it must)
+ 1. Easier configuration.  For simple projects a single `build.sbt` file in your root directory is easier to create than `project/build/MyProject.scala` was.
+ 1. No more `lib_managed` directory, reducing disk usage and avoiding backup and version control hassles.
 
 # Step 1: Install SBT 0.9.x
 
