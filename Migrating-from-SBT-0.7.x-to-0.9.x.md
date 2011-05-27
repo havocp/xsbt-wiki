@@ -14,13 +14,13 @@ The assumption here is that you are familiar with SBT 0.7.x but new to 0.9.x.
 
 # Step 1: Install SBT 0.9.x
 
-At the moment the latest builds of SBT 0.9.x are being announced on the `simple-build-tool` discussion forum: [[https://groups.google.com/forum/#!forum/simple-build-tool]].  At the point of writing this page the release is `0.9.8` and can be downloaded here: [sbt-launch.jar].
+Builds are announced here: [[https://groups.google.com/forum/#!forum/simple-build-tool]].  As I write the most recent is `0.9.8` and can be downloaded here: [sbt-launch.jar].
 
-You run this in exactly the same way that you run the current version, in other words:
+You can run 0.9.x the same way that you run 0.7.x, either simply:
 
     java -jar sbt-launch.jar
 
-However, typically this is best turned into a shell script like:
+Or (as most users do) with a shell script like:
 
     #!/bin/sh
     if test -f ~/.sbtconfig; then
@@ -30,7 +30,7 @@ However, typically this is best turned into a shell script like:
 
 Note, in this script that I have renamed the `sbt-launch.jar` file with the version so that I can continue to use my 0.7.x version for projects that haven't been migrated.  I called this script `sbt9`.
 
-There's a more detailed explanation of all this here: [[Setup]].
+For more details see: [[Setup]].
 
 # Step 2: A simple technique for switching an existing project
 
