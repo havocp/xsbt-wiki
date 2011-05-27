@@ -54,9 +54,7 @@ mainClass in (Compile, packageBin) := Some("myproject.MyMain")
 mainClass in (Compile, run) := Some("myproject.MyMain")
 
 // add <base>/input to the files that '~' triggers on
-watchSources <<= (watchSources, baseDirectory) map { (srcs, base) =>
-	srcs ++ (base / "input")
-}
+watchSources <+= baseDirectory map { _ / "input" }
 
 // add a maven-style repository
 resolvers += "name" at "url"
@@ -74,7 +72,7 @@ ivyLoggingLevel := UpdateLogging.Full
 offline := true
 
 // set the prompt (for this build) to include the project id.
-shellPrompt in ThisBuild := { state => Project.extract(state).cid + "> " }
+shellPrompt in ThisBuild := { state => Project.extract(state).currentRef.project + "> " }
 
 // set the prompt (for the current project) to include the username
 shellPrompt := { state => System.getProperty("user.name") + "> " }
