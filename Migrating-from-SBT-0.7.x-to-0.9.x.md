@@ -1,4 +1,8 @@
-If you haven't been involved in any of the work of designing 0.9.x (and soon 1.0.x) you might find some of the explanation of it's many capabilities a bit overwhelming.  This page is an attempt to explain how to migrate to 0.9.x with the minimum of fuss.  The assumption is that you are familiar with SBT 0.7.x but don't know much if anything about 0.9.x.
+[sbt-launch.jar]: http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.9.8/sbt-launch.jar
+[mailing list]: http://groups.google.com/group/simple-build-tool/
+[xsbt-web-plugin]: https://github.com/siasia/xsbt-web-plugin
+
+If you haven't been involved in any of the work of designing 0.9.x (and soon 0.10.x) you might find some of the explanation of it's many capabilities a bit overwhelming.  This page is an attempt to explain how to migrate to 0.9.x with the minimum of fuss.  The assumption is that you are familiar with SBT 0.7.x but don't know much if anything about 0.9.x.
 
 ## Why would you want to move to 0.9.x at this early stage?
 
@@ -6,11 +10,11 @@ As far as I am concerned these are compelling reasons:
 
  1. It's faster at compiling (largely because it is more intelligent at detecting what needs to be re-compiled after a change).
  1. For simple projects the simple `build.sbt` in your root directory is more obvious to setup and more straightforward in it's content than `project/build/MyProject.scala` was.
- 1. It does away with the `lib-managed` directory thereby reducing the size of your projects and simplifying backup / version control management.
+ 1. It does away with the `lib_managed` directory thereby reducing the size of your projects and simplifying backup / version control management.
 
 # Step 1: Install SBT 0.9.x
 
-At the moment the latest builds of SBT 0.9.x are being announced on the `simple-build-tool` discussion forum: [[https://groups.google.com/forum/#!forum/simple-build-tool]].  At the point of writing this page the release is `0.9.8` and can be downloaded here: <http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.9.8/sbt-launch.jar>.
+At the moment the latest builds of SBT 0.9.x are being announced on the `simple-build-tool` discussion forum: [[https://groups.google.com/forum/#!forum/simple-build-tool]].  At the point of writing this page the release is `0.9.8` and can be downloaded here: [sbt-launch.jar].
 
 You run this in exactly the same way that you run the current version, in other words:
 
@@ -54,11 +58,15 @@ This `build.sbt` file is a bit like the old `project/build/ProjectName.scala` fi
 
 Now becomes part of your `build.sbt` file with lines like:
 
-    name := "My Project"
-    version := "1.0"
-    organization := "org.myproject"
-    scalaVersion := "2.8.1"
+```scala
+name := "My Project"
 
+version := "1.0"
+
+organization := "org.myproject"
+
+scalaVersion := "2.8.1"
+```
 ## Run SBT 0.9.x
 
 Once you've created your build file, give it a try by launching SBT 0.9.x in the root directory of your project.  In a perfect world this will just run and your done!  More details of how to debug problems are listed in the hints and tips below.
@@ -91,32 +99,47 @@ The following commands work pretty much as before out of the box:
     publish-local
     exit
 
+For detailed help see the `help` command or the [[Running]] page.
+
 ## My last command didn't work but I can't see an explanation why?
 
-SBT 0.9.x seems to, by default, hide some of the detailed explanation when things go wrong.  It has the nice side effect of giving you less noise on screen, but as a newcomer it can leave you lost for explanation.  Thankfully there is a simple solution: type `last command` where `command` is the command you last entered that went wrong.  e.g. if you find that your `update` fails to load all the dependencies as you expect you can enter:
+SBT 0.9.x by default suppresses most stack traces and debugging information.  It has the nice side effect of giving you less noise on screen, but as a newcomer it can leave you lost for explanation.  Thankfully there is a simple solution: type `last command` where `command` is the command you last entered that went wrong.  e.g. if you find that your `update` fails to load all the dependencies as you expect you can enter:
 
-    last update
+```text
+> last update
+```
 
 and it will display lost of logging detail from the last run of the `update` command.
 
 ## My dependencies aren't working any more, why?
 
-I don't know if this is a bug or a feature, but SBT 0.9.x seems to take a slightly different view of how your dependencies get resolved.  So a list of dependencies that worked fine in 0.7.x might fail under 0.9.x for reasons that are nothing to do with your failure to understand 0.9.x syntax.  The `last update` command is your friend.
+SBT 0.9.x fixes a flaw in how dependencies get resolved.  So a list of dependencies that worked fine in 0.7.x might fail under 0.9.x for reasons that are nothing to do with your failure to understand 0.9.x syntax.  The `last update` command is your friend.
 
 ## My tests all run really fast but some are broken that weren't before!
 
 Be aware that compiles and tests are carried out in parallel by default in SBT 0.9.x.  If you test code is not thread safe then you may want to force it to run your tests one at a time by adding this line to your `build.sbt`:
 
-    // Execute tests in the current project serially
-    //   Tests from other projects may still run concurrently.
-    parallelExecution in Test := false
+```scala
+// Execute tests in the current project serially
+//   Tests from other projects may still run concurrently.
+parallelExecution in Test := false
+```
 
 ## How do I set log levels? `warn`, `info`, `debug` and `error` don't work any more
 
 The new syntax in SBT 0.9.x is:
-
-    set logLevel := Level.Warn
+```text
+> set logLevel := Level.Warn
+```
 
 You can also include this in your `build.sbt` file but you just remove the `set` command prefix so it becomes:
 
-    logLevel := Level.Warn
+```scala
+logLevel := Level.Warn
+```
+
+## What happened to the web development and webstart support?
+
+Web application support was split out into a plugin.  See the [xsbt-web-plugin] project.
+
+Webstart support still needs a new home.  Please consider adopting it!  Use the [mailing list] for guidance.
