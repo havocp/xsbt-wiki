@@ -15,6 +15,7 @@ The following people have contributed ideas, documentation, or code to sbt:
 * Artyom Olshevskiy
 * Jorge Ortiz
 * Mikko Peltonen
+* Stuart Roebuck
 * Harshad RJ
 * Tony Sloane
 * Doug Tangren
