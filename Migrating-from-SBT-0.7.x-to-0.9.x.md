@@ -34,17 +34,19 @@ For more details see: [[Setup]].
 
 # Step 2: A simple technique for switching an existing project
 
-Here is a simple technique for switching an existing project to 0.9.x whilst retaining the ability to switch back again at will.  This is a really simple approach so there will be plenty of more complex SBT projects with subprojects that will not fit this technique, but if you can work out how to transition a simple project then you are much better placed to start thinking about a more complex one.
+Here is a simple technique for switching an existing project to 0.9.x while retaining the ability to switch back again at will.  Some builds, such as those with subprojects, are not suited for this technique, but if you learn how to transition a simple project it will help you do a more complex one next.
 
-## Preserve your 0.7.x project settings
+## Preserve `project/` for 0.7.x project
 
-Assuming your project is a simple project conforming to the default directory structure, take the `project/` directory and rename it to something like `project-old`.  This will hide it from SBT 0.9.x whilst backing up the old setting if you want to switch back to 0.7.x.
+Rename your `project/` directory to something like `project-old`.  This will hide it from SBT 0.9.x but keep it in case you want to switch back to 0.7.x.
 
-## Create a new 0.9.x `build.sbt` file
+## Create `build.sbt` for 0.9.x
 
-Then create a `build.sbt` file in the root directory of your project.  The simplest and most up to date examples of what this should look like seem to be in [[Quick-Configuration-Examples]] and there is a more detailed explanation in [[Basic-Configuration]] but don't get overwhelmed with the detail which you probably don't need at first! If you have a simple project then converting your existing project file to this format is largely a matter of re-writing your dependencies and maven archive declarations in the slightly modified but largely the same syntax of the new `build.sbt` file.
+Create a `build.sbt` file in the root directory of your project. See [[Quick-Configuration-Examples]] for simple examples. [[Basic-Configuration]] has more details, but don't get bogged down in detail you probably won't need at first! If you have a simple project then converting your existing project file to this format is largely a matter of re-writing your dependencies and maven archive declarations in a modified yet familiar syntax.
 
-This `build.sbt` file is a bit like the old `project/build/ProjectName.scala` file except that it is more like a properties file and less like Scala.  It also contains some details which used to be set from the command line in SBT and used to be stored in the `project/build.properties` file.  So a `build.properties` file that looked like:
+This `build.sbt` file combines aspects of the old `project/build/ProjectName.scala` and `build.properties` files.  It looks like a property file, yet contains Scala code in a special format.
+
+A `build.properties` file like:
 
     #Project properties
     #Fri Jan 07 15:34:00 GMT 2011
@@ -67,6 +69,7 @@ organization := "org.myproject"
 
 scalaVersion := "2.8.1"
 ```
+
 ## Run SBT 0.9.x
 
 Once you've created your build file, give it a try by launching SBT 0.9.x in the root directory of your project.  In a perfect world this will just run and your done!  More details of how to debug problems are listed in the hints and tips below.
