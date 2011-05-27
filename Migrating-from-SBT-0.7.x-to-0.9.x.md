@@ -72,19 +72,19 @@ scalaVersion := "2.8.1"
 
 ## Run SBT 0.9.x
 
-Once you've created your build file, give it a try by launching SBT 0.9.x in the root directory of your project.  In a perfect world this will just run and your done!  More details of how to debug problems are listed in the hints and tips below.
+Now launch sbt.  If you're lucky it works and you're done.  For help debugging, see below.
 
 ## Switching back to SBT 0.7.x
 
-If you get into a mess and you just need your project to work then don't worry about the `build.sbt` file which SBT 0.7.x will not understand or notice, just rename your new `project` directory (created by SBT 0.9.x) to something like `project09` and rename the backup of your old project form `project-old` to `project` again.  You're done!
+If you get stuck and want to switch back, you can leave your `build.sbt` file alone. SBT 0.7.x will not understand or notice it. Just rename your 0.9.x `project` directory to something like `project09` and rename the backup of your old project from `project-old` to `project` again.
 
 # Other stuff you might want to know!
 
 ## Where has `lib_managed` gone?
 
-One feature of SBT 0.9.x is that it uses managed libraries directly from your ivy cache and not from copies added to your `lib_managed` directory.  This saves your project directory growing outrageously under the weight of dependencies that are already stored multiple times in other places on your machine.
+SBT 0.9.x loads managed libraries from your ivy cache without copying them to a `lib_managed` directory.  This keeps your project directory small.
 
-Unfortunately this does mess with your existing solution to sharing your libraries with your favoured IDE.  If you are using IntelliJ IDEA then you might want to try out this SBT 0.9.x plugin that will create your IntelliJ project set up with all your dependencies: [[https://github.com/teigen/plugins]].
+Unfortunately this does mean that existing solutions for sharing libraries with your favoured IDE may not work.  If you are using IntelliJ IDEA then you might want to try out this SBT 0.9.x plugin that will create your IntelliJ project set up with all your dependencies: [[https://github.com/teigen/plugins]].
 
 # Useful hints and tips
 
@@ -104,7 +104,7 @@ The following commands work pretty much as before out of the box:
 
 For detailed help see the `help` command or the [[Running]] page.
 
-## My last command didn't work but I can't see an explanation why?
+## My last command didn't work but I can't see an explanation. Why?
 
 SBT 0.9.x by default suppresses most stack traces and debugging information.  It has the nice side effect of giving you less noise on screen, but as a newcomer it can leave you lost for explanation.  Thankfully there is a simple solution: type `last command` where `command` is the command you last entered that went wrong.  e.g. if you find that your `update` fails to load all the dependencies as you expect you can enter:
 
@@ -112,15 +112,17 @@ SBT 0.9.x by default suppresses most stack traces and debugging information.  It
 > last update
 ```
 
-and it will display lost of logging detail from the last run of the `update` command.
+and it will display the full output from the last run of the `update` command.
 
-## My dependencies aren't working any more, why?
+## My dependencies aren't working any more. Why?
 
 SBT 0.9.x fixes a flaw in how dependencies get resolved.  So a list of dependencies that worked fine in 0.7.x might fail under 0.9.x for reasons that are nothing to do with your failure to understand 0.9.x syntax.  The `last update` command is your friend.
 
 ## My tests all run really fast but some are broken that weren't before!
 
-Be aware that compiles and tests are carried out in parallel by default in SBT 0.9.x.  If you test code is not thread safe then you may want to force it to run your tests one at a time by adding this line to your `build.sbt`:
+Be aware that compilation and tests run in parallel by default in SBT 0.9.x.
+
+If your test code isn't thread-safe then you may want to force it to run your tests one at a time by adding this line to your `build.sbt`:
 
 ```scala
 // Execute tests in the current project serially
@@ -128,21 +130,23 @@ Be aware that compiles and tests are carried out in parallel by default in SBT 0
 parallelExecution in Test := false
 ```
 
-## How do I set log levels? `warn`, `info`, `debug` and `error` don't work any more
+## How do I set log levels?
 
-The new syntax in SBT 0.9.x is:
+`warn`, `info`, `debug` and `error` don't work any more.
+
+The new syntax in the SBT 0.9.x shell is:
 ```text
 > set logLevel := Level.Warn
 ```
 
-You can also include this in your `build.sbt` file but you just remove the `set` command prefix so it becomes:
+Or in your `build.sbt` file write:
 
 ```scala
 logLevel := Level.Warn
 ```
 
-## What happened to the web development and webstart support?
+## What happened to the web development and Web Start support?
 
 Web application support was split out into a plugin.  See the [xsbt-web-plugin] project.
 
-Webstart support still needs a new home.  Please consider adopting it!  Use the [mailing list] for guidance.
+Web Start support still needs a new home.  Please consider adopting it!  Use the [mailing list] for guidance.
