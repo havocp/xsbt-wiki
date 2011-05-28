@@ -40,4 +40,5 @@ object MyBuild extends Build {
   lazy val server = Project ("server", file ("server")) settings (resolvers := oracleResolvers, 
 									libraryDependencies := serverDeps, 
 									scalaVersion := "2.9.0-1") dependsOn (common)
+}
 ```
