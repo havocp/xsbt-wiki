@@ -13,9 +13,9 @@
     * [[Full Configuration]]
     * Examples 
         * Quick
-            [[Quick Configuration Examples]]
+            * [[Quick Configuration Examples]]
         * Full
-            [[Full Configuration Example #1]]
+            * [[Full Configuration Example #1]]
     * Managed Dependencies
         * [[Basic|Library Management]]
         * [[Configurations]]
