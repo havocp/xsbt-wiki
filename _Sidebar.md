@@ -10,8 +10,12 @@
     * [[Running Project Code]]
 * Configuration
     * [[Basic Configuration]]
-    * [[Examples|Quick Configuration Examples]]
     * [[Full Configuration]]
+    * Examples 
+        * Quick
+            [[Quick Configuration Examples]]
+        * Full
+            [[Full Configuration Example #1]]
     * Managed Dependencies
         * [[Basic|Library Management]]
         * [[Configurations]]
