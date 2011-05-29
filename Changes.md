@@ -1,8 +1,8 @@
-### 0.7.7 to 0.10.0 (under development, currently at 0.9.8)
+### 0.7.7 to 0.10.0 (under development, currently at 0.9.9)
 
 **Major redesign, only prominent changes listed.**
 
- * Project definitions in Scala 2.8.1 (will move to 2.9.x)
+ * Project definitions in Scala 2.9.0-1
  * New configuration system: [[Quick Configuration Examples]]
  * New task engine: [[Tasks]]
  * New multiple project support: [[Full Configuration]]

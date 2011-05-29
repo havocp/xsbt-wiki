@@ -1,4 +1,4 @@
-[sbt-launch.jar]: http://typesafe.artifactoryonline.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.9.8/sbt-launch.jar
+[sbt-launch.jar]: http://typesafe.artifactoryonline.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.9.9/sbt-launch.jar
 [ScalaCheck]: http://code.google.com/p/scalacheck/
 [specs]: http://code.google.com/p/specs/
 [ScalaTest]: http://www.artima.com/scalatest/
