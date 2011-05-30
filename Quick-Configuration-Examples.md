@@ -1,5 +1,7 @@
 Listed here are some examples of settings (each setting is independent).  See [[Basic Configuration]] for details.
 
+_Please note_ that blank lines are used to separate individual settings. Avoid using blank lines within a single multiline expression.
+
 ```scala
 // set the name of the project
 name := "My Project"
