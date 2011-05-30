@@ -13,6 +13,16 @@ To specify the repository, assign a repository to `publish-to` and optionally se
 publishTo := Some("Scala Tools Nexus" at "http://nexus.scala-tools.org/content/repositories/releases/")
 ```
 
+If you're using Maven repositories you will also have to select the right repository depending on your artifacts: SNAPSHOT versions go to the /snapshot repository while other versions go to the /releases repository. Doing this selection can be done by using the value of the `version` SettingKey:
+
+```
+publishTo <<= (version) { version: String =>
+  val nexus = "http://nexus-direct.scala-tools.org/content/repositories/"
+  if (version.trim.endsWith("SNAPSHOT")) Some("snapshots" at nexus+"snapshots/") 
+  else                                   Some("releases" at nexus+"releases/")
+}
+```
+
 ## Credentials
 
 There are two ways to specify credentials for such a repository.  The first is to specify them inline:
