@@ -5,7 +5,6 @@
 ```scala
 parallelExecution in Test := false
 ```
-
 `Test` can be replaced with `IntegrationTest` to only execute integration tests serially.
 
 ## Example: Integration Tests
@@ -45,4 +44,13 @@ object B extends Build
   lazy val FunTest = config("fun") extend(Test)
   lazy val specs = "org.scala-tools.testing" %% "specs" % "1.6.7.2" % "fun" intransitive()
 }
+```
+
+
+## Filter classes
+
+If you want to select only Test classes which name end with "Test" to be executed you can use the testOptions setting:
+
+```
+testOptions := Seq(Tests.Filter(s => s.endsWith("Test")))
 ```
