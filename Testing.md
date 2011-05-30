@@ -49,7 +49,7 @@ object B extends Build
 
 ## Filter classes
 
-If you want to select only Test classes which name end with "Test" to be executed you can use the testOptions setting:
+If you want to select only Test classes which name end with "Test" to be executed you can use the `testOptions` setting:
 
 ```
 testOptions := Seq(Tests.Filter(s => s.endsWith("Test")))
