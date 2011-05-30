@@ -79,19 +79,23 @@ Now launch sbt.  If you're lucky it works and you're done.  For help debugging, 
 
 If you get stuck and want to switch back, you can leave your `build.sbt` file alone. SBT 0.7.x will not understand or notice it. Just rename your 0.9.x `project` directory to something like `project09` and rename the backup of your old project from `project-old` to `project` again.
 
-# Other stuff you might want to know!
+# Useful hints and tips
 
 ## Where has `lib_managed` gone?
 
-By default, SBT 0.9.x loads managed libraries from your ivy cache without copying them to a `lib_managed` directory. This fixes some bugs with the previous solution and keeps your project directory small. If you want to insulate your builds from the ivy cache being cleared, set `retrieveManaged := true` and the dependencies will be copied to `lib_managed` as a build-local cache (avoiding the issues of `lib_managed` in 0.7.x).
+By default, SBT 0.9.x loads managed libraries from your ivy cache without copying them to a `lib_managed` directory. This fixes some bugs with the previous solution and keeps your project directory small. If you want to insulate your builds from the ivy cache being cleared, set `retrieveManaged := true` and the dependencies will be copied to `lib_managed` as a build-local cache (while avoiding the issues of `lib_managed` in 0.7.x).
 
-Unfortunately this does mean that existing solutions for sharing libraries with your favoured IDE may not work.  If you are using IntelliJ IDEA then you might want to try out this SBT 0.9.x plugin that will create your IntelliJ project set up with all your dependencies: [[https://github.com/teigen/plugins]].
+This does mean that existing solutions for sharing libraries with your favoured IDE may not work.  There are 0.9.x plugins for IDEs being developed:
 
-# Useful hints and tips
+* IntelliJ IDEA: [[https://github.com/teigen/plugins]]
+* Netbeans: [[https://github.com/remeniuk/sbt-netbeans-plugin]]
+* Eclipse: [[https://github.com/weiglewilczek/sbteclipse]]
 
 ## What are the commands I can use?
 
-You don't appear to be able to list all the possible commands in the way you could with SBT 0.7.x.  If in doubt start by just trying the old command as it may just work!  The built in TAB completion will also offer you all the command options (as well as lots of stuff that aren't commands!) so you can just press TAB at the beginning of a line and see what you get!
+For a list of commands, run `help`.  For details on a specific command, run `help <command>`.  To view a list of tasks defined on the current project, run `tasks`.  Alternatively, see the [[Running]] page for descriptions of common commands and tasks.
+
+If in doubt start by just trying the old command as it may just work.  The built in TAB completion will also assist you, so you can just press TAB at the beginning of a line and see what you get.
 
 The following commands work pretty much as before out of the box:
 
@@ -103,11 +107,15 @@ The following commands work pretty much as before out of the box:
     publish-local
     exit
 
-For detailed help see the `help` command or the [[Running]] page.
+Note that some commands now require an additional space after the initial symbol:
+
+    `~ test` instead of `~test`
+    `+ publish` instead of `~publish`
+    `++ 2.8.1` instead of `++2.8.1`
 
 ## My last command didn't work but I can't see an explanation. Why?
 
-SBT 0.9.x by default suppresses most stack traces and debugging information.  It has the nice side effect of giving you less noise on screen, but as a newcomer it can leave you lost for explanation.  Thankfully there is a simple solution: type `last command` where `command` is the command you last entered that went wrong.  e.g. if you find that your `update` fails to load all the dependencies as you expect you can enter:
+SBT 0.9.x by default suppresses most stack traces and debugging information.  It has the nice side effect of giving you less noise on screen, but as a newcomer it can leave you lost for explanation.  To see the previous output of a command at a higher verbosity, type `last <task>` where `<task>` is the task that failed or that you want to view detailed output for.  For example, if you find that your `update` fails to load all the dependencies as you expect you can enter:
 
 ```text
 > last update
@@ -115,9 +123,11 @@ SBT 0.9.x by default suppresses most stack traces and debugging information.  It
 
 and it will display the full output from the last run of the `update` command.
 
-## My dependencies aren't working any more. Why?
+## Why have the resolved dependencies in a multi-module project changed?
 
-SBT 0.9.x fixes a flaw in how dependencies get resolved.  So a list of dependencies that worked fine in 0.7.x might fail under 0.9.x for reasons that are nothing to do with your failure to understand 0.9.x syntax.  The `last update` command is your friend.
+SBT 0.9.x fixes a flaw in how dependencies get resolved in multi-module projects.  This change ensures that only one version of a library appears on a classpath.
+
+Use `last update` to view the debugging output for the last `update` run.  Use `show update` to view a summary of files comprising managed classpaths.
 
 ## My tests all run really fast but some are broken that weren't before!
 
