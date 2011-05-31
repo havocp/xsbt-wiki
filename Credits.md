@@ -9,12 +9,14 @@ The following people have contributed ideas, documentation, or code to sbt:
 * Nathan Hamblen
 * Mark Harrah
 * Joonas Javanainen
+* Ismael Juma
 * Viktor Klang
 * David R. MacIver
 * Ross McDonald
 * Artyom Olshevskiy
 * Jorge Ortiz
 * Mikko Peltonen
+* Ray Racine
 * Stuart Roebuck
 * Harshad RJ
 * Tony Sloane

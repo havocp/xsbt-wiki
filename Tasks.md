@@ -19,7 +19,7 @@ There are several features of the task system:
 3. Tasks produce values.  Other tasks can access a task's value with the `map` and `flatMap` methods.
 4. The `flatMap` method allows dynamically changing the structure of the task graph.  Tasks can be injected into the execution graph based on the result of another task.
 5. There are ways to handle task failure, similar to `try/catch/finally`.
-6. Each task has access to its own Logger that by default persists the logging for that task at a more verbose level than is shown initially on the screen.
+6. Each task has access to its own Logger that by default persists the logging for that task at a more verbose level than is initially printed to the screen.
 
 These features are discussed in detail in the following sections.
 The context for the code snippets will be either the body of a `Build` object in a [[Full Configuration]] or an expression in a `build.sbt` [[Basic Configuration]].
@@ -50,7 +50,7 @@ The examples themselves are valid entries in a `build.sbt` or can be provided as
 
 There are three main parts to implementing a task once its key is defined:
 
-1. Determine the settings and other tasks needed by the task.  The are the task's inputs.
+1. Determine the settings and other tasks needed by the task.  They are the task's inputs.
 2. Define a function that takes these inputs and produces a value.
 3. Determine the scope the task will go in.
 
@@ -112,6 +112,20 @@ sampleTask.in(Test) <<= intTask.in(Compile).map { (intValue: Int) =>
 sampleTask in Test <<= intTask in Compile map { _ * 3 }
 ```
 
+### Inline task keys
+
+Although generally not recommended, it is possible to specify the task key inline:
+
+```scala
+TaskKey[Int]("sample-task") in Test <<= TaskKey[Int]("int-task") in Compile map { _ * 3 }
+```
+
+The type argument to `TaskKey` must be explicitly specified because of `SI-4653`.  It is not recommended because:
+
+1. Tasks are no longer referenced by Scala identifiers (like `sampleTask`), but by Strings (like `"sample-task"`)
+2. The type information must be repeated.
+3. Keys should come with a description, which would need to be repeated as well.
+
 ### On precedence
 
 As a reminder, method precedence is by the name of the method.
@@ -127,7 +141,7 @@ Therefore, the second variant in the previous example is equivalent to the follo
 
 # Modifying an Existing Task
 
-The examples in this section use the following key definitions, which would go in a `Build` object in a [[Full Configuration]].
+The examples in this section use the following key definitions, which would go in a `Build` object in a [[Full Configuration]].  Alternatively, the keys may be specified inline, as discussed above.
 ```scala
 val unitTask = TaskKey[Unit]("unit-task")
 val intTask = TaskKey[Int]("int-task")

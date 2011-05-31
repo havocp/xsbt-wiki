@@ -12,9 +12,6 @@ import sbt._
 
 object MyBuild extends Build
 {
-	// All internal projects must be listed in `projects`.
-	lazy val projects = Seq(root, sub1, sub2)
-
 	// Declare a project in the root directory of the build with ID "root".
 	// Declare an execution dependency on sub1.
 	lazy val root = Project("root", file(".")) aggregate(sub1)
@@ -59,13 +56,11 @@ An internal project is defined by constructing an instance of `Project`.  The mi
 
 object MyBuild extends Build
 {
-	lazy val projects = Seq(projectA)
-
 	lazy val projectA = Project("a", file("subA"))
 }
 ```
 This constructs a project definition for a project with ID 'a' and located in the `<project root>/subA` directory.
-Here, `file(...)` is equivalent to `new File(...)`.
+Here, `file(...)` is equivalent to `new File(...)` and is resolved relative to the build's base directory.
 There are additional optional parameters to the Project constructor.
 These parameters configure the project and declare project relationships, as discussed in the next sections.
 
@@ -85,8 +80,6 @@ For example, to define a build from scratch (with no default settings or tasks):
 
 object MyBuild extends Build
 {
-	lazy val projects = Seq(projectA)
-
 	lazy val projectA = Project("a", file("subA"), settings = Seq(name := "From Scratch"))
 }
 ```
@@ -104,7 +97,8 @@ To augment the default settings, the following Project definitions are equivalen
 
 ### Select Defaults
 
-Web support is not yet reintegrated, but enabling web project defaults might look like:
+Web support is now split out into a plugin.
+With the plugin declared, its settings can be selected like:
 
 ```scala
 	import sbt_
@@ -112,9 +106,7 @@ Web support is not yet reintegrated, but enabling web project defaults might loo
 
 object MyBuild extends Build
 {
-	lazy val projects = Seq(projectA)
-
-	lazy val projectA = Project("a", file("subA"), settings = Defaults.webSettings)
+	lazy val projectA = Project("a", file("subA"), settings = Web.webSettings)
 }
 ```
 
