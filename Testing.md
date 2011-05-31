@@ -3,9 +3,10 @@
 # Basics
 
 The standard source locations for testing are:
- * Scala sources in `src/test/scala`
- * Java sources in `src/test/java/`
- * Resources for the test classpath in `src/test/resources/`
+
+* Scala sources in `src/test/scala`
+* Java sources in `src/test/java/`
+* Resources for the test classpath in `src/test/resources/`
 
 The resources may be accessed from tests by using the `getResource` methods of `java.lang.Class` or `java.lang.ClassLoader`.
 
@@ -26,7 +27,7 @@ The `test` task accepts no command line arguments and runs all tests:
 > test
 ```
 
-## `test-only`
+## test-only
 
 The `test-only` task accepts a whitespace separated list of test names to run.  For example:
 ```text
@@ -35,7 +36,7 @@ The `test-only` task accepts a whitespace separated list of test names to run.  
 
 It supports wildcards as well:
 ```text
-> test-only org.example.Slow* org.example
+> test-only org.example.*Slow org.example.MyTest1
 ```
 
 ### Tab completion
