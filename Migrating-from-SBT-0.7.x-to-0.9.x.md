@@ -180,6 +180,7 @@ lazy val b = project("b", "B", a)
 ```
 
 meant that the `B` project had a classpath and execution dependency on `A` and `A` had a configuration dependency on `B`.  Specifically, in 0.7.x:
+
 1. Classpath: Classpaths for `A` were available on the appropriate classpath for `B`.
 1. Execution: A task executed on `B` would be executed on `A` first.
 1. Configuration: For some settings, if they were not overridden in `A`, they would default to the value provided in `B`.
