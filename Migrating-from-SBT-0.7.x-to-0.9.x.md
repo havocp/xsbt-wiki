@@ -6,7 +6,7 @@ The assumption here is that you are familiar with SBT 0.7.x but new to 0.9.x.
 
 0.9.x's many new capabilities can be a bit overwhelming, but this page should help you migrate to 0.9.x with a minimum of fuss.  
 
-## Why move to 0.9.x at this early stage?
+## Why move to 0.9.x?
 
  1. Faster builds (because it is smarter at re-compiling only what it must)
  1. Easier configuration.  For simple projects a single `build.sbt` file in your root directory is easier to create than `project/build/MyProject.scala` was.
