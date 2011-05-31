@@ -2,7 +2,7 @@
 
 **Major redesign, only prominent changes listed.**
 
- * Project definitions in Scala 2.9.0-1
+ * Project definitions in Scala 2.8.1
  * New configuration system: [[Quick Configuration Examples]]
  * New task engine: [[Tasks]]
  * New multiple project support: [[Full Configuration]]
