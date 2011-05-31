@@ -12,6 +12,7 @@ The assumption here is that you are familiar with SBT 0.7.x but new to 0.9.x.
  1. Easier configuration.  For simple projects a single `build.sbt` file in your root directory is easier to create than `project/build/MyProject.scala` was.
  1. No more `lib_managed` directory, reducing disk usage and avoiding backup and version control hassles.
  1. `update` is now much faster and it's invoked automatically by SBT.
+ 1. Terser output. (Yet you can ask for more details if something goes wrong.)
 
 # Step 1: Install SBT 0.9.x
 
