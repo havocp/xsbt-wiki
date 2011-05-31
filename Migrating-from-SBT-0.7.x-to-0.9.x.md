@@ -72,6 +72,12 @@ organization := "org.myproject"
 scalaVersion := "2.8.1"
 ```
 
+Currently, a `project/build.properties` is still needed to explicitly select the sbt version.  For example:
+
+```text
+sbt.version=0.9.9
+```
+
 ## Run SBT 0.9.x
 
 Now launch sbt.  If you're lucky it works and you're done.  For help debugging, see below.
@@ -163,3 +169,19 @@ logLevel := Level.Warn
 Web application support was split out into a plugin.  See the [xsbt-web-plugin] project.
 
 Web Start support still needs a new home.  Please consider adopting it!  Use the [mailing list] for guidance.
+
+## How are inter-project dependencies different in 0.9.x?
+
+In 0.9.x, there are three types of [[project dependencies|Full Configuration]] (classpath, execution, and configuration) and they are independently defined.  These were combined in a single dependency type in 0.7.x.  A declaration like:
+
+```scala
+lazy val a = project("a", "A")
+lazy val b = project("b", "B", a)
+```
+
+meant that the `B` project had a classpath and execution dependency on `A` and `A` had a configuration dependency on `B`.  Specifically, in 0.7.x:
+1. Classpath: Classpaths for `A` were available on the appropriate classpath for `B`.
+1. Execution: A task executed on `B` would be executed on `A` first.
+1. Configuration: For some settings, if they were not overridden in `A`, they would default to the value provided in `B`.
+
+In 0.9.x, declare the specific type of dependency you want.  See [[Full Configuration]] for details.
