@@ -4,7 +4,7 @@
 
 The standard source locations for testing are:
 
-* Scala sources in `src/test/scala`
+* Scala sources in `src/test/scala/`
 * Java sources in `src/test/java/`
 * Resources for the test classpath in `src/test/resources/`
 
