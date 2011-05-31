@@ -1,3 +1,10 @@
+[sbt.Keys]: https://github.com/harrah/xsbt/blob/0.9/main/Keys.scala
+[Structure]: https://github.com/harrah/xsbt/blob/0.9/main/Structure.scala
+[Scope]: https://github.com/harrah/xsbt/blob/0.9/main/Scope.scala
+[Settings]: https://github.com/harrah/xsbt/blob/0.9/util/collection/Settings.scala
+[Attributes]: https://github.com/harrah/xsbt/blob/0.9/util/collection/Attributes.scala
+[Defaults]: https://github.com/harrah/xsbt/blob/0.9/main/Defaults.scala
+
 A build definition is written in Scala.  There are two types of definitions: light and full.  A light definition is a quick way of configuring a build.  It consists of a list of expressions describing project settings.
 
 A full definition is made up of one or more Scala source files that describe relationships between projects, introduce new configurations and settings, and define more complex aspects of the build.  The capabilities of a light definition are a proper subset of those of a full definition.
@@ -5,7 +12,7 @@ A full definition is made up of one or more Scala source files that describe rel
 # Light Configuration
 
 ## By Example
-Create a file with extension `.sbt` in your root project directory (such as `<your-project>/build.sbt`).  This file contains Scala expressions of type `Setting[T]` that are separated by blank lines.  Built-in settings typically have reasonable defaults (an exception is `publishTo`).  A project typically redefines at least `name` and `version` and often `libraryDependencies`.  All built-in settings are (or will be) listed [in sbt.Keys](https://github.com/harrah/xsbt/blob/0.9/main/Keys.scala).
+Create a file with extension `.sbt` in your root project directory (such as `<your-project>/build.sbt`).  This file contains Scala expressions of type `Setting[T]` that are separated by blank lines.  Built-in settings typically have reasonable defaults (an exception is `publishTo`).  A project typically redefines at least `name` and `version` and often `libraryDependencies`.  All built-in settings are listed in [Keys].
 
 A sample `build.sbt`:
 ```scala
@@ -177,7 +184,7 @@ val helloArgs = InputKey[String]("hello-with-args")
 
 In the basic expression `name := "asdf"`, the `:=` method is implicitly available for a `SettingKey` and accepts an argument that conforms to the type parameter of name, which is String.
 
-The high-level API for constructing settings is defined in [Structure](https://github.com/harrah/xsbt/blob/0.9/main/Structure.scala).  Scopes are defined in [Scope](https://github.com/harrah/xsbt/blob/0.9/main/Scope.scala).  The underlying engine is in [Settings](https://github.com/harrah/xsbt/blob/0.9/util/collection/Settings.scala) and the heterogeneous map is in [Attributes](https://github.com/harrah/xsbt/blob/0.9/util/collection/Attributes.scala).
+The high-level API for constructing settings is defined in [Structure].  Scopes are defined in [Scope].  The underlying engine is in [Settings] and the heterogeneous map is in [Attributes].
 
 Built-in keys are in
-[Keys](https://github.com/harrah/xsbt/blob/0.9/main/Keys.scala) and default settings are defined in [Defaults](https://github.com/harrah/xsbt/blob/0.9/main/Defaults.scala).
+[Keys] and default settings are defined in [Defaults].
