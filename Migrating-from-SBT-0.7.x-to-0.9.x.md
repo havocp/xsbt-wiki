@@ -131,14 +131,14 @@ Use `last update` to view the debugging output for the last `update` run.  Use `
 
 ## My tests all run really fast but some are broken that weren't before!
 
-Be aware that compilation and tests run in parallel by default in SBT 0.9.x.
-
-If your test code isn't thread-safe then you may want to force it to run your tests one at a time by adding this line to your `build.sbt`:
+Be aware that compilation and tests run in parallel by default in SBT 0.9.x. If your test code isn't thread-safe then you may want to change this behaviour by adding one of the following to your `build.sbt`:
 
 ```scala
-// Execute tests in the current project serially
-//   Tests from other projects may still run concurrently.
+// Execute tests in the current project serially. Tests from other projects may still run concurrently.
 parallelExecution in Test := false
+
+// Execute everything serially (including compilation and tests)
+parallelExecution := false
 ```
 
 ## How do I set log levels?
