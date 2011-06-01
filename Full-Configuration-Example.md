@@ -5,8 +5,8 @@ import sbt._
 
 import Keys._
 
-// Shell prompt showing the current project and git branch
-// git magic from Daniel Sobral.  Very cool
+// Shell prompt which show the current project and git branch
+// git magic from Daniel Sobral
 object ShellPrompt {
  
   object devnull extends ProcessLogger {
@@ -31,8 +31,8 @@ object ShellPrompt {
 
 object Resolvers {
 
-  val sunrepo = "Sun Maven2 Repo" at "http://download.java.net/maven/2"
-  val sunrepoGF = "Sun GF Maven2 Repo" at "http://download.java.net/maven/glassfish" 
+  val sunrepo    = "Sun Maven2 Repo" at "http://download.java.net/maven/2"
+  val sunrepoGF  = "Sun GF Maven2 Repo" at "http://download.java.net/maven/glassfish" 
   val oraclerepo = "Oracle Maven2 Repo" at "http://download.oracle.com/maven"
 
   val oracleResolvers = Seq (sunrepo, sunrepoGF, oraclerepo)
@@ -67,6 +67,7 @@ object CDAP2Build extends Build {
 
   val buildOrganization = "odp"
   val buildVersion      = "2.0.28"
+  val buildScalaVersion = "2.9.0-1"
 
   val buildShellPrompt = ShellPrompt.buildShellPrompt
   
@@ -91,33 +92,30 @@ object CDAP2Build extends Build {
 									organization := buildOrganization,
 									version := buildVersion, 
 									shellPrompt := buildShellPrompt,
-									scalaVersion := "2.9.0-1")
+									scalaVersion := buildScalaVersion)
 
   lazy val server = Project ("server", file ("cdap2-server")) settings (resolvers := oracleResolvers, 
 									organization := buildOrganization,
 									version := buildVersion, 
 									libraryDependencies := serverDeps, 
 									shellPrompt := buildShellPrompt,
-									scalaVersion := "2.9.0-1") dependsOn (common)
+									scalaVersion := buildScalaVersion) dependsOn (common)
 
-  lazy val pricing = Project ("pricing", file ("cdap2-pricing")) settings (scalaVersion := "2.9.0-1",
+  lazy val pricing = Project ("pricing", file ("cdap2-pricing")) settings (scalaVersion := buildScalaVersion,
 									   version := buildVersion, 
 									   organization := buildOrganization,
 									   shellPrompt := buildShellPrompt,
 									   libraryDependencies := pricingDeps) dependsOn (common, compact, server)
 
-  lazy val pricing_service = Project ("pricing-service", file ("cdap2-pricing-service")) settings (scalaVersion := "2.9.0-1",
+  lazy val pricing_service = Project ("pricing-service", file ("cdap2-pricing-service")) settings (scalaVersion := buildScalaVersion,
 												   organization := buildOrganization,
 												   shellPrompt := buildShellPrompt,
 												   version := buildVersion) dependsOn (pricing, server)
 
-  lazy val compact = Project ("compact", file ("compact-hashmap")) settings (scalaVersion := "2.9.0-1",
+  lazy val compact = Project ("compact", file ("compact-hashmap")) settings (scalaVersion := buildScalaVersion,
 									     organization := buildOrganization,
 									     shellPrompt := buildShellPrompt,
 									     version := buildVersion)
 }
-
-
-
 
 ```
