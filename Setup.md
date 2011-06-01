@@ -100,6 +100,12 @@ libraryDependencies += "junit" % "junit" % "4.8" % "test"
 
 See [[Basic Configuration]], [[Full Configuration]], and [[Quick Configuration Examples]] for details.
 
+The SBT version can be configured in project/build.properties:
+
+```text
+sbt.version=0.10.0
+```
+
 # Directory Layout
 
 ## Sources
