@@ -1,4 +1,4 @@
-[sbt-launch.jar]: http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.9.9/sbt-launch.jar
+[sbt-launch.jar]: http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.9.10/sbt-launch.jar
 [mailing list]: http://groups.google.com/group/simple-build-tool/
 [xsbt-web-plugin]: https://github.com/siasia/xsbt-web-plugin
 
@@ -16,7 +16,7 @@ The assumption here is that you are familiar with SBT 0.7.x but new to 0.9.x.
 
 # Step 1: Install SBT 0.9.x
 
-Builds are announced here: [[https://groups.google.com/forum/#!forum/simple-build-tool]].  As I write the most recent is `0.9.9` and can be downloaded here: [sbt-launch.jar].
+Builds are announced here: [[https://groups.google.com/forum/#!forum/simple-build-tool]].  As I write the most recent is `0.9.10` and can be downloaded here: [sbt-launch.jar].
 
 You can run 0.9.x the same way that you run 0.7.x, either simply:
 
@@ -28,7 +28,7 @@ Or (as most users do) with a shell script like:
     if test -f ~/.sbtconfig; then
       . ~/.sbtconfig
     fi
-    exec java -Xmx512M ${SBT_OPTS} -jar ~/local/sbt/sbt-launch-0.9.9.jar "$@"
+    exec java -Xmx512M ${SBT_OPTS} -jar ~/local/sbt/sbt-launch-0.9.10.jar "$@"
 
 Note, in this script that I have renamed the `sbt-launch.jar` file with the version so that I can continue to use my 0.7.x version for projects that haven't been migrated.  I called this script `sbt9`.
 
@@ -75,7 +75,7 @@ scalaVersion := "2.8.1"
 Currently, a `project/build.properties` is still needed to explicitly select the sbt version.  For example:
 
 ```text
-sbt.version=0.9.9
+sbt.version=0.9.10
 ```
 
 ## Run SBT 0.9.x
