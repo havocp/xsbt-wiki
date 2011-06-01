@@ -1,11 +1,24 @@
-Small example showing a project with two subprojects and establishing the resolvers and dependencies for each.
+Example of a Full configuration.  Full configurations are written in Scala.
 
 ```scala
+
 import sbt._
 
 import Keys._
 
-// Shell prompt which show the current project and git branch
+object BuildSettings {
+  val buildOrganization = "odp"
+  val buildScalaVersion = "2.9.0-1"
+  val buildVersion      = "2.0.29"
+
+  val buildSettings = Defaults.defaultSettings ++ Seq (organization := buildOrganization,
+						       scalaVersion := buildScalaVersion,
+						       version      := buildVersion,
+						       shellPrompt  := ShellPrompt.buildShellPrompt)
+
+}
+
+// Shell prompt which show the current project, git branch and build version
 // git magic from Daniel Sobral
 object ShellPrompt {
  
@@ -23,7 +36,7 @@ object ShellPrompt {
     (state: State) => {
       val currBranch = current findFirstMatchIn gitBranches map (_.group(1)) getOrElse "-"
       val currProject = Project.extract (state).currentProject.id
-      "%s:%s> ".format (currProject, currBranch)
+      "%s:%s:%s> ".format (currProject, currBranch, BuildSettings.buildVersion)
     }
   }
  
@@ -41,81 +54,67 @@ object Resolvers {
 
 object Dependencies {
 
-  val jacksonVersion = "1.7.2"  
-  val logbackVersion = "0.9.16"
+  val logbackVersion	= "0.9.16"
+  val grizzlyVersion	= "1.9.19"
 
-  val logbackcore    = "ch.qos.logback" % "logback-core"     % logbackVersion
-  val logbackclassic = "ch.qos.logback" % "logback-classic"  % logbackVersion  
-  val jacksonjson    = "org.codehaus.jackson" % "jackson-core-lgpl" % jacksonVersion
+  val logbackcore	= "ch.qos.logback" % "logback-core"     % logbackVersion
+  val logbackclassic	= "ch.qos.logback" % "logback-classic"  % logbackVersion  
+
+  val jacksonjson	= "org.codehaus.jackson" % "jackson-core-lgpl" % "1.7.2"
   
-  val grizzlyVersion  = "1.9.19"
-  val grizzlyframwork = "com.sun.grizzly" % "grizzly-framework"  % grizzlyVersion
-  val grizzlyhttp     = "com.sun.grizzly" % "grizzly-http"       % grizzlyVersion
-  val grizzlyrcm      = "com.sun.grizzly" % "grizzly-rcm"        % grizzlyVersion
-  val grizzlyutils    = "com.sun.grizzly" % "grizzly-utils"      % grizzlyVersion
-  val grizzlyportunif = "com.sun.grizzly" % "grizzly-portunif"   % grizzlyVersion
-  val sleepycat       = "com.sleepycat"   % "je"                 % "4.0.92"
+  val grizzlyframwork	= "com.sun.grizzly" % "grizzly-framework"  % grizzlyVersion
+  val grizzlyhttp	= "com.sun.grizzly" % "grizzly-http"       % grizzlyVersion
+  val grizzlyrcm	= "com.sun.grizzly" % "grizzly-rcm"        % grizzlyVersion
+  val grizzlyutils	= "com.sun.grizzly" % "grizzly-utils"      % grizzlyVersion
+  val grizzlyportunif	= "com.sun.grizzly" % "grizzly-portunif"   % grizzlyVersion
 
-  val apachenet   = "commons-net"   % "commons-net"   % "2.0"
-  val apachecodec = "commons-codec" % "commons-codec" % "1.4"
+  val sleepycat		= "com.sleepycat" % "je" % "4.0.92"
 
-  val scalatest = "org.scalatest" % "scalatest_2.9.0" % "1.4.1" % "test"
+  val apachenet		= "commons-net"   % "commons-net"   % "2.0"
+  val apachecodec	= "commons-codec" % "commons-codec" % "1.4"
+
+  val scalatest		= "org.scalatest" % "scalatest_2.9.0" % "1.4.1" % "test"
 }
 
 
 object CDAP2Build extends Build {
-
-  val buildOrganization = "odp"
-  val buildVersion      = "2.0.28"
-  val buildScalaVersion = "2.9.0-1"
-
+ 
   val buildShellPrompt = ShellPrompt.buildShellPrompt
   
   import Resolvers._
   import Dependencies._
+  import BuildSettings._
 
   // Sub-project specific dependencies
-  val commonDeps = Seq (logbackcore, logbackclassic, jacksonjson)
+  val commonDeps = Seq (logbackcore, logbackclassic, jacksonjson, scalatest)
 
   val serverDeps = Seq (grizzlyframwork, grizzlyhttp, grizzlyrcm, grizzlyutils, grizzlyportunif, sleepycat, scalatest)
 
-  val pricingDeps = Seq (apachenet, apachecodec)
+  val pricingDeps = Seq (apachenet, apachecodec, scalatest)
 
 
   // Projects
   lazy val projects = Seq (cdap2, pricing, common, compact, server, pricing_service)
   
-  lazy val cdap2 = Project ("cdap2", file (".")) aggregate (common, server, compact, 
-							    pricing, pricing_service) settings (shellPrompt := buildShellPrompt)
+  lazy val cdap2 = Project ("cdap2", file ("."), settings = buildSettings) aggregate (common, server, compact, pricing, pricing_service)
 
-  lazy val common = Project ("common", file ("cdap2-common")) settings (libraryDependencies := commonDeps, 
-									organization := buildOrganization,
-									version := buildVersion, 
-									shellPrompt := buildShellPrompt,
-									scalaVersion := buildScalaVersion)
 
-  lazy val server = Project ("server", file ("cdap2-server")) settings (resolvers := oracleResolvers, 
-									organization := buildOrganization,
-									version := buildVersion, 
-									libraryDependencies := serverDeps, 
-									shellPrompt := buildShellPrompt,
-									scalaVersion := buildScalaVersion) dependsOn (common)
+  lazy val common = Project ("common", file ("cdap2-common"),
+			     settings = buildSettings ++ Seq (libraryDependencies := commonDeps))
+			     
+  lazy val server = Project ("server", file ("cdap2-server"),
+			     settings = buildSettings ++ Seq (resolvers := oracleResolvers, 
+							      libraryDependencies := serverDeps)) dependsOn (common)
 
-  lazy val pricing = Project ("pricing", file ("cdap2-pricing")) settings (scalaVersion := buildScalaVersion,
-									   version := buildVersion, 
-									   organization := buildOrganization,
-									   shellPrompt := buildShellPrompt,
-									   libraryDependencies := pricingDeps) dependsOn (common, compact, server)
+  lazy val pricing = Project ("pricing", file ("cdap2-pricing"),
+			      settings = buildSettings ++ Seq (libraryDependencies := pricingDeps)) dependsOn (common, compact, server)
 
-  lazy val pricing_service = Project ("pricing-service", file ("cdap2-pricing-service")) settings (scalaVersion := buildScalaVersion,
-												   organization := buildOrganization,
-												   shellPrompt := buildShellPrompt,
-												   version := buildVersion) dependsOn (pricing, server)
+  lazy val pricing_service = Project ("pricing-service", file ("cdap2-pricing-service"),
+				      settings = buildSettings) dependsOn (pricing, server)
 
-  lazy val compact = Project ("compact", file ("compact-hashmap")) settings (scalaVersion := buildScalaVersion,
-									     organization := buildOrganization,
-									     shellPrompt := buildShellPrompt,
-									     version := buildVersion)
+  lazy val compact = Project ("compact", file ("compact-hashmap"), settings = buildSettings)
+
 }
+
 
 ```
