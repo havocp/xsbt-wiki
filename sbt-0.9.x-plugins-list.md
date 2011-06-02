@@ -8,5 +8,6 @@ The purpose of this page is to aid developers in finding plugins that work with 
 * Netbeans: https://github.com/remeniuk/sbt-netbeans-plugin
 * Eclipse: https://github.com/weiglewilczek/sbteclipse
 
+### Web Plugin
 
 * xsbt-web-plugin: https://github.com/siasia/xsbt-web-plugin
