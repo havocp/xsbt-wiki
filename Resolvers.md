@@ -60,17 +60,14 @@ These are basic examples that use the default Maven-style repository layout.
 
 Define a filesystem repository in the `test` directory  of the current working directory and declare that publishing to this repository must be atomic.
 ```scala
-resolvers += Resolver.file("my-test-repo", new java.io.File("test")) transactional()
+resolvers += Resolver.file("my-test-repo", file("test")) transactional()
 ```
 
 ### URL
 
 Define a URL repository at .`"http://example.org/repo-releases/"`.
 ```scala
-{
-  def url = new java.net.URL("http://example.org/repo-releases/")
-  resolvers += Resolver.url("my-test-repo", url)
-}
+resolvers += Resolver.url("my-test-repo", url("http://example.org/repo-releases/"))
 ```
 
 To specify an Ivy repository, use:
