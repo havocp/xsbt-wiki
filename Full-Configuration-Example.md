@@ -34,7 +34,7 @@ object ShellPrompt {
   
   val buildShellPrompt = { 
     (state: State) => {
-      val currBranch = current findFirstMatchIn gitBranches map (_.group(1)) getOrElse "-"
+      val currBranch = current findFirstMatchIn gitBranches map (_ group(1)) getOrElse "-"
       val currProject = Project.extract (state).currentProject.id
       "%s:%s:%s> ".format (currProject, currBranch, BuildSettings.buildVersion)
     }
