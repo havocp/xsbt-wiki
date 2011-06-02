@@ -186,3 +186,7 @@ meant that the `B` project had a classpath and execution dependency on `A` and `
 1. Configuration: For some settings, if they were not overridden in `A`, they would default to the value provided in `B`.
 
 In 0.9.x, declare the specific type of dependency you want.  See [[Full Configuration]] for details.
+
+## Were can I find Plugin for 0.9.x?
+
+See [[sbt 0.9.x plugins list]] for a list of currently available plugins
