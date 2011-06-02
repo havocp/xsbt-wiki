@@ -94,7 +94,8 @@ object CDAP2Build extends Build {
 
 
   // Projects
-  lazy val projects = Seq (cdap2, pricing, common, compact, server, pricing_service)
+  // Required for SBT < v0.9.9
+  // lazy val projects = Seq (cdap2, pricing, common, compact, server, pricing_service)
   
   lazy val cdap2 = Project ("cdap2", file ("."), settings = buildSettings) aggregate (common, server, compact, pricing, pricing_service)
 
