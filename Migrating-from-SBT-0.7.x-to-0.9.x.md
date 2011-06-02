@@ -189,4 +189,4 @@ In 0.9.x, declare the specific type of dependency you want.  See [[Full Configur
 
 ## Were can I find Plugin for 0.9.x?
 
-See [[sbt 0.9.x plugins list]] for a list of currently available plugins
+See [[sbt 0.9.x plugins list]] for a list of currently available plugins.
