@@ -4,7 +4,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 
 ### Plugins for IDEs:
  
-* IntelliJ IDEA: https://github.com/teigen/plugins
+* IntelliJ IDEA: https://github.com/teigen/plugins or https://github.com/scroyston/sbt-idea
 * Netbeans: https://github.com/remeniuk/sbt-netbeans-plugin
 * Eclipse: https://github.com/weiglewilczek/sbteclipse
 
