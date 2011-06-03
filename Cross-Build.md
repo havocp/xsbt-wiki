@@ -2,7 +2,7 @@
 
 # Introduction
 
-Different versions of Scala can be binary incompatible, despite maintaining source compatibility.  This can be true even for versions with the same minor number, such as 2.7.2 and 2.7.4.  This page describes how to use `sbt` to build and publish your project against multiple versions of Scala and how to use libraries that have done the same.
+Different versions of Scala can be binary incompatible, despite maintaining source compatibility.  This page describes how to use `sbt` to build and publish your project against multiple versions of Scala and how to use libraries that have done the same.
 
 # Publishing Conventions
 
@@ -41,10 +41,10 @@ A typical way to use this feature is to do development on a single Scala version
 
 you make your project available to users for different versions of Scala.  See [[Publishing]] for more details on publishing your project.
 
-In order to make this process as quick as possible, different output and managed dependency directories are used for different versions of Scala.  For example, when building against Scala 2.7.7,
+In order to make this process as quick as possible, different output and managed dependency directories are used for different versions of Scala.  For example, when building against Scala 2.8.1,
 
-* `./target/` becomes `./target/scala_2.7.7/`
-* `./lib_managed/` becomes `./lib_managed/scala_2.7.7/`
+* `./target/` becomes `./target/scala_2.8.1/`
+* `./lib_managed/` becomes `./lib_managed/scala_2.8.1/`
 
 Packaged jars, wars, and other artifacts have `_<scala-version>` appended to the normal artifact ID as mentioned in the Publishing Conventions section above.
 

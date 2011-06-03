@@ -1,24 +1,24 @@
-[sbt-launch.jar]: http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.9.10/sbt-launch.jar
+[sbt-launch.jar]: http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.10.0/sbt-launch.jar
 [mailing list]: http://groups.google.com/group/simple-build-tool/
 [xsbt-web-plugin]: https://github.com/siasia/xsbt-web-plugin
 
-The assumption here is that you are familiar with SBT 0.7.x but new to 0.9.x.
+The assumption here is that you are familiar with sbt 0.7.x but new to 0.10.x.
 
-0.9.x's many new capabilities can be a bit overwhelming, but this page should help you migrate to 0.9.x with a minimum of fuss.  
+sbt 0.10's many new capabilities can be a bit overwhelming, but this page should help you migrate to 0.10 with a minimum of fuss.  
 
-## Why move to 0.9.x?
+## Why move to 0.10?
 
  1. Faster builds (because it is smarter at re-compiling only what it must)
  1. Easier configuration.  For simple projects a single `build.sbt` file in your root directory is easier to create than `project/build/MyProject.scala` was.
  1. No more `lib_managed` directory, reducing disk usage and avoiding backup and version control hassles.
- 1. `update` is now much faster and it's invoked automatically by SBT.
+ 1. `update` is now much faster and it's invoked automatically by sbt.
  1. Terser output. (Yet you can ask for more details if something goes wrong.)
 
-# Step 1: Install SBT 0.9.x
+# Step 1: Install sbt 0.10.0
 
-Builds are announced here: [[https://groups.google.com/forum/#!forum/simple-build-tool]].  As I write the most recent is `0.9.10` and can be downloaded here: [sbt-launch.jar].
+The most recent release is `0.10.0` and can be downloaded here: [sbt-launch.jar].
 
-You can run 0.9.x the same way that you run 0.7.x, either simply:
+You can run 0.10.x the same way that you run 0.7.x, either simply:
 
     java -jar sbt-launch.jar
 
@@ -28,21 +28,21 @@ Or (as most users do) with a shell script like:
     if test -f ~/.sbtconfig; then
       . ~/.sbtconfig
     fi
-    exec java -Xmx512M ${SBT_OPTS} -jar ~/local/sbt/sbt-launch-0.9.10.jar "$@"
+    exec java -Xmx512M ${SBT_OPTS} -jar ~/local/sbt/sbt-launch-0.10.0.jar "$@"
 
 Note, in this script that I have renamed the `sbt-launch.jar` file with the version so that I can continue to use my 0.7.x version for projects that haven't been migrated.  I called this script `sbt9`.
 
 For more details see: [[Setup]].
 
-# Step 2: A simple technique for switching an existing project
+# Step 2: A technique for switching an existing project
 
-Here is a simple technique for switching an existing project to 0.9.x while retaining the ability to switch back again at will.  Some builds, such as those with subprojects, are not suited for this technique, but if you learn how to transition a simple project it will help you do a more complex one next.
+Here is a technique for switching an existing project to 0.10 while retaining the ability to switch back again at will.  Some builds, such as those with subprojects, are not suited for this technique, but if you learn how to transition a simple project it will help you do a more complex one next.
 
 ## Preserve `project/` for 0.7.x project
 
-Rename your `project/` directory to something like `project-old`.  This will hide it from SBT 0.9.x but keep it in case you want to switch back to 0.7.x.
+Rename your `project/` directory to something like `project-old`.  This will hide it from sbt 0.10 but keep it in case you want to switch back to 0.7.x.
 
-## Create `build.sbt` for 0.9.x
+## Create `build.sbt` for 0.10
 
 Create a `build.sbt` file in the root directory of your project. See [[Quick-Configuration-Examples]] for simple examples. [[Basic-Configuration]] has more details, but don't get bogged down in detail you probably won't need at first! If you have a simple project then converting your existing project file to this format is largely a matter of re-writing your dependencies and maven archive declarations in a modified yet familiar syntax.
 
@@ -75,24 +75,24 @@ scalaVersion := "2.8.1"
 Currently, a `project/build.properties` is still needed to explicitly select the sbt version.  For example:
 
 ```text
-sbt.version=0.9.10
+sbt.version=0.10.0
 ```
 
-## Run SBT 0.9.x
+## Run sbt 0.10
 
 Now launch sbt.  If you're lucky it works and you're done.  For help debugging, see below.
 
-## Switching back to SBT 0.7.x
+## Switching back to sbt 0.7.x
 
-If you get stuck and want to switch back, you can leave your `build.sbt` file alone. SBT 0.7.x will not understand or notice it. Just rename your 0.9.x `project` directory to something like `project09` and rename the backup of your old project from `project-old` to `project` again.
+If you get stuck and want to switch back, you can leave your `build.sbt` file alone. sbt 0.7.x will not understand or notice it. Just rename your 0.10.x `project` directory to something like `project10` and rename the backup of your old project from `project-old` to `project` again.
 
 # Useful hints and tips
 
 ## Where has `lib_managed` gone?
 
-By default, SBT 0.9.x loads managed libraries from your ivy cache without copying them to a `lib_managed` directory. This fixes some bugs with the previous solution and keeps your project directory small. If you want to insulate your builds from the ivy cache being cleared, set `retrieveManaged := true` and the dependencies will be copied to `lib_managed` as a build-local cache (while avoiding the issues of `lib_managed` in 0.7.x).
+By default, sbt 0.10 loads managed libraries from your ivy cache without copying them to a `lib_managed` directory. This fixes some bugs with the previous solution and keeps your project directory small. If you want to insulate your builds from the ivy cache being cleared, set `retrieveManaged := true` and the dependencies will be copied to `lib_managed` as a build-local cache (while avoiding the issues of `lib_managed` in 0.7.x).
 
-This does mean that existing solutions for sharing libraries with your favoured IDE may not work.  There are 0.9.x plugins for IDEs being developed:
+This does mean that existing solutions for sharing libraries with your favoured IDE may not work.  There are 0.10.x plugins for IDEs being developed:
 
 * IntelliJ IDEA: [[https://github.com/teigen/plugins]]
 * Netbeans: [[https://github.com/remeniuk/sbt-netbeans-plugin]]
@@ -122,7 +122,7 @@ Note that some commands now require an additional space after the initial symbol
 
 ## My last command didn't work but I can't see an explanation. Why?
 
-SBT 0.9.x by default suppresses most stack traces and debugging information.  It has the nice side effect of giving you less noise on screen, but as a newcomer it can leave you lost for explanation.  To see the previous output of a command at a higher verbosity, type `last <task>` where `<task>` is the task that failed or that you want to view detailed output for.  For example, if you find that your `update` fails to load all the dependencies as you expect you can enter:
+sbt 0.10 by default suppresses most stack traces and debugging information.  It has the nice side effect of giving you less noise on screen, but as a newcomer it can leave you lost for explanation.  To see the previous output of a command at a higher verbosity, type `last <task>` where `<task>` is the task that failed or that you want to view detailed output for.  For example, if you find that your `update` fails to load all the dependencies as you expect you can enter:
 
 ```text
 > last update
@@ -132,13 +132,13 @@ and it will display the full output from the last run of the `update` command.
 
 ## Why have the resolved dependencies in a multi-module project changed?
 
-SBT 0.9.x fixes a flaw in how dependencies get resolved in multi-module projects.  This change ensures that only one version of a library appears on a classpath.
+sbt 0.10 fixes a flaw in how dependencies get resolved in multi-module projects.  This change ensures that only one version of a library appears on a classpath.
 
 Use `last update` to view the debugging output for the last `update` run.  Use `show update` to view a summary of files comprising managed classpaths.
 
 ## My tests all run really fast but some are broken that weren't before!
 
-Be aware that compilation and tests run in parallel by default in SBT 0.9.x. If your test code isn't thread-safe then you may want to change this behaviour by adding one of the following to your `build.sbt`:
+Be aware that compilation and tests run in parallel by default in sbt 0.10. If your test code isn't thread-safe then you may want to change this behaviour by adding one of the following to your `build.sbt`:
 
 ```scala
 // Execute tests in the current project serially.
@@ -153,7 +153,7 @@ parallelExecution := false
 
 `warn`, `info`, `debug` and `error` don't work any more.
 
-The new syntax in the SBT 0.9.x shell is:
+The new syntax in the sbt 0.9.x shell is:
 ```text
 > set logLevel := Level.Warn
 ```
@@ -170,9 +170,9 @@ Web application support was split out into a plugin.  See the [xsbt-web-plugin] 
 
 Web Start support still needs a new home.  Please consider adopting it!  Use the [mailing list] for guidance.
 
-## How are inter-project dependencies different in 0.9.x?
+## How are inter-project dependencies different in 0.10?
 
-In 0.9.x, there are three types of [[project dependencies|Full Configuration]] (classpath, execution, and configuration) and they are independently defined.  These were combined in a single dependency type in 0.7.x.  A declaration like:
+In 0.10, there are three types of [[project dependencies|Full Configuration]] (classpath, execution, and configuration) and they are independently defined.  These were combined in a single dependency type in 0.7.x.  A declaration like:
 
 ```scala
 lazy val a = project("a", "A")
@@ -185,8 +185,9 @@ meant that the `B` project had a classpath and execution dependency on `A` and `
 1. Execution: A task executed on `B` would be executed on `A` first.
 1. Configuration: For some settings, if they were not overridden in `A`, they would default to the value provided in `B`.
 
-In 0.9.x, declare the specific type of dependency you want.  See [[Full Configuration]] for details.
+In 0.10, declare the specific type of dependency you want.  See [[Full Configuration]] for details.
 
-## Were can I find Plugin for 0.9.x?
+## Where can I find plugins for 0.10?
 
-See [[sbt 0.9.x plugins list]] for a list of currently available plugins.
+See [[sbt 0.10 plugins list]] for a list of currently available plugins.
+

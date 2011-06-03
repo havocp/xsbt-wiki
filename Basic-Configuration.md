@@ -1,9 +1,9 @@
-[sbt.Keys]: https://github.com/harrah/xsbt/blob/0.9/main/Keys.scala
-[Structure]: https://github.com/harrah/xsbt/blob/0.9/main/Structure.scala
-[Scope]: https://github.com/harrah/xsbt/blob/0.9/main/Scope.scala
-[Settings]: https://github.com/harrah/xsbt/blob/0.9/util/collection/Settings.scala
-[Attributes]: https://github.com/harrah/xsbt/blob/0.9/util/collection/Attributes.scala
-[Defaults]: https://github.com/harrah/xsbt/blob/0.9/main/Defaults.scala
+[sbt.Keys]: http://harrah.github.com/xsbt/latest/api/sbt/Keys$.html
+[Scoped]: http://harrah.github.com/xsbt/latest/api/sbt/Scoped$.html
+[Scope]: http://harrah.github.com/xsbt/latest/api/sbt/Scope$.html
+[Settings]: http://harrah.github.com/xsbt/latest/sxr/Settings.scala.html
+[Attributes]: http://harrah.github.com/xsbt/latest/sxr/Attributes.scala.html
+[Defaults]: https://github.com/harrah/xsbt/latest/sxr/Defaults.scala.html
 
 A build definition is written in Scala.  There are two types of definitions: light and full.  A light definition is a quick way of configuring a build.  It consists of a list of expressions describing project settings.
 
@@ -158,7 +158,7 @@ In addition, the contents of all public `Build` and `Plugin` objects from the fu
 
 Each expression describes an initialization operation.  The simplest operation is context-free assignment using `:=`.  That is, no outside information is used to determine the setting value.  Operations other than `:=` are implemented in terms of `<<=`.  The `<<=` method specifies an operation that requires other settings to be initialized and uses their values to define a new setting.
 
-The target (left side value) of a method like `:=` identifies one of the constructs in sbt: settings, tasks, and input tasks.  It is not an actual setting or task, but a key representing a setting or task.  A setting is a value assigned when a project is loaded.  A task is a unit of work that is run on-demand zero or more times after a project is loaded and also produces a value.  An input task, previously known as a Method Task in 0.7 and earlier, accepts an input string and produces a task to be run.  The renaming is because it can accept arbitrary input in 0.9 and not just a space-delimited sequence of arguments like in 0.7.
+The target (left side value) of a method like `:=` identifies one of the constructs in sbt: settings, tasks, and input tasks.  It is not an actual setting or task, but a key representing a setting or task.  A setting is a value assigned when a project is loaded.  A task is a unit of work that is run on-demand zero or more times after a project is loaded and also produces a value.  An input task, previously known as a Method Task in 0.7 and earlier, accepts an input string and produces a task to be run.  The renaming is because it can accept arbitrary input in 0.10 and not just a space-delimited sequence of arguments like in 0.7.
 
 A construct (setting, task, or input task) is identified by a scoped key, which is a pair `(Scope, AttributeKey[T])`.  An `AttributeKey` associates a name with a type and is a typesafe key for use in an `AttributeMap`.  Attributes are best illustrated by the `get` and `put` methods on `AttributeMap`:
 ```scala
@@ -184,7 +184,7 @@ val helloArgs = InputKey[String]("hello-with-args")
 
 In the basic expression `name := "asdf"`, the `:=` method is implicitly available for a `SettingKey` and accepts an argument that conforms to the type parameter of name, which is String.
 
-The high-level API for constructing settings is defined in [Structure].  Scopes are defined in [Scope].  The underlying engine is in [Settings] and the heterogeneous map is in [Attributes].
+The high-level API for constructing settings is defined in [Scoped].  Scopes are defined in [Scope].  The underlying engine is in [Settings] and the heterogeneous map is in [Attributes].
 
 Built-in keys are in
 [Keys] and default settings are defined in [Defaults].

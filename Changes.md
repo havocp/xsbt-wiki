@@ -1,21 +1,21 @@
-### 0.7.7 to 0.10.0 (under development, currently at 0.9.10)
+### 0.7.7 to 0.10.0
 
 **Major redesign, only prominent changes listed.**
 
  * Project definitions in Scala 2.8.1
- * New configuration system: [[Quick Configuration Examples]]
+ * New configuration system: [[Quick Configuration Examples]], [[Full Configuration]], and [[Basic Configuration]]
  * New task engine: [[Tasks]]
  * New multiple project support: [[Full Configuration]]
  * More aggressive incremental recompilation for both Java and Scala sources
  * Merged plugins and processors into improved plugins system: [[Plugins]]
- * [[Web application|https://github.com/siasia/xsbt-web-plugin]] and webstart support moved plugins instead of core features
+ * [[Web application|https://github.com/siasia/xsbt-web-plugin]] and webstart support moved to plugins instead of core features
  * Fixed all of the issues in (Google Code) issue #44
- * Dependencies automatically updated when configuration changes
+ * Managed dependencies automatically updated when configuration changes
  * `update-sbt-classifiers` and `update-classifiers` tasks for retrieving sources and/or javadocs for dependencies, transitively
  * Improved artifact handling and configuration [[Artifacts]]
  * Tab completion parser combinators for commands and input tasks: [[Commands]]
- * No project creation prompts
- * (pending) Moved to GitHub: <http://github.com/harrah/sbt>
+ * No project creation prompts anymore
+ * Moved to GitHub: <http://github.com/harrah/xsbt>
 
 ### 0.7.5 to 0.7.7
 

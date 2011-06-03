@@ -1,3 +1,5 @@
+[web plugin]: https://github.com/siasia/xsbt-web-plugin
+
 # Triggered Execution
 
 You can make a command run when certain files change by prefixing the command with `~`.  Monitoring is terminated when `enter` is pressed.  This triggered execution is configured by the `watch` setting, but typically the basic settings `watch-sources` and `poll-interval` are modified.
@@ -28,9 +30,7 @@ The following will poll for changes to your source code (main or test) and run `
 
 ## Web Applications
 
-**Web support not yet implemented in 0.9**
-
-If you use `jetty-run`, you can automatically build and reload your web application on changes to your source:
+If you use `jetty-run` from the [web plugin], you can automatically build and reload your web application on changes to your source:
 
 ```scala
 > jetty-run

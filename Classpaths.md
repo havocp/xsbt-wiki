@@ -4,7 +4,7 @@ This page discusses how sbt builds up classpaths for different actions, like `co
 
 # Basics
 
-In sbt 0.9, classpaths now include the Scala library and (when declared as a dependency) the Scala compiler.  Classpath-related settings and tasks typically provide a value of type `Classpath`.  This is an alias for `Seq[Attributed[File]]`.  `Attributed` is a type that associates a heterogeneous map with each classpath entry.  Currently, this allows sbt to pair the `Analysis` resulting from compilation with the corresponding classpath entry.  This helps support multi-project incremental recompilation.
+In sbt 0.10.0 and later, classpaths now include the Scala library and (when declared as a dependency) the Scala compiler.  Classpath-related settings and tasks typically provide a value of type `Classpath`.  This is an alias for `Seq[Attributed[File]]`.  `Attributed` is a type that associates a heterogeneous map with each classpath entry.  Currently, this allows sbt to pair the `Analysis` resulting from compilation with the corresponding classpath entry.  This helps support multi-project incremental recompilation.
 
 To explicitly extract the raw `Seq[File]`, use the `files` method implicitly added to `Classpath`:
 ```scala

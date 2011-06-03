@@ -1,10 +1,13 @@
 [TaskStreams]: http://harrah.github.com/xsbt/latest/api/sbt/std/TaskStreams.html
 [Logger]: http://harrah.github.com/xsbt/latest/api/sbt/Logger.html
+[Incomplete]: https://github.com/harrah/xsbt/latest/api/sbt/Incomplete.html
+[Result]: https://github.com/harrah/xsbt/latest/api/sbt/Result.html
+
 # Tasks
 
 # Introduction
 
-sbt 0.9 has a new task system that integrates with the new settings system.
+sbt 0.10 has a new task system that integrates with the new settings system.
 Both settings and tasks produce values, but there are two major differences between them:
 
 1. Settings are evaluated at project load time.  Tasks are executed on demand, often in response to a command from the user.
@@ -212,7 +215,7 @@ intTask <<= intTask.dependsOn(stringTask, sampleTask)
 
 ## Streams: Per-task logging
 
-New in sbt 0.9 are per-task loggers, which are part of a more general system for task-specific data called Streams.  This allows controlling the verbosity of stack traces and logging individually for tasks as well as recalling the last logging for a task.  Tasks also have access to their own persisted binary or text data.
+New in sbt 0.10 are per-task loggers, which are part of a more general system for task-specific data called Streams.  This allows controlling the verbosity of stack traces and logging individually for tasks as well as recalling the last logging for a task.  Tasks also have access to their own persisted binary or text data.
 
 To use Streams, `map` or `flatMap` the `streams` task.  This is a special task that provides an instance of [TaskStreams] for the defining task.  This type provides access to named binary and text streams, named loggers, and a default logger.  The default [Logger], which is the most commonly used aspect, is obtained by the `log` method:
 ```scala
@@ -287,7 +290,7 @@ It is obvious here that calling intTask() will never result in "finally" being p
 
 `mapFailure` accepts a function of type `Incomplete => T`, where `T` is a type parameter.
 In the case of multiple inputs, the function has type `Seq[Incomplete] => T`.
-[Incomplete](https://github.com/harrah/xsbt/blob/0.9/tasks/Incomplete.scala) is an exception with information about any tasks that caused the failure and any underlying exceptions thrown during task execution.
+[Incomplete] is an exception with information about any tasks that caused the failure and any underlying exceptions thrown during task execution.
 The resulting task defined by `mapFailure` fails if its input succeeds and evaluates the provided function if it fails.
 
 For example:
@@ -352,7 +355,7 @@ The following table lists the results of invoking `c-task`, depending on the suc
 
 `mapR` accepts a function of type `Result[S] => T`, where `S` is the type of the task being mapped and `T` is a type parameter.
 In the case of multiple inputs, the function has type `(Result[A], Result[B], ...) => T`.
-[Result](https://github.com/harrah/xsbt/blob/0.9/tasks/Result.scala) has the same structure as `Either[Incomplete, S]` for a task result of type `S`.
+[Result] has the same structure as `Either[Incomplete, S]` for a task result of type `S`.
 That is, it has two subtypes:
 
  * `Inc`, which wraps `Incomplete` in case of failure

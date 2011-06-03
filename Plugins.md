@@ -33,7 +33,7 @@ Any session settings for the plugin definition project that have not been saved 
 
 ### Global plugins
 
-In sbt 0.7.x, a processor was a way to add new commands to sbt and distribute them to users.  A key feature was the ability to have per-user processors so that once declared, it could be used in all projects for that user.  In sbt 0.9, plugins and processors are unified.  Specifically, a plugin can add commands and plugins can be declared globally for a user.
+In sbt 0.7.x, a processor was a way to add new commands to sbt and distribute them to users.  A key feature was the ability to have per-user processors so that once declared, it could be used in all projects for that user.  In sbt 0.10, plugins and processors are unified.  Specifically, a plugin can add commands and plugins can be declared globally for a user.
 
 The `~/.sbt/plugins/` directory is treated as a global plugin definition project.  It is a normal sbt project whose classpath is available to all sbt project definitions for that user as described above for per-project plugins.
 
@@ -85,7 +85,7 @@ To switch back to the main project:
 
 ### 1d) Project dependency
 
-This variant shows how to use the external project support in sbt 0.9 to declare a source dependency on a plugin.
+This variant shows how to use the external project support in sbt 0.10 to declare a source dependency on a plugin.
 This means that the plugin will be built from source and used on the classpath.
 
 Edit `project/plugins/project/Build.scala`

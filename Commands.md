@@ -1,3 +1,5 @@
+[State]: http://harrah.github.com/xsbt/latest/api/sbt/State$.html
+
 # Commands
 
 # Introduction
