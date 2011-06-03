@@ -17,7 +17,7 @@ Specifically,
 
 1. Managed dependencies declared by the `project/plugins/` project are retrieved and put on the build definition classpath.
 2. Unmanaged dependencies in `project/plugins/lib/` are available to the build definition.
-3. Sources in the `project/plugins/` project are compiled and put on the build definition claspath.
+3. Sources in the `project/plugins/` project are compiled and put on the build definition classpath.
 4. Project dependencies can be declared in `project/plugins/project/Build.scala` and will be available to the build definition.
 
 The build definition classpath is searched for `sbt/sbt.plugins` descriptor files containing the names of Plugin implementations.
