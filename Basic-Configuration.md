@@ -3,7 +3,8 @@
 [Scope]: http://harrah.github.com/xsbt/latest/api/sbt/Scope$.html
 [Settings]: http://harrah.github.com/xsbt/latest/sxr/Settings.scala.html
 [Attributes]: http://harrah.github.com/xsbt/latest/sxr/Attributes.scala.html
-[Defaults]: https://github.com/harrah/xsbt/latest/sxr/Defaults.scala.html
+[Defaults]: http://harrah.github.com/xsbt/latest/sxr/Defaults.scala.html
+[Keys]: http://harrah.github.com/xsbt/latest/sxr/Keys.scala.html
 
 A build definition is written in Scala.  There are two types of definitions: light and full.  A light definition is a quick way of configuring a build.  It consists of a list of expressions describing project settings.
 
