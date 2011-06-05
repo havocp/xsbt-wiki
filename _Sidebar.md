@@ -32,6 +32,7 @@
     * [[Basics|Tasks]]
     * [[Common Tasks]]
     * [[Classpaths]]
+    * [[Mapping Files]]
     * [[External Processes|Process]]
 * Project Information
     * [[Credits]]
