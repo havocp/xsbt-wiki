@@ -82,6 +82,6 @@ managedClasspath in proguard <<=
 //  in a ClassLoader and reflectively calling an appropriate
 //  method.
 proguard <<= managedClasspath in proguard { (cp: Seq[File] => 
-  ... do something with 'cp', which includes proguard ...
+  // ... do something with 'cp', which includes proguard ...
 }
 ```
