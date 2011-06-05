@@ -102,7 +102,7 @@ resolvers += ScalaToolsSnapshots
 
 sbt can search your local Maven repository if you add it as a repository:
 ```scala
-resolvers += "Local Maven Repository" at "file://"+Path.userHome+"/.m2/repository"
+resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
 ```
 
 See [[Resolvers]] for details on defining other types of repositories.
