@@ -21,16 +21,18 @@
         * [[Publishing]]
         * [[Artifacts]]
         * [[Update Report]]
-    * [[Forking]]
     * [[Testing]]
+    * [[Forking]]
     * [[Java Sources]]
     * [[Local Scala]]
-    * [[Tasks]]
-    * [[Classpaths]]
-    * [[External Processes|Process]]
     * Using [[Compiler Plugins]]
     * [[Plugins]] - Extending sbt
     * [[Commands]]
+* Creating and Modifying Tasks
+    * [[Basics|Tasks]]
+    * [[Common Tasks]]
+    * [[Classpaths]]
+    * [[External Processes|Process]]
 * Project Information
     * [[Credits]]
     * [[Changes]]
