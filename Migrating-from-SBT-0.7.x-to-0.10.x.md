@@ -96,7 +96,7 @@ This does mean that existing solutions for sharing libraries with your favoured 
 
 * IntelliJ IDEA: [[https://github.com/teigen/plugins]] or [[https://github.com/scroyston/sbt-idea]]
 * Netbeans: [[https://github.com/remeniuk/sbt-netbeans-plugin]]
-* Eclipse: [[https://github.com/weiglewilczek/sbteclipse]]
+* Eclipse: [[https://github.com/typesafehub/sbteclipse]]
 
 ## What are the commands I can use?
 
