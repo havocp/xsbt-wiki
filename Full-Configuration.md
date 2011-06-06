@@ -1,3 +1,5 @@
+[#35]: https://github.com/harrah/xsbt/issues/35
+
 # Full Configuration (Draft)
 
 A full configuration consists of one or more Scala source files that define concrete Builds.
@@ -160,6 +162,8 @@ Ultimately, a `RootProject` is resolved to a `ProjectRef` once the external proj
 Additionally, there are implicit conversions `URI => RootProject` and `File => RootProject` so that URIs and Files can be used directly.
 External, remote builds are retrieved or checked out to a staging directory in the user's `.ivy2` directory so that they can be manipulated like local builds.
 Examples of using project references follow in the next sections.
+
+When using external projects, the `sbt.boot.directory` should be set (see [[Setup]]) so that unnecessary recompilations do not occur (see [#35]).
 
 ### Execution Dependency
 
