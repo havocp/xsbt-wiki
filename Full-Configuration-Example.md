@@ -19,7 +19,6 @@ object BuildSettings {
 }
 
 // Shell prompt which show the current project, git branch and build version
-// git magic from Daniel Sobral
 object ShellPrompt {
  
   object devnull extends ProcessLogger {
@@ -78,8 +77,6 @@ object Dependencies {
 
 
 object CDAP2Build extends Build {
- 
-  val buildShellPrompt = ShellPrompt.buildShellPrompt
   
   import Resolvers._
   import Dependencies._
@@ -91,11 +88,6 @@ object CDAP2Build extends Build {
   val serverDeps = Seq (grizzlyframwork, grizzlyhttp, grizzlyrcm, grizzlyutils, grizzlyportunif, sleepycat, scalatest)
 
   val pricingDeps = Seq (apachenet, apachecodec, scalatest)
-
-
-  // Projects
-  // Required for SBT < v0.9.9
-  // lazy val projects = Seq (cdap2, pricing, common, compact, server, pricing_service)
   
   lazy val cdap2 = Project ("cdap2", file ("."), settings = buildSettings) aggregate (common, server, compact, pricing, pricing_service)
 
