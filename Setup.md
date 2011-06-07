@@ -70,10 +70,10 @@ java -Dhttp.proxyHost=myproxy -Dhttp.proxyPort=8080 -Dhttp.proxyUser=username -D
 
 When you run `sbt` and there is no build definition, it assumes default settings:
 
- - Scala sources go in the base directory or in `src/main/scala`
- - Java sources go in the base directory or in `src/test/scala`
- - Unmanaged dependencies (jars) go in `lib/`
- - The Scala version used to run sbt is used to build the project
+ - main Scala sources go in the base directory or in `src/main/scala`
+ - test Scala sources go in `src/test/scala`
+ - unmanaged dependencies (jars) go in `lib/`
+ - the Scala version used to run sbt is used to build the project
 
 With these defaults, you can run `console` to enter the Scala interpreter, or create an application and run it with `run`.  For example:
 
