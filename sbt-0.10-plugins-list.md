@@ -11,3 +11,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 ### Web Plugin
 
 * xsbt-web-plugin: https://github.com/siasia/xsbt-web-plugin
+
+### Test plugins
+
+* junit_xml_listener: https://github.com/ijuma/junit_xml_listener/tree/sbt-0.10
