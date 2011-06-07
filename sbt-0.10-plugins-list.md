@@ -15,3 +15,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 ### Test plugins
 
 * junit_xml_listener: https://github.com/ijuma/junit_xml_listener/tree/sbt-0.10
+
+### Static Code Analysis plugins
+
+* findbugs4sbt: https://bitbucket.org/jmhofer/findbugs4sbt (FindBugs only supports Java projects atm)
