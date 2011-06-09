@@ -36,9 +36,12 @@ object ShellPrompt {
   
   val buildShellPrompt = { 
     (state: State) => {
-      val currBranch = current findFirstMatchIn gitBranches map (_ group(1)) getOrElse "-"
+      val currBranch = 
+        current findFirstMatchIn gitBranches map (_ group(1)) getOrElse "-"
       val currProject = Project.extract (state).currentProject.id
-      "%s:%s:%s> ".format (currProject, currBranch, BuildSettings.buildVersion)
+      "%s:%s:%s> ".format (
+        currProject, currBranch, BuildSettings.buildVersion
+      )
     }
   }
  
@@ -56,26 +59,26 @@ object Resolvers {
 
 object Dependencies {
 
-  val logbackVersion	= "0.9.16"
-  val grizzlyVersion	= "1.9.19"
+  val logbackVer = "0.9.16"
+  val grizzlyVer = "1.9.19"
 
-  val logbackcore	= "ch.qos.logback" % "logback-core"     % logbackVersion
-  val logbackclassic	= "ch.qos.logback" % "logback-classic"  % logbackVersion  
+  val logbackcore    = "ch.qos.logback" % "logback-core"     % logbackVer
+  val logbackclassic = "ch.qos.logback" % "logback-classic"  % logbackVer
 
-  val jacksonjson	= "org.codehaus.jackson" % "jackson-core-lgpl" % "1.7.2"
+  val jacksonjson = "org.codehaus.jackson" % "jackson-core-lgpl" % "1.7.2"
   
-  val grizzlyframwork	= "com.sun.grizzly" % "grizzly-framework"  % grizzlyVersion
-  val grizzlyhttp	= "com.sun.grizzly" % "grizzly-http"       % grizzlyVersion
-  val grizzlyrcm	= "com.sun.grizzly" % "grizzly-rcm"        % grizzlyVersion
-  val grizzlyutils	= "com.sun.grizzly" % "grizzly-utils"      % grizzlyVersion
-  val grizzlyportunif	= "com.sun.grizzly" % "grizzly-portunif"   % grizzlyVersion
+  val grizzlyframwork = "com.sun.grizzly" % "grizzly-framework" % grizzlyVer
+  val grizzlyhttp     = "com.sun.grizzly" % "grizzly-http"      % grizzlyVer
+  val grizzlyrcm      = "com.sun.grizzly" % "grizzly-rcm"       % grizzlyVer
+  val grizzlyutils    = "com.sun.grizzly" % "grizzly-utils"     % grizzlyVer
+  val grizzlyportunif = "com.sun.grizzly" % "grizzly-portunif"  % grizzlyVer
 
-  val sleepycat		= "com.sleepycat" % "je" % "4.0.92"
+  val sleepycat	= "com.sleepycat" % "je" % "4.0.92"
 
-  val apachenet		= "commons-net"   % "commons-net"   % "2.0"
-  val apachecodec	= "commons-codec" % "commons-codec" % "1.4"
+  val apachenet	  = "commons-net"   % "commons-net"   % "2.0"
+  val apachecodec = "commons-codec" % "commons-codec" % "1.4"
 
-  val scalatest		= "org.scalatest" % "scalatest_2.9.0" % "1.4.1" % "test"
+  val scalatest	= "org.scalatest" % "scalatest_2.9.0" % "1.4.1" % "test"
 }
 
 
@@ -86,9 +89,14 @@ object CDAP2Build extends Build {
   import BuildSettings._
 
   // Sub-project specific dependencies
-  val commonDeps = Seq (logbackcore, logbackclassic, jacksonjson, scalatest)
+  val commonDeps = Seq (
+    logbackcore,
+    logbackclassic,
+    jacksonjson,
+    scalatest
+  )
 
-  val serverDeps = Seq(
+  val serverDeps = Seq (
     grizzlyframwork,
     grizzlyhttp,
     grizzlyrcm,
