@@ -20,7 +20,8 @@ object BuildSettings {
 
 }
 
-// Shell prompt which show the current project, git branch and build version
+// Shell prompt which show the current project, 
+// git branch and build version
 object ShellPrompt {
  
   object devnull extends ProcessLogger {
@@ -87,28 +88,54 @@ object CDAP2Build extends Build {
   // Sub-project specific dependencies
   val commonDeps = Seq (logbackcore, logbackclassic, jacksonjson, scalatest)
 
-  val serverDeps = Seq (grizzlyframwork, grizzlyhttp, grizzlyrcm, grizzlyutils, grizzlyportunif, sleepycat, scalatest)
+  val serverDeps = Seq(
+    grizzlyframwork,
+    grizzlyhttp,
+    grizzlyrcm,
+    grizzlyutils,
+    grizzlyportunif,
+    sleepycat,
+    scalatest
+  )
 
   val pricingDeps = Seq (apachenet, apachecodec, scalatest)
   
-  lazy val cdap2 = Project ("cdap2", file ("."), settings = buildSettings) aggregate (common, server, compact, pricing, pricing_service)
+  lazy val cdap2 = Project (
+    "cdap2",
+    file ("."),
+    settings = buildSettings
+  ) aggregate (common, server, compact, pricing, pricing_service)
 
-
-  lazy val common = Project ("common", file ("cdap2-common"),
-			     settings = buildSettings ++ Seq (libraryDependencies := commonDeps))
+  lazy val common = Project (
+    "common",
+    file ("cdap2-common"),
+    settings = buildSettings ++ Seq (libraryDependencies := commonDeps)
+  )
 			     
-  lazy val server = Project ("server", file ("cdap2-server"),
-			     settings = buildSettings ++ Seq (resolvers := oracleResolvers, 
-							      libraryDependencies := serverDeps)) dependsOn (common)
+  lazy val server = Project (
+    "server",
+    file ("cdap2-server"),
+    settings = buildSettings ++ Seq (resolvers := oracleResolvers, 
+                                     libraryDependencies := serverDeps)
+  ) dependsOn (common)
 
-  lazy val pricing = Project ("pricing", file ("cdap2-pricing"),
-			      settings = buildSettings ++ Seq (libraryDependencies := pricingDeps)) dependsOn (common, compact, server)
+  lazy val pricing = Project (
+    "pricing",
+    file ("cdap2-pricing"),
+    settings = buildSettings ++ Seq (libraryDependencies := pricingDeps)
+  ) dependsOn (common, compact, server)
 
-  lazy val pricing_service = Project ("pricing-service", file ("cdap2-pricing-service"),
-				      settings = buildSettings) dependsOn (pricing, server)
+  lazy val pricing_service = Project (
+    "pricing-service",
+    file ("cdap2-pricing-service"),
+    settings = buildSettings
+  ) dependsOn (pricing, server)
 
-  lazy val compact = Project ("compact", file ("compact-hashmap"), settings = buildSettings)
-
+  lazy val compact = Project (
+    "compact",
+    file ("compact-hashmap"),
+    settings = buildSettings
+  )
 }
 
 
