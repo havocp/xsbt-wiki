@@ -1,5 +1,5 @@
 sbt is a build tool for Scala projects that aims to do the basics well. It requires Java 1.6 or later.
-
+test
 ## Features
 * Fairly fast, unintrusive, and easy to set up for simple projects
 * [[Configuration|Basic Configuration]], [[customization|Tasks]], and [[extension|Plugins]] are done in Scala
