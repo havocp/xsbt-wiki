@@ -11,10 +11,12 @@ object BuildSettings {
   val buildScalaVersion = "2.9.0-1"
   val buildVersion      = "2.0.29"
 
-  val buildSettings = Defaults.defaultSettings ++ Seq (organization := buildOrganization,
-						       scalaVersion := buildScalaVersion,
-						       version      := buildVersion,
-						       shellPrompt  := ShellPrompt.buildShellPrompt)
+  val buildSettings = Defaults.defaultSettings ++ Seq (
+    organization := buildOrganization,
+    scalaVersion := buildScalaVersion,
+    version      := buildVersion,
+    shellPrompt  := ShellPrompt.buildShellPrompt
+  )
 
 }
 
