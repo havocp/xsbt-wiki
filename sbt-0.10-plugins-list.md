@@ -23,3 +23,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 ### Webstart Plugin
 
 * xstb-webstart: https://github.com/ritschwumm/xsbt-webstart
+
+### One jar plugins
+
+* sbt-assembly: https://github.com/eed3si9n/sbt-assembly
