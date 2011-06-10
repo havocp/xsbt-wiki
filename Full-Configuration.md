@@ -37,19 +37,6 @@ By-name parameters, being non-strict, are useful when there are cycles between t
 In the example, there is a *configuration* dependency `sub2 -> root`, a *classpath* dependency `sub1 -> sub2`, and an *execution* dependency `root -> sub1`.
 This causes cycles at the Scala-level, but not within a particular dependency type, which is not allowed.
 
-## Defining a Build
-
-Implementing `Build` consists of defining the `projects` method.  This method lists all internal projects for the build.  The basic template looks like:
-
-```scala
-	import sbt._
-
-object MyBuild extends Build
-{
-	lazy val projects = Seq(...)
-}
-```
-
 ## Defining Projects
 
 An internal project is defined by constructing an instance of `Project`.  The minimum information for a new project is its ID string and base directory.  For example:
