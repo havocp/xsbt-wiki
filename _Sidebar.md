@@ -8,7 +8,7 @@
     * [[Console Project]]
     * [[Inspecting Settings]]
     * [[Running Project Code]]
-    * [[SBT 0.10 Plugins List]]
+    * [[sbt 0.10 Plugins List]]
 * Configuration
     * [[Basic Configuration]]
     * [[Full Configuration]]
