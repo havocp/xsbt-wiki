@@ -21,25 +21,25 @@ object AnyName extends Build {
 
 There needs to be at least one `sbt.Project` defined and in this case we are giving it an arbitrary name and saying that it can be found in the root of this project.  In other words we are saying that this is a build file to build the current project.
 
-The declarations define any number of objects which can be used by sbt to determine what to build and how to build it. Typically these declarations will include the declaration of at least one `sbt.Project` object which represents an sbt project.
+The declarations define any number of objects which can be used by sbt to determine what to build and how to build it.
 
 Most of the time you are not telling sbt what to do, you are simply declaring the dependencies of your project and the particular settings you require. sbt then uses this information to determine how to carry out the tasks you give it when you interact with sbt on the command line. For this reason the order of declarations tends to be unimportant.
 
-When you define something and assign it to a constant the name of the constant is often irrelevant. By defining it and making it part of an object, sbt can then interrogate it and extract the information it requires.  So, for example, the line:
+When you define something and assign it to a val the name of the val is often irrelevant. By defining it and making it part of an object, sbt can then interrogate it and extract the information it requires.  So, for example, the line:
 
 ```scala
 val apachenet = "commons-net" % "commons-net" % "2.0"
 ```
 
-defines a dependency and assigns it to the constant `apachenet` but, unless you refer to that constant again in the build file, the name of it is of no significance to sbt.  sbt simply sees that the dependency object exists and uses it when it needs it.
+defines a dependency and assigns it to the val `apachenet` but, unless you refer to that val again in the build file, the name of it is of no significance to sbt.  sbt simply sees that the dependency object exists and uses it when it needs it.
 
 # Combining "light" and "full" configuration files
 
-It is worth noting at this stage that you can have both a `build.sbt` file and a `Build.scala` file for the same project.  If you do this, sbt will combine the configurations.  If there is a clash of declarations then the `build.sbt` file will supersede the `Build.scala` file.
+It is worth noting at this stage that you can have both a `build.sbt` file and a `Build.scala` file for the same project.  If you do this, sbt will append the configurations in `build.sbt` to those in the `Build.scala` file.  In fact you can also have multiple ".sbt" files in your root directory and they are all appended together.
 
 # A simple example comparing a "light" and "full" configuration of the same project
 
-Here is a very simple "light" `build.sbt` file which defines a very simple build project with a single test dependency on "scalacheck":
+Here is a short "light" `build.sbt` file which defines a build project with a single test dependency on "scalacheck":
 
 ```scala
 name := "My Project"
@@ -93,5 +93,3 @@ object MyProjectBuild extends sbt.Build {
 
 } 
 ```
-
-
