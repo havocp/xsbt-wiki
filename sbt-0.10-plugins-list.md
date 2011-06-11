@@ -27,3 +27,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 ### One jar plugins
 
 * sbt-assembly: https://github.com/eed3si9n/sbt-assembly
+
+### CoffeeScript Plugin
+
+* coffeescripted-sbt: https://github.com/softprops/coffeescripted-sbt
