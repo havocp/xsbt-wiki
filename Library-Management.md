@@ -19,7 +19,7 @@ unmanagedBase <<= baseDirectory { base => base / "custom_lib" }
 
 If you want more control and flexibility, override the `unmanaged-jars` task, which ultimately provides the manual dependencies to sbt.  The default implementation is roughly:
 ```scala
-unmanagedJars in Compile <<= baseDirectory { base => (base ** "*.jar").classpath }
+unmanagedJars in Compile <<= baseDirectory map { base => (base ** "*.jar").classpath }
 ```
 
 If you want to add jars from multiple directories in addition to the default directory, you can do:
