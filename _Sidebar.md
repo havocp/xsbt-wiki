@@ -28,10 +28,10 @@
     * [[Local Scala]]
     * Using [[Compiler Plugins]]
     * [[Plugins]] - Extending sbt
-    * [[Commands]]
-* Creating and Modifying Tasks
-    * [[Basics|Tasks]]
+* Tasks and Commands
+    * [[Task Basics|Tasks]]
     * [[Common Tasks]]
+    * [[Commands]]
     * [[Classpaths]]
     * [[Mapping Files]]
     * [[External Processes|Process]]
