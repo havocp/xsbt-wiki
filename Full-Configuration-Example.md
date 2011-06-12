@@ -1,4 +1,4 @@
-Example of a Full configuration.  Full configurations are written in Scala.
+Example of a Full configuration.  Full configurations are written in Scala, so this example would be placed as project/Build.scala, not build.sbt.
 
 ```scala
 
