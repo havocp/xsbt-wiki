@@ -8,9 +8,10 @@ The purpose of this page is to aid developers in finding plugins that work with 
 * Netbeans: https://github.com/remeniuk/sbt-netbeans-plugin
 * Eclipse: https://github.com/typesafehub/sbteclipse
 
-### Web Plugin
+### Web Plugins
 
 * xsbt-web-plugin: https://github.com/siasia/xsbt-web-plugin
+* xstb-webstart: https://github.com/ritschwumm/xsbt-webstart
 
 ### Test plugins
 
@@ -20,10 +21,6 @@ The purpose of this page is to aid developers in finding plugins that work with 
 ### Static Code Analysis plugins
 
 * findbugs4sbt: https://bitbucket.org/jmhofer/findbugs4sbt (FindBugs only supports Java projects atm)
-
-### Webstart Plugin
-
-* xstb-webstart: https://github.com/ritschwumm/xsbt-webstart
 
 ### One jar plugins
 
@@ -36,3 +33,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 ### Release plugins
 
 * posterous-sbt: https://github.com/n8han/posterous-sbt/tree/sbt0.10
+
+### System plugins
+
+* sbt-sh (executes shell commands): https://github.com/steppenwells/sbt-sh
