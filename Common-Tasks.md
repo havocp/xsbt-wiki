@@ -48,6 +48,61 @@ mappings in packageSrc <++= (managedSource, managedSources) map { (base, srcs) =
 
 This takes sources from the `managedSources` task and relativizes them against the `managedSource` base directory, falling back to a flattened mapping.  If a source generation task doesn't write the sources to the `managedSource` directory, the mapping function would have to be adjusted to try relativizing against additional directories or something more appropriate for the generator.
 
+# Adding a compile configuration
+
+The following example demonstrates adding a new set of compilation settings and tasks to a new configuration called `samples`.  The sources for this configuration go in `src/samples/scala/`.  Unspecified settings delegate to those defined for the `compile` configuration.  For example, if `scalacOptions` are not overridden for `samples`, the options for the main sources are used.
+
+Options specific to `samples` may be declared like:
+```scala
+scalacOptions in Samples += "-deprecation"
+```
+
+This uses the main options as base options because of `+=`.  Use `:=` to ignore the main options:
+
+```scala
+scalacOptions in Samples := "-deprecation" :: Nil
+```
+
+The example adds all of the usual compilation related settings and tasks to `samples`: 
+```text
+samples:run
+samples:run-main
+samples:compile
+samples:console
+samples:console-quick
+samples:scalac-options
+samples:full-classpath
+samples:package
+samples:package-src
+...
+```
+
+## Example
+
+`project/Sample.scala`
+
+```scala
+import sbt._
+import Keys._
+
+object Sample extends Build {
+     // defines a new configuration "samples" that will delegate to "compile"
+   lazy val Samples = config("samples") extend(Compile)
+
+     // defines the project to have the "samples" configuration
+   lazy val p = Project("p", file(".")).configs(Samples).settings(sampleSettings : _*)
+
+   def sampleSettings = 
+        // adds the default compile/run/... tasks in "samples"
+      inConfig(Samples)(Defaults.configSettings) ++
+      Seq(
+        // makes "test:compile" depend on "samples:compile"
+         compile in Test <<= compile in Test dependsOn (compile in Samples)
+      ) ++ 
+        // declares that the samples binary should be published
+      addArtifact(artifact in Samples, packageBin in Samples).settings
+}
+```
 
 # Tool dependencies
 
