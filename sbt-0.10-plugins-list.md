@@ -15,6 +15,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 ### Test plugins
 
 * junit_xml_listener: https://github.com/ijuma/junit_xml_listener/tree/sbt-0.10
+* sbt-growl-plugin: https://github.com/softprops/sbt-growl-plugin
 
 ### Static Code Analysis plugins
 
@@ -31,3 +32,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 ### CoffeeScript Plugin
 
 * coffeescripted-sbt: https://github.com/softprops/coffeescripted-sbt
+
+### Release plugins
+
+* posterous-sbt: https://github.com/n8han/posterous-sbt/tree/sbt0.10
