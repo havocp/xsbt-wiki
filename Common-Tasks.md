@@ -90,17 +90,24 @@ object Sample extends Build {
    lazy val Samples = config("samples") extend(Compile)
 
      // defines the project to have the "samples" configuration
-   lazy val p = Project("p", file(".")).configs(Samples).settings(sampleSettings : _*)
+   lazy val p = Project("p", file("."))
+      .configs(Samples)
+      .settings(sampleSettings : _*)
 
    def sampleSettings = 
         // adds the default compile/run/... tasks in "samples"
       inConfig(Samples)(Defaults.configSettings) ++
       Seq(
-        // makes "test:compile" depend on "samples:compile"
+        // (optional) makes "test:compile" depend on "samples:compile"
          compile in Test <<= compile in Test dependsOn (compile in Samples)
       ) ++ 
-        // declares that the samples binary should be published
-      addArtifact(artifact in Samples, packageBin in Samples).settings
+        // (optional) declares that the samples binary and source jars
+        // should be published
+    publishArtifact(packageBin) ++
+    publishArtifact(packageSrc)
+
+   def publishArtifact(task: TaskKey[File]): Seq[Setting[_]] =
+      addArtifact(artifact in (Samples, task), task in Samples).settings
 }
 ```
 
