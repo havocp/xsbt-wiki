@@ -101,10 +101,10 @@ object Sample extends Build {
         // (optional) makes "test:compile" depend on "samples:compile"
          compile in Test <<= compile in Test dependsOn (compile in Samples)
       ) ++ 
-        // (optional) declares that the samples binary and source jars
-        // should be published
-    publishArtifact(packageBin) ++
-    publishArtifact(packageSrc)
+        // (optional) declare that the samples binary and
+        // source jars should be published
+      publishArtifact(packageBin) ++
+      publishArtifact(packageSrc)
 
    def publishArtifact(task: TaskKey[File]): Seq[Setting[_]] =
       addArtifact(artifact in (Samples, task), task in Samples).settings
