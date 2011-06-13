@@ -15,7 +15,7 @@ sourceGenerators in Compile <+= <your Task[Seq[File]] here>
 For example, assuming a method `def makeSomeSources(base: File): Seq[File]`,
 
 ```scala
-sourceGenerators in Compile <+= sourceManaged in Compile { outDir: File =>
+sourceGenerators in Compile <+= sourceManaged in Compile map { outDir: File =>
   makeSomeSources(outDir / "demo")
 }
 ```
