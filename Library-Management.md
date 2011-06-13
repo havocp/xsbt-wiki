@@ -24,7 +24,7 @@ unmanagedJars in Compile <<= baseDirectory map { base => (base ** "*.jar").class
 
 If you want to add jars from multiple directories in addition to the default directory, you can do:
 ```
-unmanagedJars in Compile <+= baseDirectory map { base =>
+unmanagedJars in Compile <++= baseDirectory map { base =>
 	val baseDirectories = (base / "libA") +++ (base / "b" / "lib") +++ (base / "libC")
 	val customJars = (baseDirectories ** "*.jar") +++ (base / "d" / "my.jar")
 	customJars.classpath
