@@ -30,7 +30,7 @@ object ShellPrompt {
     def buffer[T] (f: => T): T = f
   }
   
-  val current = """\*\s+(\w+)""".r
+  val current = """\*\s+([\w-]+)""".r
   
   def gitBranches = ("git branch --no-color" lines_! devnull mkString)
   
