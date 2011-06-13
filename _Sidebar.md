@@ -31,7 +31,9 @@
 * Tasks and Commands
     * [[Task Basics|Tasks]]
     * [[Common Tasks]]
+    * [[Input Tasks]]
     * [[Commands]]
+    * [[Parsing Input]]
     * [[Build State]]
     * [[Classpaths]]
     * [[Mapping Files]]

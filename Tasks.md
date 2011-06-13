@@ -18,7 +18,7 @@ Both settings and tasks produce values, but there are two major differences betw
 There are several features of the task system:
 
 1. By integrating with the settings system, tasks can be added, removed, and modified as easily and flexibly as settings.
-2. Input tasks, the successor to method tasks, use parser combinators to define the syntax for their arguments.  This allows flexible syntax and tab-completions in the same way as [[Commands]].
+2. [[Input Tasks]], the successor to method tasks, use [[parser combinators|Parsing Input]] to define the syntax for their arguments.  This allows flexible syntax and tab-completions in the same way as [[Commands]].
 3. Tasks produce values.  Other tasks can access a task's value with the `map` and `flatMap` methods.
 4. The `flatMap` method allows dynamically changing the structure of the task graph.  Tasks can be injected into the execution graph based on the result of another task.
 5. There are ways to handle task failure, similar to `try/catch/finally`.
