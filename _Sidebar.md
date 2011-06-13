@@ -32,6 +32,7 @@
     * [[Task Basics|Tasks]]
     * [[Common Tasks]]
     * [[Commands]]
+    * [[State]]
     * [[Classpaths]]
     * [[Mapping Files]]
     * [[External Processes|Process]]
