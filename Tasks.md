@@ -29,6 +29,40 @@ The context for the code snippets will be either the body of a `Build` object in
 
 # Defining a New Task
 
+## Hello World example
+
+project/Build.scala
+
+```scala
+
+import sbt._
+import Keys._
+
+object HelloBuild extends Build {
+  val hwsettings = Defaults.defaultSettings ++ Seq(
+    organization := "hello",
+    name         := "world",
+    version      := "1.0-SNAPSHOT",
+    scalaVersion := "2.9.0-1"
+  )
+
+  val hello = TaskKey[Unit]("hello")
+
+  val helloTask = hello := {
+    println("Hello World")
+  }
+
+  lazy val project = Project (
+    "project",
+    file ("."),
+    settings = hwsettings ++ Seq(helloTask)
+  )
+}
+
+```
+
+Run "sbt hello" from command line to invoke the task.
+
 ## Define the key
 
 To declare a new task, define a `TaskKey` in your [[Full Configuration]]:
