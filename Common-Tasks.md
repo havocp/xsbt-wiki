@@ -23,7 +23,7 @@ A basic run task is created by:
 or, if you really want to define it inline (as in a basic build.sbt file): 
 
 ```scala
-   fullRunTask(TaskKey("my-run-task"), Test, "foo.Foo", "arg1", "arg2") 
+   fullRunTask(TaskKey[Unit]("my-run-task"), Test, "foo.Foo", "arg1", "arg2") 
 ```
 
 If you want to be able to supply arguments on the command line, replace `TaskKey` with `InputKey` and `fullRunTask` with `fullRunInputTask`. 
