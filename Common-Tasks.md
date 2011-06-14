@@ -50,7 +50,7 @@ val myRun = TaskKey[Unit]("my-run", "Custom run task.", aRun)
 ```
 
 In use, this looks like:
-```
+```scala
 // Make the run task as before. 
 fullRunTask(myRun, Compile, "pkg.Main", "arg1", "arg2") 
 
