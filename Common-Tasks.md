@@ -4,7 +4,7 @@
 
 This page discusses how to handle common tasks.  If you don't see your use case here, please suggest it for inclusion on the [mailing list] or ask how to do it and add it yourself.
 
-# Adding run tasks
+# Additional run tasks
 
 This section is extracted from a [mailing list discussion](http://groups.google.com/group/simple-build-tool/browse_thread/thread/4c28ee5b7e18b46a/).
 
