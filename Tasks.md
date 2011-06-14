@@ -46,7 +46,7 @@ object HelloBuild extends Build {
     scalaVersion := "2.9.0-1"
   )
 
-  val hello = TaskKey[Unit]("hello")
+  val hello = TaskKey[Unit]("hello", "Prints 'Hello World'")
 
   val helloTask = hello := {
     println("Hello World")
@@ -61,7 +61,7 @@ object HelloBuild extends Build {
 
 ```
 
-Run "sbt hello" from command line to invoke the task.
+Run "sbt hello" from command line to invoke the task. Run "sbt tasks" to see this task listed.
 
 ## Define the key
 
