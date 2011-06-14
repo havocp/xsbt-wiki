@@ -4,6 +4,70 @@
 
 This page discusses how to handle common tasks.  If you don't see your use case here, please suggest it for inclusion on the [mailing list] or ask how to do it and add it yourself.
 
+# Adding run tasks
+
+This section is extracted from a [mailing list discussion](http://groups.google.com/group/simple-build-tool/browse_thread/thread/4c28ee5b7e18b46a/).
+
+## Basics
+
+A basic run task is created by: 
+```scala
+  // this lazy val has to go in a full configuration 
+  lazy val myRunTask = TaskKey[Unit]("my-run-task")
+
+  // this can go either in a `build.sbt` or the settings member 
+  //   of a Project in a full configuration
+  fullRunTask(myRunTask, Test, "foo.Foo", "arg1", "arg2")
+```
+
+or, if you really want to define it inline (as in a basic build.sbt file): 
+
+```scala
+   fullRunTask(TaskKey("my-run-task"), Test, "foo.Foo", "arg1", "arg2") 
+```
+
+If you want to be able to supply arguments on the command line, replace `TaskKey` with `InputKey` and `fullRunTask` with `fullRunInputTask`. 
+The `Test` part can be replaced with another configuration, such as `Compile`, to use that configuration's classpath.
+
+This run task can be configured individually by specifying the task key in the scope.  For example:
+
+```scala
+fork in myRunTask := true
+
+javaOptions in myRunTask += "-Xmx6144m" 
+```
+
+## Task Delegation
+
+Something that might be helpful for groups of tasks is defining delegation for tasks. 
+
+The following key definitions specify that settings for `myRun` delegate to `aRun`
+```scala
+val aRun = TaskKey[Unit]("a-run", "A run task.") 
+
+//   The last parameter to TaskKey.apply here is a repeated one
+val myRun = TaskKey[Unit]("my-run", "Custom run task.", aRun)
+```
+
+In use, this looks like:
+```
+// Make the run task as before. 
+fullRunTask(myRun, Compile, "pkg.Main", "arg1", "arg2") 
+
+// If fork in myRun is not explicitly set, 
+//   then this also configures myRun to fork. 
+// If fork in myRun is set, it overrides this setting 
+//   because it is more specific. 
+fork in aRun := true 
+
+// Appends "-Xmx2G" to the current options for myRun. 
+//   Because we haven't defined them explicitly, 
+//   the current options are delegated to aRun. 
+//   So, this says to use the same options as aRun 
+//   plus -Xmx2G. 
+javaOptions in myRun += "-Xmx2G"
+```
+
 # Source and resource generation
 
 sbt provides standard hooks for adding source or resource generation tasks.  A generation task should generate sources in a subdirectory of `sourceManaged` for sources or `resourceManaged` for resources and return a sequence of files generated.  The key to add the task to is called `sourceGenerators` for sources and `resourceGenerators` for resources.  It should be scoped according to whether the generated files are main (`Compile`) or test (`Test`) sources or resources.  This basic structure looks like:
