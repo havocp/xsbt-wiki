@@ -3,27 +3,26 @@ Example of a Full configuration.  Full configurations are written in Scala, so t
 ```scala
 
 import sbt._
-
 import Keys._
 
 object BuildSettings {
   val buildOrganization = "odp"
-  val buildScalaVersion = "2.9.0-1"
+  val buildName         = "odp"
   val buildVersion      = "2.0.29"
+  val buildScalaVersion = "2.9.0-1"
 
   val buildSettings = Defaults.defaultSettings ++ Seq (
     organization := buildOrganization,
-    scalaVersion := buildScalaVersion,
+    name         := buildName,
     version      := buildVersion,
+    scalaVersion := buildScalaVersion,
     shellPrompt  := ShellPrompt.buildShellPrompt
   )
-
 }
 
 // Shell prompt which show the current project, 
 // git branch and build version
 object ShellPrompt {
- 
   object devnull extends ProcessLogger {
     def info (s: => String) {}
     def error (s: => String) { }
@@ -44,21 +43,17 @@ object ShellPrompt {
       )
     }
   }
- 
 }
 
 object Resolvers {
-
   val sunrepo    = "Sun Maven2 Repo" at "http://download.java.net/maven/2"
   val sunrepoGF  = "Sun GF Maven2 Repo" at "http://download.java.net/maven/glassfish" 
   val oraclerepo = "Oracle Maven2 Repo" at "http://download.oracle.com/maven"
 
   val oracleResolvers = Seq (sunrepo, sunrepoGF, oraclerepo)
-  
 }
 
 object Dependencies {
-
   val logbackVer = "0.9.16"
   val grizzlyVer = "1.9.19"
 
@@ -81,9 +76,7 @@ object Dependencies {
   val scalatest	= "org.scalatest" % "scalatest_2.9.0" % "1.4.1" % "test"
 }
 
-
 object CDAP2Build extends Build {
-  
   import Resolvers._
   import Dependencies._
   import BuildSettings._
