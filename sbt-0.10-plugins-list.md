@@ -30,6 +30,10 @@ The purpose of this page is to aid developers in finding plugins that work with 
 
 * coffeescripted-sbt: https://github.com/softprops/coffeescripted-sbt
 
+### LWJGL (Light Weight Java Game Library) Plugin
+
+* sbt-lwjgl-plugin: https://github.com/philcali/sbt-lwjgl-plugin
+
 ### Release plugins
 
 * posterous-sbt: https://github.com/n8han/posterous-sbt/tree/sbt0.10
