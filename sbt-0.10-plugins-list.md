@@ -11,7 +11,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 ### Web Plugins
 
 * xsbt-web-plugin: https://github.com/siasia/xsbt-web-plugin
-* xstb-webstart: https://github.com/ritschwumm/xsbt-webstart
+* xsbt-webstart: https://github.com/ritschwumm/xsbt-webstart
 
 ### Test plugins
 
