@@ -75,16 +75,16 @@ Arguments to the test framework may be provided on the command line to the `test
 
 ```
 
-To specify test framework arguments as part of the build, add options constructed by `Tests.Arguments`:
+To specify test framework arguments as part of the build, add options constructed by `Tests.Argument`:
 
 ```scala
-testOptions in Test += Tests.Arguments("-d", "-g")
+testOptions in Test += Tests.Argument("-d", "-g")
 ```
 
 To specify them for a specific test framework only:
 
 ```scala
-testOptions in Test += Tests.Arguments(TestFrameworks.ScalaCheck, "-d", "-g")
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaCheck, "-d", "-g")
 ```
 
 ## Setup and Cleanup
