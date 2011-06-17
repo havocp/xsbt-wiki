@@ -14,6 +14,7 @@ The following people have contributed ideas, documentation, or code to sbt:
 * David R. MacIver
 * Ross McDonald
 * Artyom Olshevskiy
+* Andrew O'Malley
 * Jorge Ortiz
 * Mikko Peltonen
 * Ray Racine
