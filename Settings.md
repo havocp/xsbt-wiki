@@ -1,8 +1,8 @@
-[light definition]:
-[full definition]:
-[ScopedSetting]:
+[light definition]: https://github.com/harrah/xsbt/wiki/Basic-Configuration
+[full definition]: https://github.com/harrah/xsbt/wiki/Full-Configuration
+[ScopedSetting]: http://harrah.github.com/xsbt/latest/api/sbt/ScopedSetting.html
 [Scope]: http://harrah.github.com/xsbt/latest/api/sbt/Scope$.html
-[SettingKey]: 
+[SettingKey]: http://harrah.github.com/xsbt/latest/api/sbt/SettingKey.html
 
 ## Introduction
 
