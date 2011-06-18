@@ -20,7 +20,7 @@ object MyBuild extends Build
 
 	// Declare a project with ID 'sub1' in directory 'a'.
 	// Declare a classpath dependency on sub2 in the 'test' configuration.
-	lazy val sub1 = Project("sub1", file("a")) dependsOn(sub2 % "test")
+	lazy val sub1: Project = Project("sub1", file("a")) dependsOn(sub2 % "test")
 
 	// Declare a project with ID 'sub2' in directory 'b'.
 	// Declare a configuration dependency on the root project.
