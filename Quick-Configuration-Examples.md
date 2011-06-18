@@ -166,4 +166,12 @@ credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 
 // Directly specify credentials for publishing.
 credentials += Credentials("Sonatype Nexus Repository Manager", "nexus.scala-tools.org", "admin", "admin123")
+
+// Set a key based partially on a separate val.
+{
+  val dependencyVersion = "1.0.0"
+  seq(
+    libraryDependencies += "my.organization" % "mylib" % dependencyVersion
+  )
+}
 ```
