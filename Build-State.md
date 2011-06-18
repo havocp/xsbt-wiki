@@ -1,4 +1,13 @@
 [State]: http://harrah.github.com/xsbt/latest/api/sbt/State$.html
+[Extracted]: http://harrah.github.com/xsbt/latest/api/sbt/Extracted.html
+[Keys]: http://harrah.github.com/xsbt/latest/api/sbt/Keys$.html
+[Eval]: http://harrah.github.com/xsbt/latest/api/sbt/compiler/Eval.html
+[Scope]: http://harrah.github.com/xsbt/latest/api/sbt/Scope.html
+[BuildStructure]: http://harrah.github.com/xsbt/latest/api/sbt/Load$$BuildStructure.html
+[LoadedBuildUnit]: http://harrah.github.com/xsbt/latest/api/sbt/Load$$LoadedBuildUnit.html
+[Structure.scala]: http://harrah.github.com/xsbt/latest/sxr/Structure.scala.html
+[ResolvedProject]: http://harrah.github.com/xsbt/latest/api/sbt/ResolvedProject.html
+[ProjectReferences]: http://harrah.github.com/xsbt/latest/api/sbt/ProjectReference.html
 
 # State and actions
 
@@ -71,12 +80,12 @@ val extracted: Extracted = Project.extract(state)
 import extracted._
 ```
 
-[Extracted](https://github.com/harrah/xsbt/blob/0.9/main/Project.scala#L60) provides:
+[Extracted] provides:
 
 * Access to the current build and project (`currentRef`)
 * Access to initialized project setting data (`structure.data`)
 * Access to session `Setting`s and the original, permanent settings from `.sbt` and `.scala` files (`session.append` and `session.original`, respectively)
-* Access to the current [Eval](https://github.com/harrah/xsbt/blob/0.9/compile/Eval.scala) instance for evaluating Scala expressions in the build context.
+* Access to the current [Eval] instance for evaluating Scala expressions in the build context.
 
 ## Project data
 All project data is stored in `structure.data`, which is of type `sbt.Settings[Scope]`.
@@ -87,9 +96,9 @@ val scope: Scope
 val value: Option[T] = key in scope get structure.data
 ```
 
-Here, a `SettingKey[T]` is typically obtained from [Keys](https://github.com/harrah/xsbt/blob/0.9/main/Keys.scala) and is the same type that is used to define settings in `.sbt` files, for example.
-[Scope](https://github.com/harrah/xsbt/blob/0.9/main/Scope.scala) selects the scope the key is obtained for.
-There are convenience overloads of `in` that can be used to specify only the required scope axes.
+Here, a `SettingKey[T]` is typically obtained from [Keys] and is the same type that is used to define settings in `.sbt` files, for example.
+[Scope] selects the scope the key is obtained for.
+There are convenience overloads of `in` that can be used to specify only the required scope axes.  See [Structure.scala] for where `in` and other parts of the settings interface are defined.
 Some examples:
 
 ```scala
@@ -100,14 +109,11 @@ import extracted._
 // get name of current project
 val nameOpt: Option[String] = name in currentRef get structure.data
 
-// get the full classpath in the 'compile' configuration, or Nil if it isn't defined
-val cp: Seq[Attributed[File]] = fullClasspath in (currentRef, Compile) get structure.data getOrElse Nil
-
 // get the package options for the `test:package-src` task or Nil if none are defined
 val pkgOpts: Seq[PackageOption] = packageOptions in (currentRef, Test, packageSrc) get structure.data getOrElse Nil
 ```
 
-[BuildStructure](https://github.com/harrah/xsbt/blob/0.9/main/Load.scala#L434) contains information about build and project relationships.
+[BuildStructure] contains information about build and project relationships.
 Key members are:
 
 ```scala
@@ -116,7 +122,7 @@ root: URI
 ```
 
 A `URI` identifies a build and `root` identifies the initial build loaded.
-[LoadedBuildUnit](https://github.com/harrah/xsbt/blob/0.9/main/Load.scala#L421) provides information about a single build.
+[LoadedBuildUnit] provides information about a single build.
 The key members of `LoadedBuildUnit` are:
 
 ```scala
@@ -127,7 +133,7 @@ localBase: File
 defined: Map[String, ResolvedProject]
 ```
 
-[ResolvedProject](https://github.com/harrah/xsbt/blob/0.9/main/Project.scala#L58) has the same information as the `Project` used in a `project/Build.scala` except that [ProjectReferences](https://github.com/harrah/xsbt/blob/0.9/main/Reference.scala) are resolved to `ProjectRef`s.
+[ResolvedProject] has the same information as the `Project` used in a `project/Build.scala` except that [ProjectReferences] are resolved to `ProjectRef`s.
 
 ## Classpaths
 
@@ -135,15 +141,16 @@ Classpaths in sbt 0.9 are of type `Seq[Attributed[File]]`.
 This allows tagging arbitrary information to classpath entries.
 sbt currently uses this to associate an `Analysis` with an entry.
 This is how it manages the information needed for multi-project incremental recompilation.
-When you only want the underlying `Seq[File]`, use `Attribute.data`:
+It also associates the ModuleID and Artifact with managed entries (those obtained by dependency management).
+When you only want the underlying `Seq[File]`, use `files`:
 
 ```scala
 val attributedClasspath: Seq[Attribute[File]] = ...
-val classpath: Seq[File] = attributedClasspath.map(_.data)
+val classpath: Seq[File] = attributedClasspath.files
 ```
 
 ## Running tasks
-It can be useful to run a specific project task from a [[command|Commands]] (*not a task*) and get its result.
+It can be useful to run a specific project task from a [[command|Commands]] (*not from another task*) and get its result.
 For example, an IDE-related command might want to get the classpath from a project or a task might analyze the results of a compilation.
 The relevant method is `Project.evaluateTask`, which has the following signature:
 ```scala
@@ -175,7 +182,7 @@ val eval: State => State = (state: State) => {
 }
 ```
 
-For getting the test classpath of a specific project:
+For getting the test classpath of a specific project, use this key:
 ```scala
 val projectRef: ProjectRef = ...
 val taskKey: Task[Seq[Attributed[File]]] =
