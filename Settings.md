@@ -3,10 +3,12 @@
 [ScopedSetting]: http://harrah.github.com/xsbt/latest/api/sbt/ScopedSetting.html
 [Scope]: http://harrah.github.com/xsbt/latest/api/sbt/Scope$.html
 [SettingKey]: http://harrah.github.com/xsbt/latest/api/sbt/SettingKey.html
+[InputKey]: http://harrah.github.com/xsbt/latest/api/sbt/InputKey.html
+[TaskKey]: http://harrah.github.com/xsbt/latest/api/sbt/TaskKey.html
 
 ## Introduction
 
-(This page is still a work in progress.  It is intended to be the starting point for learning configuration in 0.10.)
+(This page is still a work in progress.  It is intended to become the starting point for learning configuration in 0.10.)
 
 A build definition is written in Scala.
 There are two types of definitions: light and full.
@@ -93,12 +95,12 @@ The following sections include descriptions and examples of each initialization 
 The descriptions use "will initialize" or "will append" to emphasize that they construct a value describing an update and do not mutate anything.
 Each setting may be directly included in a light configuration (build.sbt), appropriately separated by blank lines.
 For a full configuration (Build.scala), the setting must go in a settings Seq as described in the previous section.
-Information about the types of the left and right hand sides of the methods follow this section.
+Information about the types of the left and right hand sides of the methods follows this section.
 
 ### :=
 
 `:=` is used to define a setting that overwrites any previous value without referring to other settings.
-For example, the following defines a setting that will set _name_ to "My Project" regardless of whether 'name' has already been initialized.
+For example, the following defines a setting that will set _name_ to "My Project" regardless of whether _name_ has already been initialized.
 ```scala
 name := "My Project"
 ```
@@ -151,14 +153,14 @@ Similarly, <++= is a hybrid of the ++= and <<= methods.
 These methods are convenience methods for using other settings to append to the current value of a setting.
 
 For example, the following will add a dependency on the Scala compiler to the current list of dependencies.
-Because the scalaVersion setting is used, the method is <+= instead of +=.
+Because the _scalaVersion_ setting is used, the method is <+= instead of +=.
 
 ```scala
 libraryDependencies <+= scalaVersion( "org.scala-lang" % "scala-compiler" % _ )
 ```
 
 This next example adds a dependency on the Scala compiler to the current list of dependencies.
-Because another setting (scalaVersion) is used and a Seq is appended, the method is <++=.
+Because another setting (_scalaVersion_) is used and a Seq is appended, the method is <++=.
 
 ```scala
 libraryDependencies <++= scalaVersion { sv =>
@@ -170,7 +172,7 @@ libraryDependencies <++= scalaVersion { sv =>
 
 ## Setting types
 
-This section provides information about the types of the left and right-hand sides of the initialization methods.
+This section provides information about the types of the left and right-hand sides of the initialization methods.  It is currently incomplete.
 
 ### Setting Keys (left hand side)
 
@@ -188,5 +190,5 @@ An input task, previously known as a method task in sbt 0.7 and earlier, accepts
 
 A setting key has type [SettingKey], a task key has type [TaskKey], and an input task has type [InputKey].
 The remainder of this section only discusses settings.
-See [Tasks] and [Input Tasks] for details on the other types (those pages assume an understanding of this page).
+See [[Tasks]] and [[Input Tasks]] for details on the other types (those pages assume an understanding of this page).
 
