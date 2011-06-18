@@ -80,3 +80,13 @@ For resources
 * `resource-generators` These are tasks that generate resource files.  Typically, these tasks will put resources in the directory provided by `resource-managed`.
 
 Use the [[inspect command|Inspecting Settings]] for more details.
+
+## Example
+
+You have a standalone project which uses a library that loads xxx.properties from classpath at run time. You put xxx.properties inside directory "config". When you run "sbt run", you want the directory to be in classpath.
+
+```scala
+
+unmanagedClasspath in Runtime <<= (unmanagedClasspath in Runtime, baseDirectory) map { (cp, bd) => cp.:+(new Attributed(bd / "config")(AttributeMap.empty)) }
+
+```
