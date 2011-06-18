@@ -1,15 +1,27 @@
+[Attributed]: http://harrah.github.com/xsbt/latest/api/sbt/Attributed.html
+
 # Classpaths, sources, and resources (Draft)
 
 This page discusses how sbt builds up classpaths for different actions, like `compile`, `run`, and `test` and how to override or augment these classpaths.
 
 # Basics
 
-In sbt 0.10.0 and later, classpaths now include the Scala library and (when declared as a dependency) the Scala compiler.  Classpath-related settings and tasks typically provide a value of type `Classpath`.  This is an alias for `Seq[Attributed[File]]`.  `Attributed` is a type that associates a heterogeneous map with each classpath entry.  Currently, this allows sbt to pair the `Analysis` resulting from compilation with the corresponding classpath entry.  This helps support multi-project incremental recompilation.
+In sbt 0.10.0 and later, classpaths now include the Scala library and (when declared as a dependency) the Scala compiler.  Classpath-related settings and tasks typically provide a value of type `Classpath`.  This is an alias for `Seq[Attributed[File]]`.  [Attributed] is a type that associates a heterogeneous map with each classpath entry.  Currently, this allows sbt to associate the `Analysis` resulting from compilation with the corresponding classpath entry and for managed entries, the `ModuleID` and `Artifact` that defined the dependency.
 
 To explicitly extract the raw `Seq[File]`, use the `files` method implicitly added to `Classpath`:
 ```scala
 val cp: Classpath = ...
 val raw: Seq[File] = cp.files
+```
+
+To create a `Classpath` from a `Seq[File]`, use `classpath` and to create an `Attributed[File]` from a `File`, use `Attributed.blank`:
+
+```scala
+val raw: Seq[File] = ...
+val cp: Classpath = raw.classpath
+
+val rawFile: File = ..
+val af: Attributed[File] = Attributed.blank(rawFile)
 ```
 
 ## Unmanaged v. managed
