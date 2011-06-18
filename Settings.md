@@ -53,7 +53,7 @@ Throughout the documentation, many examples show a setting, such as:
 libraryDependencies += "junit" % "junit" % "4.8" % "test"
 ```
 
-This setting either goes in a [light definition] (build.sbt) as is or in the `settings` of a `Project` instance in a [full definition] (Build.scala) as shown in the example.
+This setting either goes in a [light definition] `(build.sbt)` as is or in the `settings` of a `Project` instance in a [full definition] `(Build.scala)` as shown in the example.
 This is an important point to understanding the context of examples in the documentation.
 (That is, you are a bit more prepared to copy and paste examples now.)
 
