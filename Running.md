@@ -1,4 +1,4 @@
-# Running (In Progress)
+# Running
 
 This page describes how to use `sbt` once you have set up your project (see [[Setup]]).
 
@@ -28,7 +28,7 @@ Temporarily change the logging level and configure how stack traces are displaye
 
 Valid `Level` values are `Debug, Info, Warn, Error`.
 
-You can run an action for multiple versions of Scala by prefixing the action with `+`.  See [[Cross Build]] for details.  You can temporarily switch to another version of Scala using `++ <version>`.  This version does not have to be listed in your build definition, but it does have to be in a repository.  You can also include the initial command to run.  For example:
+You can run an action for multiple versions of Scala by prefixing the action with `+`.  See [[Cross Build]] for details.  You can temporarily switch to another version of Scala using `++ <version>`.  This version does not have to be listed in your build definition, but it does have to be available in a repository.  You can also include the initial command to run after switching to that version.  For example:
 
 ```text
 > ++ 2.7.7 console-quick
@@ -47,7 +47,7 @@ scala>
 # Tasks
 
 Some tasks produce useful values.  The `toString` representation of these values can be shown using `show <task>` to run the task instead of just `<task>`.
-In a multi-project build, execution dependencies and the `aggregate`	setting control which tasks from which projects are executed.  See [[Full Configuration]].
+In a multi-project build, execution dependencies and the `aggregate` setting control which tasks from which projects are executed.  See [[Full Configuration]].
 
 ## Project-level tasks
 
@@ -69,7 +69,7 @@ Configuration-level tasks are tasks associated with a configuration.  For exampl
 * `console`
   Starts the Scala interpreter with a classpath including the compiled sources, all jars in the `lib` directory, and managed libraries.  To return to sbt, type `:quit`, Ctrl+D (Unix), or Ctrl+Z (Windows).  Similarly, `test:console` starts the interpreter with the test classes and classpath.
 * `console-quick`
-  Starts the Scala interpreter with the project's compile-time dependencies on the classpath.  `test:console-quick` uses the test dependencies.
+  Starts the Scala interpreter with the project's compile-time dependencies on the classpath.  `test:console-quick` uses the test dependencies.  This task differs from `console` in that it does not force compilation of the current project's sources.
  * `console-project`
   Enters an interactive session with sbt and the build definition on the classpath.  The build definition and related values are bound to variables and common packages and values are imported.  See [[Console Project]] for more information.
 * `doc`
@@ -90,9 +90,9 @@ Configuration-level tasks are tasks associated with a configuration.  For exampl
   Runs the specified main class for the project in the same virtual machine as `sbt`.  The main class is passed the `argument`s provided.  Please see [[Running Project Code]] for details on the use of `System.exit` and multithreading (including GUIs) in code run by this action.
   `test:run-main` runs the specified main class in the test code.
  * `test`
-  Runs all tests detected during test compilation.
+  Runs all tests detected during test compilation.  See [[Testing]] for details.
  * `test-only <test>*`
-  Runs the tests provided as arguments.  `*` (will be) interpreted as a wildcard in the test name.
+  Runs the tests provided as arguments.  `*` (will be) interpreted as a wildcard in the test name.  See [[Testing]] for details.
   
 ## General commands
 
@@ -114,6 +114,13 @@ Configuration-level tasks are tasks associated with a configuration.  For exampl
   Temporarily changes the version of Scala building the project and executes the provided command.  `<command>` is optional.  The specified version of Scala is used until the project is reloaded, settings are modified (such as by the `set` or `session` commands), or `++` is run again.  `<version>` does not need to be listed in the build definition, but it must be available in a repository.
 * `; A ; B`
   Execute A and if it succeeds, run B.  Note that the leading semicolon is required.
+* `eval <Scala-expression>`
+  Evaluates the given Scala expression and returns the result and inferred type.  This can be used to set system properties, as a calculator, fork processes, etc ...
+  For example: ```scala
+ > eval System.setProperty("demo", "true")
+ > eval 1+1
+ > eval "ls -l" !
+```
 
 ## Commands for managing the build definition
 

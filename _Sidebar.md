@@ -1,7 +1,8 @@
 * Getting Started
-    * [[Setup]] - Getting sbt running on your machine
-    * [[Running]] - Using sbt from the command line
+    * [[Setup]] - Get sbt running on your machine
+    * [[Running]] - Use sbt from the command line
     * [[Migrating from sbt 0.7.x to 0.10.x]]
+    * [[Index]] - Look up common types, values, and methods
 * Usage
     * [[Triggered Execution]]
     * [[Cross Build]]
@@ -10,6 +11,7 @@
     * [[Running Project Code]]
     * [[sbt 0.10 Plugins List]]
 * Configuration
+    * [[Settings]]
     * [[Basic Configuration]]
     * [[Full Configuration]]
     * Examples 

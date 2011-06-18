@@ -14,7 +14,7 @@ This page describes how to set up your project for use with sbt.  The basic step
 * Create your sources and put jars in `lib/`.
 * Create your build definition(s).
 * Read [[Running]] for basic usage instructions.
-* For configuration instructions, see [[Basic Configuration]], [[Full Configuration]], and [[Quick Configuration Examples]]
+* For configuration instructions, see [[Settings]].
 
 # Launching Sbt
 
@@ -100,7 +100,7 @@ scalaVersion := "2.8.1"
 libraryDependencies += "junit" % "junit" % "4.8" % "test"
 ```
 
-See [[Basic Configuration]], [[Full Configuration]], and [[Quick Configuration Examples]] for details.
+For details, start with [[Settings]], but see also [[Basic Configuration]], [[Full Configuration]], and [[Quick Configuration Examples]].
 
 A specific SBT version can be configured in `project/build.properties`. For example:
 
@@ -172,4 +172,4 @@ Read [[Running]] for basic `sbt` usage information.
 * Create your sources and put jars in `lib/`.
 * Create your build definition(s).
 * Read [[Running]] for basic usage instructions.
-* For configuration instructions, see [[Basic Configuration]], [[Full Configuration]], and [[Quick Configuration Examples]]
+* For configuration instructions, start with [[Settings]].  See also [[Basic Configuration]], [[Full Configuration]], and [[Quick Configuration Examples]]

@@ -187,5 +187,4 @@ In the basic expression `name := "asdf"`, the `:=` method is implicitly availabl
 
 The high-level API for constructing settings is defined in [Scoped].  Scopes are defined in [Scope].  The underlying engine is in [Settings] and the heterogeneous map is in [Attributes].
 
-Built-in keys are in
-[Keys] and default settings are defined in [Defaults].
+Built-in keys are in [Keys] and default settings are defined in [Defaults].
