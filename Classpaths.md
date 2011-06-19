@@ -102,3 +102,11 @@ You have a standalone project which uses a library that loads xxx.properties fro
 unmanagedClasspath in Runtime <<= (unmanagedClasspath in Runtime, baseDirectory) map { (cp, bd) => cp :+ Attributed.blank(bd / "config") }
 
 ```
+
+Or shorter:
+
+```scala
+
+unmanagedClasspath in Runtime <+= (baseDirectory) map { bd => Attributed.blank(bd / "config") }
+
+```
