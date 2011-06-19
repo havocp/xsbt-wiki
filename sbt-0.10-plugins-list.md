@@ -41,3 +41,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 ### System plugins
 
 * sbt-sh (executes shell commands): https://github.com/steppenwells/sbt-sh
+
+### Code generator plugins
+
+* sbt-scalaxb (XSD and WSDL binding): https://github.com/eed3si9n/scalaxb/tree/sbt0.10
