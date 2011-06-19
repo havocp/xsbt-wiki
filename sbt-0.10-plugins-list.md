@@ -4,7 +4,9 @@ The purpose of this page is to aid developers in finding plugins that work with 
 
 ### Plugins for IDEs:
  
-* IntelliJ IDEA: https://github.com/scroyston/sbt-idea or https://github.com/ijuma/sbt-idea/tree/sbt-0.10 (these will hopefully consolidate)
+* IntelliJ IDEA
+  * SBT Plugin to generate IDEA project confugration: https://github.com/scroyston/sbt-idea or https://github.com/ijuma/sbt-idea/tree/sbt-0.10 (these will hopefully consolidate)
+  * IDEA Plugin to embed an SBT Console into the IDE: https://github.com/orfjackal/idea-sbt-plugin
 * Netbeans: https://github.com/remeniuk/sbt-netbeans-plugin
 * Eclipse: https://github.com/typesafehub/sbteclipse
 
