@@ -13,7 +13,7 @@ sbt is a build tool for Scala projects that aims to do the basics well. It requi
 * [[Dependency management support|Library Management]]: inline declarations, external Ivy or Maven configuration files, or manual management
 
 ## Getting Started
-To get started, read [[Setup]], [[Running]], [[Basic Configuration]], and [[Full Configuration]].  If you are familiar with 0.7.x, please see the [[migration page|Migrating from sbt 0.7.x to 0.10.x]].
+To get started, read [[Setup]], [[Running]], [[Basic Configuration]], and [[Full Configuration]].  If you are familiar with 0.7.x, please see the [[migration page|Migrating from sbt 0.7.x to 0.10.x]]. Documentation for 0.7.x is still available on the [Google Code Site](http://code.google.com/p/simple-build-tool/wiki/DocumentationHome).
 
 The mailing list is at <http://groups.google.com/group/simple-build-tool/about>. Please use it for questions and comments!
 
