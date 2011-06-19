@@ -19,6 +19,12 @@ libraryDependencies ++= Seq(
 	"net.databinder" %% "dispatch-twitter" % "0.7.8"
 )
 
+// Set a dependency based partially on a val.
+{
+  val libosmVersion = "2.5.2-RC1"
+  libraryDependencies += "net.sf.travelingsales" % "osmlib" % libosmVersion from "http://downloads.sourceforge.net/project/travelingsales/libosm/"+libosmVersion+"/libosm-"+libosmVersion+".jar"
+}
+
 // reduce the maximum number of errors shown by the Scala compiler
 maxErrors := 20
 
@@ -166,12 +172,4 @@ credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 
 // Directly specify credentials for publishing.
 credentials += Credentials("Sonatype Nexus Repository Manager", "nexus.scala-tools.org", "admin", "admin123")
-
-// Set a key based partially on a separate val.
-{
-  val dependencyVersion = "1.0.0"
-  seq(
-    libraryDependencies += "my.organization" % "mylib" % dependencyVersion
-  )
-}
 ```
