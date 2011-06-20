@@ -2,7 +2,7 @@ Example of a Full configuration.  Full configurations are written in Scala, so t
 
 Other gist examples of a full configuration.
 
-* [Similar but larger example.](git://gist.github.com/1021873.git)
+* [Similar but larger example.](http://gist.github.com/1021873)
 
 ```scala
 
