@@ -7,13 +7,11 @@ import Keys._
 
 object BuildSettings {
   val buildOrganization = "odp"
-  val buildName         = "odp"
   val buildVersion      = "2.0.29"
   val buildScalaVersion = "2.9.0-1"
 
   val buildSettings = Defaults.defaultSettings ++ Seq (
     organization := buildOrganization,
-    name         := buildName,
     version      := buildVersion,
     scalaVersion := buildScalaVersion,
     shellPrompt  := ShellPrompt.buildShellPrompt
