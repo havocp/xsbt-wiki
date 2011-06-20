@@ -163,6 +163,7 @@ object B extends Build
 * `settings( libraryDependencies += specs )` adds specs to both the standard `test` configuration and the integration test configuration `it`.  To define a dependency only for integration tests, use `"it"` as the configuration instead of `"it,test"`.
 
 The standard source hierarchy is used:
+
  * `src/it/scala` for Scala sources
  * `src/it/java` for Java sources
  * `src/it/resources` for resources that should go on the integration test classpath
