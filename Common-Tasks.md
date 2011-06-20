@@ -175,6 +175,10 @@ object Sample extends Build {
 }
 ```
 
+# Adding a new test configuration
+
+See the `Additional test configurations` section of [[Testing]].
+
 # Tool dependencies
 
 Tool dependencies are used to implement a task and are not needed by project source code.  These dependencies can be declared in their own configuration and classpaths.  These are the steps:
