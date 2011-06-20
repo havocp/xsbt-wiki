@@ -1,5 +1,9 @@
 Example of a Full configuration.  Full configurations are written in Scala, so this example would be placed as project/Build.scala, not build.sbt.
 
+Other gist examples of a full configuration.
+
+* [Similar but larger example.](git://gist.github.com/1021873.git)
+
 ```scala
 
 import sbt._
