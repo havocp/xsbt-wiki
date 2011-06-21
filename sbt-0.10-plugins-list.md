@@ -19,6 +19,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 
 * junit_xml_listener: https://github.com/ijuma/junit_xml_listener/tree/sbt-0.10
 * sbt-growl-plugin: https://github.com/softprops/sbt-growl-plugin
+* sbt-teamcity-test-reporting-plugin: https://github.com/guardian/sbt-teamcity-test-reporting-plugin
 
 ### Static Code Analysis plugins
 
