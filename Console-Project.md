@@ -52,20 +52,20 @@ Show additionally configured repositories.
 
 To evaluate a task, use the form:
 ```scala
-> val value = `runTask(<key> in <scope>, currentState)`
+> val value = evalTask(<key> in <scope>, currentState)
 ```
 
 ## Examples
 
 Show all repositories, including defaults.
 ```scala
-> runTask( fullResolvers, currentState ) foreach println
+> evalTask( fullResolvers, currentState ) foreach println
 ```
 
 Show the classpaths used for compilation and testing:
 ```scala
-> runTask( fullClasspath in Compile, currentState ).files foreach println
-> runTask( fullClasspath in Test, currentState ).files foreach println
+> evalTask( fullClasspath in Compile, currentState ).files foreach println
+> evalTask( fullClasspath in Test, currentState ).files foreach println
 ```
 
 Show the remaining commands to be executed in the build (more interesting if you invoke `console-project` like `; console-project ; clean ; compile`):
