@@ -1,6 +1,7 @@
 [Apache Ivy]: http://ant.apache.org/ivy/
 [Ivy revisions]: http://ant.apache.org/ivy/history/2.2.0/ivyfile/dependency.html#revision
 [Extra attributes]: http://ant.apache.org/ivy/history/2.2.0/concept.html#extra
+[through Ivy]: http://ant.apache.org/ivy/history/latest-milestone/concept.html#checksum
 
 # Library Management
 
@@ -193,6 +194,20 @@ This can be configured machine-wide, for use by both the sbt launcher and by pro
 For example:
 ```text
 java -Dsbt.ivy.home=/tmp/.ivy2/ ...
+```
+
+### Checksums
+
+sbt ([through Ivy]) verifies the checksums of downloaded files by default.  It also publishes checksums of artifacts by default.  The checksums to use are specified by the _checksums_ setting.
+
+To disable checksum checking and publishing:
+```scala
+checksums := Nil
+```
+
+The default value is:
+```scala
+checksums := Seq("sha1", "md5")
 ```
 
 ### Publishing
