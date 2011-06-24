@@ -94,7 +94,7 @@ By default, sbt 0.10 loads managed libraries from your ivy cache without copying
 
 This does mean that existing solutions for sharing libraries with your favoured IDE may not work.  There are 0.10.x plugins for IDEs being developed:
 
-* IntelliJ IDEA: [[https://github.com/scroyston/sbt-idea]] or [[https://github.com/ijuma/sbt-idea/tree/sbt-0.10]] (these will hopefully consolidate)
+* IntelliJ IDEA: [[https://github.com/mpeltonen/sbt-idea/tree/sbt-0.10]]
 * Netbeans: [[https://github.com/remeniuk/sbt-netbeans-plugin]]
 * Eclipse: [[https://github.com/typesafehub/sbteclipse]]
 
