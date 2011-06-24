@@ -72,16 +72,16 @@ This can be configured with the `output-strategy` setting, which is of type [Out
 
 ```scala
 // send output to the build's standard output and error
-outputStrategy := StdoutOutput
+outputStrategy := Some(StdoutOutput)
 
 // send output to the provided OutputStream `someStream`
-outputStrategy := CustomOutput(someStream: OutputStream)
+outputStrategy := Some(CustomOutput(someStream: OutputStream))
 
 // send output to the provided Logger `log` (unbuffered)
-outputStrategy := LoggedOutput(log: Logger)
+outputStrategy := Some(LoggedOutput(log: Logger))
 
 // send output to the provided Logger `log` after the process terminates
-outputStrategy := BufferedOutput(log: Logger)
+outputStrategy := Some(BufferedOutput(log: Logger))
 ```
 
 As with other settings, this can be configured individually for main or test `run` tasks.
