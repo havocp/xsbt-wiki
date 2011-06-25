@@ -51,7 +51,7 @@ As an example, we'll add the Grizzled Scala library as a plugin.  Although this 
 
 Edit `project/plugins/build.sbt` to contain:
 ```scala
-set libraryDependencies += "org.clapper" %% "grizzled-scala" % "1.0.4"
+libraryDependencies += "org.clapper" %% "grizzled-scala" % "1.0.4"
 ```
 
 If sbt is running, do `reload`.
