@@ -39,11 +39,11 @@ libraryDependencies ++= Seq(
 // A similar idea is overriding a member and applying a function to the super value:
 //  override lazy val defaultExcludes = f(super.defaultExcludes)
 //
-defaultExcludes ~= (filter => filter | "*~")
+defaultExcludes ~= (filter => filter || "*~")
 /*  Some equivalent ways of writing this:
-defaultExcludes ~= (_ | "*~")
-defaultExcludes ~= ( (_: FileFilter) | "*~")
-defaultExcludes ~= ( (filter: FileFilter) => filter | "*~")
+defaultExcludes ~= (_ || "*~")
+defaultExcludes ~= ( (_: FileFilter) || "*~")
+defaultExcludes ~= ( (filter: FileFilter) => filter || "*~")
 */
 
 // Use the name and version to define the jar name.
@@ -63,18 +63,18 @@ jarName <<= (name, version)( _ + "-" + _ + ".jar")
 ```scala
 libraryDependencies += "junit" % "junit" % "4.8" % "test"
 libraryDependencies.+=("junit" % "junit" % "4.8" % "test")
-defaultExcludes ~= (_ | "*~")
-defaultExcludes ~= (filter => filter | "*~")
+defaultExcludes ~= (_ || "*~")
+defaultExcludes ~= (filter => filter || "*~")
 ```
   Error:
 ```console
-defaultExcludes ~= _ | "*~"
+defaultExcludes ~= _ || "*~"
 
 error: missing parameter type for expanded function ((x$1) => defaultExcludes.$colon$tilde(x$1).$bar("*~"))
-defaultExcludes ~= _ | "*~"
+defaultExcludes ~= _ || "*~"
                    ^
 error: value | is not a member of sbt.Project.Setting[sbt.FileFilter]
-defaultExcludes ~= _ | "*~"
+defaultExcludes ~= _ || "*~"
                 ^
 ```
 * A block is an expression, with the last statement in the block being the result.  For example, the following is an expression:
