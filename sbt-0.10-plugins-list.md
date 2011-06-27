@@ -25,6 +25,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 ### Static Code Analysis plugins
 
 * findbugs4sbt: https://bitbucket.org/jmhofer/findbugs4sbt (FindBugs only supports Java projects atm)
+* xsbt-proguard-plugin: https://github.com/siasia/xsbt-proguard-plugin
 
 ### One jar plugins
 
