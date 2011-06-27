@@ -13,7 +13,7 @@ organization := "org.myproject"
 // add a test dependency on ScalaCheck
 libraryDependencies += "org.scala-tools.testing" %% "scalacheck" % "1.8" % "test"
 
-// add compile dependencies on a some dispatch modules
+// add compile dependencies on some dispatch modules
 libraryDependencies ++= Seq(
 	"net.databinder" %% "dispatch-meetup" % "0.7.8",
 	"net.databinder" %% "dispatch-twitter" % "0.7.8"
