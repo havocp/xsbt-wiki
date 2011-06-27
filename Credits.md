@@ -6,6 +6,7 @@ The following people have contributed ideas, documentation, or code to sbt:
 * Steven Blundy
 * Josh Cough
 * Nolan Darilek
+* Fred Dubois
 * Nathan Hamblen
 * Mark Harrah
 * Joonas Javanainen
@@ -13,6 +14,7 @@ The following people have contributed ideas, documentation, or code to sbt:
 * Viktor Klang
 * David R. MacIver
 * Ross McDonald
+* Simon Olofsson
 * Artyom Olshevskiy
 * Andrew O'Malley
 * Jorge Ortiz
