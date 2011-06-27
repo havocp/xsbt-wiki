@@ -84,7 +84,7 @@ See [RichFile], [PathFinder], and (eventually) [[Paths]] for the full documentat
 
 ### Dependency Management 
 
-See [[Library Dependencies]] for full documentation.
+See [[Library Management]] for full documentation.
 
 * `%` This is used to build up a [ModuleID].  
 * `%%` This is similar to `%` except that it identifies a dependency that has been [[cross built|Cross Build]].
