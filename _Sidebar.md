@@ -39,7 +39,7 @@
     * [[Commands]]
     * [[Parsing Input]]
     * [[Build State]]
-    * [[Classpaths]]
+    * [[Classpaths, sources, and resources|Classpaths]]
     * [[Mapping Files]]
     * [[External Processes|Process]]
 * Project Information

@@ -1,6 +1,6 @@
 [Attributed]: http://harrah.github.com/xsbt/latest/api/sbt/Attributed.html
 
-# Classpaths, sources, and resources (Draft)
+# Classpaths, sources, and resources
 
 This page discusses how sbt builds up classpaths for different actions, like `compile`, `run`, and `test` and how to override or augment these classpaths.
 
