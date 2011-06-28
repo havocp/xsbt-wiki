@@ -50,3 +50,4 @@
     * [[API Documentation|http://harrah.github.com/xsbt/latest/api/index.html]]
     * [[SXR Documentation|http://harrah.github.com/xsbt/latest/sxr/index.html]]
     * [[Opportunities]]
+    * [[Nightly Builds]]
