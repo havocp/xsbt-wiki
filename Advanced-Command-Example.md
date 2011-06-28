@@ -1,6 +1,8 @@
 # Advanced Command Example
 
-This is an advanced example showing some of the power of the new settings system.  It shows how to temporarily modify all declared dependencies in the build.  The modifications will be applied by running 'canonicalize'.  A 'reload' or using 'set' will undo the modifications, requiring 'canonicalize' to be run again.
+This is an advanced example showing some of the power of the new settings system.  It shows how to temporarily modify all declared dependencies in the build, regardless of where they are defined.  It directly operates on the final Seq[Setting[_]] produced from every setting involved in the build.
+
+The modifications will be applied by running 'canonicalize'.  A 'reload' or using 'set' will undo the modifications, requiring 'canonicalize' to be run again.
 
 This particular example shows how to transform all declared dependencies on ScalaCheck to use version 1.8.  As an exercise, you might try transforming other dependencies, the repositories used, or the scalac options used.
 
