@@ -1,6 +1,15 @@
 [sbt-launch.jar]: http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.10.0/sbt-launch.jar
 [mailing list]: http://groups.google.com/group/simple-build-tool/
 [xsbt-web-plugin]: https://github.com/siasia/xsbt-web-plugin
+[FileUtilities]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/FileUtilities$object.html
+[IO]: http://harrah.github.com/xsbt/latest/api/sbt/IO$.html
+[Path 0.7]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/Path.html
+[Path object]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/Path$.html
+[Path 0.10]: http://harrah.github.com/xsbt/latest/api/sbt/Path$.html
+[PathFinder 0.7]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/PathFinder.html
+[PathFinder object]: http://harrah.github.com/xsbt/latest/api/sbt/PathFinder$.html
+[PathFinder 0.10]: http://harrah.github.com/xsbt/latest/api/sbt/PathFinder.html
+[RichFile]: http://harrah.github.com/xsbt/latest/api/sbt/RichFile.html
 
 The assumption here is that you are familiar with sbt 0.7.x but new to 0.10.x.
 
@@ -186,6 +195,14 @@ meant that the `B` project had a classpath and execution dependency on `A` and `
 1. Configuration: For some settings, if they were not overridden in `A`, they would default to the value provided in `B`.
 
 In 0.10, declare the specific type of dependency you want.  See [[Full Configuration]] for details.
+
+## Where did class/object X go?
+
+| 0.7 | 0.10 |
+| --- | --- |
+| [FileUtilities] | [IO] |
+| [Path class][Path 0.7] and [object][Path object] | [Path object][Path 0.10], `File`, [RichFile] |
+| [PathFinder class][PathFinder 0.7] | `Seq[File]`, [PathFinder class][PathFinder 0.10], [PathFinder object][PathFinder object] |
 
 ## Where can I find plugins for 0.10?
 
