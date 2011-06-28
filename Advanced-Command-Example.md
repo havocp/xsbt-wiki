@@ -2,9 +2,11 @@
 
 This is an advanced example showing some of the power of the new settings system.  It shows how to temporarily modify all declared dependencies in the build, regardless of where they are defined.  It directly operates on the final Seq[Setting[_]] produced from every setting involved in the build.
 
-The modifications will be applied by running 'canonicalize'.  A 'reload' or using 'set' will undo the modifications, requiring 'canonicalize' to be run again.
+The modifications are applied by running _canonicalize_.  A _reload_ or using _set_ reverts the modifications, requiring _canonicalize_ to be run again.
 
-This particular example shows how to transform all declared dependencies on ScalaCheck to use version 1.8.  As an exercise, you might try transforming other dependencies, the repositories used, or the scalac options used.
+This particular example shows how to transform all declared dependencies on ScalaCheck to use version 1.8.  As an exercise, you might try transforming other dependencies, the repositories used, or the scalac options used.  It is possible to add or remove settings as well.
+
+This kind of transformation is possible directly on the settings of Project, but it would not include settings automatically added from plugins or build.sbt files.  What this example shows is doing it unconditionally on all settings in all projects in all builds, including external builds.
 
 ```scala
 import sbt._
