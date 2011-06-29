@@ -1,3 +1,7 @@
+[Global]: http://harrah.github.com/xsbt/latest/api/sbt/Global$.html
+[This]: http://harrah.github.com/xsbt/latest/api/sbt/This$.html
+[Select]: http://harrah.github.com/xsbt/latest/api/sbt/Select.html
+
 # Settings Core
 
 This page describes the core settings engine a bit.  This may be useful for using it outside of sbt.  It may also be useful for understanding how sbt 0.10 works internally.  Right now, it is comprised of two parts.  The first part shows an example settings system built on top of the settings engine.  The second part comments on how sbt's settings system is built on top of the settings engine.  This may help illuminate what exactly the core settings engine provides and what is needed to build something like the sbt settings system.
@@ -111,3 +115,36 @@ b5 = Some(9)
 * a5 is defined as the previous value of a5 + 1 and
   since no previous value of a5 was defined, it delegates to a4, resulting in 3+1=4.
 * b5 isn't defined explicitly, so it delegates to b4 and is therefore equal to 9 as well
+
+## sbt Settings Discussion
+
+### Scopes
+
+sbt defines a more complicated scope than the one shown here.  It has four components: the project axis, the configuration axis, the task axis, and the extra axis.  Each component may be [Global] (no specific value), [This] (current context), or [Select] (containing a specific value.  sbt resolves This to either [Global] or [Select] depending on the context.
+
+For example, in a project, a [This] project axis becomes a [Select] referring to the defining project.  All other axes that are [This] are translated to [Global].  Functions like inConfig and inTask transform This into a [Select] for a specific value.  For example, `inConfig(Compile)(someSettings)` translates the configuration axis for all settings in _someSettings_ to be `Select(Compile)` if the axis value is [This].
+
+So, from the example and from sbt's scopes, you can see that the core settings engine does not impose much on the structure of a scope.  All it requires is a delegates function `Scope => Seq[Scope]` and a `display` function.  You can choose a scope type that makes sense for your situation.
+
+### Constructing settings
+
+The _app_, _value_, _update_, and related methods are the core methods for constructing settings.
+This example obviously looks rather different from sbt's interface because these methods are not typically used directly, but are wrapped in a higher-level abstraction.
+
+With the core settings engine, you work with HLists to access other setings.  In sbt's higher-level system, there are wrappers around HList for TupleN and FunctionN for N = 1-9 (except Tuple1 isn't actually used).  When working with arbitrary arity, it is useful to make these wrappers at the highest level possible.  This is because once wrappers are defined, code must be duplicated for every N.  By making the wrappers at the top-level, this requires only one level of duplication.
+
+Additionally, sbt uniformly integrates its task engine into the settings system.
+The underlying settings engine has no notion of tasks.
+This is why sbt uses a `SettingKey` type and a `TaskKey` type.
+Methods on an underlying `TaskKey[T]` are basically translated to operating on an underlying `SettingKey[Task[T]]` (and they both wrap an underlying `AttributeKey`).
+
+For example, a := 3 for a SettingKey _a_ will very roughly translate to `setting(a, value(3))`.
+For a TaskKey _a_, it will roughly translate to `setting(a, value( task { 3 } ) )`.
+See main/Structure.scala for details.
+
+### Settings definitions
+
+sbt also provides a way to define these settings in a file (build.sbt and Build.scala).
+This is done for build.sbt using basic parsing and then passing the resulting chunks of code to `compile/Eval.scala`.
+For all definitions, sbt manages the classpaths and recompilation process to obtain the settings.
+It also provides a way for users to define project, task, and configuration delegation, which ends up being used by the delegates function.
