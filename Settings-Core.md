@@ -8,6 +8,18 @@ This page describes the core settings engine a bit.  This may be useful for usin
 
 ## Example 
 
+### Setting up
+
+To run this example, first create a new project with the following build.sbt file:
+
+```scala
+libraryDependencies <+= sbtVersion("org.scala-tools.sbt" %% "collections" % _)
+
+resolvers <+= sbtResolver.identity
+```
+
+Then, put the following examples in source files `SettingsExample.scala` and `SettingsUsage.scala`.  Finally, run sbt and enter the REPL using `console`.  To see the output described below, enter `SettingsUsage`.
+
 ### Example Settings System
 
 The first part of the example defines the custom settings system.  There are three main parts:
@@ -18,6 +30,7 @@ The first part of the example defines the custom settings system.  There are thr
 
 There is also a fourth, but its usage is likely to be specific to sbt at this time.  The example uses a trivial implementation for this part.
 
+`SettingsExample.scala`
 ```scala
   import sbt._
 
@@ -53,6 +66,7 @@ object SettingsExample extends Init[Scope]
 
 This part shows how to use the system we just defined.  The end result is a `Settings[Scope]` value.  This type is basically a mapping `Scope -> AttributeKey[T] -> Option[T]`.  See the [Settings API documentation](http://harrah.github.com/xsbt/latest/api/sbt/Settings.html) for details.
 
+`SettingsUsage.scala`
 ```scala
 /** Usage Example **/
 
