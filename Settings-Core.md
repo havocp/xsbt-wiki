@@ -138,9 +138,9 @@ The underlying settings engine has no notion of tasks.
 This is why sbt uses a `SettingKey` type and a `TaskKey` type.
 Methods on an underlying `TaskKey[T]` are basically translated to operating on an underlying `SettingKey[Task[T]]` (and they both wrap an underlying `AttributeKey`).
 
-For example, a := 3 for a SettingKey _a_ will very roughly translate to `setting(a, value(3))`.
+For example, `a := 3` for a SettingKey _a_ will very roughly translate to `setting(a, value(3))`.
 For a TaskKey _a_, it will roughly translate to `setting(a, value( task { 3 } ) )`.
-See main/Structure.scala for details.
+See [main/Structure.scala](https://github.com/harrah/xsbt/blob/0.10/main/Structure.scala) for details.
 
 ### Settings definitions
 
