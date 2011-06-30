@@ -13,3 +13,10 @@ object ShellPrompt extends Plugin {
   )
 }
 ```
+
+Because we are defining a Plugin, we need to set `sbtPlugin` to true:
+
+`~/.sbt/plugins/build.sbt`
+```scala
+sbtPlugin := true
+```
