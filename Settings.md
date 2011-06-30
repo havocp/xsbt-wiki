@@ -45,9 +45,9 @@ object MyBuild extends Build
 ## Important Settings Background
 
 The fundamental type of a configurable in sbt 0.10 is a `Setting[T]`.
-Each line in the `build.sbt` (light) example above is of this type.
-The arguments to the `settings` method in the `Build.scala` (full) example are of type `Setting[T]`.
-Specifically, the `name` setting has type `Setting[String]` and the `libraryDependencies` setting has type `Setting[ModuleID]`, where `ModuleID` represents a dependency.
+Each line in the `build.sbt` example above is of this type.
+The arguments to the `settings` method in the `Build.scala` example are of type `Setting[T]`.
+Specifically, the `name` setting has type `Setting[String]` and the `libraryDependencies` setting has type `Setting[Seq[ModuleID]]`, where `ModuleID` represents a dependency.
 
 Throughout the documentation, many examples show a setting, such as:
 
