@@ -47,6 +47,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 ### System plugins
 
 * sbt-sh (executes shell commands): https://github.com/steppenwells/sbt-sh
+* cronish-sbt (interval sbt / shell command execution): https://github.com/philcali/cronish/tree/master/plugin
 
 ### Code generator plugins
 
