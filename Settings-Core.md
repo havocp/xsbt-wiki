@@ -4,7 +4,9 @@
 
 # Settings Core
 
-This page describes the core settings engine a bit.  This may be useful for using it outside of sbt.  It may also be useful for understanding how sbt 0.10 works internally.  Right now, it is comprised of two parts.  The first part shows an example settings system built on top of the settings engine.  The second part comments on how sbt's settings system is built on top of the settings engine.  This may help illuminate what exactly the core settings engine provides and what is needed to build something like the sbt settings system.
+This page describes the core settings engine a bit.  This may be useful for using it outside of sbt.  It may also be useful for understanding how sbt 0.10 works internally.
+
+The documentation is comprised of two parts.  The first part shows an example settings system built on top of the settings engine.  The second part comments on how sbt's settings system is built on top of the settings engine.  This may help illuminate what exactly the core settings engine provides and what is needed to build something like the sbt settings system.
 
 ## Example 
 
