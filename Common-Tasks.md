@@ -100,14 +100,15 @@ By default, generated sources and resources are not included in the packaged sou
 
 # Adding files to a package
 
-The files included in an artifact are configured by default by a task `mappings` that is scoped by the relevant package task.  The `mappings` task returns a sequence `Seq[(File,String)]` of mappings from the file to include to the path within the jar.  See [Mapping Files] for details on creating these mappings.
+The files included in an artifact are configured by default by a task `mappings` that is scoped by the relevant package task.  The `mappings` task returns a sequence `Seq[(File,String)]` of mappings from the file to include to the path within the jar.  See [[Mapping Files]] for details on creating these mappings.
 
 For example, to add generated sources to the packaged source artifact:
 ```scala
-mappings in packageSrc <++= (managedSource, managedSources) map { (base, srcs) =>
-    import Path.{flat, relativeTo}
-  srcs x (relativeTo(base) | flat)
-}
+mappings in (Compile, packageSrc) <++=
+  (managedSource in Compile, managedSources in Compile) map { (base, srcs) =>
+      import Path.{flat, relativeTo}
+    srcs x (relativeTo(base) | flat)
+  }
 ```
 
 This takes sources from the `managedSources` task and relativizes them against the `managedSource` base directory, falling back to a flattened mapping.  If a source generation task doesn't write the sources to the `managedSource` directory, the mapping function would have to be adjusted to try relativizing against additional directories or something more appropriate for the generator.
