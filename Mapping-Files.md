@@ -1,4 +1,4 @@
-[Path]: http://harrah.github.com/xsbt/latest/api/sbt/Path.html
+[Path]: http://harrah.github.com/xsbt/latest/api/sbt/Path$.html
 [PathFinder]: http://harrah.github.com/xsbt/latest/api/sbt/PathFinder.html
 
 # Mapping Files
