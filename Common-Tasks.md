@@ -105,7 +105,7 @@ The files included in an artifact are configured by default by a task `mappings`
 For example, to add generated sources to the packaged source artifact:
 ```scala
 mappings in (Compile, packageSrc) <++=
-  (managedSource in Compile, managedSources in Compile) map { (base, srcs) =>
+  (sourceManaged in Compile, managedSources in Compile) map { (base, srcs) =>
       import Path.{flat, relativeTo}
     srcs x (relativeTo(base) | flat)
   }
