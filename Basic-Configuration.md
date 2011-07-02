@@ -46,14 +46,13 @@ defaultExcludes ~= ( (_: FileFilter) || "*~")
 defaultExcludes ~= ( (filter: FileFilter) => filter || "*~")
 */
 
-// Use the name and version to define the jar name.
-jarName <<= (name, version) {
-	(name: String, version: String) => name + "-" + version + ".jar"
+// Use the project version to determine the repository to publish to.
+publishTo <<= version { (v: String) =>
+  if(v endsWith "-SNAPSHOT")
+    Some(ScalaToolsSnapshots)
+  else
+    Some(ScalaToolsReleases)
 }
-/* These are equivalent:
-jarName <<= (name, version)( (n,v) => n + "-" + v + ".jar")
-jarName <<= (name, version)( _ + "-" + _ + ".jar")
-*/
 ```
 
 ## Notes
@@ -97,40 +96,6 @@ version := {
 }
 ```
 * Remember that blank lines are used to clearly delineate expressions.  This happens before the expression is sent to the Scala compiler, so no blank lines are allowed within a block.
-
-## Comparison to Scala language constructs
-
-A loose comparison to classes in Scala can be made:
-```scala
-trait Name {
-  lazy val name = name0
-  def name0 = "default"
-}
-trait GreatName extends Name {
-  override def name0 = "The Great " + super.name0
-}
-```
-
- is similar to:
-```scala
-name := "default"
-name ~= ("The Great " + _)
-```
-
-The `jarName` setting in the By Example section is similar to:
-```scala
-trait Version {
-	lazy val version = version0
-	def version0 = "1.0"
-}
-trait JarName {
-	lazy val jarName = jarName0
-	def jarName0 = "default.jar"
-}
-trait MyJarName extends Name with Version with JarName {
-  override def jarName0 = name + "-" + version + ".jar"
-}
-```
 
 ## More Information
 
