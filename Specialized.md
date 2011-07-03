@@ -26,17 +26,17 @@ Note that reloading will drop the user's session state.
 ```scala
 def augment(extra: Seq[File](s: State): State =
 {
-      // Get the component provider
-   val cs: xsbti.ComponentProvider = s.configuration.provider.components()
+    // Get the component provider
+  val cs: xsbti.ComponentProvider = s.configuration.provider.components()
 
-      // Adds the files in 'extra' to the "extra" component
-		//   under an exclusive machine-wide lock.
-      //   The returned value is 'true' if files were actually copied and 'false'
-		//   if the target files already exists (based on name only).
-   val copied: Boolean = s.locked(cs.lockFile, cs.addToComponent("extra", extra.toArray))
+    // Adds the files in 'extra' to the "extra" component
+    //   under an exclusive machine-wide lock.
+    //   The returned value is 'true' if files were actually copied and 'false'
+    //   if the target files already exists (based on name only).
+  val copied: Boolean = s.locked(cs.lockFile, cs.addToComponent("extra", extra.toArray))
 
-      // If files were copied, reload so that we use the new classpath.
-   if(copied) s.reload else s
+    // If files were copied, reload so that we use the new classpath.
+  if(copied) s.reload else s
 }
 ```
 
