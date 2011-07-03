@@ -3,7 +3,7 @@
 
 # Specialized Tasks
 
-This page discusses how to perform some tasks that less common.
+This page discusses how to perform some tasks that are less common.
 
 ## Augment sbt's classpath dynamically
 
