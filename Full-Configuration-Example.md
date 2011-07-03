@@ -1,8 +1,6 @@
-Example of a Full configuration.  Full configurations are written in Scala, so this example would be placed as project/Build.scala, not build.sbt.
+## Full Configuration Example
 
-Other gist examples of a full configuration.
-
-* [Similar but larger example.](http://gist.github.com/1021873)
+Full configurations are written in Scala, so this example would be placed as project/Build.scala, not build.sbt. The build can be split into multiple files.
 
 ```scala
 
@@ -140,6 +138,14 @@ object CDAP2Build extends Build {
     settings = buildSettings
   )
 }
-
-
 ```
+
+## External Builds
+* [Mojolly Backchat Build](http://gist.github.com/1021873)
+* [Scalaz Build](https://github.com/scalaz/scalaz/blob/master/project/ScalazBuild.scala)
+  * Source Code Generation
+  * Generates Scaladoc and Scala X-Ray HTML Sources, with a unified view of source from all sub-projects
+  * Builds an archive will the artifacts from all modules
+  * "Roll your own" approach to appending the Scala version to the module id of dependencies to allow using snapshot releases of Scala.
+
+
