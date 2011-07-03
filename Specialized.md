@@ -24,7 +24,7 @@ It adds some files to the "extra" component and reloads sbt if they were not alr
 Note that reloading will drop the user's session state.
 
 ```scala
-def augment(extra: Seq[File](s: State): State =
+def augment(extra: Seq[File])(s: State): State =
 {
     // Get the component provider
   val cs: xsbti.ComponentProvider = s.configuration.provider.components()
