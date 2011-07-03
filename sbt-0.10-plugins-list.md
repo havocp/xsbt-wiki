@@ -52,4 +52,4 @@ The purpose of this page is to aid developers in finding plugins that work with 
 
 ### Code generator plugins
 
-* sbt-scalaxb (XSD and WSDL binding): https://github.com/eed3si9n/scalaxb/tree/sbt0.10
+* sbt-scalaxb (XSD and WSDL binding): https://github.com/eed3si9n/scalaxb
