@@ -35,14 +35,15 @@
     * [[Plugins]] - Extending sbt
 * Tasks and Commands
     * [[Task Basics|Tasks]]
-    * [[Common Tasks]]
     * [[Input Tasks]]
     * [[Commands]]
+    * [[Common Tasks]]
     * [[Parsing Input]]
     * [[Build State]]
     * [[Classpaths, sources, and resources|Classpaths]]
     * [[Mapping Files]]
     * [[External Processes|Process]]
+    * [[Specialized Tasks|Specialized]]
 * Project Information
     * [[Credits]]
     * [[Changes]]
