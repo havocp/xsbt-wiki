@@ -8,13 +8,13 @@ The goal of this page is to explain the general model behind the configuration s
 
 A fully-qualified reference to a setting or task looks like;
 ```text
-(<build-uri>)<project-id>/config:key(for key2)
+{<build-uri>}<project-id>/config:key(for key2)
 ```
 
 This "scoped key" reference is used by commands like `last` and `inspect` and when selecting a task to run.
 Only `key` is required by the parser; the remaining optional pieces select the scope.
 These optional pieces are individually referred to as scope axes.
-In the above description, `(<build-uri>)` and `<project-id>/` specify the project axis, `config:` is the configuration axis, and `(for key2)` is the task-specific axis.
+In the above description, `{<build-uri>}` and `<project-id>/` specify the project axis, `config:` is the configuration axis, and `(for key2)` is the task-specific axis.
 Unspecified components are taken to be the current project (project axis), the `Global` context (task axis), or auto-detected (configuration axis).
 An asterisk (`*`) is used to explicitly refer to the `Global` context, as in `*/*:key`.
 
@@ -30,7 +30,7 @@ For example, the following are equivalent when run in a project `root` in the bu
 > compile:compile
 > root/compile
 > root/compile:compile
-> (file:/home/user/sample/)root/compile:compile
+> {file:/home/user/sample/}root/compile:compile
 ```
 
 As another example, `run` by itself refers to `compile:run` because there is no global `run` task and the first configuration searched, `compile`, defines a `run`.
@@ -83,17 +83,17 @@ For example,
 [info] Value:
 [info] 	List(org.scalaz:scalaz-core:6.0-SNAPSHOT, org.scala-tools.testing:scalacheck:1.8:test)
 [info] Provided by:
-[info]  (file:/home/user/sample/)root/*:library-dependencies
+[info]  {file:/home/user/sample/}root/*:library-dependencies
 ...
 ```
 
-This shows that `library-dependencies` has been defined on the current project (`(file:/home/user/sample/)root`) in the global configuration (`*:`).
+This shows that `library-dependencies` has been defined on the current project (`{file:/home/user/sample/}root`) in the global configuration (`*:`).
 For a task like `update`, the output looks like:
 ```text
 > inspect update
 [info] Task
 [info] Provided by:
-[info] 	(file:/home/user/sample/)root/*:update
+[info] 	{file:/home/user/sample/}root/*:update
 ...
 ```
 
@@ -106,7 +106,7 @@ For example,
 > inspect compile
 ...
 [info] Related:
-[info] 	(file:/home/user/sample/)root/test:compile
+[info] 	{file:/home/user/sample/}root/test:compile
 ```
 
 This shows that in addition to the requested `compile:compile` task, there is also a `test:compile` task.
@@ -127,11 +127,11 @@ As an example, we'll look at `console`:
 > inspect console
 ...
 [info] Dependencies:
-[info] 	(file:/home/user/sample/)root/full-classpath
-[info] 	(file:/home/user/sample/)root/scalac-options(for console)
-[info] 	(file:/home/user/sample/)root/streams(for console)
-[info] 	(file:/home/user/sample/)root/initial-commands(for console)
-[info] 	(file:/home/user/sample/)root/compilers
+[info] 	{file:/home/user/sample/}root/full-classpath
+[info] 	{file:/home/user/sample/}root/scalac-options(for console)
+[info] 	{file:/home/user/sample/}root/streams(for console)
+[info] 	{file:/home/user/sample/}root/initial-commands(for console)
+[info] 	{file:/home/user/sample/}root/compilers
 ...
 ```
 
@@ -168,18 +168,18 @@ Returning to the example in Requested Dependencies,
 > inspect actual console
 ...
 [info] Dependencies:
-[info] 	(file:/home/user/sample/)default/*:compilers
-[info] 	(file:/home/user/sample/)default/full-classpath
+[info] 	{file:/home/user/sample/}default/*:compilers
+[info] 	{file:/home/user/sample/}default/full-classpath
 [info] 	*/*:scalac-options
 [info] 	*/*:initial-commands
-[info] 	(file:/home/user/sample/)default/streams(for console)
+[info] 	{file:/home/user/sample/}default/streams(for console)
 ...
 ```
 
 For `initial-commands`, we see that it comes from the global scope (`*/*:`).
 Combining this with the relevant output from `inspect console`:
 ```
-(file:/home/user/sample/)root/initial-commands(for console)
+{file:/home/user/sample/}root/initial-commands(for console)
 ```
 
 we know that we can set `initial-commands` as generally as the global scope, as specific as the current project's `console` task scope, or anything in between.
@@ -196,11 +196,11 @@ We can see which ones use our new setting by looking at the reverse dependencies
 > inspect actual initial-commands
 ...
 [info] Reverse dependencies:
-[info] 	(file:/home/user/sample/)root/*:console-project
-[info] 	(file:/home/user/sample/)root/test:console-quick
-[info] 	(file:/home/user/sample/)root/test:console
-[info] 	(file:/home/user/sample/)root/console
-[info] 	(file:/home/user/sample/)root/console-quick
+[info] 	{file:/home/user/sample/}root/*:console-project
+[info] 	{file:/home/user/sample/}root/test:console-quick
+[info] 	{file:/home/user/sample/}root/test:console
+[info] 	{file:/home/user/sample/}root/console
+[info] 	{file:/home/user/sample/}root/console-quick
 ...
 ```
 
@@ -232,13 +232,13 @@ As an example, consider the initial commands for `console` again:
 > inspect initial-commands(for console)
 ...
 [info] Delegates:
-[info] 	(file:/home/user/sample/)root/*:initial-commands(for console)
-[info] 	(file:/home/user/sample/)root/*:initial-commands
-[info] 	[file:/home/user/sample/]/*:initial-commands(for console)
-[info] 	[file:/home/user/sample/]/*:initial-commands
+[info] 	{file:/home/user/sample/}root/*:initial-commands(for console)
+[info] 	{file:/home/user/sample/}root/*:initial-commands
+[info] 	{file:/home/user/sample/}/*:initial-commands(for console)
+[info] 	{file:/home/user/sample/}/*:initial-commands
 [info] 	*/*:initial-commands(for console)
 [info] 	*/*:initial-commands
 ...
 ```
 
-This means that if there is no value specifically for `(file:/home/user/sample/)root/*:initial-commands(for console)`, the scopes listed under Delegates will be searched in order until a value is defined.
+This means that if there is no value specifically for `{file:/home/user/sample/}root/*:initial-commands(for console)`, the scopes listed under Delegates will be searched in order until a value is defined.
