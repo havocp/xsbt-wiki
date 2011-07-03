@@ -22,7 +22,7 @@ The filters are defined by the [DependencyFilter], [ConfigurationFilter], [Modul
 Using these filter types, you can filter by the configuration name, the module organization, name, or revision, and the artifact name, type, extension, or classifier.
 
 The relevant methods (implicitly on `UpdateReport`) are:
-```
+```scala
   def matching(f: DependencyFilter): Seq[File]
 
   def select(configuration: ConfigurationFilter = ..., module: ModuleFilter = ..., artifact: ArtifactFilter = ...): Seq[File]
