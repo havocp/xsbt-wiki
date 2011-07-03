@@ -53,16 +53,16 @@ Each package task should be able to have different values for these settings.
 This is done with the task axis, which selects the task to apply a setting to.
 For example, the following prints the output jar for the different package tasks.
 ```text
-> jar-path(for package)
+> artifact-path(for package)
 [info] /home/user/sample/target/scala-2.8.1.final/demo_2.8.1-0.1.jar
 
-> jar-path(for package-src)
+> artifact-path(for package-src)
 [info] /home/user/sample/target/scala-2.8.1.final/demo_2.8.1-0.1-src.jar
 
-> jar-path(for package-doc)
+> artifact-path(for package-doc)
 [info] /home/user/sample/target/scala-2.8.1.final/demo_2.8.1-0.1-doc.jar
 
-> test:jar-path(for package)
+> test:artifact-path(for package)
 [info] /home/user/sample/target/scala-2.8.1.final/root_2.8.1-0.1-test.jar
 ```
 
