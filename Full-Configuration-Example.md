@@ -110,20 +110,20 @@ object CDAP2Build extends Build {
   lazy val common = Project (
     "common",
     file ("cdap2-common"),
-    settings = buildSettings ++ Seq (libraryDependencies := commonDeps)
+    settings = buildSettings ++ Seq (libraryDependencies ++= commonDeps)
   )
 			     
   lazy val server = Project (
     "server",
     file ("cdap2-server"),
     settings = buildSettings ++ Seq (resolvers := oracleResolvers, 
-                                     libraryDependencies := serverDeps)
+                                     libraryDependencies ++= serverDeps)
   ) dependsOn (common)
 
   lazy val pricing = Project (
     "pricing",
     file ("cdap2-pricing"),
-    settings = buildSettings ++ Seq (libraryDependencies := pricingDeps)
+    settings = buildSettings ++ Seq (libraryDependencies ++= pricingDeps)
   ) dependsOn (common, compact, server)
 
   lazy val pricing_service = Project (
