@@ -309,3 +309,11 @@ parallelExecution in Serial := false
 ```
 
 The tests to run in parallel would be run with `test` and the ones to run in serial would be run with `serial:test`.
+
+
+# JUnit
+
+Support for JUnit is provided by [junit-interface](https://github.com/szeiger/junit-interface).  To add JUnit support into your project, add the junit-interface dependency in your project's main build.sbt file.
+```test
+libraryDependencies += "com.novocode" % "junit-interface" % "0.7" % "test->default"
+```
