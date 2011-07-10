@@ -7,7 +7,7 @@ autoCompilerPlugins := true
 
 To use a compiler plugin, you either put it in your unmanaged library directory (`lib/` by default) or add it as managed dependency in the `plugin` configuration.  `addCompilerPlugin` is a convenience method for specifying `plugin` as the configuration for a dependency:
 ```scala
-addCompilerPlugin("org.scala-tools.sxr" %% "sxr" % "0.2.6")
+addCompilerPlugin("org.scala-tools.sxr" %% "sxr" % "0.2.7")
 ```
 
 The `compile` and `test-compile` actions will use any compiler plugins found in the `lib` directory or in the `plugin` configuration.  You are responsible for configuring the plugins as necessary.  For example, Scala X-Ray requires the extra option:
@@ -21,7 +21,7 @@ scalacOptions <<= (scalacOptions, scalaSource in Compile) { (options, base) =>
 
 You can still specify compiler plugins manually.  For example:
 ```scala
-scalacOptions += "-Xplugin:<path-to-sxr>/sxr-0.2.6.jar"
+scalacOptions += "-Xplugin:<path-to-sxr>/sxr-0.2.7.jar"
 ```
 
 # Continuations Plugin Example
