@@ -15,6 +15,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 * xsbt-web-plugin: https://github.com/siasia/xsbt-web-plugin
 * xsbt-webstart: https://github.com/ritschwumm/xsbt-webstart
 * sbt-appengine: https://github.com/eed3si9n/sbt-appengine
+* sbt-gwt-plugin: https://github.com/thunderklaus/sbt-gwt-plugin
 
 ### Test plugins
 
