@@ -90,26 +90,26 @@ object build extends Build {
 
 To correct this, include the default settings, which includes `libraryDependencies := Seq()`.
 ```
-    settings = Defaults.defaultSettings ++ Seq(
-      libraryDependencies += "commons-io" % "commons-io" % "1.4" % "test"
-    )
+settings = Defaults.defaultSettings ++ Seq(
+  libraryDependencies += "commons-io" % "commons-io" % "1.4" % "test"
+)
 ```
 
 A more subtle variation of this error occurs when using scoped settings. The following results in the error `sbt.Init$Uninitialized: Reference to uninitialized setting `.
 ```
-    settings = Defaults.defaultSettings ++ Seq(
-      libraryDependencies += "commons-io" % "commons-io" % "1.2" % "test",
-      fullClasspath ~= (_.filterNot(_.data.name.contains("commons-io")))
-    )
+settings = Defaults.defaultSettings ++ Seq(
+  libraryDependencies += "commons-io" % "commons-io" % "1.2" % "test",
+  fullClasspath ~= (_.filterNot(_.data.name.contains("commons-io")))
+)
 ```
 
 The solution is use the scoped setting as the LHS of the initialization.
 ```
-      fullClasspath in Compile ~= (_.filterNot(_.data.name.contains("commons-io")))
+fullClasspath in Compile ~= (_.filterNot(_.data.name.contains("commons-io")))
 ```
 
 Generally, all of the update operators can be expressed in terms of `<<=`. The usage of here of the unscoped, and unitialized `fullClasspath` on the RHS of `<<=` that triggers the error.
 
 ```
-   fullClasspath <<= (fullClasspath)(_.filterNot(_.data.name.contains("commons-io")))
+fullClasspath <<= (fullClasspath)(_.filterNot(_.data.name.contains("commons-io")))
 ```
