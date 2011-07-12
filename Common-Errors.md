@@ -111,7 +111,7 @@ Generally, all of the update operators can be expressed in terms of `<<=`. To be
 fullClasspath <<= (fullClasspath).map(_.filterNot(_.data.name.contains("commons-io")))
 ```
 
-This setting varies between the test and compile scopes. The solution is use the scoped setting as the LHS of the initialization.
+This setting varies between the test and compile scopes. The solution is use the scoped setting, both as the input to the initializer, and the setting that we update.
 
 ```
 fullClasspath in Compile <<= (fullClasspath in Compile).map(_.filterNot(_.data.name.contains("commons-io")))
