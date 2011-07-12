@@ -171,7 +171,7 @@ Aggregation can be controlled more finely by configuring the `aggregate` setting
 ```scala
 sealed trait Aggregation 
 final case class Implicit(enabled: Boolean) extends Aggregation
-final case class Explicit(deps: Seq[ProjectReference], transitive: Boolean) extends Aggregation
+final class Explicit(val deps: Seq[ProjectReference], val transitive: Boolean) extends Aggregation
 ```
 
 This key can be set in any scope, including per-task scopes.  By default, aggregation is disabled for `run`, `console-quick`, `console`, and `console-project`.  Re-enabling it from the command line for the current project for `run` would look like:
@@ -185,10 +185,10 @@ This key can be set in any scope, including per-task scopes.  By default, aggreg
 > set aggregate in clean := false
 ```
 
-`Explicit` allows finer control over the execution dependencies and transitivity.  No new projects may be introduced here (that is, internal references have to be defined in the Build's `projects` already and externals must be a dependency in the Build definition).  For example, to declare that `root/clean` aggregates `sub1/clean` and `sub2/clean` intransitively (that is, excluding `ext` even though `sub2` aggregates it):
+`Explicit` allows finer control over the execution dependencies and transitivity.  An instance is normally constructed using `Aggregation.apply`.  No new projects may be introduced here (that is, internal references have to be defined already in the Build's `projects` and externals must be a dependency in the Build definition).  For example, to declare that `root/clean` aggregates `sub1/clean` and `sub2/clean` intransitively (that is, excluding `ext` even though `sub2` aggregates it):
 
 ```scala
-> set aggregate in clean := Explicit(Seq(sub1, sub2), transitive = false)
+> set aggregate in clean := Aggregation(Seq(sub1, sub2), transitive = false)
 ```
 
 ### Classpath Dependencies
