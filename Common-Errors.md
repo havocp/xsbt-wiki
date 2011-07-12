@@ -95,21 +95,28 @@ settings = Defaults.defaultSettings ++ Seq(
 )
 ```
 
-A more subtle variation of this error occurs when using scoped settings. The following results in the error `sbt.Init$Uninitialized: Reference to uninitialized setting `.
+A more subtle variation of this error occurs when using scoped settings.
 ```
+// error: Reference to uninitialized setting
 settings = Defaults.defaultSettings ++ Seq(
   libraryDependencies += "commons-io" % "commons-io" % "1.2" % "test",
   fullClasspath ~= (_.filterNot(_.data.name.contains("commons-io")))
 )
 ```
 
-The solution is use the scoped setting as the LHS of the initialization.
+Generally, all of the update operators can be expressed in terms of `<<=`. To better understand the error, we can rewrite the setting as:
+
 ```
+// error: Reference to uninitialized setting
+fullClasspath <<= (fullClasspath).map(_.filterNot(_.data.name.contains("commons-io")))
+```
+
+This setting varies between the test and compile scopes. The solution is use the scoped setting as the LHS of the initialization.
+
+```
+fullClasspath in Compile <<= (fullClasspath in Compile).map(_.filterNot(_.data.name.contains("commons-io")))
+
+// or equivalently
 fullClasspath in Compile ~= (_.filterNot(_.data.name.contains("commons-io")))
 ```
 
-Generally, all of the update operators can be expressed in terms of `<<=`. The usage of here of the unscoped, and unitialized `fullClasspath` on the RHS of `<<=` that triggers the error.
-
-```
-fullClasspath <<= (fullClasspath)(_.filterNot(_.data.name.contains("commons-io")))
-```
