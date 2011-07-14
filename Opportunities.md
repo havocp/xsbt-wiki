@@ -1,4 +1,4 @@
-[API]: https://github.com/harrah/xsbt/tree/0.9/interface
+[API]: https://github.com/harrah/xsbt/tree/0.10/interface
 [the email thread]: https://groups.google.com/group/simple-build-tool/browse_thread/thread/7761f8b2ce51f02c/129064ea836c9baf
 [advanced test interface and runner]: https://groups.google.com/group/simple-build-tool/browse_thread/thread/f5a5fe06bbf3f006/d771009d407d5765
 

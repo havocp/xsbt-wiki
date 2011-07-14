@@ -15,10 +15,10 @@
     * [[Settings]]
     * [[Basic Configuration]]
     * [[Full Configuration]]
+    * [[Global Settings]]
     * Examples 
         * [[Quick|Quick Configuration Examples]]
         * [[Full|Full Configuration Example]]
-        * [[Global Settings]]
         * [[Advanced Command Example]]
     * Managed Dependencies
         * [[Basic|Library Management]]

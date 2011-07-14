@@ -1,4 +1,4 @@
-[sbt-launch.jar]: http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.10.0/sbt-launch.jar
+[sbt-launch.jar]: http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.10.1/sbt-launch.jar
 [mailing list]: http://groups.google.com/group/simple-build-tool/
 [xsbt-web-plugin]: https://github.com/siasia/xsbt-web-plugin
 [FileUtilities]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/FileUtilities$object.html
@@ -23,9 +23,9 @@ sbt 0.10's many new capabilities can be a bit overwhelming, but this page should
  1. `update` is now much faster and it's invoked automatically by sbt.
  1. Terser output. (Yet you can ask for more details if something goes wrong.)
 
-# Step 1: Install sbt 0.10.0
+# Step 1: Install sbt 0.10.1
 
-The most recent release is `0.10.0` and can be downloaded here: [sbt-launch.jar].
+The most recent release is `0.10.1` and can be downloaded here: [sbt-launch.jar].
 
 You can run 0.10.x the same way that you run 0.7.x, either simply:
 
@@ -37,7 +37,7 @@ Or (as most users do) with a shell script like:
     if test -f ~/.sbtconfig; then
       . ~/.sbtconfig
     fi
-    exec java -Xmx512M ${SBT_OPTS} -jar ~/local/sbt/sbt-launch-0.10.0.jar "$@"
+    exec java -Xmx512M ${SBT_OPTS} -jar ~/local/sbt/sbt-launch-0.10.1.jar "$@"
 
 Note, in this script that I have renamed the `sbt-launch.jar` file with the version so that I can continue to use my 0.7.x version for projects that haven't been migrated.  I called this script `sbt9`.
 
@@ -84,7 +84,7 @@ scalaVersion := "2.8.1"
 Currently, a `project/build.properties` is still needed to explicitly select the sbt version.  For example:
 
 ```text
-sbt.version=0.10.0
+sbt.version=0.10.1
 ```
 
 ## Run sbt 0.10

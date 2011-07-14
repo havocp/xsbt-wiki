@@ -1,4 +1,4 @@
-[sbt-launch.jar]: http://typesafe.artifactoryonline.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.10.0/sbt-launch.jar
+[sbt-launch.jar]: http://typesafe.artifactoryonline.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.10.1/sbt-launch.jar
 [ScalaCheck]: http://code.google.com/p/scalacheck/
 [specs]: http://code.google.com/p/specs/
 [ScalaTest]: http://www.artima.com/scalatest/
@@ -105,7 +105,7 @@ For details, start with [[Settings]], but see also [[Basic Configuration]], [[Fu
 A specific SBT version can be configured in `project/build.properties`. For example:
 
 ```text
-sbt.version=0.10.0
+sbt.version=0.10.1
 ```
 
 # Directory Layout

@@ -1,4 +1,4 @@
-### 0.10.0 to 0.10.1 (pending)
+### 0.10.0 to 0.10.1
 
 Some of the more visible changes:
 
@@ -6,7 +6,7 @@ Some of the more visible changes:
  * Try out some better error messages for build.sbt in a few common situations [#58](https://github.com/harrah/xsbt/issues/58)
  * Drop "Incomplete tasks ..." line from error messages. [#32](https://github.com/harrah/xsbt/issues/32)
  * Better handling of javac logging. [#74](https://github.com/harrah/xsbt/pull/74)
- * Warn when reload (or a similar command) discards session settings
+ * Warn when reload discards session settings
  * Cache failing classifiers, making 'update-classifiers' a practical replacement for withSources()
  * Global settings may be provided in ~/.sbt/build.sbt [#52](https://github.com/harrah/xsbt/issues/52)
  * No need to define "sbtPlugin := true" in project/plugins/ or ~/.sbt/plugins/
