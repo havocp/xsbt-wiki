@@ -1,4 +1,4 @@
-[State]: http://harrah.github.com/xsbt/latest/api/sbt/State$.html
+[State]: http://harrah.github.com/xsbt/latest/api/sbt/State.html
 
 # Commands
 
@@ -6,11 +6,11 @@
 
 There are three main aspects to commands:
 
-* The syntax used by the user to invoke the command, including:
+1. The syntax used by the user to invoke the command, including:
     * Tab completion for the syntax
     * The parser to turn input into an appropriate data structure
-* The action to perform using the parsed data structure.  This action transforms the build [State].
-* Help provided to the user
+2. The action to perform using the parsed data structure.  This action transforms the build [State].
+3. Help provided to the user
 
 In sbt, the syntax part, including tab completion, is specified with parser combinators.
 If you are familiar with the parser combinators in Scala's standard library, these are very similar.
