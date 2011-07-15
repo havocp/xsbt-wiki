@@ -19,7 +19,7 @@ In this case, the user has generally intentionally set sbt up this way, so error
 
 ### Example
 
-The following code can be used where a `State => State` is required, such as in the `onLoad` setting or in a [[command|Commands]].
+The following code can be used where a `State => State` is required, such as in the `onLoad` setting (described below) or in a [[command|Commands]].
 It adds some files to the "extra" component and reloads sbt if they were not already added.
 Note that reloading will drop the user's session state.
 
@@ -40,3 +40,44 @@ def augment(extra: Seq[File])(s: State): State =
 }
 ```
 
+
+## Project load and unload hooks
+
+The single, global setting `onLoad` is of type `State => State` (see [[Build State]]) and is executed once, after all projects are built and loaded.  There is a similar hook `onUnload` for when a project is unloaded.  Project unloading typically occurs as a result of a `reload` command or a `set` command.
+
+Because the `onLoad` and `onUnload` hooks are global, modifying this setting typically involves composing a new function with the previous value.  Unfortunately, sbt doesn't provide a default for `onLoad` and `onUnload` (this is planned for 0.10.2), so we need to ensure one exists first.  The following example shows the basic structure of defining `onLoad`, including this workaround:
+
+```scala
+// The workaround for sbt not providing a default.
+// This makes onLoad the identity function (x: State) => x 
+//   if it isn't defined.
+onLoad in Global <<= (onLoad in Global) ?? identity[State]
+
+// This is the useful part, where we compose our new function 'f'
+//   with the existing transformation.
+{
+  val f: State => State = ...
+  onLoad in Global ~= (f compose _)
+}
+```
+
+### Example
+
+The following example maintains a count of the number of times a project has been loaded and prints that number:
+
+```scala
+// The workaround from above.
+onLoad in Global <<= (onLoad in Global) ?? identity[State]
+
+{
+  // the key for the current count
+  val key = AttributeKey[Int]("load-count")
+  // the State transformer
+  val f = (s: State) => {
+    val previous = s get key getOrElse 0
+    println("Project load count: " + previous)
+    s.put(key, previous + 1)
+  }
+  onLoad in Global ~= (f compose _)
+}
+```
