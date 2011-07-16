@@ -20,6 +20,15 @@
 [Project]: http://harrah.github.com/xsbt/latest/api/sbt/Project.html
 [RichFile]: http://harrah.github.com/xsbt/latest/api/sbt/RichFile.html
 [PathFinder]: http://harrah.github.com/xsbt/latest/api/sbt/PathFinder.html
+[SettingKey]: http://harrah.github.com/xsbt/latest/api/sbt/SettingKey.html
+[InputKey]: http://harrah.github.com/xsbt/latest/api/sbt/InputKey.html
+[TaskKey]: http://harrah.github.com/xsbt/latest/api/sbt/TaskKey.html
+[ScopedSetting]: http://harrah.github.com/xsbt/latest/api/sbt/ScopedSetting.html
+[ScopedInput]: http://harrah.github.com/xsbt/latest/api/sbt/ScopedInput.html
+[ScopedTask]: http://harrah.github.com/xsbt/latest/api/sbt/ScopedTask.html
+[InputTask]: http://harrah.github.com/xsbt/latest/api/sbt/InputTask.html
+[State]: http://harrah.github.com/xsbt/latest/api/sbt/State.html
+[Task]: http://harrah.github.com/xsbt/latest/api/sbt/Task.html
 
 # Index
 
