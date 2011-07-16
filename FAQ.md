@@ -34,6 +34,8 @@ See the [migration page].
 * Fix issues that affect you.  [Fork, fix, and submit a pull request](http://help.github.com/fork-a-repo/).
 * Implement features that are important to you.  There is an [[Opportunities]] page for some ideas, but the most useful contributions are usually ones you want yourself.
 
+For more details on developing sbt, see [Developing.pdf](http://harrah.github.com/xsbt/Developing.pdf)
+
 ## Build definitions
 
 ### What does `:=`, `%`, ... mean?  
