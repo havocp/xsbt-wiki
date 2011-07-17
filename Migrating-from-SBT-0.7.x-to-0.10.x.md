@@ -126,7 +126,7 @@ The following commands work pretty much as before out of the box:
 Note that some commands now require an additional space after the initial symbol:
 
     `~ test` instead of `~test`
-    `+ publish` instead of `~publish`
+    `+ publish` instead of `+publish`
     `++ 2.8.1` instead of `++2.8.1`
 
 ## My last command didn't work but I can't see an explanation. Why?
