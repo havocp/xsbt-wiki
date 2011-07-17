@@ -123,12 +123,6 @@ The following commands work pretty much as before out of the box:
     publish-local
     exit
 
-Note that some commands now require an additional space after the initial symbol:
-
-    `~ test` instead of `~test`
-    `+ publish` instead of `+publish`
-    `++ 2.8.1` instead of `++2.8.1`
-
 ## My last command didn't work but I can't see an explanation. Why?
 
 sbt 0.10 by default suppresses most stack traces and debugging information.  It has the nice side effect of giving you less noise on screen, but as a newcomer it can leave you lost for explanation.  To see the previous output of a command at a higher verbosity, type `last <task>` where `<task>` is the task that failed or that you want to view detailed output for.  For example, if you find that your `update` fails to load all the dependencies as you expect you can enter:
