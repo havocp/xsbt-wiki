@@ -152,3 +152,37 @@ Configuration-level tasks are tasks associated with a configuration.  For exampl
   Execute the most recent command starting with 'string'
  * `!?string`
   Execute the most recent command containing 'string'
+
+## Command Line Options
+
+System properties can be provided either as JVM options, or as SBT arguments, in both cases as `-Dprop=value`. The following properties influence SBT execution.
+
+<table>
+  <thead>
+    <tr>
+      <td>_Property_</td>
+      <td>_Values_</td>
+      <td>_Default_</td>
+      <td>_Meaning_</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`sbt.nologformat`</td>
+      <td>Boolean</td>
+      <td>false</td>
+      <td>If true, disable ANSI color codes. Useful on build servers or terminals that don't support color.</td>
+    </tr>
+    <tr>
+      <td>`sbt.global.base`</td>
+      <td>Directory</td>
+      <td>`~/.sbt`</td>
+      <td>The directory containing global settings and plugins</td>
+    </tr>
+    <tr>
+      <td>`sbt.ivy.home`</td>
+      <td>Directory</td>
+      <td>`~/.ivy2`</td>
+      <td>The directory containing the local Ivy repository and artifact cache</td>
+    </tr>
+  </tbody>
