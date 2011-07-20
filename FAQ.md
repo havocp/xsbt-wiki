@@ -36,6 +36,22 @@ See the [migration page].
 
 For more details on developing sbt, see [Developing.pdf](http://harrah.github.com/xsbt/Developing.pdf)
 
+## Usage
+
+### How do I disable ansi codes in the output?
+
+Sometimes sbt doesn't detect that ansi codes aren't supported and you get output that looks like:
+
+```
+  [0m[ [0minfo [0m]  [0mSet current project to root
+```
+
+or ansi codes are supported but you want to disable colored output.  To completely disable ansi codes, set the `sbt.log.noformat` system property to `true`.  For example,
+
+```
+sbt -Dsbt.log.noformat=true
+```
+
 ## Build definitions
 
 ### What does `:=`, `%`, ... mean?  
