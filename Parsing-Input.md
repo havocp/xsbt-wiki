@@ -1,7 +1,7 @@
 # Parsing and tab completion
 
 This page describes the parser combinators in sbt.
-These parser combinators are typically used to parser user input and provide tab completion for [[Input Tasks]] and [[Commands]].
+These parser combinators are typically used to parse user input and provide tab completion for [[Input Tasks]] and [[Commands]].
 If you are already familiar with Scala's parser combinators, the methods are mostly the same except that their arguments are strict.
 There are two additional methods for controlling tab completion that are discussed at the end of the section.
 
