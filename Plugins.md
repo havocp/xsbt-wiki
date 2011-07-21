@@ -246,7 +246,7 @@ This example demonstrates how to take a Command (here, `myCommand`) and distribu
 ## Global plugins example
 The simplest global plugin definition is declaring a library or plugin in `~/.sbt/plugins/build.sbt`:
 ```scala
-libraryDependencies += "org.example" %% "my-plugin" % "0.1"
+libraryDependencies += "org.example" %% "example-plugin" % "0.1"
 ```
 This plugin will be available for every sbt project for the current user.
 
