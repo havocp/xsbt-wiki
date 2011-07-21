@@ -55,3 +55,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 
 * sbt-scalaxb (XSD and WSDL binding): https://github.com/eed3si9n/scalaxb
 * sbt-protobuf (Google Protocol Buffers): https://github.com/gseitz/sbt-protobuf
+
+### Code coverage plugins
+
+* sbt-scct: https://github.com/dvc94ch/sbt-scct
