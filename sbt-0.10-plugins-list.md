@@ -59,3 +59,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 ### Code coverage plugins
 
 * sbt-scct: https://github.com/dvc94ch/sbt-scct
+
+### Android plugin
+
+* android-plugin: https://github.com/philcali/android-plugin
