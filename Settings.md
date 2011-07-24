@@ -89,7 +89,7 @@ The motiviation behind the method names is:
 * All method end with `=` to obtain the lowest possible infix precedence.
 * A method starting with `<` indicates that the initialization uses other settings.
 * A single `+` means a single value is expected and will be appended to the current sequence.
-* `++` means a `Seq[T]` is expected.  The sequence will be appended the current sequence.
+* `++` means a `Seq[T]` is expected.  The sequence will be appended to the current sequence.
 
 The following sections include descriptions and examples of each initialization method.
 The descriptions use "will initialize" or "will append" to emphasize that they construct a value describing an update and do not mutate anything.
