@@ -72,7 +72,7 @@ val sampleTask = TaskKey[Int]("sample-task")
 
 The name of the `val` is used when referring to the task in Scala code.
 The string passed to the `TaskKey` method is used at runtime, such as at the command line.
-By convention, the Scala identifier is camelCase and the runtime identifier is separated by dashes.
+By convention, the Scala identifier is camelCase and the runtime identifier is separated by hyphens.
 The type parameter passed to `TaskKey` (here, `Int`) is the type of value produced by the task.
 
 We'll define a couple of other of tasks for the examples:
