@@ -168,7 +168,7 @@ System properties can be provided either as JVM options, or as SBT arguments, in
   </thead>
   <tbody>
     <tr>
-      <td>`sbt.nologformat`</td>
+      <td>`sbt.log.noformat`</td>
       <td>Boolean</td>
       <td>false</td>
       <td>If true, disable ANSI color codes. Useful on build servers or terminals that don't support color.</td>
