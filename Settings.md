@@ -128,6 +128,24 @@ libraryDependencies ++= Seq(
 	)
 )
 ```
+### ~=
+
+`~=` is used to transform the current value of a setting.
+For example, the following defines a setting that will remove `-Y` compiler options from the current list of compiler options.
+
+```scala
+scalacOptions in Compile ~= { (options: Seq[String]) =>
+   options filterNot ( _ startsWith "-Y" )
+}
+```
+
+The earlier declaration of JUnit as a library dependency using `+=` could also be written as:
+
+```scala
+libraryDependencies ~= { (deps: Seq[ModuleID]) =>
+  deps :+ ("junit" % "junit" % "4.8" % "test")
+}
+```
 
 ### <<=
 
