@@ -52,6 +52,15 @@ This allows you to launch sbt in any directory by typing `sbt` at the command pr
 java -Dhttp.proxyUser=username -Dhttp.proxyPassword=mypassword -Xmx512M -jar `dirname $0`/sbt-launch.jar "$@"
 ```
 
+## Cygwin
+
+```text
+dir=`dirname $0`
+stty -icanon min 1 -echo > /dev/null 2>&1
+java -Djline.terminal=jline.UnixTerminal -Xmx512M -jar `cygpath -w $dir`/sbt-launch-0.7.4.jar "$@"
+stty icanon echo > /dev/null 2>&1
+```
+
 ## Windows
 Create a batch file `sbt.bat`:
 ```text
