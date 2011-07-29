@@ -1,3 +1,8 @@
+[uniform test interface]: http://github.com/harrah/test-interface
+[TestReportListener]: http://harrah.github.com/xsbt/latest/api/sbt/TestReportListener.html
+[TestsListener]: http://harrah.github.com/xsbt/latest/api/sbt/TestsListener.html
+[junit-interface](https://github.com/szeiger/junit-interface)
+
 # Testing
 
 # Basics
@@ -313,7 +318,37 @@ The tests to run in parallel would be run with `test` and the ones to run in ser
 
 # JUnit
 
-Support for JUnit is provided by [junit-interface](https://github.com/szeiger/junit-interface).  To add JUnit support into your project, add the junit-interface dependency in your project's main build.sbt file.
+Support for JUnit is provided by [junit-interface].  To add JUnit support into your project, add the junit-interface dependency in your project's main build.sbt file.
 ```test
 libraryDependencies += "com.novocode" % "junit-interface" % "0.7" % "test->default"
 ```
+
+# Extensions
+
+This page describes adding support for additional testing libraries and defining additional test reporters.  You do this by implementing `sbt` interfaces (described below).  If you are the author of the testing framework, you can depend on the test inferface as a provided dependency.  Alternatively, anyone can provide support for a test framework by implementing the interfaces in a separate project and packaging the project as an sbt [[Plugin|Plugins]].
+
+## Custom Test Framework
+
+`sbt` contains built-in support for the three main Scala testing libraries (specs 1 and 2, ScalaTest, and ScalaCheck).  To add support for a differrent framework, implement the [uniform test interface].
+
+## Custom Test Reporters
+
+Test frameworks report status and results to test reporters.  You can create a new test reporter by implementing either [TestReportListener] or [TestsListener].
+
+## Using Extensions
+
+To use your extensions in a project definition:
+
+Modify the `testFrameworks`setting to reference your test framework:
+
+```scala
+testFrameworks += new TestFramework("custom.framework.ClassName")
+```
+
+Specify the test reporters you want to use by overriding the `testListeners` method in your project definition.
+
+```scala
+testListeners += customTestListener
+```
+
+where `customTestListener` is of type `sbt.TestReportListener`.

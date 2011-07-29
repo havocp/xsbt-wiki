@@ -34,16 +34,22 @@
     * Using [[Compiler Plugins]]
     * [[Plugins]] - Extending sbt
 * Tasks and Commands
-    * [[Task Basics|Tasks]]
-    * [[Input Tasks]]
-    * [[Commands]]
+    * Basic Constructs
+        * [[Task|Tasks]]
+        * [[Input Tasks]]
+        * [[Commands]]
     * [[Common Tasks]]
     * [[Parsing Input]]
     * [[Build State]]
-    * [[Classpaths, sources, and resources|Classpaths]]
-    * [[Mapping Files]]
-    * [[External Processes|Process]]
+    * Paths and I/O
+	     * [[Paths]]
+        * [[Classpaths, sources, and resources|Classpaths]]
+        * [[Mapping Files]]
+        * [[External Processes|Process]]
     * [[Specialized Tasks|Specialized]]
+* Other Modes
+    * [[Launcher]] - Using the launcher for booting Scala applications
+    * [[Scripts]] and REPL with dependencies
 * Project Information
     * [[Credits]]
     * [[Changes]]

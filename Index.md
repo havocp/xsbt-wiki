@@ -83,7 +83,7 @@ See [[Settings]] and [[Tasks]] for details.
 
 ### File and IO
 
-See [RichFile], [PathFinder], and (eventually) [[Paths]] for the full documentation.
+See [RichFile], [PathFinder], and [[Paths]] for the full documentation.
 
 * `/`  When called on a single File, this is `new File(x,y)`.  For `Seq[File]`, this is applied for each member of the sequence..
 * `*` and **`  are methods for selecting children (`*`) or descendents (`**`) of a `File` or `Seq[File]` that match a filter.
