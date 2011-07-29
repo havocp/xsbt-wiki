@@ -28,6 +28,7 @@ There are some other options for setup, such as putting the configuration file i
 ## Configuration
 
 The launcher may be configured in one of the following ways in increasing order of precedence:
+
  * Replace the `/sbt/sbt.boot.properties` file in the jar
  * Put a configuration file named `sbt.boot.properties` on the classpath.  Put it in the classpath root without the `/sbt` prefix.
  * Specify the location of an alternate configuration on the command line.  This can be done by either specifying the location as the system property `sbt.boot.properties` or as the first argument to the launcher prefixed by `'@'`.  The system property has lower precedence.  Resolution of a relative path is first attempted against the current working directory, then against the user's home directory, and then against the directory containing the launcher jar.  An error is generated if none of these attempts succeed.
@@ -211,10 +212,11 @@ Then, `publish-local` or `+publish-local` the application to make it available.
 ## Running an Application
 
 As mentioned above, there are a few options to actually run the application.  The first involves providing a modified jar for download.  The second two require providing a configuration file for download.
- * Replace the /sbt/sbt.boot.properties file in the launcher jar and distribute the modified jar.  The user would need a script to run 'java -jar your-launcher.jar arg1 arg2 ...'.
- * The user downloads the launcher jar and you provide the configuration file.
-   * The user needs to run 'java -Dsbt.boot.properties=your.boot.properties -jar launcher.jar'.
-   * The user already has a script to run the launcher (call it 'launch').  The user needs to run
+
+* Replace the /sbt/sbt.boot.properties file in the launcher jar and distribute the modified jar.  The user would need a script to run 'java -jar your-launcher.jar arg1 arg2 ...'.
+* The user downloads the launcher jar and you provide the configuration file.
+    * The user needs to run 'java -Dsbt.boot.properties=your.boot.properties -jar launcher.jar'.
+    * The user already has a script to run the launcher (call it 'launch').  The user needs to run
     ```
       launch @your.boot.properties your-arg-1 your-arg-2
     ```
