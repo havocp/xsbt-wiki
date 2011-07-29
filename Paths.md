@@ -20,13 +20,13 @@ sbt defines the alias `File` for `java.io.File` so that an extra import is not n
 The `file` method is an alias for the single-argument `File` constructor to simplify constructing a new file from a String:
 
 ```scala
-val source: File # file("/home/user/code/A.scala")
+val source: File = file("/home/user/code/A.scala")
 ```
 
 Additionally, sbt augments File with a `/` method, which is an alias for the two-argument `File` construtor for building up a path:
 
 ```scala
-def readme(base: File): File base / "README"
+def readme(base: File): File = base / "README"
 ```
 
 Relative files should only be used when defining the base directory of a `Project`, where they will be resolved properly.
@@ -38,7 +38,7 @@ Elsewhere, files should be absolute or be built up from an absolute base `File`.
 
 For example, the following setting sets the unmanaged library directory to be the "custom_lib" directory in a project's base directory:
 ```scala
-unmanagedBase <<# baseDirectory( (base: File)> base /"custom_lib" )
+unmanagedBase <<= baseDirectory( (base: File) => base /"custom_lib" )
 ```
 
 Or, more concisely:
@@ -48,7 +48,8 @@ unmanagedBase <<= baseDirectory( _ /"custom_lib" )
 
 This setting sets the location of the shell history to be in the base directory of the build, irrespective of the project the setting is defined in:
 ```scala
-historyPath <<# (baseDirectory in ThisBuild)(t> Some(t / ".history")),
+historyPath <<= (baseDirectory in ThisBuild)(t => Some(t / ".history")),
+```
 
 ## Path Finders
 
@@ -59,7 +60,7 @@ A `PathFinder` computes a `Seq[File]` on demand.  It is a way to build a sequenc
 The `**` method accepts a `java.io.FileFilter` and selects all files matching that filter.  
 
 ```scala
-def scalaSources(base: File): PathFinder # (base / "src") ** "*.scala"
+def scalaSources(base: File): PathFinder = (base / "src") ** "*.scala"
 ```
 
 ### get
@@ -67,8 +68,8 @@ def scalaSources(base: File): PathFinder # (base / "src") ** "*.scala"
 This selects all files that end in `.scala` that are in `src` or a descendent directory.  The list of files is not actually evaluated until `get` is called:
 
 ```scala
-def scalaSources(base: File): Seq[File] {
-  val finder: PathFinder # (base / "src") ** "*.scala" 
+def scalaSources(base: File): Seq[File] = {
+  val finder: PathFinder = (base / "src") ** "*.scala" 
   finder.get
 }
 ```
@@ -79,7 +80,7 @@ If the filesystem changes, a second call to `get` on the same `PathFinder` objec
 
 Selecting files that are immediate children of a subdirectory is done with a single `*`:
 ```scala
-def scalaSources(base: File): PathFinder  (base / "src") * "*.scala"
+def scalaSources(base: File): PathFinder = (base / "src") * "*.scala"
 ```
 
 This selects all files that end in `.scala` that are in the `src` directory.
@@ -89,7 +90,7 @@ This selects all files that end in `.scala` that are in the `src` directory.
 If a selector, such as `/`, `**`, or `*, is used on a path that does not represent a directory, the path list will be empty:
 
 ```scala
-def emptyFinder(base: File) # (base / "lib" / "ivy.jar") * "not_possible"
+def emptyFinder(base: File) = (base / "lib" / "ivy.jar") * "not_possible"
 ```
 
 ### Name Filter
@@ -100,7 +101,7 @@ The argument to the child and descendent selectors `*` and `**` is actually a `N
 
 Another operation is concatenation of `PathFinder`s:
 ```scala
-def multiPath(base: File): PathFinder 
+def multiPath(base: File): PathFinder =
    (base / "src" / "main") +++
    (base / "lib") +++
    (base / "target" / "classes")
@@ -129,10 +130,10 @@ The first selector selects all Scala sources and the second selects all sources 
 There is a `filter` method that accepts a predicate of type `File => Boolean` and is non-strict:
 ```scala
   // selects all directories under "src"
-def srcDirs(base: File) # ( (base / "src") ** "*") filter { _.isDirectory }
+def srcDirs(base: File) = ( (base / "src") ** "*") filter { _.isDirectory }
 
   // selects archives (.zip or .jar) that are selected by 'somePathFinder' 
-def archivesOnly(base: PathFinder) base filter ClasspathUtilities.isArchive
+def archivesOnly(base: PathFinder) = base filter ClasspathUtilities.isArchive
 ```
 
 ### Empty PathFinder
@@ -140,7 +141,7 @@ def archivesOnly(base: PathFinder) base filter ClasspathUtilities.isArchive
 `PathFinder.empty` is a `PathFinder` that returns the empty sequence when `get` is called:
 
 ```scala
-assert( PathFinder.empty.get =# Seq[File]() )
+assert( PathFinder.empty.get == Seq[File]() )
 ```
 
 ### PathFinder to String conversions
@@ -169,18 +170,18 @@ The resulting filter selects files with a name matching the string, with a `*` i
 For example, the following selects all Scala sources with the word "Test" in them:
 
 ```scala
-def testSrcs(base: File): PathFinder   (base / "src") * "*Test*.scala"
+def testSrcs(base: File): PathFinder =  (base / "src") * "*Test*.scala"
 ```
 
 There are some useful combinators added to `FileFilter`.  The `||` method declares alternative `FileFilter`s.  The following example selects all Java or Scala source files under "src":
 
 ```scala
-def sources(base: File): PathFinder  #  (base / "src") ** ("*.scala" || "*.java")
+def sources(base: File): PathFinder  =  (base / "src") ** ("*.scala" || "*.java")
 ```
 
 The `--`method excludes a files matching a second filter from the files matched by the first:
 ```scala
-def imageResources(base: File): PathFinder
+def imageResources(base: File): PathFinder =
    (base/"src"/"main"/"resources") * ("*.png" -- "logo.png")
 ```
 
