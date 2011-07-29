@@ -42,7 +42,7 @@
     * [[Parsing Input]]
     * [[Build State]]
     * Paths and I/O
-	     * [[Paths]]
+        * [[Paths]]
         * [[Classpaths, sources, and resources|Classpaths]]
         * [[Mapping Files]]
         * [[External Processes|Process]]
