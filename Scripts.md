@@ -5,8 +5,9 @@
 # Scripts, REPL, and Dependencies
 
 sbt has two alternative entry points that may be used to:
-  * Compile and execute a Scala script containing dependency declarations or other sbt settings
-  * Start up the Scala REPL, defining the dependencies that should be on the classpath
+
+* Compile and execute a Scala script containing dependency declarations or other sbt settings
+* Start up the Scala REPL, defining the dependencies that should be on the classpath
 
 These entry points should be considered experimental.  A notable disadvantage of these approaches is the startup time involved.
 
