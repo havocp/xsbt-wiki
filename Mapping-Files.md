@@ -19,7 +19,7 @@ val files: Seq[File] = file("/a/b/C.scala") :: Nil
 val baseDirectories: Seq[File] = file("/a") :: Nil
 val mappings: Seq[(File,String)] = files x relativeTo(baseDirectories)
 
-val expected = (file("/a/b/C.scala") -> "b/C.scala") ) :: Nil
+val expected = (file("/a/b/C.scala") -> "b/C.scala") :: Nil
 assert( mappings == expected )
 ```
 
