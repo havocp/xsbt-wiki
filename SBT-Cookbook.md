@@ -4,8 +4,8 @@ We hope the cookbook will be a community effort, so please submit recipes as you
 
 ### Getting started
 * [[Install SBT|Recipe: Install SBT]]
+* [[Run SBT from the command line and execute basic commands|Recipe: Command Line Basics]]
 * Set up a new project to build with SBT
-* Run SBT from the command line and execute basic commands
 * Use continuous compilation
 
 ### Build file basics
