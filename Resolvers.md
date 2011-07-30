@@ -15,13 +15,15 @@
 
 # Resolvers
 
-Maven-style repositories are defined like:
+## Maven
+
+Resolvers for Maven2 repositories are added as follows:
 ```scala
 resolvers += "Scala-Tools Maven2 Snapshots Repository" at "http://scala-tools.org/repo-snapshots"
 ```
-and use the Maven2 layout.  This page describes how to define other types of repositories. 
+This is the most common kind of user-defined resolvers. The rest of this page describes how to define other types of repositories. 
 
-# Predefined
+## Predefined
 
 A few predefined repositories are available and are listed below
 
@@ -39,7 +41,7 @@ For example, to use the `java.net` repository, use the following setting in your
 resolvers += JavaNet1Repository
 ```
 
-# Custom
+## Custom
 
 sbt provides an interface to the repository types available in Ivy: file, URL, SSH, and SFTP.  A key feature of repositories in Ivy is using [patterns] to configure repositories.
 
@@ -52,18 +54,18 @@ SFTP | `Resolver.sftp` | [Ivy sftp] | [sftp factory] | [SftpRepository API]</td>
 SSH | `Resolver.ssh` | [Ivy ssh] | [ssh factory] | [SshRepository API]</td>
 URL | `Resolver.url` | [Ivy url] | [url factory] | [URLRepository API]</td>
 
-## Basic Examples
+### Basic Examples
 
 These are basic examples that use the default Maven-style repository layout.
 
-### Filesystem
+#### Filesystem
 
 Define a filesystem repository in the `test` directory  of the current working directory and declare that publishing to this repository must be atomic.
 ```scala
 resolvers += Resolver.file("my-test-repo", file("test")) transactional()
 ```
 
-### URL
+#### URL
 
 Define a URL repository at .`"http://example.org/repo-releases/"`.
 ```scala
@@ -76,7 +78,7 @@ resolvers += Resolver.url("my-test-repo", url)(Resolver.ivyStylePatterns)
 ```
 or customize the layout pattern described in the Custom Layout section below.
 
-### SFTP and SSH Repositories
+#### SFTP and SSH Repositories
 
 The following defines a repository that is served by SFTP from host `"example.org"`:
 ```scala
@@ -125,7 +127,7 @@ resolvers += Resolver.ssh("my-ssh-repo", "example.org") withPermissions("0644")
 
 This is a chmod-like mode specification.
 
-## Custom Layout
+### Custom Layout
 
 These examples specify custom repository layouts using patterns.  The factory methods accept an `Patterns` instance that defines the patterns to use.  The patterns are first resolved against the base file or URL.  The default patterns give the default Maven-style layout.  Provide a different Patterns object to use a different layout.  For example:
 ```scala
