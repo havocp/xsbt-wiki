@@ -20,6 +20,7 @@
         * [[Quick|Quick Configuration Examples]]
         * [[Full|Full Configuration Example]]
         * [[Advanced Command Example]]
+        * [[Advanced Configurations Example]]
     * Managed Dependencies
         * [[Basic|Library Management]]
         * [[Configurations]]
