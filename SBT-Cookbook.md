@@ -3,7 +3,7 @@ Sometimes you want to understand your tools deeply, and sometimes you just want 
 We hope the cookbook will be a community effort, so please submit recipes as you learn how to do something cool - or mundane - with SBT. You might save a fellow Scala coder a lot of time and effort! (Entries shown below without a link are particularly in need of being filled in.)
 
 ### Getting started
-* Install SBT
+* [[Install SBT|Recipe Install SBT]]
 * Set up a new project to build with SBT
 * Run SBT from the command line and execute basic commands
 * Use continuous compilation
