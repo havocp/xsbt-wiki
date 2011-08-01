@@ -38,7 +38,7 @@ credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 The credentials file is a properties file with keys `realm`, `host`, `user`, and `password`.  For example:
 ```text
 realm=Sonatype Nexus Repository Manager
-host=nexus.scala-tools.org
+host=nexus-direct.scala-tools.org
 user=admin
 password=admin123
 ```
