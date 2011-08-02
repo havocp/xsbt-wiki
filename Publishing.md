@@ -10,14 +10,14 @@ The `publish` action is used to publish your project to a remote repository.  To
 
 To specify the repository, assign a repository to `publish-to` and optionally set the publishing style.  For example, to upload to Nexus:
 ```scala
-publishTo := Some("Scala Tools Nexus" at "http://nexus-direct.scala-tools.org/content/repositories/releases/")
+publishTo := Some("Scala Tools Nexus" at "http://nexus.scala-tools.org/content/repositories/releases/")
 ```
 
 If you're using Maven repositories you will also have to select the right repository depending on your artifacts: SNAPSHOT versions go to the /snapshot repository while other versions go to the /releases repository. Doing this selection can be done by using the value of the `version` SettingKey:
 
 ```
 publishTo <<= (version) { version: String =>
-  val nexus = "http://nexus-direct.scala-tools.org/content/repositories/"
+  val nexus = "http://nexus.scala-tools.org/content/repositories/"
   if (version.trim.endsWith("SNAPSHOT")) Some("snapshots" at nexus + "snapshots/") 
   else                                   Some("releases"  at nexus + "releases/")
 }
@@ -27,7 +27,7 @@ publishTo <<= (version) { version: String =>
 
 There are two ways to specify credentials for such a repository.  The first is to specify them inline:
 ```scala
-credentials += Credentials("Sonatype Nexus Repository Manager", "nexus-direct.scala-tools.org", "admin", "admin123")
+credentials += Credentials("Sonatype Nexus Repository Manager", "nexus.scala-tools.org", "admin", "admin123")
 ```
 
 The second and better way is to load them from a file, for example:
@@ -38,7 +38,7 @@ credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 The credentials file is a properties file with keys `realm`, `host`, `user`, and `password`.  For example:
 ```text
 realm=Sonatype Nexus Repository Manager
-host=nexus-direct.scala-tools.org
+host=nexus.scala-tools.org
 user=admin
 password=admin123
 ```
