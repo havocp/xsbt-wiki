@@ -20,6 +20,7 @@ The following people have contributed ideas, documentation, or code to sbt:
 * Jorge Ortiz
 * Mikko Peltonen
 * Ray Racine
+* Indrajit Raychaudhuri
 * Stuart Roebuck
 * Harshad RJ
 * Tony Sloane
