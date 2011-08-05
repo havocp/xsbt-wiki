@@ -19,7 +19,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 
 ### Test plugins
 
-* junit_xml_listener: https://github.com/ijuma/junit_xml_listener/tree/sbt-0.10
+* junit_xml_listener: https://github.com/ijuma/junit_xml_listener
 * sbt-growl-plugin: https://github.com/softprops/sbt-growl-plugin
 * sbt-teamcity-test-reporting-plugin: https://github.com/guardian/sbt-teamcity-test-reporting-plugin
 * xsbt-cucumber-plugin: https://github.com/skipoleschris/xsbt-cucumber-plugin
