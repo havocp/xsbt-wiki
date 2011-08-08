@@ -192,7 +192,7 @@ Tool dependencies are used to implement a task and are not needed by project sou
 As an example, consider a `proguard` task.  This task needs the ProGuard jars in order to run the tool.  Assuming a new configuration defined in the full build definition (#1):
 
 ```scala
-val ProguardConfig = config("proguard") hide()
+val ProguardConfig = config("proguard") hide
 ```
 
 the following are settings that implement #2-#4:
