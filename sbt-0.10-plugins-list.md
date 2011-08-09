@@ -16,6 +16,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 * xsbt-webstart: https://github.com/ritschwumm/xsbt-webstart
 * sbt-appengine: https://github.com/eed3si9n/sbt-appengine
 * sbt-gwt-plugin: https://github.com/thunderklaus/sbt-gwt-plugin
+* sbt-cloudbees-plugin: https://github.com/timperrett/sbt-cloudbees-plugin
 
 ### Test plugins
 
