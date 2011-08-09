@@ -241,6 +241,7 @@ unitTask <<= Seq(stringTask, sampleTask).dependOn
 
 To add dependencies to an existing task without using their values, call `dependsOn` on the task and provide the tasks to depend on.
 For example, the second task definition here modifies the original to require that `string-task` and `sample-task` run first:
+
 ```scala
 intTask := 4
 
