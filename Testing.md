@@ -35,11 +35,13 @@ The `test` task accepts no command line arguments and runs all tests:
 ## test-only
 
 The `test-only` task accepts a whitespace separated list of test names to run.  For example:
+
 ```text
 > test-only org.example.MyTest1 org.example.MyTest2
 ```
 
 It supports wildcards as well:
+
 ```text
 > test-only org.example.*Slow org.example.MyTest1
 ```
@@ -100,6 +102,7 @@ The variant that accepts a ClassLoader is passed the class loader that is (or wa
 It provides access to the test classes as well as the test framework classes.
 
 Examples:
+
 ```scala
 testOptions in Test += Tests.Setup( () => println("Setup") )
 
@@ -309,6 +312,7 @@ Let's call the configuration `serial`:
 ```
 
 Then, we can disable parallel execution in just that configuration using:
+
 ```text
 parallelExecution in Serial := false
 ```
@@ -319,7 +323,8 @@ The tests to run in parallel would be run with `test` and the ones to run in ser
 # JUnit
 
 Support for JUnit is provided by [junit-interface].  To add JUnit support into your project, add the junit-interface dependency in your project's main build.sbt file.
-```test
+
+```scala
 libraryDependencies += "com.novocode" % "junit-interface" % "0.7" % "test->default"
 ```
 
