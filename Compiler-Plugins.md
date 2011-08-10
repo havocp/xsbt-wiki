@@ -27,6 +27,7 @@ scalacOptions += "-Xplugin:<path-to-sxr>/sxr-0.2.7.jar"
 # Continuations Plugin Example
 
 Support for continuations in Scala 2.8 is implemented as a compiler plugin.  You can use the compiler plugin support for this, as shown here.
+
 ```scala
 autoCompilerPlugins := true
 
