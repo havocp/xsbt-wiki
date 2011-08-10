@@ -21,6 +21,7 @@ This page introduces the `Setting` type, which is used by light and full definit
 Basic examples of each type of definition are shown below for the purpose of getting an idea of what they look like, not for full comprehension of details, which are described at [light definition] and [full definition].
 
 `<base>/build.sbt` (light)
+
 ```scala
 name := "My Project"
 
@@ -28,6 +29,7 @@ libraryDependencies += "junit" % "junit" % "4.8" % "test"
 ```
 
 `<base>/project/Build.scala` (full)
+
 ```scala
 import sbt._
 import Keys._
@@ -101,6 +103,7 @@ Information about the types of the left and right hand sides of the methods foll
 
 `:=` is used to define a setting that overwrites any previous value without referring to other settings.
 For example, the following defines a setting that will set _name_ to "My Project" regardless of whether _name_ has already been initialized.
+
 ```scala
 name := "My Project"
 ```
