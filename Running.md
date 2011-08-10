@@ -3,6 +3,7 @@
 This page describes how to use `sbt` once you have set up your project (see [[Setup]]).
 
 Run sbt in your project directory.  If you have created a script to start sbt, this should be as simple as:
+
 ```
 $ sbt
 ```
@@ -10,11 +11,13 @@ $ sbt
 This starts sbt in interactive mode.  You are given a prompt at which you type commands.  Tab completion and history are available at this prompt.
 
 Alternatively, you can run sbt in batch mode.  You specify a space-separated list of actions as arguments.  For commands that take arguments, pass the command and arguments as one argument to `sbt` by enclosing them in quotes.  For example,
+
 ```text
 $ sbt clean compile "test-only TestA TestB"
 ```
 
 You can make an action run when one or more source files change by prefixing the action with `~`.  For example:
+
 ```text
 > ~ compile
 ```
@@ -22,6 +25,7 @@ You can make an action run when one or more source files change by prefixing the
 See [[Triggered Execution]] for details.
 
 Temporarily change the logging level and configure how stack traces are displayed by modifying the `log-level` or `trace-level` settings:
+
 ```text
 > set logLevel := Level.Warn
 ```
@@ -116,11 +120,13 @@ Configuration-level tasks are tasks associated with a configuration.  For exampl
   Execute A and if it succeeds, run B.  Note that the leading semicolon is required.
 * `eval <Scala-expression>`
   Evaluates the given Scala expression and returns the result and inferred type.  This can be used to set system properties, as a calculator, fork processes, etc ...
-  For example: ```scala
+  For example: 
+
+    ```scala
  > eval System.setProperty("demo", "true")
  > eval 1+1
  > eval "ls -l" !
-```
+    ```
 
 ## Commands for managing the build definition
 
