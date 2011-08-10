@@ -30,6 +30,7 @@ def readme(base: File): File = base / "README"
 ```
 
 Relative files should only be used when defining the base directory of a `Project`, where they will be resolved properly.
+
 ```scala
 val root = Project("root", file("."))
 ```
@@ -37,16 +38,19 @@ val root = Project("root", file("."))
 Elsewhere, files should be absolute or be built up from an absolute base `File`.  The `baseDirectory` setting defines the base directory of the build or project depending on the scope.
 
 For example, the following setting sets the unmanaged library directory to be the "custom_lib" directory in a project's base directory:
+
 ```scala
 unmanagedBase <<= baseDirectory( (base: File) => base /"custom_lib" )
 ```
 
 Or, more concisely:
+
 ```scala
 unmanagedBase <<= baseDirectory( _ /"custom_lib" )
 ```
 
 This setting sets the location of the shell history to be in the base directory of the build, irrespective of the project the setting is defined in:
+
 ```scala
 historyPath <<= (baseDirectory in ThisBuild)(t => Some(t / ".history")),
 ```
@@ -79,6 +83,7 @@ If the filesystem changes, a second call to `get` on the same `PathFinder` objec
 ### Selecting children
 
 Selecting files that are immediate children of a subdirectory is done with a single `*`:
+
 ```scala
 def scalaSources(base: File): PathFinder = (base / "src") * "*.scala"
 ```
@@ -100,6 +105,7 @@ The argument to the child and descendent selectors `*` and `**` is actually a `N
 ### Combining PathFinders
 
 Another operation is concatenation of `PathFinder`s:
+
 ```scala
 def multiPath(base: File): PathFinder =
    (base / "src" / "main") +++
@@ -128,6 +134,7 @@ The first selector selects all Scala sources and the second selects all sources 
 ### Filtering
 
 There is a `filter` method that accepts a predicate of type `File => Boolean` and is non-strict:
+
 ```scala
   // selects all directories under "src"
 def srcDirs(base: File) = ( (base / "src") ** "*") filter { _.isDirectory }
@@ -180,6 +187,7 @@ def sources(base: File): PathFinder  =  (base / "src") ** ("*.scala" || "*.java"
 ```
 
 The `--`method excludes a files matching a second filter from the files matched by the first:
+
 ```scala
 def imageResources(base: File): PathFinder =
    (base/"src"/"main"/"resources") * ("*.png" -- "logo.png")
