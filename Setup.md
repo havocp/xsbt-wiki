@@ -27,6 +27,7 @@ The easiest way to launch sbt is to create a one-line script.  Download [sbt-lau
 **Note**: Adjust the JVM options as necessary, especially heap and permgen sizes.
 
 A common set of options is:
+
 ```text
 -Dfile.encoding=UTF8 -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256m
 ```
@@ -35,11 +36,13 @@ A common set of options is:
 
 ## Unix
 Put the jar in your `~/bin` directory, put the line:
+
 ```text
 java -Xmx512M -jar `dirname $0`/sbt-launch.jar "$@"
 ```
 
 in a file called `sbt` in your `~/bin` directory and do:
+
 ```text
 $ chmod u+x ~/bin/sbt
 ```
@@ -54,6 +57,7 @@ java -Dhttp.proxyUser=username -Dhttp.proxyPassword=mypassword -Xmx512M -jar `di
 
 ## Windows
 Create a batch file `sbt.bat`:
+
 ```text
 set SCRIPT_DIR=%~dp0
 java -Xmx512M -jar "%SCRIPT_DIR%sbt-launch.jar" %*
@@ -62,6 +66,7 @@ java -Xmx512M -jar "%SCRIPT_DIR%sbt-launch.jar" %*
 and put the jar in the same directory as the batch file.  Put `sbt.bat` on your path so that you can launch `sbt` in any directory by typing `sbt` at the command prompt.
 
 If you are behind a proxy on Windows, add flags to this second line for proxy host, port, and if applicable, username and password:
+
 ```text
 java -Dhttp.proxyHost=myproxy -Dhttp.proxyPort=8080 -Dhttp.proxyUser=username -Dhttp.proxyPassword=mypassword -Xmx512M -jar "%SCRIPT_DIR%sbt-launch.jar" %*
 ```
@@ -139,6 +144,7 @@ All manually managed dependencies (jars) go in the `lib` directory by default.  
 ## Build Configuration
 
 Build configuration is done in `.sbt` files, such as `build.sbt`, and/or by `.scala` files in the `project` directory:
+
 ```text
   build.sbt
   project/
@@ -155,6 +161,7 @@ Generated files (compiled classes, packaged jars, managed files, caches, and doc
 ## Version Control
 
 As described in the previous sections, `sbt` creates and uses a couple of directories that you will normally want to exclude from version control:
+
 ```text
   target/
   project/boot/
