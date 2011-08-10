@@ -46,6 +46,7 @@ val addPower2 = (state: State) => state ++ powerCommands
 ```
 
 Some examples of functions that modify the remaining commands to execute:
+
 ```scala
 val appendCommand: State => State =
   (state: State) =>
@@ -90,6 +91,7 @@ import extracted._
 ## Project data
 All project data is stored in `structure.data`, which is of type `sbt.Settings[Scope]`.
 Typically, one gets information of type `T` in the following way:
+
 ```scala
 val key: SettingKey[T]
 val scope: Scope
@@ -153,12 +155,14 @@ val classpath: Seq[File] = attributedClasspath.files
 It can be useful to run a specific project task from a [[command|Commands]] (*not from another task*) and get its result.
 For example, an IDE-related command might want to get the classpath from a project or a task might analyze the results of a compilation.
 The relevant method is `Project.evaluateTask`, which has the following signature:
+
 ```scala
 def evaluateTask[T](taskKey: ScopedKey[Task[T]], state: State,
   checkCycles: Boolean = false, maxWorkers: Int = ...): Option[Result[T]]
 ```
 
 For example,
+
 ```scala
 val eval: State => State = (state: State) => {
 
@@ -183,6 +187,7 @@ val eval: State => State = (state: State) => {
 ```
 
 For getting the test classpath of a specific project, use this key:
+
 ```scala
 val projectRef: ProjectRef = ...
 val taskKey: Task[Seq[Attributed[File]]] =
