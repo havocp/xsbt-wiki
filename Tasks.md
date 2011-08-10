@@ -96,7 +96,9 @@ These parts are then combined like the parts of a setting are combined.
 ### Tasks without inputs
 
 A task that takes no arguments can be defined using `:=`
+
 ```scala
+
 intTask := 1 + 2
 
 stringTask := System.getProperty("user.name")
@@ -120,6 +122,7 @@ The right hand side will typically call `map` or `flatMap` on other settings or 
 (Contrast this with the `apply` method that is used for settings.)
 The function argument to `map` or `flatMap` is the task body.
 The following are equivalent ways of defining a task that adds one to value produced by `int-task` and returns the result.
+
 ```scala
 sampleTask <<= intTask map { (count: Int) => count + 1 }
 
@@ -128,6 +131,7 @@ sampleTask <<= intTask map { _ + 1 }
 
 Multiple inputs are handled as with settings.
 The `map` and `flatMap` are done on a tuple of inputs:
+
 ```scala
 stringTask <<= (sampleTask, intTask) map { (sample: Int, intValue: Int) =>
 	"Sample: " + sample + ", int: " + intValue
@@ -140,6 +144,7 @@ As with settings, tasks can be defined in a specific scope.
 For example, there are separate `compile` tasks for the `compile` and `test` scopes.
 The scope of a task is defined the same as for a setting.
 In the following example, `test:sample-task` uses the result of `compile:int-task`.
+
 ```scala
 sampleTask.in(Test) <<= intTask.in(Compile).map { (intValue: Int) => 
 	intValue * 3
@@ -172,6 +177,7 @@ As a reminder, method precedence is by the name of the method.
 3. Methods with names that start with a symbol and aren't included in 1. have the highest precedence.  (This category is divided further according to the specific character it starts with.  See the Scala specification for details.)
 
 Therefore, the second variant in the previous example is equivalent to the following:
+
 ```scala
 (sampleTask in Test) <<= (intTask in Compile map { _ * 3 })
 ```
@@ -179,6 +185,7 @@ Therefore, the second variant in the previous example is equivalent to the follo
 # Modifying an Existing Task
 
 The examples in this section use the following key definitions, which would go in a `Build` object in a [[Full Configuration]].  Alternatively, the keys may be specified inline, as discussed above.
+
 ```scala
 val unitTask = TaskKey[Unit]("unit-task")
 val intTask = TaskKey[Int]("int-task")
@@ -187,6 +194,7 @@ val stringTask = TaskKey[String]("string-task")
 The examples themselves are valid settings in a `build.sbt` file or as part of a sequence provided to `Project.settings`.
 
 In the general case, modify a task by declaring the previous task as an input.
+
 ```scala
 // initial definition
 intTask := 3
@@ -198,6 +206,7 @@ intTask <<= intTask map { (value: Int) => value + 1 }
 Completely override a task by not declaring the previous task as an input.
 Each of the definitions in the following example completely overrides the previous one.
 That is, when `int-task` is run, it will only print `#3`.
+
 ```scala
 intTask := {
 	println("#1")
@@ -217,6 +226,7 @@ intTask <<= sampleTask map { (value: Int) =>
 
 To apply a transformation to a single task, without using additional tasks as inputs, use `~=`.
 This accepts the function to apply to the task's result:
+
 ```scala
 intTask := 3
 
@@ -253,6 +263,7 @@ intTask <<= intTask.dependsOn(stringTask, sampleTask)
 New in sbt 0.10 are per-task loggers, which are part of a more general system for task-specific data called Streams.  This allows controlling the verbosity of stack traces and logging individually for tasks as well as recalling the last logging for a task.  Tasks also have access to their own persisted binary or text data.
 
 To use Streams, `map` or `flatMap` the `streams` task.  This is a special task that provides an instance of [TaskStreams] for the defining task.  This type provides access to named binary and text streams, named loggers, and a default logger.  The default [Logger], which is the most commonly used aspect, is obtained by the `log` method:
+
 ```scala
 myTask <<= streams map { (s: TaskStreams) =>
   s.log.debug("Saying hi...")
@@ -261,6 +272,7 @@ myTask <<= streams map { (s: TaskStreams) =>
 ```
 
 You can scope logging settings by the specific task's scope:
+
 ```scala
 logLevel in myTask := Level.Debug
 
@@ -268,6 +280,7 @@ traceLevel in myTask := 5
 ```
 
 To obtain the last logging output from a task, use the `last` command:
+
 ```scala
 $ last my-task
 [debug] Saying hi...
@@ -300,6 +313,7 @@ Note that `andFinally` constructs a new task.
 This means that the new task has to be invoked in order for the extra block to run.
 This is important when calling andFinally on another task instead of overriding a task like in the previous example.
 For example, consider this code:
+
 ```scala
 intTask := error("I didn't succeed.")
 
@@ -308,6 +322,7 @@ otherIntTask <<= intTask andFinally { println("andFinally") }
 
 If `int-task` is run directly, `other-int-task` is never involved in execution.
 This case is similar to the following plain Scala code:
+
 ```scala
 def intTask: Int =
   error("I didn't succeed.")
@@ -329,6 +344,7 @@ In the case of multiple inputs, the function has type `Seq[Incomplete] => T`.
 The resulting task defined by `mapFailure` fails if its input succeeds and evaluates the provided function if it fails.
 
 For example:
+
 ```scala
 intTask := error("Failed.")
 
@@ -341,6 +357,7 @@ This overrides the `int-task` so that the original exception is printed and the 
 
 `mapFailure` does not prevent other tasks that depend on the target from failing.
 Consider the following example:
+
 ```scala
 intTask := if(shouldSucceed) 5 else error("Failed.")
 
@@ -399,6 +416,7 @@ That is, it has two subtypes:
 Thus, `mapR` is always invoked whether or not the original task succeeds or fails.
 
 For example:
+
 ```scala
 intTask := error("Failed.")
 
