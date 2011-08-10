@@ -72,7 +72,7 @@ Finally, you can get the `(Artifact, File)` pair for the artifact by mapping the
 For example:
 
 ```scala
-myTask <<= packagedArtifact in (Compile, packageBin) map { (art: Artifact, file: File) =>
+myTask <<= packagedArtifact in (Compile, packageBin) map { case (art: Artifact, file: File) =>
   println("Artifact definition: " + art)
   println("Packaged file: " + file.getAbsolutePath)
 }
