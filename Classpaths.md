@@ -9,6 +9,7 @@ This page discusses how sbt builds up classpaths for different actions, like `co
 In sbt 0.10.0 and later, classpaths now include the Scala library and (when declared as a dependency) the Scala compiler.  Classpath-related settings and tasks typically provide a value of type `Classpath`.  This is an alias for `Seq[Attributed[File]]`.  [Attributed] is a type that associates a heterogeneous map with each classpath entry.  Currently, this allows sbt to associate the `Analysis` resulting from compilation with the corresponding classpath entry and for managed entries, the `ModuleID` and `Artifact` that defined the dependency.
 
 To explicitly extract the raw `Seq[File]`, use the `files` method implicitly added to `Classpath`:
+
 ```scala
 val cp: Classpath = ...
 val raw: Seq[File] = cp.files
@@ -33,6 +34,7 @@ Managed files are under the control of the build.
 These include generated sources and resources as well as resolved and retrieved dependencies and compiled classes.
 
 Tasks that produce managed files should be inserted as follows:
+
 ```scala
 sourceGenerators in Compile <+= sourceManaged in Compile map { out =>
 	generate(out / "some_directory")
@@ -44,6 +46,7 @@ The `<+=` method is like `+=`, but allows the right hand side to have inputs (li
 So, we are appending a new task to the list of main source generators (`sourceGenerators in Compile`).
 
 To insert a named task, which is the better approach for plugins:
+
 ```scala
 sourceGenerators in Compile <+= (mySourceGenerator in Compile).task.identity
 
@@ -53,6 +56,7 @@ mySourceGenerator in Compile <<= sourceManaged in Compile map { out =>
 ```
 
 where `mySourceGenerator` is defined as:
+
 ```scala
 val mySourceGenerator = TaskKey[Seq[File]](...)
 ```
@@ -98,15 +102,11 @@ Use the [[inspect command|Inspecting Settings]] for more details.
 You have a standalone project which uses a library that loads xxx.properties from classpath at run time. You put xxx.properties inside directory "config". When you run "sbt run", you want the directory to be in classpath.
 
 ```scala
-
 unmanagedClasspath in Runtime <<= (unmanagedClasspath in Runtime, baseDirectory) map { (cp, bd) => cp :+ Attributed.blank(bd / "config") }
-
 ```
 
 Or shorter:
 
 ```scala
-
 unmanagedClasspath in Runtime <+= (baseDirectory) map { bd => Attributed.blank(bd / "config") }
-
 ```
