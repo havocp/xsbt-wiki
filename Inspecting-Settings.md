@@ -6,7 +6,8 @@ The goal of this page is to explain the general model behind the configuration s
 
 # Selecting commands, tasks, and settings
 
-A fully-qualified reference to a setting or task looks like;
+A fully-qualified reference to a setting or task looks like:
+
 ```text
 {<build-uri>}<project-id>/config:key(for key2)
 ```
@@ -25,6 +26,7 @@ Otherwise, the first configuration defining the key is selected, where order is 
 By default, this ordering is `compile, test, ...`
 
 For example, the following are equivalent when run in a project `root` in the build in `/home/user/sample/`:
+
 ```text
 > compile
 > compile:compile
@@ -36,6 +38,7 @@ For example, the following are equivalent when run in a project `root` in the bu
 As another example, `run` by itself refers to `compile:run` because there is no global `run` task and the first configuration searched, `compile`, defines a `run`.
 Therefore, to reference the `run` task for the `test` configuration, the configuration axis must be specified like `test:run`.
 Some other examples that require the explicit `test:` axis:
+
 ```text
 > test:console-quick
 > test:console
@@ -52,6 +55,7 @@ Each package task should be able to have different values for these settings.
 
 This is done with the task axis, which selects the task to apply a setting to.
 For example, the following prints the output jar for the different package tasks.
+
 ```text
 > artifact-path(for package)
 [info] /home/user/sample/target/scala-2.8.1.final/demo_2.8.1-0.1.jar
@@ -89,6 +93,7 @@ For example,
 
 This shows that `library-dependencies` has been defined on the current project (`{file:/home/user/sample/}root`) in the global configuration (`*:`).
 For a task like `update`, the output looks like:
+
 ```text
 > inspect update
 [info] Task
@@ -123,6 +128,7 @@ This distinction is explained in more detail in the following sections.
 ### Requested Dependencies
 
 As an example, we'll look at `console`:
+
 ```text
 > inspect console
 ...
@@ -178,6 +184,7 @@ Returning to the example in Requested Dependencies,
 
 For `initial-commands`, we see that it comes from the global scope (`*/*:`).
 Combining this with the relevant output from `inspect console`:
+
 ```
 {file:/home/user/sample/}root/initial-commands(for console)
 ```
@@ -192,6 +199,7 @@ This means that we can, for example, set `initial-commands` for the whole projec
 
 The reason we might want to set it here this is that other console tasks will use this value now.
 We can see which ones use our new setting by looking at the reverse dependencies output of `inspect actual`:
+
 ```text
 > inspect actual initial-commands
 ...
@@ -228,6 +236,7 @@ The delegation chain is well-defined and is displayed in the Delegates section o
 The Delegates section shows the order in which scopes are searched when a value is not defined for the requested key.
 
 As an example, consider the initial commands for `console` again:
+
 ```text
 > inspect initial-commands(for console)
 ...
