@@ -197,7 +197,7 @@ This section provides information about the types of the left and right-hand sid
 The left hand side of a setting definition is of type [ScopedSetting].
 This type has two parts: a key (of type [SettingKey]) and a scope (of type [Scope]).
 An unspecified scope is like using `this` to refer to the current context.
-The previous examples on this page have not defined an explicit scope.
+The previous examples on this page have not defined an explicit scope. See [[Inspecting Settings]] for details on the axes that make up scopes.
 
 The target (value on the left) of a method like `:=` identifies one of the main constructs in sbt: a setting, a task, or an input task.
 It is not an actual setting or task, but a key representing a setting or task.
