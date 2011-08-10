@@ -16,6 +16,7 @@ A full definition is made up of one or more Scala source files that describe rel
 Create a file with extension `.sbt` in your root project directory (such as `<your-project>/build.sbt`).  This file contains Scala expressions of type `Setting[T]` that are separated by blank lines.  Built-in settings typically have reasonable defaults (an exception is `publishTo`).  A project typically redefines at least `name` and `version` and often `libraryDependencies`.  All built-in settings are listed in [Keys].
 
 A sample `build.sbt`:
+
 ```scala
 // Set the project name to the string 'My Project'
 name := "My Project"
@@ -59,6 +60,7 @@ publishTo <<= version { (v: String) =>
 * Because everything is parsed as an expression, no semicolons are allowed at the ends of lines.
 * All initialization methods end with `=` so that they have the lowest possible precedence.  Except when passing a function literal to `~=`, you do not need to use parentheses for either side of the method.
   Ok:
+
 ```scala
 libraryDependencies += "junit" % "junit" % "4.8" % "test"
 libraryDependencies.+=("junit" % "junit" % "4.8" % "test")
@@ -66,6 +68,7 @@ defaultExcludes ~= (_ || "*~")
 defaultExcludes ~= (filter => filter || "*~")
 ```
   Error:
+
 ```console
 defaultExcludes ~= _ || "*~"
 
@@ -77,6 +80,7 @@ defaultExcludes ~= _ || "*~"
                 ^
 ```
 * A block is an expression, with the last statement in the block being the result.  For example, the following is an expression:
+
 ```scala
 {
 	val x = 3
@@ -85,6 +89,7 @@ defaultExcludes ~= _ || "*~"
 }
 ```
 An example of using a block to construct a Setting:
+
 ```scala
 version := {
 	// Define a regular expression to match the current branch
@@ -106,12 +111,15 @@ version := {
   * `key ++= value` is equivalent to `key ~= (_ ++ value)` or `key <<= key(_ ++ value)`
 * There can be multiple `.sbt` files per project.  This feature can be used, for example, to put user-specific configurations in a separate file.
 * Import clauses are allowed at the beginning of a `.sbt` file.  Since they are clauses, no semicolons are allowed.  The need not be separated by blank lines, but each import must be on one line.  For example,
+
 ```scala
 import scala.xml.NodeSeq
 import math.{abs, pow}
 ```
  * These imports are defined by default in a `.sbt` file:
+
 ```scala
+
 import sbt._
 import Process._
 import Keys._
@@ -127,6 +135,7 @@ Each expression describes an initialization operation.  The simplest operation i
 The target (left side value) of a method like `:=` identifies one of the constructs in sbt: settings, tasks, and input tasks.  It is not an actual setting or task, but a key representing a setting or task.  A setting is a value assigned when a project is loaded.  A task is a unit of work that is run on-demand zero or more times after a project is loaded and also produces a value.  An input task, previously known as a Method Task in 0.7 and earlier, accepts an input string and produces a task to be run.  The renaming is because it can accept arbitrary input in 0.10 and not just a space-delimited sequence of arguments like in 0.7.
 
 A construct (setting, task, or input task) is identified by a scoped key, which is a pair `(Scope, AttributeKey[T])`.  An `AttributeKey` associates a name with a type and is a typesafe key for use in an `AttributeMap`.  Attributes are best illustrated by the `get` and `put` methods on `AttributeMap`:
+
 ```scala
 def get[T](key: AttributeKey[T]): Option[T]
 def put[T](key: AttributeKey[T], value: T): AttributeMap
@@ -137,6 +146,7 @@ For example, given a value `k: AttributeKey[String]` and a value `m: AttributeMa
 In sbt, a Scope is mainly defined by a project reference and a configuration (such as 'test' or 'compile').  Project data is stored in a Map[Scope, AttributeMap].  Each Scope identifies a map.  You can sort of compare a Scope to a reference to an object and an AttributeMap to the object's data.
 
 In order to provide appropriate convenience methods for constructing an initialization operation for each construct, an AttributeKey is constructed through either a SettingKey, TaskKey, or InputKey:
+
 ```scala
 // underlying key: AttributeKey[String]
 val name = SettingKey[String]("name")
