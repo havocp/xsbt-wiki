@@ -9,6 +9,7 @@ A Build defines project relationships and configurations.
 Create a file with extension `.scala` in your `project/` directory (such as `<your-project>/project/Build.scala`).
 
 A sample `project/Build.scala`:
+
 ```scala
 import sbt._
 
@@ -76,6 +77,7 @@ object MyBuild extends Build
 ### Augment Defaults
 
 To augment the default settings, the following Project definitions are equivalent:
+
 ```scala
 	lazy val a1 = Project("a", file("subA")) settings(name := "Additional", version := "1.0")
 	
