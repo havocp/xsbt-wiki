@@ -41,6 +41,7 @@ This causes cycles at the Scala-level, but not within a particular dependency ty
 ## Defining Projects
 
 An internal project is defined by constructing an instance of `Project`.  The minimum information for a new project is its ID string and base directory.  For example:
+
 ```scala
 	import sbt._
 
@@ -64,6 +65,7 @@ In particular, all keys (like `name` and `version`) need to be imported from `sb
 ### No defaults
 
 For example, to define a build from scratch (with no default settings or tasks):
+
 ```scala
 	import sbt_
 	import Keys._
