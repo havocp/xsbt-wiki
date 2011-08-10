@@ -80,6 +80,22 @@ myTask <<= packagedArtifact in (Compile, packageBin) map { case (art: Artifact, 
 
 where `val myTask = TaskKey[Unit]`.
 
+# Publishing .war files
+
+A common use case for web applications is to publish the `.war` file instead of the `.jar` file.
+
+```scala
+// disable .jar publishing 
+publishArtifact in (Compile, packageBin) := false 
+
+// create an Artifact for publishing the .war file 
+artifact in (Compile, packageWar) ~= { (art: Artifact) => 
+  art.copy(`type` = "war", extension = "war") 
+} 
+
+// add the .war file to what gets published 
+addArtifact(artifact in (Compile, packageWar), packageWar) 
+```
 
 # Defining custom artifacts
 
