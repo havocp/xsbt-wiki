@@ -111,12 +111,14 @@ Lastly, settings can be defined for the entire build.
 In general, these are used when a setting is not defined for a project.
 These settings are declared either by augmenting `Build.settings` or defining settings in the scope of the current build.
 For example, to set the shell prompt to be the id for the current project, the following setting can be added to a `.sbt` file:
+
 ```scala
 shellPrompt in ThisBuild := { s => Project.extract(s).currentProject.id + "> " }
 ```
 
 (The value is a function `State => String`.  `State` contains everything about the build and will be discussed elsewhere.)
 Alternatively, the setting can be defined in `Build.settings`:
+
 ```scala
 	import sbt._
 	import Keys._
@@ -140,11 +142,13 @@ In the simplest case, this is a `Project` object.  (Technically, there is an imp
 This indicates a dependency on a project within the same build.
 It is possible to declare a dependency on a project in a directory separate from the current build, in a git repository, or in a project packaged into a jar and accessible via http/https.
 These are referred to as external builds and projects.  You can reference the root project in an external build with `RootProject`:
+
 ```scala
 RootProject( file("/home/user/a-project") )
 RootProject( uri("git://github.com/dragos/dupcheck.git") )
 ```
 or a specific project within the external build can be referenced using a `ProjectRef`:
+
 ```scala
 ProjectRef( uri("git://github.com/dragos/dupcheck.git"), "project-id")
 ```
@@ -172,6 +176,7 @@ If 'clean' is executed on `sub2`, it will also be executed on `ext` (the locally
 If 'clean' is executed on `root`, it will also be executed on `sub1`, `sub2`, and `ext`.
 
 Aggregation can be controlled more finely by configuring the `aggregate` setting.  This setting is of type `Aggregation`:
+
 ```scala
 sealed trait Aggregation 
 final case class Implicit(enabled: Boolean) extends Aggregation
@@ -185,6 +190,7 @@ This key can be set in any scope, including per-task scopes.  By default, aggreg
 ```
 
 (There is an implicit `Boolean => Implicit` where `true` translates to `Implicit(true)` and `false` translates to `Implicit(false)`).  Similarly, aggregation can be disabled for the current project using:
+
 ```scala
 > set aggregate in clean := false
 ```
@@ -202,6 +208,7 @@ Typically, this implies that the dependency will ensure its classpath is up-to-d
 
 A classpath dependency declaration consists of a project reference and an optional configuration mapping.
 For example, to use project b's `compile` configuration from project a's `test` configuration:
+
 ```scala
 lazy val a = Project(...) dependsOn(b % "test->compile")
 lazy val b = Project(...)
