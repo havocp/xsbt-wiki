@@ -50,6 +50,7 @@ As an example, we'll add the Grizzled Scala library as a plugin.  Although this 
 ### 1b) Automatically managed: direct editing approach
 
 Edit `project/plugins/build.sbt` to contain:
+
 ```scala
 libraryDependencies += "org.clapper" %% "grizzled-scala" % "1.0.4"
 ```
@@ -59,6 +60,7 @@ If sbt is running, do `reload`.
 ### 1c) Automatically managed: command line approach
 
 We can change to the plugins project in `project/plugins/` using `reload plugins`.
+
 ```console
 $ xsbt
 > reload plugins
@@ -68,6 +70,7 @@ $ xsbt
 
 Then, we can add dependencies like usual and save them to `project/plugins/build.sbt`.
 It is useful, but not required, to run `update` to verify that the dependencies are correct.
+
 ```console
 > set libraryDependencies += "org.clapper" %% "grizzled-scala" % "1.0.4"
 ...
@@ -78,6 +81,7 @@ It is useful, but not required, to run `update` to verify that the dependencies 
 ```
 
 To switch back to the main project:
+
 ```console
 > reload return
 [info] Set current project to root (in build file:/Users/harrah/demo2/)
@@ -89,6 +93,7 @@ This variant shows how to use the external project support in sbt 0.10 to declar
 This means that the plugin will be built from source and used on the classpath.
 
 Edit `project/plugins/project/Build.scala`
+
 ```scala
 import sbt._
 object PluginDef extends Build {
@@ -105,6 +110,7 @@ This saves the intermediate steps of `publish-local` and `clean-plugins` require
 It can also be used to work with the development version of a plugin from its repository.
 
 It is recommended to explicitly specify the commit or tag by appending it to the repository as a fragment:
+
 ```scala
 lazy val webPlugin = uri("git://github.com/siasia/xsbt-web-plugin#0.9.7")
 ```
@@ -120,6 +126,7 @@ This includes the `eval` and `set` commands and `.sbt` and `project/*.scala` fil
 
 
 In a `build.sbt` file:
+
 ```scala
 import grizzled.sys._
 import OperatingSystem._
@@ -158,6 +165,7 @@ These features should be used judiciously because the automatic activation remov
 An example of a typical plugin:
 
 `build.sbt`:
+
 ```scala
 sbtPlugin := true
 
@@ -167,6 +175,7 @@ organization := "org.example"
 ```
 
 `MyPlugin.scala`:
+
 ```scala
 import sbt._
 object MyPlugin extends Plugin
@@ -191,6 +200,7 @@ object MyPlugin extends Plugin
 ## Usage example
 
 A light build definition that uses the plugin might look like:
+
 ```scala
 seq( MyPlugin.newSettings : _*)
 
@@ -198,6 +208,7 @@ newSetting := "light"
 ```
 
 A full build definition that uses this plugin might look like:
+
 ```scala
 object MyBuild extends Build
 {
@@ -209,6 +220,7 @@ object MyBuild extends Build
 ```
 
 Individual settings could be defined in `MyBuild.scala` above or in a `build.sbt` file:
+
 ```scala
 newSettings := "overridden"
 ```
@@ -217,6 +229,7 @@ newSettings := "overridden"
 A basic plugin that adds commands looks like:
 
 `build.sbt`
+
 ```scala
 sbtPlugin := true
 
@@ -226,6 +239,7 @@ organization := "org.example"
 ```
 
 `MyPlugin.scala`
+
 ```scala
 import sbt._
 import Keys._
@@ -245,6 +259,7 @@ This example demonstrates how to take a Command (here, `myCommand`) and distribu
 
 ## Global plugins example
 The simplest global plugin definition is declaring a library or plugin in `~/.sbt/plugins/build.sbt`:
+
 ```scala
 libraryDependencies += "org.example" %% "example-plugin" % "0.1"
 ```
