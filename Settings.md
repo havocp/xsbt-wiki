@@ -86,7 +86,7 @@ object Good extends Build
 There is fundamentally one type of initialization, represented by the `<<=` method.
 The other initialization methods `:=`, `+=`, `++=`, `<+=`, `<++=`, and `~=` can be defined in terms of it.
 
-The motiviation behind the method names is:
+The motivation behind the method names is:
 
 * All method end with `=` to obtain the lowest possible infix precedence.
 * A method starting with `<` indicates that the initialization uses other settings.
