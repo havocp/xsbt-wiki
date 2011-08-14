@@ -28,8 +28,10 @@ object ShellPrompt {
     def error (s: => String) { }
     def buffer[T] (f: => T): T = f
   }
-  
-  def currBranch = "git status -sb".lines_!.headOption getOrElse "-" stripPrefix "## "
+  def currBranch = (
+    ("git status -sb" lines_! devnull headOption)
+      getOrElse "-" stripPrefix "## "
+  )
 
   val buildShellPrompt = { 
     (state: State) => {
