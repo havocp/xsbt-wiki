@@ -29,13 +29,13 @@ object ShellPrompt {
     def buffer[T] (f: => T): T = f
   }
   
-  def currentGitBranch = "git status -sb".lines_!.headOption getOrElse "-" stripPrefix "## "
+  def currBranch = "git status -sb".lines_!.headOption getOrElse "-" stripPrefix "## "
 
   val buildShellPrompt = { 
     (state: State) => {
       val currProject = Project.extract (state).currentProject.id
       "%s:%s:%s> ".format (
-        currProject, currentGitBranch, BuildSettings.buildVersion
+        currProject, currBranch, BuildSettings.buildVersion
       )
     }
   }
