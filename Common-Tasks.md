@@ -13,7 +13,8 @@ This section is extracted from a [mailing list discussion](http://groups.google.
 
 ## Basics
 
-A basic run task is created by: 
+A basic run task is created by:
+
 ```scala
   // this lazy val has to go in a full configuration 
   lazy val myRunTask = TaskKey[Unit]("my-run-task")
@@ -45,6 +46,7 @@ javaOptions in myRunTask += "-Xmx6144m"
 Something that might be helpful for groups of tasks is defining delegation for tasks. 
 
 The following key definitions specify that settings for `myRun` delegate to `aRun`
+
 ```scala
 val aRun = TaskKey[Unit]("a-run", "A run task.") 
 
@@ -53,6 +55,7 @@ val myRun = TaskKey[Unit]("my-run", "Custom run task.", aRun)
 ```
 
 In use, this looks like:
+
 ```scala
 // Make the run task as before. 
 fullRunTask(myRun, Compile, "pkg.Main", "arg1", "arg2") 
@@ -106,6 +109,7 @@ By default, generated sources and resources are not included in the packaged sou
 The files included in an artifact are configured by default by a task `mappings` that is scoped by the relevant package task.  The `mappings` task returns a sequence `Seq[(File,String)]` of mappings from the file to include to the path within the jar.  See [[Mapping Files]] for details on creating these mappings.
 
 For example, to add generated sources to the packaged source artifact:
+
 ```scala
 mappings in (Compile, packageSrc) <++=
   (sourceManaged in Compile, managedSources in Compile) map { (base, srcs) =>
@@ -121,6 +125,7 @@ This takes sources from the `managedSources` task and relativizes them against t
 The following example demonstrates adding a new set of compilation settings and tasks to a new configuration called `samples`.  The sources for this configuration go in `src/samples/scala/`.  Unspecified settings delegate to those defined for the `compile` configuration.  For example, if `scalacOptions` are not overridden for `samples`, the options for the main sources are used.
 
 Options specific to `samples` may be declared like:
+
 ```scala
 scalacOptions in Samples += "-deprecation"
 ```
@@ -132,6 +137,7 @@ scalacOptions in Samples := "-deprecation" :: Nil
 ```
 
 The example adds all of the usual compilation related settings and tasks to `samples`: 
+
 ```text
 samples:run
 samples:run-main
