@@ -1,7 +1,7 @@
 [uniform test interface]: http://github.com/harrah/test-interface
 [TestReportListener]: http://harrah.github.com/xsbt/latest/api/sbt/TestReportListener.html
 [TestsListener]: http://harrah.github.com/xsbt/latest/api/sbt/TestsListener.html
-[junit-interface](https://github.com/szeiger/junit-interface)
+[junit-interface]: https://github.com/szeiger/junit-interface
 
 # Testing
 
