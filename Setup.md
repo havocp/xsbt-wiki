@@ -32,7 +32,7 @@ A common set of options is:
 -Dfile.encoding=UTF8 -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256m
 ```
 
-**Note**: You can share the `project/boot` directory between all sbt projects on a machine by setting the `sbt.boot.directory` system property to the directory to use.  For example, `-Dsbt.boot.directory=/home/user/.sbt/boot/`.
+**Note**: You can share the `project/boot` directory between all sbt projects on a machine by setting the `sbt.boot.directory` system property to the directory to use.  For example, `-Dsbt.boot.directory=$HOME/.sbt/boot/`.
 
 ## Unix
 Put the jar in your `~/bin` directory, put the line:
