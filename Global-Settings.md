@@ -5,6 +5,7 @@
 As of 0.10.1, settings that should be applied to all projects can go in a `.sbt` file in `~/.sbt/`.  Plugins that are defined globally in `~/.sbt/plugins` are available to these settings.  For example, to change the default `shellPrompt` for your projects:
 
 `~/.sbt/global.sbt`
+
 ```scala
 shellPrompt := { state =>
  "sbt (%s)> ".format(Project.extract(state).currentProject.id)
