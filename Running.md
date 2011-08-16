@@ -10,6 +10,8 @@ $ sbt
 
 This starts sbt in interactive mode.  You are given a prompt at which you type commands.  Tab completion and history are available at this prompt.
 
+**Note**: Since 0.10, sbt launches git to manage assets.  Make sure that `git` is executable from your path.
+
 Alternatively, you can run sbt in batch mode.  You specify a space-separated list of actions as arguments.  For commands that take arguments, pass the command and arguments as one argument to `sbt` by enclosing them in quotes.  For example,
 
 ```text
