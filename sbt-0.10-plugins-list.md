@@ -60,6 +60,10 @@ The purpose of this page is to aid developers in finding plugins that work with 
 * xsbt-scalate-generate (Generate/Precompile Scalate Templates): https://github.com/mojolly/xsbt-scalate-generate
 * sbt-antlr (Generate Java source code based on ANTLR3 grammars): https://github.com/stefri/sbt-antlr
 
+### Documentation plugins
+
+* sbt-lwm (Convert lightweight markup files, such as Markdown and Textile, to HTML): https://software.clapper.org/sbt-lwm/
+
 ### Utility plugins
 
 * sbt-editsource (A poor man's *sed*(1), for SBT): http://software.clapper.org/sbt-editsource/
