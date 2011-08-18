@@ -10,6 +10,7 @@ Ivy configurations are a useful feature for your build when you use managed depe
 The built-in use of configurations in sbt is similar to scopes in Maven.  sbt adds dependencies to different classpaths by the configuration that they are defined in.  See the description of [Maven Scopes] for details.
 
 You put a dependency in a configuration by selecting one or more of its configurations to map to one or more of your project's configurations.  The most common case is to have one of your configurations `A` use a dependency's configuration `B`.  The mapping for this looks like `"A->B"`.  To apply this mapping to a dependency, add it to the end of your dependency definition:
+
 ```scala
 libraryDependencies += "org.scalatest" % "scalatest" % "1.2" % "test->compile"
 ```
@@ -17,6 +18,7 @@ libraryDependencies += "org.scalatest" % "scalatest" % "1.2" % "test->compile"
 This says that your project's `test` configuration uses `ScalaTest`'s `default` configuration.  Again, see the [Ivy documentation] for more advanced mappings.  Most projects published to Maven repositories will use the `default` or `compile` configuration.
 
 A useful application of configurations is to group dependencies that are not used on normal classpaths.  For example, your project might use a `"js"` configuration to automatically download jQuery and then include it in your jar by modifying `resources`.  For example:
+
 ```scala
 ivyConfigurations += config("js") hide
 
@@ -31,6 +33,7 @@ The `config` method defines a new configuration with name `"js"` and makes it pr
 See [[Update Report]] for more information on selecting managed artifacts.
 
 A configuration without a mapping (no `"->"`) is mapped to `default` or `compile`.  The `->` is only needed when mapping to a different configuration than those.  The ScalaTest dependency above can then be shortened to:
+
 ```scala
 libraryDependencies += "org.scala-tools.testing" % "scalatest" % "1.0" % "test"
 ```
