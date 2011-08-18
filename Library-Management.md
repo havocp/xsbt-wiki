@@ -14,16 +14,19 @@ There are two ways for you to manage libraries with sbt: manually or automatical
 Manually managing dependencies involves copying any jars that you want to use to the `lib` directory.  sbt will put these jars on the classpath during compilation, testing, running, and when using the interpreter.  You are responsible for adding, removing, updating, and otherwise managing the jars in this directory.  No modifications to your project definition are required to use this method unless you would like to change the location of the directory you store the jars in.
 
 To change the directory jars are stored in, change the `unmanaged-base` setting in your project definition.  For example, to use `custom_lib/`:
+
 ```scala
 unmanagedBase <<= baseDirectory { base => base / "custom_lib" }
 ```
 
 If you want more control and flexibility, override the `unmanaged-jars` task, which ultimately provides the manual dependencies to sbt.  The default implementation is roughly:
+
 ```scala
 unmanagedJars in Compile <<= baseDirectory map { base => (base ** "*.jar").classpath }
 ```
 
 If you want to add jars from multiple directories in addition to the default directory, you can do:
+
 ```
 unmanagedJars in Compile <++= baseDirectory map { base =>
 	val baseDirectories = (base / "libA") +++ (base / "b" / "lib") +++ (base / "libC")
@@ -51,16 +54,19 @@ Inline declarations are a basic way of specifying the dependencies to be automat
 ### Dependencies
 
 Declaring a dependency looks like:
+
 ```scala
 libraryDependencies += groupID % artifactID % revision
 ```
 
 or
+
 ```scala
 libraryDependencies += groupID % artifactID % revision % configuration
 ```
 
 See [[Configurations]] for details on configuration mappings.  Also, several dependencies can be declared together:
+
 ```scala
 libraryDependencies ++= Seq(
 	groupID %% artifactID % revision,
@@ -69,6 +75,7 @@ libraryDependencies ++= Seq(
 ```
 
 If you are using a dependency that was built with sbt, double the first `%` to be `%%`:
+
 ```scala
 libraryDependencies += groupID %% artifactID % revision
 ```
@@ -81,12 +88,15 @@ Ivy can select the latest revision of a module according to constraints you spec
 ### Resolvers
  
 sbt uses the standard Maven2 repository and the Scala Tools Releases (<http://scala-tools.org/repo-releases>) repositories by default.
+
 Declare additional repositories with the form:
+
 ```scala
 resolvers += name at location
 ```
 
 For example:
+
 ```scala
 libraryDependencies ++= Seq(
 	"org.apache.derby" % "derby" % "10.4.1.3",
@@ -97,11 +107,13 @@ resolvers += "Scala-Tools Maven2 Snapshots Repository" at "http://scala-tools.or
 ```
 
 The scala-tools.org snapshots repository can be referenced a bit more conveniently:
+
 ```scala
 resolvers += ScalaToolsSnapshots
 ```
 
 sbt can search your local Maven repository if you add it as a repository:
+
 ```scala
 resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
 ```
@@ -113,11 +125,13 @@ See [[Resolvers]] for details on defining other types of repositories.
 `resolvers` configures additional, inline user resolvers.  By default, `sbt` combines these resolvers with default repositories (Maven Central, Scala Tools, and the local Ivy repository) to form `external-resolvers`.  To have more control over repositories, set `external-resolvers` directly.  To only specify repositories in addition to the usual defaults, configure `resolvers`.
 
 For example, to use the Scala Tools snapshots repository in addition to the default repositories,
+
 ```scala
 resolvers += ScalaToolsSnapshots
 ```
 
 To use the local and Maven Central repositories, but not the Scala Tools releases repository:
+
 ```scala
 externalResolvers <<= resolvers map { rs =>
   Resolver.withDefaultResolvers(rs, mavenCentral = true, scalaTools = false)
@@ -147,11 +161,13 @@ libraryDependencies += "org.apache.felix" % "org.apache.felix.framework" % "1.8.
 ### Classifiers
 
 You can specify the classifer for a dependency using the `classifier` method.  For example, to get the jdk15 version of TestNG:
+
 ```scala
 libraryDependencies += "org.testng" % "testng" % "5.7" classifier "jdk15"
 ```
 
 To obtain particular classifiers for all dependencies transitively, run the `update-classifiers` task.  By default, this resolves all artifacts with the `sources` or `javadoc` classifer.  Select the classifiers to obtain by configuring the `transitive-classifiers` setting.  For example, to only retrieve sources:
+
 ```scala
 transitiveClassifiers := Seq("sources")
 ```
@@ -161,11 +177,13 @@ transitiveClassifiers := Seq("sources")
 [Extra attributes] can be specified by passing key/value pairs to the `extra` method.
 
 To select dependencies by extra attributes:
+
 ```scala
 libraryDependencies += "org" % "name" % "rev" extra("color" -> "blue")
 ```
 
 To define extra attributes on the current project:
+
 ```scala
 projectID <<= projectID { id =>
     id extra("color" -> "blue", "component" -> "compiler-interface")
@@ -177,6 +195,7 @@ projectID <<= projectID { id =>
 sbt additionally supports directly specifying the configurations or dependencies sections of an Ivy configuration file inline.  You can mix this with inline Scala dependency and repository declarations.
 
 For example:
+
 ```scala
 ivyXML :=
   <dependencies>
@@ -192,6 +211,7 @@ By default, sbt uses the standard Ivy home directory location `${user.home}/.ivy
 This can be configured machine-wide, for use by both the sbt launcher and by projects, by setting the system property `sbt.ivy.home` in the sbt startup script (described in [[Setup]]).
 
 For example:
+
 ```text
 java -Dsbt.ivy.home=/tmp/.ivy2/ ...
 ```
@@ -201,11 +221,13 @@ java -Dsbt.ivy.home=/tmp/.ivy2/ ...
 sbt ([through Ivy]) verifies the checksums of downloaded files by default.  It also publishes checksums of artifacts by default.  The checksums to use are specified by the _checksums_ setting.
 
 To disable checksum checking and publishing:
+
 ```scala
 checksums := Nil
 ```
 
 The default value is:
+
 ```scala
 checksums := Seq("sha1", "md5")
 ```
