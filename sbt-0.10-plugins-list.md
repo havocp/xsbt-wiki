@@ -62,7 +62,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 
 ### Documentation plugins
 
-* sbt-lwm (Convert lightweight markup files, such as Markdown and Textile, to HTML): https://software.clapper.org/sbt-lwm/
+* sbt-lwm (Convert lightweight markup files, e.g., Markdown and Textile, to HTML): http://software.clapper.org/sbt-lwm/
 
 ### Utility plugins
 
