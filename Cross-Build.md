@@ -13,11 +13,13 @@ The rest of this page describes how `sbt` handles this for you as part of cross-
 # Using Cross-Built Libraries
 
 To use a library built against multiple versions of Scala, double the first `%` in an inline dependency to be `%%`.  This tells `sbt` that it should append the current version of Scala being used to build the library to the dependency's name.  For example:
+
 ```scala
   libraryDependencies += "net.databinder" %% "dispatch" % "0.8.0"
 ```
 
 A nearly equivalent, manual alternative for a fixed version of Scala is:
+
 ```scala
   libraryDependencies += "net.databinder" % "dispatch_2.8.1" % "0.8.0"
 ```
@@ -25,16 +27,19 @@ A nearly equivalent, manual alternative for a fixed version of Scala is:
 # Cross-Building a Project
 
 Define the versions of Scala to build against in the `cross-scala-versions` setting.  Versions of Scala 2.7.2 or later are allowed.  For example, in a `.sbt` build definition:
+
 ```scala
 crossScalaVersions := Seq("2.7.7", "2.8.0", "2.8.1")
 ```
 
 To build against all versions listed in `build.scala.versions`, prefix the action to run with `+`.  For example:
+
 ```text
 > + package
 ```
 
 A typical way to use this feature is to do development on a single Scala version (no `+` prefix) and then cross-build (using `+`) occasionally and when releasing.  The ultimate purpose of `+` is to cross-publish your project.  That is, by doing:
+
 ```text
 > + publish
 ```
