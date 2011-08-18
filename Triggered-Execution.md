@@ -13,6 +13,7 @@ Some example usages are described below.
 # Compile
 
 The original use-case was continuous compilation:
+
 ```scala
 > ~ test-compile
 
@@ -24,6 +25,7 @@ The original use-case was continuous compilation:
 You can use the triggered execution feature to run any command or task.  One use is for test driven development, as suggested by Erick on the mailing list.
 
 The following will poll for changes to your source code (main or test) and run `test-only` for the specified test.
+
 ```scala
 > ~ test-only example.TestA
 ```
@@ -36,4 +38,5 @@ If you use `jetty-run` from the [web plugin], you can automatically build and re
 > jetty-run
 > ~ prepare-webapp
 ```
+
 This will first start Jetty and then trigger execution of the action that builds the web application provided to Jetty.  The `jetty-run` action will pick up changes and redeploy.
