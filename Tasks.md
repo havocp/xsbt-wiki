@@ -66,6 +66,7 @@ Run "sbt hello" from command line to invoke the task. Run "sbt tasks" to see thi
 ## Define the key
 
 To declare a new task, define a `TaskKey` in your [[Full Configuration]]:
+
 ```scala
 val sampleTask = TaskKey[Int]("sample-task")
 ```
@@ -76,6 +77,7 @@ By convention, the Scala identifier is camelCase and the runtime identifier uses
 The type parameter passed to `TaskKey` (here, `Int`) is the type of value produced by the task.
 
 We'll define a couple of other of tasks for the examples:
+
 ```scala
 val intTask = TaskKey[Int]("int-task")
 val stringTask = TaskKey[String]("string-task")
