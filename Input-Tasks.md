@@ -53,6 +53,7 @@ val parser: Initialize[State => Parser[(String,String)]] =
 This Parser definition will produce a value of type `(String,String)`.
 The input syntax isn't very flexible; it is just a demonstration.
 It will produce one of the following values for a successful parse (assuming the current Scala version is 2.9.0-1, the current sbt version is 0.10.0, and there are 3 commands left to run):
+
 ```scala
 ("scala", "2.9.0-1")
 ("sbt", "0.10.0")
