@@ -44,6 +44,7 @@ There are also operators defined for redirecting output to `File`s and input fro
 * `a #>> file` or `file #<< a`   Append the output of `a` to `file`.  `a` may be a `File`, `URL`, or a command.
 
 There are some additional methods to get the output from a forked process into a `String` or the output lines as a `Stream[String]`.  Here are some examples, but see the [ProcessBuilder API] for details.
+
 ```scala
 val listed: String = "ls" !!
 val lines2: Stream[String] = "ls" lines_!
@@ -54,13 +55,15 @@ Finally, there is a `cat` method to send the contents of `File`s and `URL`s to s
 ## Examples
 
 Download a `URL` to a `File`:
-```
+
+```scala
 url("http://databinder.net/dispatch/About") #> file("About.html") !
 or
 file("About.html") #< url("http://databinder.net/dispatch/About") !
 ```
 
 Copy a `File`:
+
 ```scala
 file("About.html") #> file("About_copy.html") !
 or
@@ -68,6 +71,7 @@ file("About_copy.html") #< file("About.html") !
 ```
 
 Append the contents of a `URL` to a `File` after filtering through `grep`:
+
 ```scala
 url("http://databinder.net/dispatch/About") #> "grep JSON" #>> file("About_JSON") !
 or
@@ -75,11 +79,13 @@ file("About_JSON") #<< ( "grep JSON" #< url("http://databinder.net/dispatch/Abou
 ```
 
 Search for uses of `null` in the source directory:
+
 ```scala
 "find src -name *.scala -exec grep null {} ;"  #|  "xargs test -z"  #&&  "echo null-free"  #||  "echo null detected"  !
 ```
 
 Use `cat`:
+
 ```scala
 val spde = url("http://technically.us/spde/About")
 val dispatch = url("http://databinder.net/dispatch/About")
