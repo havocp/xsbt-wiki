@@ -28,8 +28,9 @@ assert( mappings == expected )
 The `Path.rebase` method relativizes an input file against one or more base directories (the first argument) and then prepends a base String or File (the second argument) to the result.  As with `relativeTo`, the first base directory that is an ancestor of the input file is used in the case of multiple base directories.
 
 For example, the following demonstrates building a `Seq[(File, String)]` using `rebase`:
+
 ```scala
-  import Path.rebase
+import Path.rebase
 val files: Seq[File] = file("/a/b/C.scala") :: Nil
 val baseDirectories: Seq[File] = file("/a") :: Nil
 val mappings: Seq[(File,String)] = files x rebase(baseDirectories, "pre/")
@@ -39,8 +40,9 @@ assert( mappings == expected )
 ```
 
 Or, to build a `Seq[(File, File)]`:
+
 ```scala
-  import Path.rebase
+import Path.rebase
 val files: Seq[File] = file("/a/b/C.scala") :: Nil
 val baseDirectories: Seq[File] = file("/a") :: Nil
 val newBase: File = file("/new/base")
@@ -55,7 +57,7 @@ assert( mappings == expected )
 The `Path.flat` method provides a function that maps a file to the last component of the path (its name).  For a File to File mapping, the input file is mapped to a file with the same name in a given target directory.  For example:
 
 ```scala
-  import Path.flat
+import Path.flat
 val files: Seq[File] = file("/a/b/C.scala") :: Nil
 val mappings: Seq[(File,String)] = files x flat
 
@@ -64,8 +66,9 @@ assert( mappings == expected )
 ```
 
 To build a `Seq[(File, File)]` using `flat`:
+
 ```scala
-  import Path.flat
+import Path.flat
 val files: Seq[File] = file("/a/b/C.scala") :: Nil
 val newBase: File = file("/new/base")
 val mappings: Seq[(File,File)] = files x flat(newBase)
@@ -79,7 +82,7 @@ assert( mappings == expected )
 To try to apply several alternative mappings for a file, use `|`, which is implicitly added to a function of type `A => Option[B]`.  For example, to try to relativize a file against some base directories but fall back to flattening:
 
 ```scala
-  import Path.relativeTo
+import Path.relativeTo
 val files: Seq[File] = file("/a/b/C.scala") :: file("/zzz/D.scala") :: Nil
 val baseDirectories: Seq[File] = file("/a") :: Nil
 val mappings: Seq[(File,String)] = files x ( relativeTo(baseDirectories) | flat )
