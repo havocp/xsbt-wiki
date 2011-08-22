@@ -34,6 +34,7 @@ The launcher may be configured in one of the following ways in increasing order 
  * Specify the location of an alternate configuration on the command line.  This can be done by either specifying the location as the system property `sbt.boot.properties` or as the first argument to the launcher prefixed by `'@'`.  The system property has lower precedence.  Resolution of a relative path is first attempted against the current working directory, then against the user's home directory, and then against the directory containing the launcher jar.  An error is generated if none of these attempts succeed.
 
 The configuration file is line-based, read as UTF-8 encoded, and defined by the following grammer.  `'nl'` is a newline or end of file and `'text'` is plain text without newlines or the surrounding delimiters (such as parentheses or square brackets):
+
 ```
 configuration ::= scala app repositories boot log app-properties
   scala ::= '[' 'scala' ']' nl version nl classifiers nl
@@ -82,6 +83,7 @@ configuration ::= scala app repositories boot log app-properties
 ```
 
 The default configuration file for sbt looks like:
+
 ```
 [scala]
   version: 2.8.1
@@ -112,6 +114,7 @@ The default configuration file for sbt looks like:
 The `scala.version` property specifies the version of Scala used to run the application.  If specified, the `scala.classifiers`property defines classifers, such as 'sources', of extra Scala artifacts to retrieve.  The `app.org`, `app.name`, and `app.version` properties specify the organization, module ID, and version of the application, respectively.  These are used to resolve and retrieve the application from the repositories listed in `[repositories]`.  If `app.cross-versioned` is true, the resolved module ID is `{app.name+'_'+scala.version}`.  The paths given in `app.resources` are added to the application's classpath.  If the path is relative, it is resolved against the application's working directory.  If specified, the app.classifiers`property defines classifers, like 'sources', of extra artifacts to retrieve for the application.
 
 Jars are retrieved to the directory given by `boot.directory`.  You can make this an absolute path to be shared by all sbt instances on the machine.  You might see messages like:
+
 ```
   Waiting for lock on <lock-file> to be available...
 ```
@@ -154,6 +157,7 @@ This section shows how to make an application that is launched by this launcher.
 ```
 
 Make the entry point to your class implement 'xsbti.AppMain'.  An example that uses some of the information:
+
 ```scala
 package xsbt.test
 class Main extends xsbti.AppMain
