@@ -125,8 +125,10 @@ import Process._
 import Keys._
 ```
 In addition, the contents of all public `Build` and `Plugin` objects from the full definition are imported.
-* sbt uses the blank lines to separate the expressions and then it sends them off to the Scala compiler.  Each expression is parsed, compiled, and loaded independently.  The settings are combined into a `Seq[Setting[_]]` and passed to the settings engine.  The engine groups the settings by key, preserving order per key though, and then computes the order in which each setting needs to be evaluated.  Cycles and references to uninitialized settings are detected here and dead settings are dropped.  Finally, the settings are transformed into a function that is applied to an initially empty map.
-* Because the expressions can be separated before the compiler, sbt only needs to recompile expressions that change.  So, the work to respond to changes is proportional to the number of settings that changed and not the number of settings defined in the build.  If imports change, all expression in the `.sbt` file need to be recompiled.
+
+sbt uses the blank lines to separate the expressions and then it sends them off to the Scala compiler.  Each expression is parsed, compiled, and loaded independently.  The settings are combined into a `Seq[Setting[_]]` and passed to the settings engine.  The engine groups the settings by key, preserving order per key though, and then computes the order in which each setting needs to be evaluated.  Cycles and references to uninitialized settings are detected here and dead settings are dropped.  Finally, the settings are transformed into a function that is applied to an initially empty map.
+
+Because the expressions can be separated before the compiler, sbt only needs to recompile expressions that change.  So, the work to respond to changes is proportional to the number of settings that changed and not the number of settings defined in the build.  If imports change, all expression in the `.sbt` file need to be recompiled.
 
 ## Implementation Details (even more information)
 
