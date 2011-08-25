@@ -110,7 +110,7 @@ version := {
   * `key += value` is equivalent to `key ~= (_ :+ value)` or `key <<= key(_ :+ value)`
   * `key ++= value` is equivalent to `key ~= (_ ++ value)` or `key <<= key(_ ++ value)`
 * There can be multiple `.sbt` files per project.  This feature can be used, for example, to put user-specific configurations in a separate file.
-* Import clauses are allowed at the beginning of a `.sbt` file.  Since they are clauses, no semicolons are allowed.  The need not be separated by blank lines, but each import must be on one line.  For example,
+* Import clauses are allowed at the beginning of a `.sbt` file.  Since they are clauses, no semicolons are allowed.  They need not be separated by blank lines, but each import must be on one line.  For example,
 
 ```scala
 import scala.xml.NodeSeq
