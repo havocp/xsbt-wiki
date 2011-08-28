@@ -75,4 +75,4 @@ The purpose of this page is to aid developers in finding plugins that work with 
 
 ### Android plugin
 
-* android-plugin: https://github.com/philcali/android-plugin
+* android-plugin: https://github.com/jberkel/android-plugin
