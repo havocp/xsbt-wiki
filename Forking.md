@@ -14,11 +14,13 @@ By default, a forked process uses the same Java and Scala versions being used fo
 The following examples demonstrate forking the `run` action and changing the working directory or arguments.
 
 To enable forking all `run`-like methods (`run`, `run-main`, `test:run`, and `test:run-main`), set `fork` to `true`.
+
 ```scala
 fork in run := true
 ```
 
 To only fork `test:run` and `test:run-main`:
+
 ```scala
 fork in (Test,run) := true
 ```
@@ -28,6 +30,7 @@ Similarly, set `fork in Compile := true` to only fork the main `run` tasks.  `ru
 # Change working directory
 
 To change the working directory when forked, set `baseDirectory in run` or `baseDirectory in (Test, run)`:
+
 ```scala
 // sets the working directory for all `run`-like tasks
 baseDirectory in run := file("/path/to/working/directory/")
@@ -42,11 +45,13 @@ baseDirectory in (Test,run) := file("/path/to/working/directory/")
 # Forked JVM options
 
 To specify options to be provided to the forked JVM, set `javaOptions`:
+
 ```scala
 javaOptions in run += "-Xmx8G"
 ```
 
 or specify the configuration to affect only the main or test `run` tasks:
+
 ```scala
 javaOptions in (Test,run) += "-Xmx8G"
 ```
@@ -54,11 +59,13 @@ javaOptions in (Test,run) += "-Xmx8G"
 # Java Home
 
 Select the Java installation to use by setting the `java-home` directory:
+
 ```scala
 javaHome := file("/path/to/jre/")
 ```
 
 Note that if this is set globally, it also sets the Java installation used to compile Java sources.  You can restrict it to running only by setting it in the `run` scope:
+
 ```scala
 javaHome in run := file("/path/to/jre/")
 ```
