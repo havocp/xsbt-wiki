@@ -1,6 +1,8 @@
+[sbt.SettingDefinition]: http://harrah.github.com/xsbt/latest/api/sbt/Init$SettingsDefinition.html
+
 Listed here are some examples of settings (each setting is independent).  See [[Basic Configuration]] for details.
 
-_Please note_ that blank lines are used to separate individual settings. Avoid using blank lines within a single multiline expression.
+_Please note_ that blank lines are used to separate individual settings. Avoid using blank lines within a single multiline expression.  As explained in [[Settings]], each setting is otherwise a normal Scala expression with expected type [sbt.SettingDefinition].
 
 ```scala
 // set the name of the project
@@ -9,6 +11,15 @@ name := "My Project"
 version := "1.0"
 
 organization := "org.myproject"
+
+// set the Scala version used for the project
+scalaVersion := "2.9.0-SNAPSHOT"
+
+// set the main Scala source directory to be <base>/src
+scalaSource in Compile <<= baseDirectory(_ / "src")
+
+// set the Scala test source directory to be <base>/test
+scalaSource in Test <<= baseDirectory(_ / "test")
 
 // add a test dependency on ScalaCheck
 libraryDependencies += "org.scala-tools.testing" %% "scalacheck" % "1.8" % "test"
@@ -36,9 +47,6 @@ javacOptions ++= Seq("-source", "1.5", "-target", "1.5")
 
 // append -deprecation to the options passed to the Scala compiler
 scalacOptions += "-deprecation"
-
-// set the Scala version used for the project
-scalaVersion := "2.9.0-SNAPSHOT"
 
 // define the statements initially evaluated when entering 'console', 'console-quick', or 'console-project'
 initialCommands := """
