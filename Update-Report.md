@@ -22,6 +22,7 @@ The filters are defined by the [DependencyFilter], [ConfigurationFilter], [Modul
 Using these filter types, you can filter by the configuration name, the module organization, name, or revision, and the artifact name, type, extension, or classifier.
 
 The relevant methods (implicitly on `UpdateReport`) are:
+
 ```scala
   def matching(f: DependencyFilter): Seq[File]
 
@@ -52,6 +53,7 @@ val cf: ConfigurationFilter = configurationFilter(name = "compile" | "test")
 ```
 
 Alternatively, these filters, including a `NameFilter`, may be directly defined by an appropriate predicate (a single-argument function returning a Boolean).
+
 ```scala
 import sbt._
 
@@ -141,6 +143,7 @@ Configuration, module, and artifact filters are `DependencyFilter`s themselves a
 Note that the symbols for the `DependencyFilter` combining methods are doubled up to distinguish them from the combinators of the more specific filters for configurations, modules, and artifacts.
 These double-character methods will always return a `DependencyFilter`, whereas the single character methods preserve the more specific filter type.
 For example:
+
 ```scala
 import sbt._
 
