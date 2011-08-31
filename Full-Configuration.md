@@ -13,19 +13,18 @@ A sample `project/Build.scala`:
 ```scala
 import sbt._
 
-object MyBuild extends Build
-{
-	// Declare a project in the root directory of the build with ID "root".
-	// Declare an execution dependency on sub1.
-	lazy val root = Project("root", file(".")) aggregate(sub1)
+object MyBuild extends Build {
+  // Declare a project in the root directory of the build with ID "root".
+  // Declare an execution dependency on sub1.
+  lazy val root = Project("root", file(".")) aggregate(sub1)
 
-	// Declare a project with ID 'sub1' in directory 'a'.
-	// Declare a classpath dependency on sub2 in the 'test' configuration.
-	lazy val sub1: Project = Project("sub1", file("a")) dependsOn(sub2 % "test")
+  // Declare a project with ID 'sub1' in directory 'a'.
+  // Declare a classpath dependency on sub2 in the 'test' configuration.
+  lazy val sub1: Project = Project("sub1", file("a")) dependsOn(sub2 % "test")
 
-	// Declare a project with ID 'sub2' in directory 'b'.
-	// Declare a configuration dependency on the root project.
-	lazy val sub2 = Project("sub2", file("b"), delegates = root :: Nil)
+  // Declare a project with ID 'sub2' in directory 'b'.
+  // Declare a configuration dependency on the root project.
+  lazy val sub2 = Project("sub2", file("b"), delegates = root :: Nil)
 }
 ```
 
@@ -43,11 +42,10 @@ This causes cycles at the Scala-level, but not within a particular dependency ty
 An internal project is defined by constructing an instance of `Project`.  The minimum information for a new project is its ID string and base directory.  For example:
 
 ```scala
-	import sbt._
+import sbt._
 
-object MyBuild extends Build
-{
-	lazy val projectA = Project("a", file("subA"))
+object MyBuild extends Build {
+  lazy val projectA = Project("a", file("subA"))
 }
 ```
 This constructs a project definition for a project with ID 'a' and located in the `<project root>/subA` directory.
@@ -67,12 +65,11 @@ In particular, all keys (like `name` and `version`) need to be imported from `sb
 For example, to define a build from scratch (with no default settings or tasks):
 
 ```scala
-	import sbt_
-	import Keys._
+import sbt_
+import Keys._
 
-object MyBuild extends Build
-{
-	lazy val projectA = Project("a", file("subA"), settings = Seq(name := "From Scratch"))
+object MyBuild extends Build {
+  lazy val projectA = Project("a", file("subA"), settings = Seq(name := "From Scratch"))
 }
 ```
 
@@ -81,11 +78,11 @@ object MyBuild extends Build
 To augment the default settings, the following Project definitions are equivalent:
 
 ```scala
-	lazy val a1 = Project("a", file("subA")) settings(name := "Additional", version := "1.0")
-	
-	lazy val a2 = Project("a", file("subA"),
-		settings = Defaults.defaultSettings ++ Seq(name := "Additional", version := "1.0")
-	)
+lazy val a1 = Project("a", file("subA")) settings(name := "Additional", version := "1.0")
+
+lazy val a2 = Project("a", file("subA"),
+  settings = Defaults.defaultSettings ++ Seq(name := "Additional", version := "1.0")
+)
 ```
 
 ### Select Defaults
@@ -94,12 +91,11 @@ Web support is now split out into a plugin.
 With the plugin declared, its settings can be selected like:
 
 ```scala
-	import sbt_
-	import Keys._
+import sbt_
+import Keys._
 
-object MyBuild extends Build
-{
-	lazy val projectA = Project("a", file("subA"), settings = Web.webSettings)
+object MyBuild extends Build {
+  lazy val projectA = Project("a", file("subA"), settings = Web.webSettings)
 }
 ```
 
@@ -120,16 +116,15 @@ shellPrompt in ThisBuild := { s => Project.extract(s).currentProject.id + "> " }
 Alternatively, the setting can be defined in `Build.settings`:
 
 ```scala
-	import sbt._
-	import Keys._
-object MyBuild extends Build
-{
-	override lazy val settings = super.settings :+
-		(shellPrompt := { s => Project.extract(s).cid + "> " })
-	...
+import sbt._
+import Keys._
+
+object MyBuild extends Build {
+  override lazy val settings = super.settings :+
+    (shellPrompt := { s => Project.extract(s).cid + "> " })
+  ...
 }
 ```
-
 
 ## Project Relationships
 
