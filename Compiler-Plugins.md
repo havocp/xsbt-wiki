@@ -22,6 +22,7 @@ scalacOptions <<= (scalacOptions, scalaSource in Compile) { (options, base) =>
 ```
 
 You can still specify compiler plugins manually.  For example:
+
 ```scala
 scalacOptions += "-Xplugin:<path-to-sxr>/sxr-0.2.7.jar"
 ```
