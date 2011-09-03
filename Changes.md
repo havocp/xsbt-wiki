@@ -1,14 +1,35 @@
+[#114]: https://github.com/harrah/xsbt/issues/114
+[#115]: https://github.com/harrah/xsbt/issues/115
+[#118]: https://github.com/harrah/xsbt/issues/118
+[#120]: https://github.com/harrah/xsbt/issues/120
+[#121]: https://github.com/harrah/xsbt/issues/121
+[#128]: https://github.com/harrah/xsbt/issues/128
+[#131]: https://github.com/harrah/xsbt/issues/131
+[#132]: https://github.com/harrah/xsbt/issues/132
+[#135]: https://github.com/harrah/xsbt/issues/135
+[#139]: https://github.com/harrah/xsbt/issues/139
+[#140]: https://github.com/harrah/xsbt/issues/140
+[#145]: https://github.com/harrah/xsbt/issues/145
+[#156]: https://github.com/harrah/xsbt/issues/156
+[#157]: https://github.com/harrah/xsbt/issues/157
+[#162]: https://github.com/harrah/xsbt/issues/162
+
 ### 0.10.1 to 0.11.0 (pending)
 
 Major Improvements:
 
- * Move to 2.9.1 for project definitions and plugins
- * Drop support for 2.7
- * Settings overhaul, mainly to make API documentation more usable
- * Support using native libraries in `run` and `test` (but not `console`, for example)
- * Automatic plugin cross-versioning:
-    Use `addSbtPlugin("group" % "name" % "version")` in `project/plugins/p.sbt` instead of `libraryDependencies += ...`
-    See [[Plugins]] for details
+* Move to 2.9.1 for project definitions and plugins
+* Drop support for 2.7
+* Settings overhaul, mainly to make API documentation more usable
+* Support using native libraries in `run` and `test` (but not `console`, for example)
+* Automatic plugin cross-versioning.  Use
+
+    ```scala
+    addSbtPlugin("group" % "name" % "version")
+    ```
+
+    in `project/plugins.sbt` instead of `libraryDependencies += ...`   See [[Plugins]] for details
+
 
 Fixes and Improvements:
 
@@ -17,17 +38,17 @@ Fixes and Improvements:
  * Default to using shared boot directory in `~/.sbt/boot/`
  * Can put contents of `project/plugins/` directly in `project/` instead.  Will likely deprecate `plugins/` directory
  * Key display is context sensitive.  For example, in a single project, the build and project axes will not be displayed
- * #114, #118, #121, #132, #135, #157: Various settings and error message improvements
- * #115: Support configuring checksums separately for `publish` and `update`
- * #118: Add `about` command
- * #118, #131: Improve `last` command.  Aggregate `last <task>` and display all recent output for `last`
- * #120: Support read-only external file projects (Fred)
- * #128: Add `skip` setting to override recompilation change detection
- * #139: Improvements to pom generation (Indrajit)
- * #140, #145: Add standard manifest attributes to binary and source jars (Indrajit)
+ * [#114], [#118], [#121], [#132], [#135], [#157]: Various settings and error message improvements
+ * [#115]: Support configuring checksums separately for `publish` and `update`
+ * [#118]: Add `about` command
+ * [#118], [#131]: Improve `last` command.  Aggregate `last <task>` and display all recent output for `last`
+ * [#120]: Support read-only external file projects (Fred)
+ * [#128]: Add `skip` setting to override recompilation change detection
+ * [#139]: Improvements to pom generation (Indrajit)
+ * [#140], [#145]: Add standard manifest attributes to binary and source jars (Indrajit)
  * Allow sources used for `doc` generation to be different from sources for `compile`
- * #156: Made `package` an alias for `package-bin`
- * #162: handling of optional dependencies in pom generation
+ * [#156]: Made `package` an alias for `package-bin`
+ * [#162]: handling of optional dependencies in pom generation
 
 ### 0.10.0 to 0.10.1
 
