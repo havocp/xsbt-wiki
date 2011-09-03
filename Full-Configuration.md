@@ -148,6 +148,12 @@ or a specific project within the external build can be referenced using a `Proje
 ProjectRef( uri("git://github.com/dragos/dupcheck.git"), "project-id")
 ```
 
+The fragment part of the git URI can be used to specify a specific branch or tag.  For example:
+
+```scala
+RootProject( uri("git://github.com/typesafehub/sbteclipse.git#v1.2") )
+```
+
 Ultimately, a `RootProject` is resolved to a `ProjectRef` once the external project is loaded.
 Additionally, there are implicit conversions `URI => RootProject` and `File => RootProject` so that URIs and Files can be used directly.
 External, remote builds are retrieved or checked out to a staging directory in the user's `.sbt` directory so that they can be manipulated like local builds.
