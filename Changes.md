@@ -1,3 +1,34 @@
+### 0.10.1 to 0.11.0 (pending)
+
+Major Improvements:
+
+ * Move to 2.9.1 for project definitions and plugins
+ * Drop support for 2.7
+ * Settings overhaul, mainly to make API documentation more usable
+ * Support using native libraries in `run` and `test` (but not `console`, for example)
+ * Automatic plugin cross-versioning:
+    Use `addSbtPlugin("group" % "name" % "version")` in `project/plugins/p.sbt` instead of `libraryDependencies += ...`
+    See [[Plugins]] for details
+
+Fixes and Improvements:
+
+ * Display all undefined settings at once, instead of only the first one
+ * Deprecate separate `classpathFilter`, `defaultExcludes`, and `sourceFilter` keys in favor of `includeFilter` and `excludeFilter` explicitly scoped by `unmanagedSources`, `unmanagedResources`, or `unmanagedJars` as appropriate (Indrajit)
+ * Default to using shared boot directory in `~/.sbt/boot/`
+ * Can put contents of `project/plugins/` directly in `project/` instead.  Will likely deprecate `plugins/` directory
+ * Key display is context sensitive.  For example, in a single project, the build and project axes will not be displayed
+ * #114, #118, #121, #132, #135, #157: Various settings and error message improvements
+ * #115: Support configuring checksums separately for `publish` and `update`
+ * #118: Add `about` command
+ * #118, #131: Improve `last` command.  Aggregate `last <task>` and display all recent output for `last`
+ * #120: Support read-only external file projects (Fred)
+ * #128: Add `skip` setting to override recompilation change detection
+ * #139: Improvements to pom generation (Indrajit)
+ * #140, #145: Add standard manifest attributes to binary and source jars (Indrajit)
+ * Allow sources used for `doc` generation to be different from sources for `compile`
+ * #156: Made `package` an alias for `package-bin`
+ * #162: handling of optional dependencies in pom generation
+
 ### 0.10.0 to 0.10.1
 
 Some of the more visible changes:
