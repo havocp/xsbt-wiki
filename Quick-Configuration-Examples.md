@@ -153,7 +153,7 @@ traceLevel := 10
 traceLevel := 0
 
 // add SWT to the unmanaged classpath
-unmanagedJars in Compile += file("/usr/share/java/swt.jar")
+unmanagedJars in Compile += Attributed.blank(file("/usr/share/java/swt.jar"))
 
 // publish test jar, sources, and docs
 publishArtifact in Test := true
