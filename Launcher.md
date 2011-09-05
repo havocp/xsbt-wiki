@@ -186,7 +186,7 @@ class Main extends xsbti.AppMain
 			case _ => new Exit(0)
 		}
 	}
-	class Exit(val code) extends xsbti.Exit
+	class Exit(val code: Int) extends xsbti.Exit
 }
 ```
 
