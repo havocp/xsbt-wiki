@@ -33,6 +33,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 
 * sbt-assembly: https://github.com/eed3si9n/sbt-assembly
 * xsbt-proguard-plugin: https://github.com/siasia/xsbt-proguard-plugin
+* sbt-deploy: https://github.com/reaktor/sbt-deploy
 
 ### CoffeeScript Plugin
 
