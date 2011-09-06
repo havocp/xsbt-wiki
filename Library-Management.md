@@ -259,5 +259,5 @@ externalIvySettings()
 Maven support is dependent on Ivy's support for Maven POMs.
 Known issues with this support:
 
- * Specifying `relativePath` in the `parent` section of a POM will produce an error.
- * Ivy ignores repositories specified in the POM.  A workaround is to specify repositories inline or in an Ivy `ivysettings.xml` file.
+* Specifying `relativePath` in the `parent` section of a POM will produce an error.
+* Ivy ignores repositories specified in the POM.  A workaround is to specify repositories inline or in an Ivy `ivysettings.xml` file.
