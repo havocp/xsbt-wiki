@@ -45,7 +45,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 
 ### Release plugins
 
-* posterous-sbt: https://github.com/n8han/posterous-sbt/tree/sbt0.10
+* posterous-sbt: https://github.com/n8han/posterous-sbt
 * sbt-signer-plugin: https://github.com/rossabaker/sbt-signer-plugin
 * sbt-izpack (generates IzPack an installer): http://software.clapper.org/sbt-izpack/
 
