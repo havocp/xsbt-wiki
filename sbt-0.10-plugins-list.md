@@ -27,6 +27,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 
 ### Static Code Analysis plugins
 
+* cpd4sbt: https://bitbucket.org/jmhofer/cpd4sbt (copy/paste detection, works for Scala, too)
 * findbugs4sbt: https://bitbucket.org/jmhofer/findbugs4sbt (FindBugs only supports Java projects atm)
 
 ### One jar plugins
