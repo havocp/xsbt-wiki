@@ -5,15 +5,15 @@
 
 # Forking
 
-By default, the `run` action runs in the same JVM as sbt.  Forking is required under [[certain circumstances|Running Project Code]], however.  Or, you might want to fork Java processes when implementing new tasks.
+By default, the `run` task runs in the same JVM as sbt.  Forking is required under [[certain circumstances|Running Project Code]], however.  Or, you might want to fork Java processes when implementing new tasks.
 
-By default, a forked process uses the same Java and Scala versions being used for the build and the working directory and JVM options of the current process.  This page discusses how to enable and configure forking.
+By default, a forked process uses the same Java and Scala versions being used for the build and the working directory and JVM options of the current process.  This page discusses how to enable and configure forking.  Note that sbt cannot fork tests, only the `run` tasks.
 
 # Enable forking
 
 The following examples demonstrate forking the `run` action and changing the working directory or arguments.
 
-To enable forking all `run`-like methods (`run`, `run-main`, `test:run`, and `test:run-main`), set `fork` to `true`.
+To enable forking all `run`-like tasks (`run`, `run-main`, `test:run`, and `test:run-main`), set `fork` to `true`.
 
 ```scala
 fork in run := true
