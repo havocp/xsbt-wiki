@@ -104,3 +104,12 @@ The key is to initialize the Settings for the interpreter using _embeddedDefault
 ```
 
 Here, MyType is a representative class that should be included on the interpreter's classpath and in its application class loader.  For more background, see the [original proposal] that resulted in _embeddedDefaults_ being added.
+
+Similarly, use a representative class as the type argument when using the _break_ and _breakIf_ methods of _ILoop_, as in the following example:
+
+```scala
+  def x(a: Int, b: Int) = {
+    import scala.tools.nsc.interpreter.ILoop
+    ILoop.breakIf[MyType](a != b, "a" -> a, "b" -> b )
+  }
+```
