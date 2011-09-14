@@ -18,6 +18,7 @@
 ## Maven
 
 Resolvers for Maven2 repositories are added as follows:
+
 ```scala
 resolvers += "Scala-Tools Maven2 Snapshots Repository" at "http://scala-tools.org/repo-snapshots"
 ```
@@ -37,6 +38,7 @@ A few predefined repositories are available and are listed below
  This is the Maven 1 repository at [[http://download.java.net/maven/1/]]
 
 For example, to use the `java.net` repository, use the following setting in your build definition:
+
 ```scala
 resolvers += JavaNet1Repository
 ```
@@ -61,6 +63,7 @@ These are basic examples that use the default Maven-style repository layout.
 #### Filesystem
 
 Define a filesystem repository in the `test` directory  of the current working directory and declare that publishing to this repository must be atomic.
+
 ```scala
 resolvers += Resolver.file("my-test-repo", file("test")) transactional()
 ```
@@ -68,29 +71,35 @@ resolvers += Resolver.file("my-test-repo", file("test")) transactional()
 #### URL
 
 Define a URL repository at .`"http://example.org/repo-releases/"`.
+
 ```scala
 resolvers += Resolver.url("my-test-repo", url("http://example.org/repo-releases/"))
 ```
 
 To specify an Ivy repository, use:
+
 ```
 resolvers += Resolver.url("my-test-repo", url)(Resolver.ivyStylePatterns)
 ```
+
 or customize the layout pattern described in the Custom Layout section below.
 
 #### SFTP and SSH Repositories
 
 The following defines a repository that is served by SFTP from host `"example.org"`:
+
 ```scala
 resolvers += Resolver.sftp("my-sftp-repo", "example.org")
 ```
 
 To explicitly specify the port:
+
 ```scala
 resolvers += Resolver.sftp("my-sftp-repo", "example.org", 22)
 ```
 
 To specify a base path:
+
 ```scala
 resolvers += Resolver.sftp("my-sftp-repo", "example.org", "maven2/repo-releases/")
 ```
@@ -98,16 +107,19 @@ resolvers += Resolver.sftp("my-sftp-repo", "example.org", "maven2/repo-releases/
 Authentication for the repositories returned by `sftp` and `ssh` can be configured by the `as` methods.
 
 To use password authentication:
+
 ```scala
 resolvers += Resolver.ssh("my-ssh-repo", "example.org") as("user", "password")
 ```
 
 or to be prompted for the password:
+
 ```scala
 resolvers += Resolver.ssh("my-ssh-repo", "example.org") as("user")
 ```
 
 To use key authentication:
+
 ```scala
 resolvers += {
   val keyFile: File = ...
@@ -116,11 +128,13 @@ resolvers += {
 ```
 
 or if no keyfile password is required or if you want to be prompted for it:
+
 ```scala
 resolvers += Resolver.ssh("my-ssh-repo", "example.org") as("user", keyFile)
 ```
 
 To specify the permissions used when publishing to the server:
+
 ```scala
 resolvers += Resolver.ssh("my-ssh-repo", "example.org") withPermissions("0644")
 ```
@@ -130,6 +144,7 @@ This is a chmod-like mode specification.
 ### Custom Layout
 
 These examples specify custom repository layouts using patterns.  The factory methods accept an `Patterns` instance that defines the patterns to use.  The patterns are first resolved against the base file or URL.  The default patterns give the default Maven-style layout.  Provide a different Patterns object to use a different layout.  For example:
+
 ```scala
 resolvers += Resolver.url("my-test-repo", url)( Patterns("[organisation]/[module]/[revision]/[artifact].[ext]") )
 ```
@@ -137,6 +152,7 @@ resolvers += Resolver.url("my-test-repo", url)( Patterns("[organisation]/[module
 You can specify multiple patterns or patterns for the metadata and artifacts separately.  You can also specify whether the repository should be Maven compatible (as defined by Ivy).  See the [patterns API] for the methods to use.
 
 For filesystem and URL repositories, you can specify absolute patterns by omitting the base URL, passing an empty `Patterns` instance, and using `ivys` and `artifacts`:
+
 ```scala
 resolvers += Resolver.url("my-test-repo") artifacts
         "http://example.org/[organisation]/[module]/[revision]/[artifact].[ext]"
