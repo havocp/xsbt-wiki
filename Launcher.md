@@ -91,7 +91,7 @@ The default configuration file for sbt looks like:
 [app]
   org: org.scala-tools.sbt
   name: sbt
-  version: read(sbt.version)[0.10.1]
+  version: read(sbt.version)[0.11.0]
   class: ${sbt.main.class-sbt.xMain}
   components: xsbti,extra
   cross-versioned: true
@@ -151,9 +151,9 @@ The main class for the application is then instantiated.  It must be a public cl
 This section shows how to make an application that is launched by this launcher.  First, declare a dependency on the launcher-interface.  Do not declare a dependency on the launcher itself.  The launcher interface consists strictly of Java interfaces in order to avoid binary incompatibility between the version of Scala used to compile the launcher and the version used to compile your application.  The launcher interface class will be provided by the launcher, so it is only a compile-time dependency.  If you are building with sbt, your dependency definition would be:
 
 ```scala
-  libraryDependencies += "org.scala-tools.sbt" %% "launcher-interface" % "0.10.1" % "provided"
+  libraryDependencies += "org.scala-tools.sbt" %% "launcher-interface" % "0.11.0" % "provided"
 
-  resolvers <+= sbtResolver.identity
+  resolvers <+= sbtResolver
 ```
 
 Make the entry point to your class implement 'xsbti.AppMain'.  An example that uses some of the information:
@@ -194,11 +194,11 @@ Next, define a configuration file for the launcher.  For the above class, it mig
 
 ```scala
 [scala]
-  version: 2.8.1
+  version: 2.9.1
 [app]
   org: org.scala-tools.sbt
   name: xsbt-test
-  version: 0.10.1
+  version: 0.11.0
   class: xsbt.test.Main
   cross-versioned: true
 [repositories]

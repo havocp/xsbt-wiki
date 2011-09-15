@@ -35,13 +35,13 @@ Valid `Level` values are `Debug, Info, Warn, Error`.
 You can run an action for multiple versions of Scala by prefixing the action with `+`.  See [[Cross Build]] for details.  You can temporarily switch to another version of Scala using `++ <version>`.  This version does not have to be listed in your build definition, but it does have to be available in a repository.  You can also include the initial command to run after switching to that version.  For example:
 
 ```text
-> ++ 2.7.7 console-quick
+> ++2.9.1 console-quick
 ...
-Welcome to Scala version 2.7.7.final (Java HotSpot(TM) Server VM, Java 1.6.0).
+Welcome to Scala version 2.9.1.final (Java HotSpot(TM) Server VM, Java 1.6.0).
 ...
 scala>
 ...
-> ++ 2.8.1 console-quick
+> ++2.8.1 console-quick
 ...
 Welcome to Scala version 2.8.1 (Java HotSpot(TM) Server VM, Java 1.6.0).
 ...
@@ -132,7 +132,7 @@ Configuration-level tasks are tasks associated with a configuration.  For exampl
 
 * `reload [plugins|return]`
   If no argument is specified, reloads the build, recompiling any build or plugin definitions as necessary.
-  `reload plugins` changes the current project to the plugin definition (in `project/plugins/`).  This can be useful to directly manipulate the plugin definition.  For example, running `clean` on the plugin definition project will force snapshots to be updated.
+  `reload plugins` changes the current project to the build definition project (in `project/`).  This can be useful to directly manipulate the build definition.  For example, running `clean` on the build definition project will force snapshots to be updated and the build definition to be recompiled.
   `reload return` changes back to the main project.
 * `set <setting-expression>`
   Evaluates and applies the given setting definition.  The setting applies until sbt is restarted, the build is reloaded, or the setting is overridden by another `set` command or removed by the `session` command.  See [[Basic Configuration]] and [[Inspecting Settings]] for details.

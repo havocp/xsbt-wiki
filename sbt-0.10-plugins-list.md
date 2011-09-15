@@ -1,6 +1,6 @@
-The purpose of this page is to aid developers in finding plugins that work with sbt 0.10 and for plugin developers to promote their plugins possibly by adding some brief description.
+The purpose of this page is to aid developers in finding plugins that work with sbt 0.10+ and for plugin developers to promote their plugins possibly by adding some brief description.
 
-## 0.10 Plugins:
+## Plugins
 
 ### Plugins for IDEs:
  

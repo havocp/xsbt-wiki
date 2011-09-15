@@ -10,7 +10,7 @@
     * [[Console Project]]
     * [[Inspecting Settings]]
     * [[Running Project Code]]
-    * [[sbt 0.10 Plugins List]]
+    * [[sbt Plugins List|sbt 0.10 Plugins List]]
 * Configuration
     * [[Settings]]
     * [[Basic Configuration]]
@@ -54,8 +54,8 @@
 * Project Information
     * [[Credits]]
     * [[Changes]]
-    * [[Source code|https://github.com/harrah/xsbt/tree/0.10]]
-    * [[License|https://github.com/harrah/xsbt/blob/0.10/LICENSE]]
+    * [[Source code|https://github.com/harrah/xsbt/tree/0.11]]
+    * [[License|https://github.com/harrah/xsbt/blob/0.11/LICENSE]]
     * [[API Documentation|http://harrah.github.com/xsbt/latest/api/index.html]]
     * [[SXR Documentation|http://harrah.github.com/xsbt/latest/sxr/index.html]]
     * [[Opportunities]]

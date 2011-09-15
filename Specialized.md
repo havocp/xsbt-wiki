@@ -43,18 +43,10 @@ def augment(extra: Seq[File])(s: State): State =
 
 ## Project load and unload hooks
 
-The single, global setting `onLoad` is of type `State => State` (see [[Build State]]) and is executed once, after all projects are built and loaded.  There is a similar hook `onUnload` for when a project is unloaded.  Project unloading typically occurs as a result of a `reload` command or a `set` command.
-
-Because the `onLoad` and `onUnload` hooks are global, modifying this setting typically involves composing a new function with the previous value.  Unfortunately, sbt doesn't provide a default for `onLoad` and `onUnload` (this is planned for 0.10.2), so we need to ensure one exists first.  The following example shows the basic structure of defining `onLoad`, including this workaround:
+The single, global setting `onLoad` is of type `State => State` (see [[Build State]]) and is executed once, after all projects are built and loaded.  There is a similar hook `onUnload` for when a project is unloaded.  Project unloading typically occurs as a result of a `reload` command or a `set` command.  Because the `onLoad` and `onUnload` hooks are global, modifying this setting typically involves composing a new function with the previous value.  The following example shows the basic structure of defining `onLoad`:
 
 ```scala
-// The workaround for sbt not providing a default.
-// This makes onLoad the identity function (x: State) => x 
-//   if it isn't defined.
-onLoad in Global <<= (onLoad in Global) ?? identity[State]
-
-// This is the useful part, where we compose our new function 'f'
-//   with the existing transformation.
+// Compose our new function 'f' with the existing transformation.
 {
   val f: State => State = ...
   onLoad in Global ~= (f compose _)
@@ -66,9 +58,6 @@ onLoad in Global <<= (onLoad in Global) ?? identity[State]
 The following example maintains a count of the number of times a project has been loaded and prints that number:
 
 ```scala
-// The workaround from above.
-onLoad in Global <<= (onLoad in Global) ?? identity[State]
-
 {
   // the key for the current count
   val key = AttributeKey[Int]("load-count")

@@ -3,7 +3,7 @@ You want to install sbt.
 
 ## Solution
 ### Unix, including Mac OS
-1. Download the [launcher jar](http://typesafe.artifactoryonline.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.10.1/sbt-launch.jar).
+1. Download the [launcher jar](http://typesafe.artifactoryonline.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.11.0/sbt-launch.jar).
 2. Put the launcher jar somewhere in your path, such as `~/bin` or `/usr/local/bin`
 3. Use a text editor to make a script called `sbt` that executes the jar. While you can modify the command line arguments to suit your own needs (to increase the maximum memory available to the JVM, for example), your script should look something like this:
 

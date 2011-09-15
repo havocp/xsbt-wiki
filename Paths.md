@@ -15,7 +15,7 @@ This page describes files, sequences of files, and file filters.  The base type 
 
 ## Constructing a File
 
-sbt 0.10 uses [java.io.File] to represent a file instead of the custom `sbt.Path` class that was in sbt 0.7 and earlier.
+sbt 0.10+ uses [java.io.File] to represent a file instead of the custom `sbt.Path` class that was in sbt 0.7 and earlier.
 sbt defines the alias `File` for `java.io.File` so that an extra import is not necessary.
 The `file` method is an alias for the single-argument `File` constructor to simplify constructing a new file from a String:
 

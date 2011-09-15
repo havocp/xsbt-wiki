@@ -14,7 +14,7 @@
 [#157]: https://github.com/harrah/xsbt/issues/157
 [#162]: https://github.com/harrah/xsbt/issues/162
 
-### 0.10.1 to 0.11.0 (pending)
+### 0.10.1 to 0.11.0
 
 Major Improvements:
 

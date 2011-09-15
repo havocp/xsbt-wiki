@@ -2,17 +2,18 @@
 [full definition]: https://github.com/harrah/xsbt/wiki/Full-Configuration
 [ScopedSetting]: http://harrah.github.com/xsbt/latest/api/sbt/ScopedSetting.html
 [Scope]: http://harrah.github.com/xsbt/latest/api/sbt/Scope$.html
+[Initialize]: http://harrah.github.com/xsbt/latest/api/sbt/Init$Initialize.html
 [SettingKey]: http://harrah.github.com/xsbt/latest/api/sbt/SettingKey.html
+[Keys]: http://harrah.github.com/xsbt/latest/sxr/Keys.scala.html
 [InputKey]: http://harrah.github.com/xsbt/latest/api/sbt/InputKey.html
 [TaskKey]: http://harrah.github.com/xsbt/latest/api/sbt/TaskKey.html
+[Append]: http://harrah.github.com/xsbt/latest/api/sbt/Append$.html
 
 ## Introduction
 
-(This page is still a work in progress.  It is intended to become the starting point for learning configuration in 0.10.)
-
 A build definition is written in Scala.
 There are two types of definitions: light and full.
-A [light definition] is a quick way of configuring a build, consisting of a list of expressions describing project settings.
+A [light definition] is a quick way of configuring a build, consisting of a list of Scala expressions describing project settings.
 A [full definition] is made up of one or more Scala source files that describe relationships between projects and introduce new configurations and settings.
 This page introduces the `Setting` type, which is used by light and full definitions for general configuration.
 
@@ -46,7 +47,7 @@ object MyBuild extends Build
 
 ## Important Settings Background
 
-The fundamental type of a configurable in sbt 0.10 is a `Setting[T]`.
+The fundamental type of a configurable in sbt is a `Setting[T]`.
 Each line in the `build.sbt` example above is of this type.
 The arguments to the `settings` method in the `Build.scala` example are of type `Setting[T]`.
 Specifically, the `name` setting has type `Setting[String]` and the `libraryDependencies` setting has type `Setting[Seq[ModuleID]]`, where `ModuleID` represents a dependency.
@@ -57,11 +58,16 @@ Throughout the documentation, many examples show a setting, such as:
 libraryDependencies += "junit" % "junit" % "4.8" % "test"
 ```
 
-This setting either goes in a [light definition] `(build.sbt)` as is or in the `settings` of a `Project` instance in a [full definition] `(Build.scala)` as shown in the example.
+This setting expression either goes in a [light definition] `(build.sbt)` as is or in the `settings` of a `Project` instance in a [full definition] `(Build.scala)` as shown in the example.
 This is an important point to understanding the context of examples in the documentation.
-(That is, you are a bit more prepared to copy and paste examples now.)
+(That is, you now know where to copy and paste examples now.)
 
-A `Setting[T]` describes how to initialize a setting of type T.  The settings shown in the examples are expressions, not statements.  In particular, there is no hidden mutable map that is being modified.  Each `Setting[T]` is a value that describes an update to a map.  The actual map is rarely directly referenced by user code.  It is not the final map that is usually important, but the operations on the map.
+A `Setting[T]` describes how to initialize a setting of type `T`.
+The settings shown in the examples are expressions, not statements.
+In particular, there is no hidden mutable map that is being modified.
+Each `Setting[T]` is a value that describes an update to a map.
+The actual map is rarely directly referenced by user code.
+It is not the final map that is usually important, but the operations on the map.
 
 To emphasize this, the setting in the following `Build.scala` fragment *is ignored* because it is a value that need to be included in the `settings` of a `Project`.
 (Unfortunately, Scala will discard non-Unit values to get Unit, which is why there is no compile error.)
@@ -84,11 +90,11 @@ object Good extends Build
 ## Declaring a Setting
 
 There is fundamentally one type of initialization, represented by the `<<=` method.
-The other initialization methods `:=`, `+=`, `++=`, `<+=`, `<++=`, and `~=` can be defined in terms of it.
+The other initialization methods `:=`, `+=`, `++=`, `<+=`, `<++=`, and `~=` are convenience methods that can be defined in terms of `<<=`.
 
 The motivation behind the method names is:
 
-* All method end with `=` to obtain the lowest possible infix precedence.
+* All methods end with `=` to obtain the lowest possible infix precedence.
 * A method starting with `<` indicates that the initialization uses other settings.
 * A single `+` means a single value is expected and will be appended to the current sequence.
 * `++` means a `Seq[T]` is expected.  The sequence will be appended to the current sequence.
@@ -131,6 +137,11 @@ libraryDependencies ++= Seq(
 	)
 )
 ```
+
+The types involved in += and ++= are constrained by the existence of an implicit parameter of type Append.Value[A,B] in the case of += or Append.Values[A,B] in the case of ++=.
+Here, B is the type of the value being appended and A is the type of the setting that the value is being appended to.
+See [Append] for the provided instances.
+
 ### ~=
 
 `~=` is used to transform the current value of a setting.
@@ -191,25 +202,106 @@ libraryDependencies <++= scalaVersion { sv =>
 }
 ```
 
+The types involved in <+= and <++=, like += and ++=, are constrained by the existence of an implicit parameter of type Append.Value[A,B] in the case of <+= or Append.Values[A,B] in the case of <++=.
+Here, B is the type of the value being appended and A is the type of the setting that the value is being appended to.
+See [Append] for the provided instances.
+
 ## Setting types
 
 This section provides information about the types of the left and right-hand sides of the initialization methods.  It is currently incomplete.
 
-### Setting Keys (left hand side)
+### Setting Keys
 
 The left hand side of a setting definition is of type [ScopedSetting].
 This type has two parts: a key (of type [SettingKey]) and a scope (of type [Scope]).
 An unspecified scope is like using `this` to refer to the current context.
 The previous examples on this page have not defined an explicit scope. See [[Inspecting Settings]] for details on the axes that make up scopes.
 
-The target (value on the left) of a method like `:=` identifies one of the main constructs in sbt: a setting, a task, or an input task.
+The target (the value on the left) of a method like `:=` identifies one of the main constructs in sbt: a setting, a task, or an input task.
 It is not an actual setting or task, but a key representing a setting or task.
 A setting is a value assigned when a project is loaded.
 A task is a unit of work that is run on-demand after a project is loaded and produces a value.
 An input task, previously known as a method task in sbt 0.7 and earlier, accepts an input string and produces a task to be run.
-(The renaming is because it can accept arbitrary input in 0.10 and not just a space-delimited sequence of arguments like in 0.7.)
+(The renaming is because it can accept arbitrary input in 0.10+ and not just a space-delimited sequence of arguments like in 0.7.)
 
 A setting key has type [SettingKey], a task key has type [TaskKey], and an input task has type [InputKey].
 The remainder of this section only discusses settings.
 See [[Tasks]] and [[Input Tasks]] for details on the other types (those pages assume an understanding of this page).
 
+To construct a [ScopedSetting], select the key and then scope it using the `in` method (see the [ScopedSetting] for API details).
+For example, the setting for compiler options for the test sources is referenced using the _scalacOptions_ key and the `Test` configuration in the current project.
+
+```scala
+val ref: ScopedSetting[Seq[String]] = scalacOptions in Test
+```
+
+The current project doesn't need to be explicitly specified, since that is the default in most cases.
+Some settings are specific to a task, in which case the task should be specified as part of the scope as well.
+For example, the compiler options used for the _console_ task for test sources is referenced like:
+
+```scala
+val ref: ScopedSetting[Seq[String]] = scalacOptions in Test in console
+```
+
+In these examples, the type of the setting reference key is given explicitly and the key is assigned to a value to emphasize that it is a normal (immutable) Scala value and can be manipulated and passed around as such.
+
+### Computing the value for a setting
+
+The right hand side of a setting definition varies by the initialization method used.
+In the case of :=, +=, ++=, and ~=, the type of the argument is straightforward (see the [ScopedSetting] API).
+For <<=, <+=, and <++=, the type is `Initialize[T]` (for <<= and <+=) or `Initialize[Seq[T]]` (for <++=).
+This section discusses the [Initialize] type.
+
+A value of type `Initialize[T]` represents a computation that takes the values of other settings as inputs.
+For example, in the following setting, the argument to <<= is of type `Initialize[File]`:
+
+```scala
+scalaSource in Compile <<= baseDirectory {
+   (base: File) => base / "src"
+}
+```
+
+This example can be written more explicitly as:
+
+```scala
+{
+  val key: ScopedSetting[File] = scalaSource.in(Compile)
+  val init: Initialize[File] = baseDirectory.apply( (base: File) => base / "src" )
+  key.<<=(init)
+}
+```
+
+To construct a value of type `Initialize`, construct a tuple of up to nine input `ScopedSetting`s.
+Then, define the function that will compute the value of the setting given the values for these input settings.
+
+```scala
+val path: Initialize[File] =
+  (baseDirectory, name, version).apply( (base: File, n: String, v: String) =>
+    base / (n + "-" + v + ".jar")
+  )
+```
+
+This example takes the base directory, project name, and project version as inputs.
+The keys for these settings are defined in [sbt.Keys], along with all other built-in keys.
+The argument to the `apply` method is a function that takes the values of those settings and computes a new value.
+In this case, that value is the path of a jar.
+
+### Initialize[Task[T]]
+
+To initialize tasks, the procedure is similar.
+There are a few differences.
+First, the inputs are of type [ScopedTaskable].
+The means that either settings ([ScopedSetting]) or tasks ([ScopedTask]) may be used as the input to a task.
+Second, the name of the method used is `map` instead of `apply` and the resulting value is of type `Initialize[Task[T]]`.
+In the following example, the inputs are the [report|Update-Report] produced by the _update_ task and the context _configuration_.
+The function computes the locations of the dependencies for that configuration.
+
+```scala
+val mainDeps: Initialize[Task[File]] =
+  (update, configuration).map( (report: UpdateReport, config: Configuration) =>
+    report.select(configuration = config.name)
+  )
+```
+
+As before, _update_ and _configuration_ are defined in [Keys].
+_update_ is of type `TaskKey[UpdateReport]` and _configuration_ is of type `SettingKey[Configuration]`.

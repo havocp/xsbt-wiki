@@ -21,7 +21,7 @@ In addition, there is a [setup script] for the script mode that only requires a 
 Install [conscript].
 
 ```
-cs harrah/xsbt --branch v0.10.1
+cs harrah/xsbt --branch v0.11.0
 ```
 
 This will create two scripts: `screpl` and `scalas`.

@@ -1,4 +1,5 @@
 [State]: http://harrah.github.com/xsbt/latest/api/sbt/State.html
+[Command.scala]: http://harrah.github.com/xsbt/latest/sxr/Command.scala.html#10761
 
 # Commands
 
@@ -28,7 +29,7 @@ The reason for `State => Parser[T]` and not simply `Parser[T]` is that often the
 For example, the currently loaded projects (provided by `State`) determine valid completions for the `project` command.
 Examples for the general and specific cases are shown in the following sections.
 
-See [[https://github.com/harrah/xsbt/blob/0.10/main/Command.scala#L31]] for the source API details for constructing commands.
+See [Command.scala] for the source API details for constructing commands.
 
 ## General commands
 

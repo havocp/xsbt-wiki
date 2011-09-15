@@ -4,7 +4,7 @@
 
 # Settings Core
 
-This page describes the core settings engine a bit.  This may be useful for using it outside of sbt.  It may also be useful for understanding how sbt 0.10 works internally.
+This page describes the core settings engine a bit.  This may be useful for using it outside of sbt.  It may also be useful for understanding how sbt 0.11 works internally.
 
 The documentation is comprised of two parts.  The first part shows an example settings system built on top of the settings engine.  The second part comments on how sbt's settings system is built on top of the settings engine.  This may help illuminate what exactly the core settings engine provides and what is needed to build something like the sbt settings system.
 
@@ -17,7 +17,7 @@ To run this example, first create a new project with the following build.sbt fil
 ```scala
 libraryDependencies <+= sbtVersion("org.scala-tools.sbt" %% "collections" % _)
 
-resolvers <+= sbtResolver.identity
+resolvers <+= sbtResolver
 ```
 
 Then, put the following examples in source files `SettingsExample.scala` and `SettingsUsage.scala`.  Finally, run sbt and enter the REPL using `console`.  To see the output described below, enter `SettingsUsage`.
@@ -48,19 +48,20 @@ final case class Scope(index: Int)
 //  That would be a general pain.)
 object SettingsExample extends Init[Scope]
 {
-   // This is the only abstract method, providing a way of showing a Scope+AttributeKey[_]
-   override def display(key: ScopedKey[_]): String =
-      key.scope.index + "/" + key.key.label
+	// Provides a way of showing a Scope+AttributeKey[_]
+	val showFullKey: Show[ScopedKey[_]] = new Show[ScopedKey[_]] {
+		def apply(key: ScopedKey[_]) = key.scope.index + "/" + key.key.label
+	}
 
-   // A sample delegation function that delegates to a Scope with a lower index.
-   val delegates: Scope => Seq[Scope] = { case s @ Scope(index) =>
-      s +: (if(index <= 0) Nil else delegates(Scope(index-1)) )
-   }
+	// A sample delegation function that delegates to a Scope with a lower index.
+	val delegates: Scope => Seq[Scope] = { case s @ Scope(index) =>
+		s +: (if(index <= 0) Nil else delegates(Scope(index-1)) )
+	}
 
-   // Not using this feature in this example.
-   val scopeLocal: ScopeLocal = _ => Nil
+	// Not using this feature in this example.
+	val scopeLocal: ScopeLocal = _ => Nil
 
-   // These three functions + a scope (here, Scope) are sufficient for defining our settings system.
+	// These three functions + a scope (here, Scope) are sufficient for defining our settings system.
 }
 ```
 
@@ -100,7 +101,7 @@ object SettingsUsage
       // "compiles" and applies the settings.
       //  This can be split into multiple steps to access intermediate results if desired.
       //  The 'inspect' command operates on the output of 'compile', for example.
-   val applied: Settings[Scope] = make(mySettings)(delegates, scopeLocal)
+   val applied: Settings[Scope] = make(mySettings)(delegates, scopeLocal, showFullKey)
 
    // Show results.
    for(i <- 0 to 5; k <- Seq(a, b)) {
@@ -136,7 +137,7 @@ b5 = Some(9)
 
 ### Scopes
 
-sbt defines a more complicated scope than the one shown here.  It has four components: the project axis, the configuration axis, the task axis, and the extra axis.  Each component may be [Global] (no specific value), [This] (current context), or [Select] (containing a specific value.  sbt resolves This to either [Global] or [Select] depending on the context.
+sbt defines a more complicated scope than the one shown here for the standard usage of settings in a build.  This scope has four components: the project axis, the configuration axis, the task axis, and the extra axis.  Each component may be [Global] (no specific value), [This] (current context), or [Select] (containing a specific value).  sbt resolves This to either [Global] or [Select] depending on the context.
 
 For example, in a project, a [This] project axis becomes a [Select] referring to the defining project.  All other axes that are [This] are translated to [Global].  Functions like inConfig and inTask transform This into a [Select] for a specific value.  For example, `inConfig(Compile)(someSettings)` translates the configuration axis for all settings in _someSettings_ to be `Select(Compile)` if the axis value is [This].
 
@@ -156,7 +157,7 @@ Methods on an underlying `TaskKey[T]` are basically translated to operating on a
 
 For example, `a := 3` for a SettingKey _a_ will very roughly translate to `setting(a, value(3))`.
 For a TaskKey _a_, it will roughly translate to `setting(a, value( task { 3 } ) )`.
-See [main/Structure.scala](https://github.com/harrah/xsbt/blob/0.10/main/Structure.scala) for details.
+See [main/Structure.scala](https://github.com/harrah/xsbt/blob/0.11/main/Structure.scala) for details.
 
 ### Settings definitions
 

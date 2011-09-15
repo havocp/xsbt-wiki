@@ -22,7 +22,7 @@ Please use the [mailing list] for questions, comments, and discussions.
 
 Please use the [issue tracker] to report confirmed bugs.  Do not use it to ask questions.  If you are uncertain whether something is a bug, please ask on the [mailing list] first.
 
-### How do I migrate from 0.7 to 0.10?
+### How do I migrate from 0.7 to 0.10+?
 
 See the [migration page].
 

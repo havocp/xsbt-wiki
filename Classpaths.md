@@ -6,7 +6,7 @@ This page discusses how sbt builds up classpaths for different actions, like `co
 
 # Basics
 
-In sbt 0.10.0 and later, classpaths now include the Scala library and (when declared as a dependency) the Scala compiler.  Classpath-related settings and tasks typically provide a value of type `Classpath`.  This is an alias for `Seq[Attributed[File]]`.  [Attributed] is a type that associates a heterogeneous map with each classpath entry.  Currently, this allows sbt to associate the `Analysis` resulting from compilation with the corresponding classpath entry and for managed entries, the `ModuleID` and `Artifact` that defined the dependency.
+In sbt 0.10 and later, classpaths now include the Scala library and (when declared as a dependency) the Scala compiler.  Classpath-related settings and tasks typically provide a value of type `Classpath`.  This is an alias for `Seq[Attributed[File]]`.  [Attributed] is a type that associates a heterogeneous map with each classpath entry.  Currently, this allows sbt to associate the `Analysis` resulting from compilation with the corresponding classpath entry and for managed entries, the `ModuleID` and `Artifact` that defined the dependency.
 
 To explicitly extract the raw `Seq[File]`, use the `files` method implicitly added to `Classpath`:
 
@@ -48,7 +48,7 @@ So, we are appending a new task to the list of main source generators (`sourceGe
 To insert a named task, which is the better approach for plugins:
 
 ```scala
-sourceGenerators in Compile <+= (mySourceGenerator in Compile).task.identity
+sourceGenerators in Compile <+= (mySourceGenerator in Compile).task
 
 mySourceGenerator in Compile <<= sourceManaged in Compile map { out =>
     generate(out / "some_directory")

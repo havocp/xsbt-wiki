@@ -7,7 +7,7 @@
 
 # Introduction
 
-sbt 0.10 has a new task system that integrates with the new settings system.
+sbt 0.10+ has a new task system that integrates with the new settings system.
 Both settings and tasks produce values, but there are two major differences between them:
 
 1. Settings are evaluated at project load time.  Tasks are executed on demand, often in response to a command from the user.
@@ -262,7 +262,7 @@ intTask <<= intTask.dependsOn(stringTask, sampleTask)
 
 ## Streams: Per-task logging
 
-New in sbt 0.10 are per-task loggers, which are part of a more general system for task-specific data called Streams.  This allows controlling the verbosity of stack traces and logging individually for tasks as well as recalling the last logging for a task.  Tasks also have access to their own persisted binary or text data.
+New in sbt 0.10+ are per-task loggers, which are part of a more general system for task-specific data called Streams.  This allows controlling the verbosity of stack traces and logging individually for tasks as well as recalling the last logging for a task.  Tasks also have access to their own persisted binary or text data.
 
 To use Streams, `map` or `flatMap` the `streams` task.  This is a special task that provides an instance of [TaskStreams] for the defining task.  This type provides access to named binary and text streams, named loggers, and a default logger.  The default [Logger], which is the most commonly used aspect, is obtained by the `log` method:
 

@@ -6,7 +6,7 @@
 [Defaults]: http://harrah.github.com/xsbt/latest/sxr/Defaults.scala.html
 [Keys]: http://harrah.github.com/xsbt/latest/sxr/Keys.scala.html
 
-A build definition is written in Scala.  There are two types of definitions: light and full.  A light definition is a quick way of configuring a build.  It consists of a list of expressions describing project settings.
+A build definition is written in Scala.  There are two types of definitions: light and full.  A light definition is a quick way of configuring a build.  It consists of a list of Scala expressions describing project settings.
 
 A full definition is made up of one or more Scala source files that describe relationships between projects, introduce new configurations and settings, and define more complex aspects of the build.  The capabilities of a light definition are a proper subset of those of a full definition.
 

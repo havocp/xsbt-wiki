@@ -26,10 +26,10 @@ A nearly equivalent, manual alternative for a fixed version of Scala is:
 
 # Cross-Building a Project
 
-Define the versions of Scala to build against in the `cross-scala-versions` setting.  Versions of Scala 2.7.2 or later are allowed.  For example, in a `.sbt` build definition:
+Define the versions of Scala to build against in the `cross-scala-versions` setting.  Versions of Scala 2.8.0 or later are allowed.  For example, in a `.sbt` build definition:
 
 ```scala
-crossScalaVersions := Seq("2.7.7", "2.8.0", "2.8.1")
+crossScalaVersions := Seq("2.8.0", "2.8.1", "2.9.1")
 ```
 
 To build against all versions listed in `build.scala.versions`, prefix the action to run with `+`.  For example:
@@ -58,7 +58,7 @@ This means that the outputs of each build against each version of Scala are inde
 ```scala
 libraryDependencies <<= (scalaVersion, libraryDependencies) { (sv, deps) =>
 		// select the ScalaCheck version based on the Scala version
-	val versionMap = Map("2.7.7" -> "1.6", "2.8.0" -> "1.7", "2.8.1" => "1.8")
+	val versionMap = Map("2.8.0" -> "1.7", "2.8.1" => "1.8")
 	val testVersion = versionMap.getOrElse(sv, error("Unsupported Scala version " + sv))
 		// append the ScalaCheck dependency to the existing dependencies
 	deps :+ ("org.scala-tools.testing" % "scalacheck" % testVersion)

@@ -1,4 +1,4 @@
-# Plugins (Draft)
+# Plugins
 
 # Introduction
 
@@ -8,17 +8,35 @@ A plugin can define a sequence of sbt Settings that are automatically added to a
 For example, a plugin might add a 'proguard' task and associated (overridable) settings.
 Because [[Commands]] can be added with the `commands` setting, a plugin can also fulfill the role that processors did in 0.7.x.
 
+# Using a binary sbt plugin
+
+A common situation is using a binary plugin published to a repository.
+Create `project/plugins.sbt` with the desired sbt plugins, any general dependencies, and any necessary repositories:
+
+```scala
+addPlugin("org.example" % "plugin" % "1.0")
+
+addPlugin("org.example" % "another-plugin" % "2.0")
+
+// plain library (not an sbt plugin) for use in the build definition
+libraryDependencies += "org.example" % "utilities" % "1.3"
+
+resolvers += "Example Plugin Repository" at "http://example.org/repo/"
+```
+
+See the rest of the page for more information on creating and using plugins.
+
 # By Description
 
-A plugin definition is a project in `<main-project>/project/plugins/`.
-This project's classpath is the classpath used for build definitions in `<main-project>/project/` and any `.sbt` files.  It is also used for the `eval` and `set` commands.
+A plugin definition is a project in `<main-project>/project/`.
+This project's classpath is the classpath used for build definitions in `<main-project>/project/` and any `.sbt` files in the project's base directory.  It is also used for the `eval` and `set` commands.
 
 Specifically,
 
-1. Managed dependencies declared by the `project/plugins/` project are retrieved and put on the build definition classpath.
-2. Unmanaged dependencies in `project/plugins/lib/` are available to the build definition.
-3. Sources in the `project/plugins/` project are compiled and put on the build definition classpath.
-4. Project dependencies can be declared in `project/plugins/project/Build.scala` and will be available to the build definition.
+1. Managed dependencies declared by the `project/` project are retrieved and are available on the build definition classpath, just like for a normal project.
+2. Unmanaged dependencies in `project/lib/` are available to the build definition, just like for a normal project.
+3. Sources in the `project/` project are the build definition files and are compiled using the classpath built from the managed and unmanaged dependencies.
+4. Project dependencies can be declared in `project/project/Build.scala` and will be available to the build definition sources.  Think of `project/project/` as the build definition for the build definition.
 
 The build definition classpath is searched for `sbt/sbt.plugins` descriptor files containing the names of Plugin implementations.
 A Plugin is a module that defines settings to automatically inject to projects.
@@ -26,14 +44,14 @@ Additionally, all Plugin modules are wildcard imported for the `eval` and `set` 
 A Plugin implementation is not required to produce a plugin, however.
 It is a convenience for plugin consumers and because of the automatic nature, it is not always appropriate.
 
-The `reload plugins` command changes the current build to `<current-build>/project/plugins/`.
-This allows manipulating the plugin definition project like a normal project.
+The `reload plugins` command changes the current build to `<current-build>/project/`.
+This allows manipulating the build definition project like a normal project.
 `reload return` changes back to the original build.
 Any session settings for the plugin definition project that have not been saved are dropped.
 
 ### Global plugins
 
-In sbt 0.7.x, a processor was a way to add new commands to sbt and distribute them to users.  A key feature was the ability to have per-user processors so that once declared, it could be used in all projects for that user.  In sbt 0.10, plugins and processors are unified.  Specifically, a plugin can add commands and plugins can be declared globally for a user.
+In sbt 0.7.x, a processor was a way to add new commands to sbt and distribute them to users.  A key feature was the ability to have per-user processors so that once declared, it could be used in all projects for that user.  In sbt 0.10+, plugins and processors are unified.  Specifically, a plugin can add commands and plugins can be declared globally for a user.
 
 The `~/.sbt/plugins/` directory is treated as a global plugin definition project.  It is a normal sbt project whose classpath is available to all sbt project definitions for that user as described above for per-project plugins.
 
@@ -45,11 +63,11 @@ As an example, we'll add the Grizzled Scala library as a plugin.  Although this 
 ### 1a) Manually managed
 
 1. Download the jar manually from [[http://www.scala-tools.org/repo-releases/org/clapper/grizzled-scala_2.8.1/1.0.4/grizzled-scala_2.8.1-1.0.4.jar]]
-2. Put it in `project/plugins/lib/`
+2. Put it in `project/lib/`
 
 ### 1b) Automatically managed: direct editing approach
 
-Edit `project/plugins/build.sbt` to contain:
+Edit `project/plugins.sbt` to contain:
 
 ```scala
 libraryDependencies += "org.clapper" %% "grizzled-scala" % "1.0.4"
@@ -59,16 +77,16 @@ If sbt is running, do `reload`.
 
 ### 1c) Automatically managed: command line approach
 
-We can change to the plugins project in `project/plugins/` using `reload plugins`.
+We can change to the plugins project in `project/` using `reload plugins`.
 
 ```console
 $ xsbt
 > reload plugins
-[info] Set current project to default (in build file:/Users/harrah/demo2/project/plugins/)
+[info] Set current project to default (in build file:/Users/harrah/demo2/project/)
 >
 ```
 
-Then, we can add dependencies like usual and save them to `project/plugins/build.sbt`.
+Then, we can add dependencies like usual and save them to `project/plugins.sbt`.
 It is useful, but not required, to run `update` to verify that the dependencies are correct.
 
 ```console
@@ -92,7 +110,7 @@ To switch back to the main project:
 This variant shows how to use the external project support in sbt 0.10 to declare a source dependency on a plugin.
 This means that the plugin will be built from source and used on the classpath.
 
-Edit `project/plugins/project/Build.scala`
+Edit `project/project/Build.scala`
 
 ```scala
 import sbt._
@@ -258,7 +276,7 @@ object MyPlugin extends Plugin
 This example demonstrates how to take a Command (here, `myCommand`) and distribute it in a plugin.  Note that multiple commands can be included in one plugin (for example, use `commands ++= Seq(a,b)`).  See [[Commands]] for defining more useful commands, including ones that accept arguments and affect the execution state.
 
 ## Global plugins example
-The simplest global plugin definition is declaring a library or plugin in `~/.sbt/plugins/build.sbt`:
+The simplest global plugin definition is declaring a library or plugin in `~/.sbt/plugins.sbt`:
 
 ```scala
 libraryDependencies += "org.example" %% "example-plugin" % "0.1"
