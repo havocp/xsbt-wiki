@@ -49,6 +49,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 * posterous-sbt: https://github.com/n8han/posterous-sbt
 * sbt-signer-plugin: https://github.com/rossabaker/sbt-signer-plugin
 * sbt-izpack (generates IzPack an installer): http://software.clapper.org/sbt-izpack/
+* sbt-ghpages-plugin (publishes generated site and api): https://github.com/jsuereth/xsbt-ghpages-plugin
 
 ### System plugins
 
