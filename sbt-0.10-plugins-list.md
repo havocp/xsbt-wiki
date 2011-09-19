@@ -63,6 +63,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 * sbt-xjc (XSD binding, using [JAXB XJC](http://download.oracle.com/javase/6/docs/technotes/tools/share/xjc.html)): https://github.com/retronym/sbt-xjc
 * xsbt-scalate-generate (Generate/Precompile Scalate Templates): https://github.com/mojolly/xsbt-scalate-generate
 * sbt-antlr (Generate Java source code based on ANTLR3 grammars): https://github.com/stefri/sbt-antlr
+* xsbt-reflect (Generate Scala source code for project name and version): https://github.com/ritschwumm/xsbt-reflect
 
 ### Documentation plugins
 
