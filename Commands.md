@@ -90,7 +90,7 @@ import complete.DefaultParsers._
 object CommandExample extends Build
 {
 	// Declare a single project, adding several new commands, which are discussed below.
-	lazy val projects = Seq(root)
+	lazy override val projects = Seq(root)
 	lazy val root = Project("root", file(".")) settings(
 		commands ++= Seq(hello, helloAll, failIfTrue, changeColor, printState)
 	)
