@@ -84,21 +84,6 @@ target in akkaStartCluster <<= ... // This is ok.
 akkaStartCluster in akka <<= ...   // BAD.  No need for a Config for plugin-specific task.
 ```
 
-### Playing nice with configurations
-Whether you ship with a configuration or not, a plugin should strive to support multiple configurations, including those created by the build user.
-
-Provide unscoped settings in a sequence. This allows the build user to load the family of settings using arbitrary configuration:
-
-```scala
-seq(Project.inConfig(Test)(sbtFoo.Plugin.fooSettings0): _*) 
-```
-
-Alternatively, one could provide a utility method to load settings in a given configuration:
-
-```scala
-seq(fooSettingsInConfig(Test): _*) 
-```
-
 ### Configuration Cat says "Configuration is for configuration"
 
 When defining a new type of configuration, e.g.
@@ -119,18 +104,34 @@ val pluginKey = SettingKey[String]("plugin-specific-key")
 val settings = plugin-key in Config  // DON'T DO THIS!
 ```
 
-#### Provide raw settings and scoped settings
-Some tasks that are tied to a particular configuration can be re-used in other configurations.  While you may not see the need immediately in your plugin, some project may and will ask you for the flexibility.   To do so, split your configuration by the configuration axis like so:
+### Playing nice with configurations
+Whether you ship with a configuration or not, a plugin should strive to support multiple configurations, including those created by the build user. Some tasks that are tied to a particular configuration can be re-used in other configurations.  While you may not see the need immediately in your plugin, some project may and will ask you for the flexibility.
+
+#### Provide raw settings and configured settings
+Split your settings by the configuration axis like so:
 
 ```scala
-val pluginTask = TaskKey[Unit]("plugin-awesome-task")
-val pluginSettings = inConfig(Compile)(basePluginSettings)
-val basePluginSettings: Seq[Setting[_]] = Seq(
-  pluginTask <<= (sources) map { s => ... }
+val obfuscate = TaskKey[Seq[File]]("obfuscate")
+val obfuscateSettings = inConfig(Compile)(baseObfuscateSettings) ++ Seq(
+  obfuscate <<= (obfuscate in Compile).identity
+)
+val baseObfuscateSettings: Seq[Setting[_]] = Seq(
+  obfuscate <<= (sources in obfuscate) map { s => ... },
+  sources in obfuscate <<= (sources).identity
 )
 ```
 
-The `basePluginSettings` value provides base configuration for the plugin's tasks.  This can be re-used in other configurations if projects require it.   The `pluginSettings` value provides the default `Compile` scoped settings for projects to use directly.  This gives the greatest flexibility in using features provided by a plugin.
+The `baseObfuscateSettings` value provides base configuration for the plugin's tasks.  This can be re-used in other configurations if projects require it.   The `obfuscateSettings` value provides the default `Compile` scoped settings for projects to use directly. This gives the greatest flexibility in using features provided by a plugin. Here's how the raw settings may be reused:
+
+```scala
+seq(Project.inConfig(Test)(sbtObfuscate.Plugin.baseObfuscateSettings): _*) 
+```
+
+Alternatively, one could provide a utility method to load settings in a given configuration:
+
+```scala
+seq(obfuscateSettingsInConfig(Test): _*) 
+```
 
 #### Using a 'main' task scope for settings
 
