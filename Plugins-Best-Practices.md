@@ -130,7 +130,14 @@ seq(Project.inConfig(Test)(sbtObfuscate.Plugin.baseObfuscateSettings): _*)
 Alternatively, one could provide a utility method to load settings in a given configuration:
 
 ```scala
-seq(obfuscateSettingsInConfig(Test): _*) 
+def obfuscateSettingsIn(c: Configuration): Seq[Project.Setting[_]] =
+  inConfig(c)(baseObfuscateSettings)
+```
+
+This could be used as follows:
+
+```scala
+seq(obfuscateSettingsIn(Test): _*) 
 ```
 
 #### Using a 'main' task scope for settings
