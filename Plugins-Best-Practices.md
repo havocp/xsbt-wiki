@@ -62,12 +62,14 @@ If your plugin introduces a new concept (even if that concept reuses an existing
 
 ```scala
 targetDirectory in LWM <<= baseDirectory(_ / "mytarget" / "docs")
-targetDirectory in Compile <<= baseDirectory(_ / "target")
+targetDirectory in Compile <<= baseDirectory(_ / "mytarget")
 ```
 
 ### When _not_ to define your own configuration.
 
-_hang on_
+If you're merely adding to existing definitions, don't define your own configuration. Instead, reuse an existing one.
+
+_example needed_
 
 ### Configuration Cat says "Configuration is for configuration" ##
 
