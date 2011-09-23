@@ -276,3 +276,7 @@ In addition:
 This approach skips the overhead of `publish-local` and cleaning the plugins directory of the project using the plugin.
 
 These are all consequences of `~/.sbt/plugins/` being a standard project whose classpath is added to every sbt project's build definition.
+
+# Best Practices
+
+If you're a plugin writer, please consult the [[Plugins Best Practices]] page; it contains a set of guidelines to help you ensure that your plugin is consistent with and plays well with other plugins.
