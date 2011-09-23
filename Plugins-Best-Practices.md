@@ -54,8 +54,22 @@ In this approach, all non-common settings are in a nested object. A user of the 
 foo.stylesheet <<= ...
 ```
 
+## Configuration Advice
 
-## Configuration Cat says "Configuration is for configuration" ##
+### When to define your own configuration
+
+If your plugin introduces a new concept (even if that concept reuses an existing key), you want your own configuration. For instance, the [LWM](http://software.clapper.org/sbt-lwm/) plugin defines an output directory for the lightweight markup files it transforms. That target directory is scoped in its own configuration, so it is distinct from other output directories. Thus, these two definitions use the same _key_, but they represent distinct _values_:
+
+```scala
+targetDirectory in LWM <<= baseDirectory(_ / "mytarget" / "docs")
+targetDirectory in Compile <<= baseDirectory(_ / "target")
+```
+
+### When _not_ to define your own configuration.
+
+_hang on_
+
+### Configuration Cat says "Configuration is for configuration" ##
 
 When defining a new type of configuration, e.g.
 
@@ -75,7 +89,7 @@ val pluginKey = SettingKey[String]("plugin-specific-key")
 val settings = plugin-key in Config  // DON'T DO THIS!
 ```
 
-### Using a 'main' task for settings ###
+#### Using a 'main' task for settings ###
 
 Sometimes you want to define some settings for a particular 'main' task in your plugin.  In this instance, you can scope your settings using the task itself.   For example:
 
