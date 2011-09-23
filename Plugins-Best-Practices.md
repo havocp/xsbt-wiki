@@ -73,8 +73,8 @@ Configurations actually tie into dependency resolution (with Ivy) and can alter 
 
 Configurations should *not* be used to namespace keys for a plugin.  e.g.
 
-   val Config = config("my-plugin")
-   val plugin-key = SettingKey[String]("plugin-specific-key")
-   val settings = plugin-key in Config := "BAD"
+    val Config = config("my-plugin")
+    val plugin-key = SettingKey[String]("plugin-specific-key")
+    val settings = plugin-key in Config := "BAD"
 
 
