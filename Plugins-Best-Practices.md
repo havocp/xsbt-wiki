@@ -99,7 +99,7 @@ Alternatively, one could provide a utility method to load settings in a given co
 seq(fooSettingsInConfig(Test): _*) 
 ```
 
-### Configuration Cat says "Configuration is for configuration" ##
+### Configuration Cat says "Configuration is for configuration"
 
 When defining a new type of configuration, e.g.
 
@@ -119,7 +119,7 @@ val pluginKey = SettingKey[String]("plugin-specific-key")
 val settings = plugin-key in Config  // DON'T DO THIS!
 ```
 
-#### Using a 'main' task for settings ###
+#### Using a 'main' task for settings
 
 Sometimes you want to define some settings for a particular 'main' task in your plugin.  In this instance, you can scope your settings using the task itself.   For example:
 
@@ -131,3 +131,29 @@ val pluginSettings: Seq[Setting[_]] = Seq(
 )
 ```
 
+## Mucking with Global build state
+
+There may be times when you need to muck with global build state.  The general rule is *be careful what you touch*.  
+
+First, make sure your user do not include global build configuration in *every* project but rather in the build itself.   e.g.
+
+```scala
+object MyBuild extends Build {
+  override lazy val settings = super.settings ++ MyPlugin.globalSettings
+  val main = project(file("."), "root") settings(MyPlugin.globalSettings:_*) // BAD!
+}
+```
+
+Global settings should *not* be placed into a `build.sbt` file.
+
+When overriding global settings, care should be taken to ensure previous settings from other plugins are not ignored.   e.g. when creating a new `onLoad` handler, ensure that the previous `onLoad` handler is not removed.
+
+```scala
+object MyPlugin extends Plugin {
+  val globalSettigns: Seq[Setting[_]] = Seq(
+    onLoad in Global <<= onLoad in Global apply (_ andThen { state => 
+       ... return new state ...
+    })
+  )
+}
+```
