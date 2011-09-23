@@ -65,7 +65,9 @@ sources in foo.Config <<= ...
 
 When defining a new type of configuration, e.g.
 
-    val Config = config("profile")
+```scala
+val Config = config("profile")
+```
 
 should be used to create a "cross-task" configuration.  The task definitions don't change in this case, but the default configuration does.  For example, the `profile` configuration can extend the test configuration with additional settings and changes to allow profiling in SBT.   Plugins should not create arbitrary Configurations, but utilize them for specific purposes and builds.
 
@@ -73,8 +75,10 @@ Configurations actually tie into dependency resolution (with Ivy) and can alter 
 
 Configurations should *not* be used to namespace keys for a plugin.  e.g.
 
-    val Config = config("my-plugin")
-    val plugin-key = SettingKey[String]("plugin-specific-key")
-    val settings = plugin-key in Config := "BAD"
+```scala
+val Config = config("my-plugin")
+val plugin-key = SettingKey[String]("plugin-specific-key")
+val settings = plugin-key in Config  // DON'T DO THIS!
+```
 
 
