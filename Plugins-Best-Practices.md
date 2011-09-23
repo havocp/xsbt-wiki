@@ -125,11 +125,14 @@ Sometimes you want to define some settings for a particular 'main' task in your 
 
 ```scala
 val pluginTask = TaskKey[Unit]("plugin-awesome-task")
-val pluginSettings: Seq[Setting[_]] = Seq(
-  sources in Compile in pluginTask <<= ...,
-  pluginTask <<= (sources in Compile in pluginTask) map { source => ... }
+val pluginSettings = inConfig(Compile)(basePluginSettings)
+val basePluginSettings: Seq[Setting[_]] = Seq(
+  sources in pluginTask <<= ...,
+  pluginTask <<= (sources in pluginTask) map { source => ... }
 )
 ```
+
+The `basePluginSettings` value provides base configuration for the plugin's tasks.  This can be re-used in other configurations if projects require it.   The `pluginSettings` value provides the default `Compile` scoped settings for projects to use directly.  This gives the greatest flexibility in using features provided by a plugin.
 
 ## Mucking with Global build state
 
