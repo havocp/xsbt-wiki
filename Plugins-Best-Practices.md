@@ -77,7 +77,7 @@ Configurations should *not* be used to namespace keys for a plugin.  e.g.
 
 ```scala
 val Config = config("my-plugin")
-val plugin-key = SettingKey[String]("plugin-specific-key")
+val pluginKey = SettingKey[String]("plugin-specific-key")
 val settings = plugin-key in Config  // DON'T DO THIS!
 ```
 
