@@ -58,11 +58,19 @@ foo.stylesheet <<= ...
 
 ### When to define your own configuration
 
-If your plugin introduces a new concept (even if that concept reuses an existing key), you want your own configuration. For instance, the [LWM](http://software.clapper.org/sbt-lwm/) plugin defines an output directory for the lightweight markup files it transforms. That target directory is scoped in its own configuration, so it is distinct from other output directories. Thus, these two definitions use the same _key_, but they represent distinct _values_:
+If your plugin introduces a new concept (even if that concept reuses an existing key), you want your own configuration. For instance, the [LWM](http://software.clapper.org/sbt-lwm/) plugin defines an output directory for the lightweight markup files it transforms. That target directory is scoped in its own configuration, so it is distinct from other output directories. Thus, these two definitions use the same _key_, but they represent distinct _values_. So, in a user's `build.sbt`, we might see:
 
 ```scala
 target in LWM <<= baseDirectory(_ / "mytarget" / "docs")
 target in Compile <<= baseDirectory(_ / "mytarget")
+```
+
+In the LWM plugin, this is achieved with an `inConfig` definition:
+
+```scala
+val settings: Seq[sbt.Project.Setting[_]] = inConfig(LWM)(Seq(
+  target <<= baseDirectory(_ / "target" / "docs") # the default value
+))
 ```
 
 ### When _not_ to define your own configuration.
