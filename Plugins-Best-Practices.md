@@ -81,4 +81,15 @@ val pluginKey = SettingKey[String]("plugin-specific-key")
 val settings = plugin-key in Config  // DON'T DO THIS!
 ```
 
+### Using a 'main' task for settings ###
+
+Sometimes you want to define some settings for a particular 'main' task in your plugin.  In this instance, you can scope your settings using the task itself.   For example:
+
+```scala
+val plugin-task = TaskKey[Unit]("plugin-awesome-task")
+val plugin-settings: Seq[Setting[_]] = Seq(
+  sources in Compile in plugin-task <<= ...,
+  plugin-task <<= (sources in Compile in plugin-task) map { source => ... }
+)
+```
 
