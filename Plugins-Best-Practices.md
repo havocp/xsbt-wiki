@@ -119,7 +119,20 @@ val pluginKey = SettingKey[String]("plugin-specific-key")
 val settings = plugin-key in Config  // DON'T DO THIS!
 ```
 
-#### Using a 'main' task for settings
+#### Provide raw settings and scoped settings
+Some tasks that are tied to a particular configuration can be re-used in other configurations.  While you may not see the need immediately in your plugin, some project may and will ask you for the flexibility.   To do so, split your configuration by the configuration axis like so:
+
+```scala
+val pluginTask = TaskKey[Unit]("plugin-awesome-task")
+val pluginSettings = inConfig(Compile)(basePluginSettings)
+val basePluginSettings: Seq[Setting[_]] = Seq(
+  pluginTask <<= (sources) map { s => ... }
+)
+```
+
+The `basePluginSettings` value provides base configuration for the plugin's tasks.  This can be re-used in other configurations if projects require it.   The `pluginSettings` value provides the default `Compile` scoped settings for projects to use directly.  This gives the greatest flexibility in using features provided by a plugin.
+
+#### Using a 'main' task scope for settings
 
 Sometimes you want to define some settings for a particular 'main' task in your plugin.  In this instance, you can scope your settings using the task itself.   For example:
 
@@ -131,8 +144,6 @@ val basePluginSettings: Seq[Setting[_]] = Seq(
   pluginTask <<= (sources in pluginTask) map { source => ... }
 )
 ```
-
-The `basePluginSettings` value provides base configuration for the plugin's tasks.  This can be re-used in other configurations if projects require it.   The `pluginSettings` value provides the default `Compile` scoped settings for projects to use directly.  This gives the greatest flexibility in using features provided by a plugin.
 
 ## Mucking with Global build state
 
