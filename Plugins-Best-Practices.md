@@ -61,8 +61,8 @@ foo.stylesheet <<= ...
 If your plugin introduces a new concept (even if that concept reuses an existing key), you want your own configuration. For instance, the [LWM](http://software.clapper.org/sbt-lwm/) plugin defines an output directory for the lightweight markup files it transforms. That target directory is scoped in its own configuration, so it is distinct from other output directories. Thus, these two definitions use the same _key_, but they represent distinct _values_:
 
 ```scala
-targetDirectory in LWM <<= baseDirectory(_ / "mytarget" / "docs")
-targetDirectory in Compile <<= baseDirectory(_ / "mytarget")
+target in LWM <<= baseDirectory(_ / "mytarget" / "docs")
+target in Compile <<= baseDirectory(_ / "mytarget")
 ```
 
 ### When _not_ to define your own configuration.
