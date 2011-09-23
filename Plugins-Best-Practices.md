@@ -69,7 +69,12 @@ targetDirectory in Compile <<= baseDirectory(_ / "mytarget")
 
 If you're merely adding to existing definitions, don't define your own configuration. Instead, reuse an existing one.
 
-_example needed_
+```scala
+val akka = config("akka")
+val akkaStartCluster = TaskKey[Unit]("akka-start-cluster")
+
+akkaStartCluster in akka <<= ...   // Configuration is not needed here.
+```
 
 ### Configuration Cat says "Configuration is for configuration" ##
 
