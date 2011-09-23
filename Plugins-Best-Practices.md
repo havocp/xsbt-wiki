@@ -135,16 +135,20 @@ seq(obfuscateSettingsInConfig(Test): _*)
 
 #### Using a 'main' task scope for settings
 
-Sometimes you want to define some settings for a particular 'main' task in your plugin.  In this instance, you can scope your settings using the task itself.   For example:
+Sometimes you want to define some settings for a particular 'main' task in your plugin.  In this instance, you can scope your settings using the task itself.
 
 ```scala
-val pluginTask = TaskKey[Unit]("plugin-awesome-task")
-val pluginSettings = inConfig(Compile)(basePluginSettings)
-val basePluginSettings: Seq[Setting[_]] = Seq(
-  sources in pluginTask <<= ...,
-  pluginTask <<= (sources in pluginTask) map { source => ... }
+val obfuscate = TaskKey[Seq[File]]("obfuscate")
+val obfuscateSettings = inConfig(Compile)(baseObfuscateSettings) ++ Seq(
+  obfuscate <<= (obfuscate in Compile).identity
+)
+val baseObfuscateSettings: Seq[Setting[_]] = Seq(
+  obfuscate <<= (sources in obfuscate) map { s => ... },
+  sources in obfuscate <<= (sources).identity
 )
 ```
+
+In the above example, `sources in obfuscate` is scoped under the main task, `obfuscate`.
 
 ## Mucking with Global build state
 
