@@ -28,8 +28,6 @@ Sometimes, you need a new key, because there is no existing SBT key. In this cas
 
 ```scala
 object FooPlugin extends sbt.Plugin {
-  val FooConfig = config("foo")
-  val fooOutputDirectory = SettingKey[File]("foo-output-dir")
   val fooStylesheet = SettingKey[File]("foo-stylesheet")
 }
 ```
@@ -37,8 +35,7 @@ object FooPlugin extends sbt.Plugin {
 In this approach, every `val` starts with `foo`. A user of the plugin would refer to the settings like this:
 
 ```
-sources in FooConfig <<= ...
-fooOutputDirectory in FooConfig <<= ...
+fooStylesheet <<= ...
 ```
 
 ### Use a nested object
@@ -46,8 +43,6 @@ fooOutputDirectory in FooConfig <<= ...
 ```scala
 object FooPlugin extends sbt.Plugin {
   object foo {
-    val Config = config("foo")
-    val outputDirectory = SettingKey[File]("foo-output-dir")
     val stylesheet = SettingKey[File]("foo-stylesheet")
   }
 }
@@ -56,8 +51,7 @@ object FooPlugin extends sbt.Plugin {
 In this approach, all non-common settings are in a nested object. A user of the plugin would refer to the settings like this:
 
 ```
-foo.outputDirectory in foo.Config <<= ...
-sources in foo.Config <<= ...
+foo.stylesheet <<= ...
 ```
 
 
