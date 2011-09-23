@@ -73,8 +73,8 @@ If you're merely adding to existing definitions, don't define your own configura
 val akka = config("akka")  // This isn't needed.
 val akkaStartCluster = TaskKey[Unit]("akka-start-cluster")
 
-akkaStartCluster in akka <<= ...   // Configuration is not needed here.
 target in akkaStartCluster <<= ... // This is ok.
+akkaStartCluster in akka <<= ...   // BAD.  No need for a Config for plugin-specific task.
 ```
 
 ### Configuration Cat says "Configuration is for configuration" ##
