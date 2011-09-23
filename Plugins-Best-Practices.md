@@ -55,7 +55,6 @@ foo.stylesheet <<= ...
 ```
 
 ## Configuration Advice
-
 ### When to define your own configuration
 
 If your plugin introduces a new concept (even if that concept reuses an existing key), you want your own configuration. For instance, the [LWM](http://software.clapper.org/sbt-lwm/) plugin defines an output directory for the lightweight markup files it transforms. That target directory is scoped in its own configuration, so it is distinct from other output directories. Thus, these two definitions use the same _key_, but they represent distinct _values_. So, in a user's `build.sbt`, we might see:
@@ -83,6 +82,21 @@ val akkaStartCluster = TaskKey[Unit]("akka-start-cluster")
 
 target in akkaStartCluster <<= ... // This is ok.
 akkaStartCluster in akka <<= ...   // BAD.  No need for a Config for plugin-specific task.
+```
+
+### Playing nice with configurations
+Whether you ship with a configuration or not, a plugin should strive to support multiple configurations, including those created by the build user.
+
+Provide unscoped settings in a sequence. This allows the build user to load the family of settings using arbitrary configuration:
+
+```scala
+seq(Project.inConfig(Test)(sbtFoo.Plugin.fooSettings0): _*) 
+```
+
+Alternatively, one could provide a utility method to load settings in a given configuration:
+
+```scala
+seq(fooSettingsInConfig(Test): _*) 
 ```
 
 ### Configuration Cat says "Configuration is for configuration" ##
