@@ -67,13 +67,14 @@ target in Compile <<= baseDirectory(_ / "mytarget")
 
 ### When _not_ to define your own configuration.
 
-If you're merely adding to existing definitions, don't define your own configuration. Instead, reuse an existing one.
+If you're merely adding to existing definitions, don't define your own configuration. Instead, reuse an existing one _or_ scope by the main task (see below).
 
 ```scala
-val akka = config("akka")
+val akka = config("akka")  // This isn't needed.
 val akkaStartCluster = TaskKey[Unit]("akka-start-cluster")
 
 akkaStartCluster in akka <<= ...   // Configuration is not needed here.
+target in akkaStartCluster <<= ... // This is ok.
 ```
 
 ### Configuration Cat says "Configuration is for configuration" ##
