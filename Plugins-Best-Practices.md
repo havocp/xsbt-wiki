@@ -60,3 +60,13 @@ foo.outputDirectory in foo.Config <<= ...
 sources in foo.Config <<= ...
 ```
 
+
+## Configuration Cat says "Configuration is for configuration" ##
+
+When defining a new type of configuration, e.g.
+
+    val Config = config("profile")
+
+should be used to create a "cross-task" configuration.  The task definitions don't change in this case, but the default configuration does.  For example, the `profile` configuration can extend the test configuration with additional settings and changes to allow profiling in SBT.   Plugins should not create arbitrary Configurations, but utilize them for specific purposes and builds.
+
+Configurations actually tie into dependency resolution (with Ivy) and can alter generated pom files.
