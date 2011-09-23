@@ -22,7 +22,7 @@ Instead, simply reuse SBT's existing `sources` key.
 
 ## Avoid namespace clashes
 
-Sometimes, you need a new key, because there is no existing SBT key. In this case, use a plugin-specific prefix, both in the (string) key name used in the SBT namespace and in the Scala `val`. There are two acceptable ways to accomplish this goal:
+Sometimes, you need a new key, because there is no existing SBT key. In this case, use a plugin-specific prefix, both in the (string) key name used in the SBT namespace and in the Scala `val`. There are two acceptable ways to accomplish this goal.
 
 ### Just use a `val` prefix
 
