@@ -70,3 +70,11 @@ When defining a new type of configuration, e.g.
 should be used to create a "cross-task" configuration.  The task definitions don't change in this case, but the default configuration does.  For example, the `profile` configuration can extend the test configuration with additional settings and changes to allow profiling in SBT.   Plugins should not create arbitrary Configurations, but utilize them for specific purposes and builds.
 
 Configurations actually tie into dependency resolution (with Ivy) and can alter generated pom files.
+
+Configurations should *not* be used to namespace keys for a plugin.  e.g.
+
+   val Config = config("my-plugin")
+   val plugin-key = SettingKey[String]("plugin-specific-key")
+   val settings = plugin-key in Config := "BAD"
+
+
