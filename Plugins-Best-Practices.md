@@ -10,6 +10,16 @@ A plugin developer should strive for consistency and ease of use. Specifically:
 
 Here are some current plugin best practices. **NOTE:** Best practices are evolving, so check back frequently.
 
+## `settings` are for commands
+
+SBT will automatically load your plugin's `settings` into the build. Overriding `val settings` should only be done by plugins providing commands. Regular plugins defining tasks and settings should provide a sequence named after the plugin like so:
+
+```scala
+val obfuscateSettings = Seq(...)
+```
+
+This allows build user to choose which subproject the plugin would be used. See later section for how the settings should be scoped.
+
 ## Reuse existing keys
 
 SBT has a number of [predefined keys](http://harrah.github.com/xsbt/latest/api/sbt/Keys%24.html). Where possible, reuse them in your plugin. For instance, don't define:
