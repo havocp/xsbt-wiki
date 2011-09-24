@@ -112,9 +112,7 @@ Split your settings by the configuration axis like so:
 
 ```scala
 val obfuscate = TaskKey[Seq[File]]("obfuscate")
-val obfuscateSettings = inConfig(Compile)(baseObfuscateSettings) ++ Seq(
-  obfuscate <<= (obfuscate in Compile).identity
-)
+val obfuscateSettings = inConfig(Compile)(baseObfuscateSettings)
 val baseObfuscateSettings: Seq[Setting[_]] = Seq(
   obfuscate <<= (sources in obfuscate) map { s => ... },
   sources in obfuscate <<= (sources).identity
@@ -146,9 +144,7 @@ Sometimes you want to define some settings for a particular 'main' task in your 
 
 ```scala
 val obfuscate = TaskKey[Seq[File]]("obfuscate")
-val obfuscateSettings = inConfig(Compile)(baseObfuscateSettings) ++ Seq(
-  obfuscate <<= (obfuscate in Compile).identity
-)
+val obfuscateSettings = inConfig(Compile)(baseObfuscateSettings)
 val baseObfuscateSettings: Seq[Setting[_]] = Seq(
   obfuscate <<= (sources in obfuscate) map { s => ... },
   sources in obfuscate <<= (sources).identity
