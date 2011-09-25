@@ -8,6 +8,8 @@ A plugin can define a sequence of sbt Settings that are automatically added to a
 For example, a plugin might add a 'proguard' task and associated (overridable) settings.
 Because [[Commands]] can be added with the `commands` setting, a plugin can also fulfill the role that processors did in 0.7.x.
 
+The [[Plugin Best Practices|Plugins Best Practices]] page describes the currently evolving guidelines to writing sbt plugins.  See also the general [[Best Practices]].
+
 # Using a binary sbt plugin
 
 A common situation is using a binary plugin published to a repository.
