@@ -10,9 +10,8 @@ A plugin developer should strive for consistency and ease of use. Specifically:
 
 Here are some current plugin best practices. **NOTE:** Best practices are evolving, so check back frequently.
 
-## `settings` are for commands
-
-SBT will automatically load your plugin's `settings` into the build. Overriding `val settings` should only be done by plugins providing commands. Regular plugins defining tasks and settings should provide a sequence named after the plugin like so:
+## Avoid overriding `settings`
+SBT will automatically load your plugin's `settings` into the build. Overriding `val settings` should only be done by plugins intending to provide commands. Regular plugins defining tasks and settings should provide a sequence named after the plugin like so:
 
 ```scala
 val obfuscateSettings = Seq(...)
