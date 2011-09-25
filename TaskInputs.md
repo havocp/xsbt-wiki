@@ -1,4 +1,4 @@
-# Tasks and dependencies
+# Task Inputs/Dependencies
 
 An important aspect of the task system introduced in sbt 0.10 is to combine two common, related steps in a build:
 
