@@ -48,6 +48,10 @@
         * [[Mapping Files]]
         * [[External Processes|Process]]
     * [[Specialized Tasks|Specialized]]
+* Guidelines
+    * [[Task Inputs/Dependencies|TaskInputs]] - How to connect tasks together
+    * [[General Best Practices|Best Practices]]
+    * [[Plugin Best Practices|Plugins Best Practices]]
 * Other Modes
     * [[Launcher]] - Using the launcher for booting Scala applications
     * [[Scripts]] and REPL with dependencies
