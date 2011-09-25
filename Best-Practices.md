@@ -27,8 +27,9 @@ resolvers <<= resolvers {rs =>
 
 ### .sbtrc
 
-Put commands to be executed when sbt starts up in the `.sbtrc` file, one per line.
+Put commands to be executed when sbt starts up in a `.sbtrc` file, one per line.
 These commands run before a project is loaded and are useful for defining aliases, for example.
+sbt executes commands in `$HOME/.sbtrc` (if it exists) and then `<project>/.sbtrc` (if it exists).
 
 ### Generated files
 
@@ -118,12 +119,12 @@ Here, sbt will resolve a relative File against the build root directory for you 
 2. Don't overlap or nest tokens.  The behavior here is unspecified and will likely generate an error in the future.
 3. Use `flatMap` for general recursion.  sbt's combinators are strict to limit the number of classes generated, so use `flatMap` like:
 
-	```scala
-lazy val parser: Parser[Int] = token(IntBasic) flatMap { i => 
-  if(i <= 0)
-    success(i)
-  else
-    token(Space ~> parser)
-}
-	```
+    ```scala
+    lazy val parser: Parser[Int] = token(IntBasic) flatMap { i => 
+      if(i <= 0)
+        success(i)
+      else
+        token(Space ~> parser)
+    }
+    ```
 	This example defines a parser a whitespace-delimited list of integers, ending with a negative number, and returning that final, negative number.
