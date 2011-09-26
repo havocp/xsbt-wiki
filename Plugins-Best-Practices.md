@@ -64,6 +64,14 @@ foo.stylesheet <<= ...
 ```
 
 ## Configuration Advice
+Due to usability concerns from the shell, you could opt out of task-scoping described in this section, if your plugin makes heavy use of the shell.
+Using configuration-scoping the user could discover your tasks using tab completion:
+```scala
+coffee:[tab]
+```
+
+This method no longer works with per-task keys, but there's a pending case, so hopefully it will be addressed in the future.
+
 ### When to define your own configuration
 
 If your plugin introduces a new concept (even if that concept reuses an existing key), you want your own configuration. For instance, suppose you've built a plugin that produces PDF files from some kind of markup, and your plugin defines a target directory to receive the resulting PDFs. That target directory is scoped in its own configuration, so it is distinct from other target directories. Thus, these two definitions use the same _key_, but they represent distinct _values_. So, in a user's `build.sbt`, we might see:
