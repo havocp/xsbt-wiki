@@ -66,6 +66,7 @@ foo.stylesheet <<= ...
 ## Configuration Advice
 Due to usability concerns from the shell, you could opt out of task-scoping described in this section, if your plugin makes heavy use of the shell.
 Using configuration-scoping the user could discover your tasks using tab completion:
+
 ```scala
 coffee:[tab]
 ```
