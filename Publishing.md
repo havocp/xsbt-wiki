@@ -2,9 +2,9 @@
 
 This page describes how to publish your project.  Publishing consists of uploading a descriptor, such as an Ivy file or Maven POM, and artifacts, such as a jar or war, to a repository so that other projects can specify your project as a dependency.
 
-The `publish-local`  action is used to publish your project to a local Ivy repository.  By default, this local repository is in `${user.home}/.ivy2/local`.  You can then use this project from other projects on the same machine.
-
 The `publish` action is used to publish your project to a remote repository.  To use publishing, you need to specify the repository to publish to and the credentials to use.  Once these are set up, you can run `publish`.
+
+The `publish-local`  action is used to publish your project to a local Ivy repository.  You can then use this project from other projects on the same machine.
 
 ## Define the repository
 
@@ -85,3 +85,21 @@ pomPostProcess := { (node: Node) =>
 	...
 }
 ```
+
+## Publishing Locally
+
+The `publish-local` command will publish to the local Ivy repository.  By default, this is in `${user.home}/.ivy2/local`.  Other projects on the same machine can then list the project as a dependency.  For example, if the SBT project you are publishing has configuration parameters like:
+
+```
+name := 'My Project'
+organization := 'org.me'
+version := '0.1-SNAPSHOT'
+```
+
+Then another project can depend on it:
+
+```
+libraryDependencies += "org.me" %% "my-project" % "0.1-SNAPSHOT"
+```
+
+The version number you select must end with `SNAPSHOT`, or you must change the version number each time you publish.  Ivy maintains a cache, and it stores even local projects in that cache.  If Ivy already has a version cached, it will not check the local repository for updates, unless the version number matches a [changing pattern](http://ant.apache.org/ivy/history/2.0.0/concept.html#change), and `SNAPSHOT` is one such pattern.
