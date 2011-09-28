@@ -16,9 +16,9 @@ A common situation is using a binary plugin published to a repository.
 Create `project/plugins.sbt` with the desired sbt plugins, any general dependencies, and any necessary repositories:
 
 ```scala
-addPlugin("org.example" % "plugin" % "1.0")
+addSbtPlugin("org.example" % "plugin" % "1.0")
 
-addPlugin("org.example" % "another-plugin" % "2.0")
+addSbtPlugin("org.example" % "another-plugin" % "2.0")
 
 // plain library (not an sbt plugin) for use in the build definition
 libraryDependencies += "org.example" % "utilities" % "1.3"
