@@ -13,7 +13,7 @@ The [[Plugin Best Practices|Plugins Best Practices]] page describes the currentl
 # Using a binary sbt plugin
 
 A common situation is using a binary plugin published to a repository.
-Create `project/plugins/build.sbt` with the desired sbt plugins, any general dependencies, and any necessary repositories:
+Create `project/plugins.sbt` with the desired sbt plugins, any general dependencies, and any necessary repositories:
 
 ```scala
 addSbtPlugin("org.example" % "plugin" % "1.0")
