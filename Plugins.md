@@ -278,7 +278,7 @@ object MyPlugin extends Plugin
 This example demonstrates how to take a Command (here, `myCommand`) and distribute it in a plugin.  Note that multiple commands can be included in one plugin (for example, use `commands ++= Seq(a,b)`).  See [[Commands]] for defining more useful commands, including ones that accept arguments and affect the execution state.
 
 ## Global plugins example
-The simplest global plugin definition is declaring a library or plugin in `~/.sbt/plugins.sbt`:
+The simplest global plugin definition is declaring a library or plugin in `~/.sbt/plugins/build.sbt`:
 
 ```scala
 libraryDependencies += "org.example" %% "example-plugin" % "0.1"
