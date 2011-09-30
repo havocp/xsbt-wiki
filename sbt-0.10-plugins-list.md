@@ -36,9 +36,10 @@ The purpose of this page is to aid developers in finding plugins that work with 
 * xsbt-proguard-plugin: https://github.com/siasia/xsbt-proguard-plugin
 * sbt-deploy: https://github.com/reaktor/sbt-deploy
 
-### CoffeeScript Plugin
+### Frontend development plugins
 
 * coffeescripted-sbt: https://github.com/softprops/coffeescripted-sbt
+* less-sbt: https://github.com/softprops/less-sbt
 
 ### LWJGL (Light Weight Java Game Library) Plugin
 
