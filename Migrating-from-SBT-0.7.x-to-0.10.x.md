@@ -171,7 +171,7 @@ logLevel := Level.Warn
 
 Web application support was split out into a plugin.  See the [xsbt-web-plugin] project.
 
-Web Start support still needs a new home.  Please consider adopting it!  Use the [mailing list] for guidance.
+For an early version of an xsbt Web Start plugin, visit the [xsbt-webstart] project.
 
 ## How are inter-project dependencies different in 0.11?
 
