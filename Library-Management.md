@@ -220,10 +220,18 @@ java -Dsbt.ivy.home=/tmp/.ivy2/ ...
 
 sbt ([through Ivy]) verifies the checksums of downloaded files by default.  It also publishes checksums of artifacts by default.  The checksums to use are specified by the _checksums_ setting.
 
-To disable checksum checking and publishing:
+To disable checksum checking during update:
 
 ```scala
-checksums := Nil
+checksums in update := Nil
+```
+
+To disable checksum creation during artifact publishing:
+
+```scala
+checksums in publishLocal := Nil
+
+checksums in publish := Nil
 ```
 
 The default value is:
