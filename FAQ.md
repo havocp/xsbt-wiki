@@ -74,10 +74,10 @@ http://repo1.maven.org/maven2/commons-fileupload/commons-fileupload/1.2.2/common
 invalid sha1: expected=ad3fda4adc95eb0d061341228cc94845ddb9a6fe computed=0ce5d4a03b07c8b00ab60252e5cacdc708a4e6d8 (1070ms) 
 ```
 
-The invalid checksum should generally be reported to the repository owner (as [was done][checksum report] for the above error).  In the meantime, you can temporarily disable checking with the following setting:
+The invalid checksum should generally be reported to the repository owner (as [was done][checksum report] for the above error). In the meantime, you can temporarily disable checking with the following setting:
 
 ```scala
-checksums := Nil
+checksums in update := Nil
 ```
 
 See [[Library Management]] for details.
