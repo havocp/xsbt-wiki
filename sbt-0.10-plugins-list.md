@@ -51,6 +51,7 @@ The purpose of this page is to aid developers in finding plugins that work with 
 * sbt-signer-plugin: https://github.com/rossabaker/sbt-signer-plugin
 * sbt-izpack (generates IzPack an installer): http://software.clapper.org/sbt-izpack/
 * sbt-ghpages-plugin (publishes generated site and api): https://github.com/jsuereth/xsbt-ghpages-plugin
+* sbt-gpg-plugin (PGP signing plugin, can generate keys too): https://github.com/jsuereth/xsbt-gpg-plugin
 
 ### System plugins
 
