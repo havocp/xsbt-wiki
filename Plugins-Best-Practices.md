@@ -36,22 +36,24 @@ Sometimes, you need a new key, because there is no existing SBT key. In this cas
 ### Just use a `val` prefix
 
 ```scala
-object FooPlugin extends sbt.Plugin {
+package sbtfoo
+object Plugin extends sbt.Plugin {
   val fooStylesheet = SettingKey[File]("foo-stylesheet")
 }
 ```
 
 In this approach, every `val` starts with `foo`. A user of the plugin would refer to the settings like this:
 
-```
+```scala
 fooStylesheet <<= ...
 ```
 
 ### Use a nested object
 
 ```scala
-object FooPlugin extends sbt.Plugin {
-  object foo {
+package sbtfoo
+object Plugin extends sbt.Plugin {
+  object FooKeys {
     val stylesheet = SettingKey[File]("foo-stylesheet")
   }
 }
@@ -59,8 +61,10 @@ object FooPlugin extends sbt.Plugin {
 
 In this approach, all non-common settings are in a nested object. A user of the plugin would refer to the settings like this:
 
-```
-foo.stylesheet <<= ...
+```scala
+import FooKeys._
+
+stylesheet <<= ...
 ```
 
 ## Configuration Advice
