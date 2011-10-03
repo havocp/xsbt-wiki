@@ -36,25 +36,25 @@ Sometimes, you need a new key, because there is no existing SBT key. In this cas
 ### Just use a `val` prefix
 
 ```scala
-package sbtfoo
+package sbtobfuscate
 object Plugin extends sbt.Plugin {
-  val fooStylesheet = SettingKey[File]("foo-stylesheet")
+  val obfuscateStylesheet = SettingKey[File]("obfuscate-stylesheet")
 }
 ```
 
-In this approach, every `val` starts with `foo`. A user of the plugin would refer to the settings like this:
+In this approach, every `val` starts with `obfuscate`. A user of the plugin would refer to the settings like this:
 
 ```scala
-fooStylesheet <<= ...
+obfuscateStylesheet <<= ...
 ```
 
 ### Use a nested object
 
 ```scala
-package sbtfoo
+package sbtobfuscate
 object Plugin extends sbt.Plugin {
-  object FooKeys {
-    val stylesheet = SettingKey[File]("foo-stylesheet")
+  object ObfuscateKeys {
+    val stylesheet = SettingKey[File]("obfuscate-stylesheet")
   }
 }
 ```
@@ -62,7 +62,7 @@ object Plugin extends sbt.Plugin {
 In this approach, all non-common settings are in a nested object. A user of the plugin would refer to the settings like this:
 
 ```scala
-import FooKeys._
+import ObfuscateKeys._ // place this at the top of build.sbt
 
 stylesheet <<= ...
 ```
