@@ -1,5 +1,6 @@
 [Ivy documentation]: http://ant.apache.org/ivy/history/2.2.0/ivyfile/dependency-artifact.html
 [Artifact API]: http://harrah.github.com/xsbt/latest/api/sbt/Artifact$.html
+[SettingsDefinition]: http://harrah.github.com/xsbt/latest/api/#sbt.Init$SettingsDefinition
 
 # Artifacts
 
@@ -80,23 +81,6 @@ myTask <<= packagedArtifact in (Compile, packageBin) map { case (art: Artifact, 
 
 where `val myTask = TaskKey[Unit]`.
 
-# Publishing .war files
-
-A common use case for web applications is to publish the `.war` file instead of the `.jar` file.
-
-```scala
-// disable .jar publishing 
-publishArtifact in (Compile, packageBin) := false 
-
-// create an Artifact for publishing the .war file 
-artifact in (Compile, packageWar) ~= { (art: Artifact) => 
-  art.copy(`type` = "war", extension = "war") 
-} 
-
-// add the .war file to what gets published 
-addArtifact(artifact in (Compile, packageWar), packageWar) 
-```
-
 # Defining custom artifacts
 
 In addition to configuring the builtin artifacts, you can declare other artifacts to publish.  Multiple artifacts are allowed when using Ivy metadata, but a Maven POM file only supports distinguishing artifacts based on classifiers and these are not recorded in the POM.
@@ -133,6 +117,31 @@ addArtifact( Artifact("myproject", "image", "jpg"), myImageTask )
 
 where `val myImageTask = TaskKey[File](...)`.
 
+`addArtifact` returns a sequence of settings (wrapped in a [SettingsDefinition]).  In a full build configuration, usage looks like:
+
+```scala
+  ...
+  lazy val proj = Project(...)
+    .settings( addArtifact(...).settings : _* )
+  ...
+```
+
+# Publishing .war files
+
+A common use case for web applications is to publish the `.war` file instead of the `.jar` file.
+
+```scala
+// disable .jar publishing 
+publishArtifact in (Compile, packageBin) := false 
+
+// create an Artifact for publishing the .war file 
+artifact in (Compile, packageWar) ~= { (art: Artifact) => 
+  art.copy(`type` = "war", extension = "war") 
+} 
+
+// add the .war file to what gets published 
+addArtifact(artifact in (Compile, packageWar), packageWar) 
+```
 
 # Using dependencies with artifacts
 
