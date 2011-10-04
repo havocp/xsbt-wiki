@@ -249,20 +249,65 @@ Finally, see [[Publishing]] for how to publish your project.
 For this method, create the configuration files as you would for Maven (`pom.xml`) or Ivy (`ivy.xml` and optionally `ivysettings.xml`).
 External configuration is selected by using one of the following expressions.
 
-* For Ivy settings (resolver configuration), use `externalIvySettings()` or
- `externalIvySettings(baseDirectory(_ / "custom-settings-name.xml"))`.
-* For an Ivy file (dependency configuration), use `externalIvyFile()` or
- `externalIvyFile(baseDirectory(_ / "custom-name.xml"))`.
-* For a Maven pom (dependencies only), use `externalPom()` or
- `externalPom(baseDirectory(_ / "custom-name.xml"))`.
+### Ivy settings (resolver configuration)
+
+```scala
+externalIvySettings()
+```
+
+or
+
+```scala
+externalIvySettings(baseDirectory(_ / "custom-settings-name.xml"))
+```
+
+### Ivy file (dependency configuration)
+
+```scala
+externalIvyFile()
+```
+
+or
+
+```scala
+externalIvyFile(baseDirectory(_ / "custom-name.xml"))
+```
+
+Because Ivy files specify their own configurations, sbt needs to know which configurations to use for the compile, runtime, and test classpaths.  For example, to specify that the Compile classpath should use the 'default' configuration:
+
+```scala
+classpathConfiguration in Compile := config("default")
+```
+
+### Maven pom (dependencies only)
+
+```scala
+externalPom()
+```
+
+or
+
+```scala
+externalPom(baseDirectory(_ / "custom-name.xml"))
+```
+
+### Full Ivy Example
 
 For example, a `build.sbt` using external Ivy files might look like:
 
 ```scala
+externalIvySettings()
+
 externalIvyFile( baseDirectory { base => base / "ivyA.xml"} )
 
-externalIvySettings()
+classpathConfiguration in Compile := Compile
+
+classpathConfiguration in Test := Test
+
+classpathConfiguration in Runtime := Runtime
 ```
+
+### Known limitations
 
 Maven support is dependent on Ivy's support for Maven POMs.
 Known issues with this support:
