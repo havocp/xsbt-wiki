@@ -121,7 +121,7 @@ import Keys._
 
 object MyBuild extends Build {
   override lazy val settings = super.settings :+
-    (shellPrompt := { s => Project.extract(s).cid + "> " })
+    (shellPrompt := { s => Project.extract(s).currentProject.id + "> " })
   ...
 }
 ```
