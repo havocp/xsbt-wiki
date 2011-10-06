@@ -65,7 +65,7 @@ In particular, all keys (like `name` and `version`) need to be imported from `sb
 For example, to define a build from scratch (with no default settings or tasks):
 
 ```scala
-import sbt_
+import sbt._
 import Keys._
 
 object MyBuild extends Build {
