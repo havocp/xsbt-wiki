@@ -71,7 +71,11 @@ Here, `aTask` is assumed to produce a result of type `A` and `bTask` is assumed 
 
 ## Application
 
-Apply this in practice by determining the tasks that produce the values you need and then `map` the tasks with the function that implements your task.
+Apply this in practice:
+
+1. Determine the tasks that produce the values you need
+2. `map` the tasks with the function that implements your task.
+
 As an example, consider generating a zip file containing the binary jar, source jar, and documentation jar for your project.
 First, determine what tasks produce the jars.
 In this case, the input tasks are `packageBin`, `packageSrc`, and `packageDoc` in the main `Compile` scope.
@@ -84,10 +88,20 @@ zip <<= (packageBin in Compile, packageSrc in Compile, packageDoc in Compile, zi
   (bin: File, src: File, doc: File, out: File) =>
     val inputs: Seq[(File,String)] = Seq(bin, src, doc) x Path.flat
     IO.zip(inputs, out)
-	 out
+    out
 }
 ```
 
 The `val inputs` line defines how the input files are mapped to paths in the zip.
-See [Mapping Files](https://github.com/harrah/xsbt/wiki/Mapping-Files) on the sbt wiki for details.
+See [Mapping Files](https://github.com/harrah/xsbt/wiki/Mapping-Files) for details.
 The explicit types are not required, but are included for clarity.
+
+The `zipPath` input would be a custom task to define the location of the zip file.
+For example:
+
+```scala
+zipPath <<= target map {
+  (t: File) =>
+    t / "out.zip"
+}
+```
