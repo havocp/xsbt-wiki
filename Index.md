@@ -86,7 +86,7 @@ See [[Settings]] and [[Tasks]] for details.
 See [RichFile], [PathFinder], and [[Paths]] for the full documentation.
 
 * `/`  When called on a single File, this is `new File(x,y)`.  For `Seq[File]`, this is applied for each member of the sequence..
-* `*` and **`  are methods for selecting children (`*`) or descendents (`**`) of a `File` or `Seq[File]` that match a filter.
+* `*` and `**`  are methods for selecting children (`*`) or descendents (`**`) of a `File` or `Seq[File]` that match a filter.
 * `|`, `||`, `&&`, `&`, `-`, and `--` are methods for combining filters, which are often used for selecting `File`s.  See [NameFilter] and [FileFilter].  Note that methods with these names also exist for other types, such as collections (like `Seq) and [Parser] (see [[Parsing Input]]).
 * `x` Used to construct mappings from a `File` to another `File` or to a `String`.  See [[Mapping Files]].
 * `get` forces a [PathFinder] (a call-by-name data structure) to a strict `Seq[File]` representation.  This is a common name in Scala, used by types like `Option`.
