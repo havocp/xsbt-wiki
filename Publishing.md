@@ -14,6 +14,14 @@ To specify the repository, assign a repository to `publish-to` and optionally se
 publishTo := Some("Scala Tools Nexus" at "http://nexus.scala-tools.org/content/repositories/releases/")
 ```
 
+To publish to a local repository:
+
+```scala
+
+ publishTo := Some(Resolver.file("file",  new File( "path/to/my/maven-repo/releases" )) )
+```
+
+
 If you're using Maven repositories you will also have to select the right repository depending on your artifacts: SNAPSHOT versions go to the /snapshot repository while other versions go to the /releases repository. Doing this selection can be done by using the value of the `version` SettingKey:
 
 ```scala
@@ -22,6 +30,12 @@ publishTo <<= (version) { version: String =>
   if (version.trim.endsWith("SNAPSHOT")) Some("snapshots" at nexus + "snapshots/") 
   else                                   Some("releases"  at nexus + "releases/")
 }
+```
+```scala
+publishTo <<= (version) { version: String =>
+      Some(Resolver.file("file", new File("path/to/my/maven-repo") / {
+        if  (version.trim.endsWith("SNAPSHOT"))  "snapshots"
+        else                                    "releases/" }    ))
 ```
 
 ## Credentials
