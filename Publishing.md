@@ -35,7 +35,8 @@ publishTo <<= (version) { version: String =>
 publishTo <<= (version) { version: String =>
       Some(Resolver.file("file", new File("path/to/my/maven-repo") / {
         if  (version.trim.endsWith("SNAPSHOT"))  "snapshots"
-        else                                    "releases/" }    ))
+        else                                     "releases/" }    ))
+}
 ```
 
 ## Credentials
