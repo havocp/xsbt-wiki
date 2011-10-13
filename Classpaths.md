@@ -65,6 +65,14 @@ The `task` method is used to refer to the actual task instead of the result of t
 
 For resources, there are similar keys `resourceGenerators` and `resourceManaged`.
 
+### Excluding source files by name
+
+The project base directory is by default a source directory in addition to `src/main/scala`.  You can exclude source files  by name (`butler.scala` in the example below) like:
+
+    excludeFilter in unmanagedSources := "butler.scala" 
+
+Read more on [How to exclude .scala source file in project folder - Google Groups](http://groups.google.com/group/simple-build-tool/browse_thread/thread/cd5332a164405568?hl=en)
+
 ## External v. internal
 
 Classpaths are also divided into internal and external dependencies.
