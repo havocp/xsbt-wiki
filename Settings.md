@@ -4,7 +4,7 @@
 [Scope]: http://harrah.github.com/xsbt/latest/api/sbt/Scope$.html
 [Initialize]: http://harrah.github.com/xsbt/latest/api/sbt/Init$Initialize.html
 [SettingKey]: http://harrah.github.com/xsbt/latest/api/sbt/SettingKey.html
-[Keys]: http://harrah.github.com/xsbt/latest/sxr/Keys.scala.html
+[Keys]: http://harrah.github.com/xsbt/latest/sxr/Keys.scala.html "Keys.scala"
 [InputKey]: http://harrah.github.com/xsbt/latest/api/sbt/InputKey.html
 [TaskKey]: http://harrah.github.com/xsbt/latest/api/sbt/TaskKey.html
 [Append]: http://harrah.github.com/xsbt/latest/api/sbt/Append$.html

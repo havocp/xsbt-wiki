@@ -1,19 +1,37 @@
-sbt is a build tool for Scala projects that aims to do the basics well. It requires Java 1.6 or later.
+sbt is a build tool for Scala and Java projects that aims to do the basics well. It requires Java 1.6 or later.
 
 ## Features
-* Fairly fast, unintrusive, and easy to set up for simple projects
-* [[Configuration|Basic Configuration]], [[customization|Tasks]], and [[extension|Plugins]] are done in Scala
-* Accurate recompilation (in theory) is done using information extracted from the compiler
+* Easy to set up for simple projects
+* [[Basic build definition|Basic Build Definition]] uses a Scala-based "domain-specific language" (DSL)
+* More advanced [[full build definitions|Full Build Definition]] and [[extensions|Custom Settings and Tasks]] use the full flexibility of unrestricted Scala code
+* Accurate incremental recompilation using information extracted from the compiler
 * Continuous compilation and testing with [[triggered execution|Triggered Execution]]
-* Supports mixed Scala/[[Java|Java Sources]] projects, packages jars, generates documentation with scaladoc
+* Packages and publishes jars
+* Generates documentation with scaladoc
+* Supports mixed Scala/[[Java|Java Sources]] projects
 * Supports [[Testing|testing]] with ScalaCheck, specs, and ScalaTest (JUnit is supported by a plugin)
 * Starts the Scala REPL with project classes and dependencies on the classpath
-* [[Multi-module and external project|Full Configuration]] support
+* [[Sub-project|Multi-Project Builds]] support (put multiple packages in one project)
+* [[External project|External Projects]] support (list a git repository as a dependency!)
 * Parallel task execution, including parallel test execution
-* [[Dependency management support|Library Management]]: inline declarations, external Ivy or Maven configuration files, or manual management
+* [[Library management support|Library Management]]: inline declarations, external Ivy or Maven configuration files, or manual management
 
 ## Getting Started
-To get started, read [[Setup]], [[Running]].  For configuration instructions, start with [[Settings]].  See also [[Basic Configuration]], [[Full Configuration]], and [[Quick Configuration Examples]].  If you are familiar with 0.7.x, please see the [[migration page|Migrating from sbt 0.7.x to 0.10.x]]. Documentation for 0.7.x is still available on the [Google Code Site](http://code.google.com/p/simple-build-tool/wiki/DocumentationHome).
+
+To get started, start with [[Setup]], and continue through the other Getting
+Started pages listed in the sidebar on the right. It's best to read in
+order, as later pages in the Getting Started series build on concepts
+introduced earlier.
+
+_Please read the Getting Started pages._ You will save yourself a _lot_ of
+time if you have the right understanding of the big picture
+up-front. [[Start with setup|Setup]].
+
+If you are familiar with 0.7.x, please see the
+[[migration page|Migrating from sbt 0.7.x to 0.10.x]]. Documentation for
+0.7.x is still available on the
+[Google Code Site](http://code.google.com/p/simple-build-tool/wiki/DocumentationHome).
+This wiki applies to sbt 0.10 and later.
 
 The mailing list is at <http://groups.google.com/group/simple-build-tool/topics>. Please use it for questions and comments!
 

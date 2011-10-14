@@ -1,6 +1,19 @@
+* [[Home]] - Overview of sbt
 * Getting Started
-    * [[Setup]] - Get sbt running on your machine
-    * [[Running]] - Use sbt from the command line
+    * [[Setup]] - Install sbt
+    * [[Hello World]] - Create a simple project
+    * [[Directory Structure]] - Basic project layout
+    * [[Running]] - The command line and interactive mode
+    * [[Basic Build Definition]] - Understanding build.sbt settings
+    * [[Scopes]] - Put settings in context
+    * [[More About Settings]] - Settings based on other settings
+    * [[Library Dependencies]] - Adding jars or managed dependencies
+    * [[Full Build Definition]] - When build.sbt is not enough
+    * [[Using Plugins]] - Adding plugins to the build
+    * [[Multi-Project Builds]] - Adding sub-projects to the build
+    * [[Custom Settings and Tasks]] - Intro to extending sbt
+    * [[Summary]] - What you should know now
+* Help
     * [[Migrating from sbt 0.7.x to 0.10.x]]
     * [[Index]] - Look up common types, values, and methods
     * [[FAQ]]
@@ -16,7 +29,7 @@
     * [[Basic Configuration]]
     * [[Full Configuration]]
     * [[Global Settings]]
-    * Examples 
+    * Examples
         * [[Quick|Quick Configuration Examples]]
         * [[Full|Full Configuration Example]]
         * [[Advanced Command Example]]

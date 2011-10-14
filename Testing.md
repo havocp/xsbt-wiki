@@ -2,6 +2,9 @@
 [TestReportListener]: http://harrah.github.com/xsbt/latest/api/sbt/TestReportListener.html
 [TestsListener]: http://harrah.github.com/xsbt/latest/api/sbt/TestsListener.html
 [junit-interface]: https://github.com/szeiger/junit-interface
+[ScalaCheck]: http://code.google.com/p/scalacheck/
+[specs]: http://code.google.com/p/specs/
+[ScalaTest]: http://www.artima.com/scalatest/
 
 # Testing
 
@@ -15,7 +18,7 @@ The standard source locations for testing are:
 
 The resources may be accessed from tests by using the `getResource` methods of `java.lang.Class` or `java.lang.ClassLoader`.
 
-The main Scala testing frameworks (Specs(2), ScalaCheck, and ScalaTest) provide an implementation of the common test interface and only need to be added to the classpath to work with sbt.  For example, ScalaCheck may be used by declaring it as a [[managed dependency|Library Management]]:
+The main Scala testing frameworks ([specs], [ScalaCheck], and [ScalaTest]) provide an implementation of the common test interface and only need to be added to the classpath to work with sbt.  For example, ScalaCheck may be used by declaring it as a [[managed dependency|Library Management]]:
 
 ```scala
 libraryDependencies += "org.scala-tools.testing" %% "scalacheck" % "1.9" % "test"
