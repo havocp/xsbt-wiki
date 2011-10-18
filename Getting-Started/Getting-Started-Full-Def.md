@@ -260,8 +260,10 @@ this order:
    define settings affecting _all_ your projects.
  - Settings injected by plugins, see [[using plugins|Getting Started Using Plugins]] coming up next.
  - Settings from `.sbt` files in the project.
- - FIXME parse this: "settings that configure the global plugin definition for a
-   project-level plugin definition as if it were declared locally"
+ - Build definition projects (i.e. projects inside `project`) have
+   settings from global plugins (`~/.sbt/plugins`) added.
+   [[using plugins|Getting Started Using Plugins]] explains this
+   more.
 
 Later settings override earlier ones. The entire list of settings forms the
 build definition.
