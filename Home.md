@@ -18,14 +18,13 @@ sbt is a build tool for Scala and Java projects that aims to do the basics well.
 
 ## Getting Started
 
-To get started, start with [[Setup|Getting Started Setup]], and continue through the other Getting
-Started pages listed in the sidebar on the right. It's best to read in
-order, as later pages in the Getting Started series build on concepts
-introduced earlier.
+To get started, read the
+ [[Getting Started Guide|Getting Started Welcome]].
 
-_Please read the Getting Started pages._ You will save yourself a _lot_ of
-time if you have the right understanding of the big picture
-up-front. [[Start with setup|Getting Started Setup]].
+_Please read the
+[[Getting Started Guide|Getting Started Welcome]]._ You will save
+yourself a _lot_ of time if you have the right understanding of
+the big picture up-front.
 
 If you are familiar with 0.7.x, please see the
 [[migration page|Migrating from sbt 0.7.x to 0.10.x]]. Documentation for
