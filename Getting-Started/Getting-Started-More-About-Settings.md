@@ -28,7 +28,8 @@ transformed map. For example, if you transform a map with the setting
 
 Settings must end up in the master list of settings to do any good (all
 lines in a `build.sbt` automatically end up in the list, but in a
-[[.scala file|Getting Started Full Def]] you can get it wrong).
+[[.scala file|Getting Started Full Def]] you can get it wrong by
+creating a `Setting` without putting it where sbt will find it).
 
 ## Appending to previous values: `+=` and `++=`
 
