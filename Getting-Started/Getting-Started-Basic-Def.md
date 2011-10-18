@@ -159,9 +159,9 @@ There are three flavors of key:
    computed one time when loading the project, and kept around).
  - `TaskKey[T]`: a key with a value that has to be recomputed each time,
    potentially creating side effects.
- - `InputKey[T]` which isn't covered in the Getting Started Guide
-   because it's not as commonly used. Check out [[Input Tasks]]
-   for more about it.
+ - `InputKey[T]`: a task key which has command line arguments as
+   input. The Getting Started Guide doesn't cover `InputKey`,
+   when you finish this guide, check out [[Input Tasks]] for more.
 
 A `TaskKey[T]` is said to define a _task_. Tasks are operations such as
 `compile` or `package`. They may return `Unit` (`Unit` is Scala for `void`),
