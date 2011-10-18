@@ -1,5 +1,5 @@
 * [[Home]] - Overview of sbt
-* [[Getting Started|Getting Started Welcome]]
+* [[Getting Started Guide|Getting Started Welcome]]
     * [[Setup|Getting Started Setup]] - Install sbt
     * [[Hello, World|Getting Started Hello]] - Create a simple project
     * [[Directory Layout|Getting Started Directories]] - Basic project layout

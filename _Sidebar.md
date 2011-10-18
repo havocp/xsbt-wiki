@@ -1,5 +1,5 @@
 * [[Home]] - Overview of sbt
-* [[Getting Started|Getting Started Welcome]] - START HERE
+* [[Getting Started Guide|Getting Started Welcome]] - START HERE
 * Help
     * [[Migrating from sbt 0.7.x to 0.10.x]]
     * [[Index]] - Look up common types, values, and methods
