@@ -2,6 +2,8 @@
 
 # Directory structure
 
+[[Previous|Getting Started Hello]] _Getting Started Guide page 4 of 14._ [[Next|Getting Started Running]]
+
 This page assumes you've [[installed sbt|Getting Started Setup]] and seen the [[Hello, World|Getting Started Hello]].
 
 ## Base directory

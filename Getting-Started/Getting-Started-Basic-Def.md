@@ -2,9 +2,11 @@
 
 # Basic Build Definition
 
+[[Previous|Getting Started Running]] _Getting Started Guide page 6 of 14._ [[Next|Getting Started Scopes]]
+
 This page describes sbt build definitions, including some "theory" and the
 syntax of `build.sbt`. It assumes you know how to [[use sbt|Getting Started Running]] and
-have read the previous pages in the Getting Started category.
+have read the previous pages in the Getting Started Guide.
 
 ## Basic vs. Full Definition
 

@@ -9,6 +9,9 @@
 
 # Library Dependencies
 
+[[Previous|Getting Started More About Settings]] _Getting Started Guide page
+9 of 14._ [[Next|Getting Started Full Def]]
+
 This page assumes you've read the earlier Getting Started pages, in particular
 [[basic build definition|Getting Started Basic Def]],
 [[scopes|Getting Started Scopes]], and [[more about settings|Getting Started More About Settings]].

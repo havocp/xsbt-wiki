@@ -4,11 +4,16 @@
 
 # Custom Settings and Tasks
 
+[[Previous|Getting Started Multi-Project]] _Getting Started Guide page
+13 of 14._ [[Next|Getting Started Summary]]
+
 This page gets you started creating your own settings and tasks.
 
-Be sure you've read earlier pages in the Getting Started series, especially
-[[build.sbt|Getting Started Basic Def]] and [[more about settings|Getting Started More About Settings]], before
-reading this page.
+To understand this page, be sure you've read earlier pages in the
+Getting Started Guide, especially
+[[build.sbt|Getting Started Basic Def]] and
+[[more about settings|Getting Started More About Settings]],
+before reading this page.
 
 ## Defining a key
 

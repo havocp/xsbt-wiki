@@ -1,6 +1,8 @@
 
 # Hello, World
 
+[[Previous|Getting Started Setup]] _Getting Started Guide page 3 of 14._ [[Next|Getting Started Directories]]
+
 This page assumes you've [[installed sbt|Getting Started Setup]].
 
 ## Create a project directory with source code

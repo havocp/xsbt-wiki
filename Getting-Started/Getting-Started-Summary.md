@@ -1,6 +1,9 @@
 # Getting Started Summary
 
-This page wraps up a series of pages in the Getting Started category.
+[[Previous|Getting Started Custom Settings]] _Getting Started Guide page
+14 of 14._
+
+This page wraps up the Getting Started Guide.
 
 To use sbt, there are a small number of concepts you must understand. These
 have some learning curve, but on the positive side, there isn't much to sbt

@@ -4,6 +4,9 @@ http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism
 
 # Scopes
 
+[[Previous|Getting Started Basic Def]] _Getting Started Guide page
+7 of 14._ [[Next|Getting Started More About Settings]]
+
 This page describes scopes. It assumes you've read and understood the
 previous page, [[basic build definition|Getting Started Basic Def]].
 

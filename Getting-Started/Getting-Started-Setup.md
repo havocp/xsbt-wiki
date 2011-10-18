@@ -2,9 +2,7 @@
 
 # Setup
 
-This page is the first in a series of Getting Started pages that will introduce you to sbt.
-
-Please go in order! Later pages assume you're familiar with earlier concepts.
+[[Previous|Getting Started Welcome]] _Getting Started Guide page 2 of 14._ [[Next|Getting Started Hello]]
 
 # Overview
 

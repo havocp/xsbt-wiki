@@ -1,7 +1,11 @@
 # Full Build Definition
 
-This page is part of a Getting Started series, and it assumes you've read
-previous pages in the series, _especially_ [[basic build definition|Getting Started Basic Def]] and
+[[Previous|Getting Started Library Dependencies]] _Getting Started Guide page
+10 of 14._ [[Next|Getting Started Using Plugins]]
+
+This page assumes you've read previous pages in the Getting
+Started Guide, _especially_
+[[basic build definition|Getting Started Basic Def]] and
 [[more about settings|Getting Started More About Settings]].
 
 ## sbt is recursive

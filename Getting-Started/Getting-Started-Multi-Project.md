@@ -1,11 +1,15 @@
 # Multi-Project Builds
 
+[[Previous|Getting Started Using Plugins]] _Getting Started Guide page
+12 of 14._ [[Next|Getting Started Custom Settings]]
+
 This page introduces multiple projects in a single build.
 
-It's part of a Getting Started series. Please read the earlier pages in the
-series first, in particular you need to understand
-[[build.sbt|Getting Started Basic Def]] and [[full build definition|Getting Started Full Def]] before
-reading this page.
+Please read the earlier pages in the Getting Started Guide first,
+in particular you need to understand
+[[build.sbt|Getting Started Basic Def]] and
+[[full build definition|Getting Started Full Def]] before reading
+this page.
 
 ## Multiple projects
 

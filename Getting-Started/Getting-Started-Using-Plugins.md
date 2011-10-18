@@ -1,9 +1,14 @@
 # Using Plugins
 
-This page is part of a Getting Started series. Please read the earlier pages
-in the series first, in particular you need to understand
-[[build.sbt|Getting Started Basic Def]], [[library dependencies|Getting Started Library Dependencies]], and
-[[full build definition|Getting Started Full Def]] before reading this page.
+[[Previous|Getting Started Full Def]] _Getting Started Guide page
+11 of 14._ [[Next|Getting Started Multi-Project]]
+
+Please read the earlier pages in the Getting Started Guide first,
+in particular you need to understand
+[[build.sbt|Getting Started Basic Def]],
+[[library dependencies|Getting Started Library Dependencies]], and
+[[full build definition|Getting Started Full Def]] before reading
+this page.
 
 ## What is a plugin?
 

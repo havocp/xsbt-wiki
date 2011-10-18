@@ -3,6 +3,10 @@
 
 # More Kinds of Setting
 
+[[Previous|Getting Started Scopes]] _Getting Started Guide page
+8 of 14._ [[Next|Getting Started Library Dependencies]]
+
+
 This page explains other ways to create a `Setting`, beyond the basic `:=`
 method. It assumes you've read [[basic build definition|Getting Started Basic Def]] and [[scopes|Getting Started Scopes]].
 

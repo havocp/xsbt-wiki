@@ -1,5 +1,7 @@
 # Welcome!
 
+_Getting Started Guide page 1 of 14._ [[Next|Getting Started Setup]]
+
 This Getting Started Guide will get you started with sbt.
 
 sbt uses a small number of concepts to support flexible and
