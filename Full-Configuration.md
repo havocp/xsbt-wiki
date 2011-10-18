@@ -78,7 +78,7 @@ object MyBuild extends Build {
 To augment the default settings, the following Project definitions are equivalent:
 
 ```scala
-lazy val a1 = Project("a", file("subA")) settings(name := "Additional", version := "1.0")
+lazy val a1 = Project("a", file("subA")) settings (name := "Additional", version := "1.0")
 
 lazy val a2 = Project("a", file("subA"),
   settings = Defaults.defaultSettings ++ Seq(name := "Additional", version := "1.0")
