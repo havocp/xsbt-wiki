@@ -31,7 +31,7 @@ val scalaVersion = SettingKey[String]("scala-version", "The version of Scala use
 val clean = TaskKey[Unit]("clean", "Deletes files produced by the build, such as generated sources, compiled classes, and task caches.")
 ```
 
-The `Key` constructors have two string parameters: the name of the key
+The key constructors have two string parameters: the name of the key
 (`"scala-version"`) and a documentation string (`"The version of scala used for
 building."`).
 

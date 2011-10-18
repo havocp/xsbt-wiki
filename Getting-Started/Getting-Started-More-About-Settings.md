@@ -33,7 +33,7 @@ lines in a `build.sbt` automatically end up in the list, but in a
 ## Appending to previous values: `+=` and `++=`
 
 Replacement with `:=` is the simplest transformation, but keys have other
-methods as well.  If the `T` in `Key[T]` is a sequence, i.e. the key's value
+methods as well.  If the `T` in `SettingKey[T]` is a sequence, i.e. the key's value
 type is a sequence, you can append to the sequence rather than replacing it.
 
  - `+=` will append a single element to the sequence.
@@ -100,9 +100,10 @@ Or a simpler example:
 name ~= { _.toUpperCase }
 ```
 
-The function you pass to the `~=` method will always have type `T => T`, if
-the key has type `Key[T]`. The function transforms the key's value into another
-value of the same type.
+The function you pass to the `~=` method will always have type `T
+=> T`, if the key has type `SettingKey[T]` or `TaskKey[T]`. The
+function transforms the key's value into another value of the same
+type.
 
 ## Computing a value based on other keys' values: `<<=`
 
@@ -130,9 +131,9 @@ is just a key:
 name <<= name
 ```
 
-When treated as an `Initialize[T]`, a `Key[T]` computes its current value. So
-`name <<= name` sets the value of `name` to the value that `name` already
-had.
+When treated as an `Initialize[T]`, a `SettingKey[T]` computes its
+current value. So `name <<= name` sets the value of `name` to the
+value that `name` already had.
 
 It gets a little more useful if you set a key to a _different_ key. The keys
 must have identical value types, though.
@@ -200,7 +201,7 @@ tuple like `(1, "a")` (that one has type `(Int, String)`).
 
 So say you have a tuple of three `Initialize` objects; its type would be
 `(Initialize[A], Initialize[B], Initialize[C])`. The `Initialize` objects
-could be keys, since all `Key[T]` are also instances of `Initialize[T]`.
+could be keys, since all `SettingKey[T]` are also instances of `Initialize[T]`.
 
 Here's a simple example, in this case all three keys are strings:
 
@@ -227,7 +228,7 @@ So each key is already an `Initialize`; but you can combine any number of
 simple `Initialize` (such as keys) into one composite `Initialize` by
 placing them in tuples, and invoking the `apply` method.
 
-The `<<=` method on `Key[T]` is expecting an `Initialize[T]`, so you can use
+The `<<=` method on `SettingKey[T]` is expecting an `Initialize[T]`, so you can use
 this technique to create an `Initialize[T]` with multiple dependencies on
 arbitrary keys.
 
@@ -251,7 +252,7 @@ You can use a more concise syntax in `build.sbt`, like this:
 name <<= (name, organization, version) { (n, o, v) => "project " + n + " from " + o + " version " + v }
 ```
 
-Here the tuple of `Initialize` (also a tuple of `Key`) works as a function,
+Here the tuple of `Initialize` (also a tuple of `SettingKey`) works as a function,
 taking the anonymous function delimited by `{}` as its argument, and returning an
 `Initialize[T]` where `T` is the result type of the anonymous function.
 

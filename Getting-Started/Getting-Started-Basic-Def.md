@@ -81,8 +81,10 @@ The expressions in `build.sbt` are independent of one another, and they are
 expressions, rather than complete lines of Scala code. An implication of
 this is that you can't define a `val` or `object` in `build.sbt`.
 
-On the left, `name`, `version`, and `scalaVersion` are _keys_. A key is an
-instance of `Key[T]` where `T` is the expected value type.
+On the left, `name`, `version`, and `scalaVersion` are _keys_. A
+key is an instance of `SettingKey[T]`, `TaskKey[T]`, or
+`InputKey[T]` where `T` is the expected value type. The kinds
+of key are explained more below.
 
 Keys have a method called `:=`, which returns a `Setting[T]`. You could
 use a Java-like syntax to call the method:
@@ -95,7 +97,7 @@ But Scala allows `name := "hello"` instead (in Scala, any method can use either 
 
 The `:=` method on key `name` returns a `Setting`, specifically a
 `Setting[String]`. `String` also appears in the type of `name` itself, which
-is `Key[String]`. In this case, the returned `Setting[String]` is
+is `SettingKey[String]`. In this case, the returned `Setting[String]` is
 a transformation to add or replace the `name` key in sbt's map, giving it
 the value `"hello"`.
 
@@ -124,15 +126,15 @@ The other transformations require an understanding of [[scopes|Getting Started S
 
 ## Task Keys
 
-While all keys extend the `Key[T]` trait, there are two important
-subclasses of `Key`.
+There are three flavors of key:
 
  - `SettingKey[T]`: a key with a value that never changes (the value is
    computed one time when loading the project, and kept around).
  - `TaskKey[T]`: a key with a value that has to be recomputed each time,
    potentially creating side effects.
- - (We're ignoring a third subclass, `InputKey[T]`, for now. Check out
-   [[Input Tasks]] for more about it.)
+ - `InputKey[T]` which isn't covered in the Getting Started Guide
+   because it's not as commonly used. Check out [[Input Tasks]]
+   for more about it.
 
 A `TaskKey[T]` is said to define a _task_. Tasks are operations such as
 `compile` or `package`. They may return `Unit` (`Unit` is Scala for `void`),

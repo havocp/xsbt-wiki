@@ -21,7 +21,7 @@ to know.
  - [[Basic build definition|Getting Started Basic Def]]
    - your build definition is one big list of `Setting` objects, where a
      `Setting` transforms the set of key-value pairs sbt uses to perform tasks.
-   - to create a `Setting`, call one of a few methods on a `Key` (the `:=` and
+   - to create a `Setting`, call one of a few methods on a key (the `:=` and
      `<<=` methods are particularly important).
    - there is no mutable state, only transformation; for example, a `Setting`
      transforms sbt's collection of key-value pairs into a new collection. It
