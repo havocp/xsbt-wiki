@@ -130,33 +130,6 @@ The other transformations require an understanding of [[scopes|Getting Started S
 [[next section|Getting Started Scopes]] is about scopes and the
 [[section after that|Getting Started More About Settings]] goes into more detail about settings.
 
-## Adding library dependencies
-
-To depend on third-party libraries, there are two options. The
-first is to drop jars in `lib/` (unmanaged dependencies) and the
-other is to add managed dependencies, which will look like this in
-`build.sbt`:
-
-```scala
-libraryDependencies += "org.apache.derby" % "derby" % "10.4.1.3"
-```
-
-This is how you add a managed dependency on the Apache Derby
-library, version 10.4.1.3.
-
-The `libraryDependencies` key involves two complexities: `+=`
-rather than `:=`, and the `%` method. `+=` appends to the key's
-old value rather than replacing it, this is explained in
-[[more about settings|Getting Started More About Settings]]. The
-`%` method is used to construct an Ivy module ID from strings,
-explained in
-[[library dependencies|Getting Started Library Dependencies]].
-
-We'll skip over the details of library dependencies until later in
-the Getting Started Guide. There's a
-[[whole page|Getting Started Library Dependencies]] covering it
-later on.
-
 ## Task Keys
 
 There are three flavors of key:
@@ -248,6 +221,33 @@ import Keys._
 the contents of any `Build` or `Plugin` objects in those files will be
 imported. More on that when we get to
 [[.scala build definitions|Getting Started Full Def]].)
+
+## Adding library dependencies
+
+To depend on third-party libraries, there are two options. The
+first is to drop jars in `lib/` (unmanaged dependencies) and the
+other is to add managed dependencies, which will look like this in
+`build.sbt`:
+
+```scala
+libraryDependencies += "org.apache.derby" % "derby" % "10.4.1.3"
+```
+
+This is how you add a managed dependency on the Apache Derby
+library, version 10.4.1.3.
+
+The `libraryDependencies` key involves two complexities: `+=`
+rather than `:=`, and the `%` method. `+=` appends to the key's
+old value rather than replacing it, this is explained in
+[[more about settings|Getting Started More About Settings]]. The
+`%` method is used to construct an Ivy module ID from strings,
+explained in
+[[library dependencies|Getting Started Library Dependencies]].
+
+We'll skip over the details of library dependencies until later in
+the Getting Started Guide. There's a
+[[whole page|Getting Started Library Dependencies]] covering it
+later on.
 
 ## Next
 
