@@ -142,7 +142,7 @@ To depend on multiple projects, use multiple arguments to `dependsOn`, like
 
 `foo dependsOn(bar)` means that the `Compile` configuration in `foo` depends
 on the `Compile` configuration in `bar`. You could write this explicitly as
-`dependsOn(bar % "compile->compile"`.
+`dependsOn(bar % "compile->compile)"`.
 
 The `->` in `"compile->compile"` means "depends on" so `"test->compile"`
 means the `Test` configuration in `foo` would depend on the `Compile`

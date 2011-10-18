@@ -51,7 +51,7 @@ Keys may be defined in a `.scala` file (as described in
 Once you've defined a key, you'll need to use it in some task. You could be
 defining your own task, or you could be planning to redefine an existing
 task. Either way looks the same; if the task has no dependencies on other
-settings or tasks, use `:=` to associate a function with the task key:
+settings or tasks, use `:=` to associate some code with the task key:
 
 ```scala
 sampleStringTask := System.getProperty("user.home)

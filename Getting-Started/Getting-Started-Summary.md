@@ -27,19 +27,20 @@ to know.
      transforms sbt's collection of key-value pairs into a new collection. It
      doesn't change anything in-place.
    - each setting has a value of a particular type, determined by the key.
-   - _tasks_ are special settings where the computation to produce the key's
-     value will be re-run each time you kick off a task. Non-tasks compute the
-     value once and cache it.
+   - _tasks_ are special settings where the computation to produce
+     the key's value will be re-run each time you kick off a
+     task. Non-tasks compute the value once, when first loading the build
+     definition.
  - [[Scopes|Getting Started Scopes]]
    - each key may have multiple values, in distinct scopes.
    - scoping may use three axes: configuration, project, and task.
-   - a configuration is a kind of build, such as the main one (`Compile`) or
-     the test one (`Test`).
    - scoping allows you to have different behaviors per-project,
      per-task, or per-configuration.
+   - a configuration is a kind of build, such as the main one (`Compile`) or
+     the test one (`Test`).
    - the per-project axis also supports "entire build" scope.
-   - scopes "fall back to" or delegate to more general scopes.
- - `.sbt` vs. [[.scala|Getting Started Full Def]] build definition
+   - scopes fall back to or _delegate_ to more general scopes.
+ - [[.sbt|Getting Started Basic Def]] vs. [[.scala|Getting Started Full Def]] build definition
    - put most of your settings in `build.sbt`, but use `.scala`
      build definition files to
      [[define multiple subprojects|Getting Started Multi-Project]], and to factor out

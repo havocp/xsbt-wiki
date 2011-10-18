@@ -258,7 +258,7 @@ this order:
  - Settings from `.sbt` files in the project.
  - Build definition projects (i.e. projects inside `project`) have
    settings from global plugins (`~/.sbt/plugins`) added.
-   [[using plugins|Getting Started Using Plugins]] explains this
+   [[Using plugins|Getting Started Using Plugins]] explains this
    more.
 
 Later settings override earlier ones. The entire list of settings forms the

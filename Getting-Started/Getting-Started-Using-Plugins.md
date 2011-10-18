@@ -129,7 +129,7 @@ Some people like to list plugin dependencies (for a project `hello`) in
 `hello/project/plugins.sbt` to avoid confusion with `hello/build.sbt`.  sbt
 does not care what `.sbt` files are called, so both `build.sbt` and
 `project/plugins.sbt` are conventions. sbt _does_ of course care where
-the sbt files are located. `hello/*.sbt` would contain dependencies for
+the sbt files are _located_. `hello/*.sbt` would contain dependencies for
 `hello` and `hello/project/*.sbt` would contain dependencies for `hello`'s
 build definition.
 
@@ -143,8 +143,8 @@ However, jars intended for use as sbt plugins can do more.
 
 If you download a plugin jar
 ([here's one for sbteclipse](http://repo.typesafe.com/typesafe/ivy-releases/com.typesafe.sbteclipse/sbteclipse/scala_2.9.1/sbt_0.11.0/1.4.0/jars/sbteclipse.jar))
-and unpack it with `jar xf`, you'll see that it contains a file `sbt/sbt.plugins`. In `sbt/sbt.plugins`
-there's something like this:
+and unpack it with `jar xf`, you'll see that it contains a text file `sbt/sbt.plugins`. In `sbt/sbt.plugins`
+there's an object name on each line like this:
 
 ```text
 com.typesafe.sbteclipse.SbtEclipsePlugin
@@ -200,11 +200,13 @@ settings in `myPluginSettings` to the project.
 
 ## Creating a plugin
 
-After reading this far, you pretty much know how to _create_ an sbt plugin
-as well. There's one trick to know; set `sbtPlugin := true` in `build.sbt`.
-If `sbtPlugin` is true, the project will scan for instances of `Plugin`,
-and list them in `sbt/sbt.plugins`. `sbtPlugin := true` also adds sbt to the
-project's classpath, so you can use sbt APIs to implement your plugin.
+After reading this far, you pretty much know how to _create_ an
+sbt plugin as well. There's one trick to know; set `sbtPlugin :=
+true` in `build.sbt`.  If `sbtPlugin` is true, the project will
+scan its compiled classes for instances of `Plugin`, and list them
+in `sbt/sbt.plugins` when it packages a jar. `sbtPlugin := true`
+also adds sbt to the project's classpath, so you can use sbt APIs
+to implement your plugin.
 
 Learn more about creating a plugin at [[Plugins]] and [[Plugins Best Practices]].
 
