@@ -15,7 +15,7 @@ to know.
  - the basics of Scala. It's undeniably helpful to be familiar with Scala
    syntax. [Programming in Scala](http://www.artima.com/shop/programming_in_scala_2ed)
    written by the creator of Scala is a great introduction.
- - [[Basic Build Definition]]
+ - [[Basic build definition|Getting Started Basic Def]]
    - your build definition is one big list of `Setting` objects, where a
      `Setting` transforms the set of key-value pairs sbt uses to perform tasks.
    - to create a `Setting`, call one of a few methods on a `Key` (the `:=` and
@@ -27,7 +27,7 @@ to know.
    - _tasks_ are special settings where the computation to produce the key's
      value will be re-run each time you kick off a task. Non-tasks compute the
      value once and cache it.
- - [[Scopes]]
+ - [[Scopes|Getting Started Scopes]]
    - each key may have multiple values, in distinct scopes.
    - scoping may use three axes: configuration, project, and task.
    - a configuration is a kind of build, such as the main one (`Compile`) or
@@ -36,14 +36,14 @@ to know.
      per-task, or per-configuration.
    - the per-project axis also supports "entire build" scope.
    - scopes "fall back to" or delegate to more general scopes.
- - Basic vs. [[Full Build Definition]]
+ - Basic vs. [[Full|Getting Started Full Def]]
    - put most of your settings in basic (`build.sbt`), but use the full
      build definition to
-     [[define multiple subprojects|Multi-Project Builds]], and to factor out
+     [[define multiple subprojects|Getting Started Multi-Project]], and to factor out
      common values, objects, and methods.
    - the build definition is an sbt project in its own right,
      rooted in the `project` directory.
- - [[Plugins|Using Plugins]] are extensions to the build definition
+ - [[Plugins|Getting Started Using Plugins]] are extensions to the build definition
    - add plugins with the `addSbtPlugin` method in `project/build.sbt` (NOT
      `build.sbt` in the project's base directory).
 

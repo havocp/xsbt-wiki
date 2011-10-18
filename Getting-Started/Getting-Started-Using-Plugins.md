@@ -2,8 +2,8 @@
 
 This page is part of a Getting Started series. Please read the earlier pages
 in the series first, in particular you need to understand
-[[build.sbt|Basic Build Definition]], [[Library Dependencies]], and
-[[Full Build Definition]] before reading this page.
+[[build.sbt|Getting Started Basic Def]], [[library dependencies|Getting Started Library Dependencies]], and
+[[full build definition|Getting Started Full Def]] before reading this page.
 
 ## What is a plugin?
 
@@ -33,8 +33,8 @@ So that's how you do it... read on to understand what's going on.
 ### How it works
 
 Be sure you understand the
-[[recursive nature of sbt projects|Full Build Definition]] described
-earlier and how to add a [[managed dependency|Library Dependencies]].
+[[recursive nature of sbt projects|Getting Started Full Def]] described
+earlier and how to add a [[managed dependency|Getting Started Library Dependencies]].
 
 #### Dependencies for the build definition
 
@@ -110,7 +110,7 @@ def addSbtPlugin(dependency: ModuleID): Setting[Seq[ModuleID]] =
                 libraryDependencies <+= (sbtVersion in update,scalaVersion) { (sbtV, scalaV) => sbtPluginExtra(dependency, sbtV, scalaV) }
 ```
 
-Remember from [[More About Settings]] that `<+=` combines `<<=` and `+=`, so
+Remember from [[more about settings|Getting Started More About Settings]] that `<+=` combines `<<=` and `+=`, so
 this builds a value based on other settings, and then appends it to
 `libraryDependencies`. The value is based on `sbtVersion in update` (sbt's
 version scoped to the `update` task) and `scalaVersion` (the version of
@@ -168,7 +168,7 @@ If a plugin defines settings in the `settings` field of a `Plugin` object,
 you don't have to do anything to add them.
 
 However, plugins often avoid this because you could not control which
-projects in a [[multi-project build|Multi-Project Builds]] would use the plugin.
+projects in a [[multi-project build|Getting Started Multi-Project]] would use the plugin.
 
 sbt provides a method called `seq` which adds a whole batch of settings at
 once. So if a plugin has something like this:
@@ -229,4 +229,4 @@ Some especially popular plugins are:
 
 ## Next
 
-Move on to [[multi-project builds|Multi-Project Builds]].
+Move on to [[multi-project builds|Getting Started Multi-Project]].

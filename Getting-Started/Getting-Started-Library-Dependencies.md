@@ -10,7 +10,8 @@
 # Library Dependencies
 
 This page assumes you've read the earlier Getting Started pages, in particular
-[[Basic Build Definition]], [[Scopes]], and [[More About Settings]].
+[[basic build definition|Getting Started Basic Def]],
+[[scopes|Getting Started Scopes]], and [[more about settings|Getting Started More About Settings]].
 
 Library dependencies can be added in two ways:
 
@@ -34,7 +35,7 @@ Dependencies in `lib` go on all the classpaths (for `compile`, `test`,
 those, you would adjust `dependencyClasspath in Compile` or
 `dependencyClasspath in Runtime` for example. You could use `~=` to get the
 previous classpath value, filter some entries out, and return a new
-classpath value. See [[More About Settings]] for details of `~=`.
+classpath value. See [[more about settings|Getting Started More About Settings]] for details of `~=`.
 
 There's nothing to add to `build.sbt` to use unmanaged dependencies, though
 you could change the `unmanaged-base` key if you'd like to use a different
@@ -48,7 +49,7 @@ unmanagedBase <<= baseDirectory { base => base / "custom_lib" }
 
 `baseDirectory` is the project's root directory, so here you're changing
 `unmanagedBase` depending on `baseDirectory`, using `<<=` as explained in
-[[More About Settings]].
+[[more about settings|Getting Started More About Settings]].
 
 There's also an `unmanaged-jars` task which lists the jars from the
 `unmanaged-base` directory. If you wanted to use multiple directories or do
@@ -226,4 +227,4 @@ dependencies [[on this page|Library-Management]], if you didn't find an
 answer on this introductory page.
 
 If you're reading Getting Started in order, for now, you might move on to
-read [[Full Build Definition]].
+read [[full build definition|Getting Started Full Def]].

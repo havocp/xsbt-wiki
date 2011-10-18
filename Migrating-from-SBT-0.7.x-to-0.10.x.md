@@ -42,7 +42,7 @@ Or (as most users do) with a shell script like:
 
 Note, in this script that I have renamed the `sbt-launch.jar` file with the version so that I can continue to use my 0.7.x version for projects that haven't been migrated.  I called this script `sbt9`.
 
-For more details see: [[Setup]].
+For more details see: [[Setup|Getting Started Setup]].
 
 # Step 2: A technique for switching an existing project
 
@@ -110,7 +110,7 @@ This does mean that existing solutions for sharing libraries with your favoured 
 
 ## What are the commands I can use?
 
-For a list of commands, run `help`.  For details on a specific command, run `help <command>`.  To view a list of tasks defined on the current project, run `tasks`.  Alternatively, see the [[Running]] page for descriptions of common commands and tasks.
+For a list of commands, run `help`.  For details on a specific command, run `help <command>`.  To view a list of tasks defined on the current project, run `tasks`.  Alternatively, see the [[Running|Getting Started Running]] page for descriptions of common commands and tasks.
 
 If in doubt start by just trying the old command as it may just work.  The built in TAB completion will also assist you, so you can just press TAB at the beginning of a line and see what you get.
 

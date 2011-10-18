@@ -1,7 +1,7 @@
 # Running
 
 This page describes how to use `sbt` once you have set up your project.  It
-assumes you've [[installed sbt|Setup]] and created a [[Hello, World|Hello World]] or other project.
+assumes you've [[installed sbt|Getting Started Setup]] and created a [[Hello, World|Getting Started Hello]] or other project.
 
 ## Interactive mode
 
@@ -107,4 +107,4 @@ commands are also supported:
 
 ## Next
 
-Move on to [[understanding build.sbt|Basic Build Definition]].
+Move on to [[understanding build.sbt|Getting Started Basic Def]].

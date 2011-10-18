@@ -11,11 +11,11 @@ Please go in order! Later pages assume you're familiar with earlier concepts.
 To create an sbt project, you'll need to take these steps:
 
  - Install sbt and create a script to launch it.
- - Setup a simple [[Hello World]] project
+ - Setup a simple [[hello world|Getting Started Hello]] project
     - Create a project directory with source files in it.
     - Create your build definition.
- - Move on to [[Running]] to learn how to run sbt.
- - Then move on to [[Basic Build Definition]] to learn more about build definitions.
+ - Move on to [[running|Getting Started Running]] to learn how to run sbt.
+ - Then move on to [[basic build definition|Getting Started Basic Def]] to learn more about build definitions.
 
 # Installing sbt
 
@@ -54,4 +54,4 @@ If you have any trouble running `sbt`, see [[Setup Notes]] on terminal encodings
 
 ## Next
 
-Move on to [[create a simple project|Hello World]].
+Move on to [[create a simple project|Getting Started Hello]].

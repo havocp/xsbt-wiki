@@ -33,7 +33,7 @@
 # Index
 
 This is an index of common methods, types, and values you might find in an sbt build definition.
-For command names, see [[Running]].
+For command names, see [[Running|Getting Started Running]].
 For available plugins, see [[sbt 0.10 plugins list]].
 
 ## Values and Types

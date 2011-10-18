@@ -27,4 +27,4 @@ FIXME
 SBT downloads most of its own dependencies on an as-needed basis, so the startup jar is the only thing you'll need to fetch yourself. 
 
 ## Further Reading and Resources 
-See the [[Setup]] page of the wiki for more information.
+See the [[Setup|Getting Started Setup]] page of the wiki for more information.

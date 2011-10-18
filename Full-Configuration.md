@@ -159,7 +159,7 @@ Additionally, there are implicit conversions `URI => RootProject` and `File => R
 External, remote builds are retrieved or checked out to a staging directory in the user's `.sbt` directory so that they can be manipulated like local builds.
 Examples of using project references follow in the next sections.
 
-When using external projects, the `sbt.boot.directory` should be set (see [[Setup]]) so that unnecessary recompilations do not occur (see [#35]).
+When using external projects, the `sbt.boot.directory` should be set (see [[Setup|Getting Started Setup]]) so that unnecessary recompilations do not occur (see [#35]).
 
 ### Execution Dependency
 

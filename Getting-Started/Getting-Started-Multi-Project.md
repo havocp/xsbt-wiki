@@ -4,7 +4,7 @@ This page introduces multiple projects in a single build.
 
 It's part of a Getting Started series. Please read the earlier pages in the
 series first, in particular you need to understand
-[[build.sbt|Basic Build Definition]] and [[Full Build Definition]] before
+[[build.sbt|Getting Started Basic Def]] and [[full build definition|Getting Started Full Def]] before
 reading this page.
 
 ## Multiple projects
@@ -47,7 +47,7 @@ with type `Project` in the `Build` object.
 Because project `hello-foo` is defined with `base = file("foo")`, it will be
 contained in the subdirectory `foo`. Its sources could be directly under
 `foo`, like `foo/Foo.scala`, or in `foo/src/main/scala`. The usual sbt
-[[directory structure|Directory Structure]] applies underneath `foo` with
+[[directory structure|Getting Started Directories]] applies underneath `foo` with
 the exception of build definition files.
 
 Any `.sbt` files in `foo`, say `foo/build.sbt`, will be merged with the
@@ -73,7 +73,7 @@ defined):
 `hello-foo/*:version` was defined in `hello/foo/build.sbt`,
 `hello-bar/*:version` was defined in `hello/bar/build.sbt`, and
 `hello/*:version` was defined in `hello/build.sbt`. Remember the
-[[syntax for scoped keys|Scopes]]. Each `version` key is scoped to a
+[[syntax for scoped keys|Getting Started Scopes]]. Each `version` key is scoped to a
 project, based on the location of the `build.sbt`. But all three `build.sbt`
 are part of the same build definition.
 
@@ -107,7 +107,7 @@ aggregate in update := false
 ```
 
 `aggregate in update` is the `aggregate` key scoped to the `update` task,
-see [[Scopes]].
+see [[scopes|Getting Started Scopes]].
 
 Note: aggregation will run the aggregated tasks in parallel and with no defined
 ordering.
@@ -161,4 +161,4 @@ have to compile the root project, you could compile only a subproject.
 
 ## Next
 
-Move on to create [[Custom Settings and Tasks]].
+Move on to create [[custom settings|Getting Started Custom Settings]].

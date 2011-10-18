@@ -2,13 +2,13 @@
 
 # Directory structure
 
-This page assumes you've [[installed sbt|Setup]] and seen the [[Hello, World|Hello World]].
+This page assumes you've [[installed sbt|Getting Started Setup]] and seen the [[Hello, World|Getting Started Hello]].
 
 ## Base directory
 
 In sbt's terminology, the "base directory" is the directory containing the
 project. So if you created a project `hello` containing `hello/build.sbt`
-and `hello/hw.scala` as in the [[Hello, World|Hello World]] example, `hello`
+and `hello/hw.scala` as in the [[Hello, World|Getting Started Hello]] example, `hello`
 is your base directory.
 
 ## Source code
@@ -46,7 +46,7 @@ You've already seen `build.sbt` in the project's base directory. Other sbt
 files appear in a `project` subdirectory.
 
 `project` can contain `.scala` files, also called
-[[full build definitions|Full Build Definition]], when you're doing
+[[full build definitions|Getting Started Full Def]], when you're doing
 something too complex for a `.sbt` file.
 
 sbt-launch.jar automatically downloads the Scala compiler, sbt itself, and
@@ -64,7 +64,7 @@ have much in `project/boot`.
 
 You may see `.sbt` files inside `project/` but they are not equivalent to
 `.sbt` files in the project's base directory. Explaining this will
-[[come later|Full Build Definition]], since you'll need some background
+[[come later|Getting Started Full Def]], since you'll need some background
 information first.
 
 ## Build products
@@ -84,4 +84,4 @@ These directories are automatically created and managed by sbt and need not be k
 
 # Next
 
-Learn about [[running sbt|Running]].
+Learn about [[running sbt|Getting Started Running]].

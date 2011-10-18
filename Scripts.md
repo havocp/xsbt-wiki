@@ -28,7 +28,7 @@ This will create two scripts: `screpl` and `scalas`.
 
 ## Manual Setup
 
-Duplicate your standard `sbt` script, which was set up according to [[Setup]], as `scalas` and `screpl` (or whatever names you like).
+Duplicate your standard `sbt` script, which was set up according to [[Setup|Getting Started Setup]], as `scalas` and `screpl` (or whatever names you like).
 
 `scalas` is the script runner and its command line should look like:
 

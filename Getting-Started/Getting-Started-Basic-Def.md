@@ -3,7 +3,7 @@
 # Basic Build Definition
 
 This page describes sbt build definitions, including some "theory" and the
-syntax of `build.sbt`. It assumes you know how to [[use sbt|Running]] and
+syntax of `build.sbt`. It assumes you know how to [[use sbt|Getting Started Running]] and
 have read the previous pages in the Getting Started category.
 
 ## Basic vs. Full Definition
@@ -17,7 +17,7 @@ use `.scala` files only to contain what can't be done in `.sbt`:
  - to define nested sub-projects
 
 This page discusses "basic" build definition, that is, `.sbt` files.  See
-[[Full Build Definition]] (later in Getting Started) for more on full build
+[[full build definition|Getting Started Full Def]] (later in Getting Started) for more on full build
 files and how they relate to basic build files.
 
 ## What is a build definition?
@@ -109,16 +109,16 @@ Keys are just fields in an object called [Keys]. A `build.sbt` implicitly
 has an `import sbt.Keys._`, so `sbt.Keys.name` can be referred to as `name`.
 
 Custom keys could also be defined in a
-[[full build definition|Full Build Definition]] or a [[plugin|Using Plugins]].
+[[full build definition|Getting Started Full Def]] or a [[plugin|Getting Started Using Plugins]].
 
 ## Other ways to transform settings
 
 Replacement with `:=` is the simplest transformation, but there are several
 others. For example you can append to a list value with `+=`.
 
-The other transformations require an understanding of [[scopes|Scopes]], so the
-[[next section|Scopes]] is about scopes and the
-[[section after that|More About Settings]] goes into more detail about settings.
+The other transformations require an understanding of [[scopes|Getting Started Scopes]], so the
+[[next section|Getting Started Scopes]] is about scopes and the
+[[section after that|Getting Started More About Settings]] goes into more detail about settings.
 
 ## Task Keys
 
@@ -164,7 +164,7 @@ creates a value of type `T` when the task executes.
 
 The `T` vs. `Task[T]` type difference has this implication: a setting key
 can't depend on a task key, because a setting key is cached, and not
-re-run. More on this in [[More About Settings]], coming up soon.
+re-run. More on this in [[more about settings|Getting Started More About Settings]], coming up soon.
 
 ## Keys in sbt interactive mode
 
@@ -203,11 +203,11 @@ import Process._
 import Keys._
 ```
 
-(In addition, if you have a [[full build definition|Full Build Definition]],
+(In addition, if you have a [[full build definition|Getting Started Full Def]],
 the contents of any `Build` or `Plugin` objects in that definition will be
 imported. More on that when we get to
-[[full build definitions|Full Build Definition]].)
+[[full build definitions|Getting Started Full Def]].)
 
 ## Next
 
-Move on to [[learn about scopes|Scopes]].
+Move on to [[learn about scopes|Getting Started Scopes]].

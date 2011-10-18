@@ -1,7 +1,7 @@
 
 # Hello, World
 
-This page assumes you've [[installed sbt|Setup]].
+This page assumes you've [[installed sbt|Getting Started Setup]].
 
 ## Create a project directory with source code
 
@@ -54,7 +54,7 @@ version := "1.0"
 scalaVersion := "2.9.1"
 ```
 
-In [[Basic Build Definition]] you'll learn more about how to write a `build.sbt` file.
+In [[basic build definition|Getting Started Basic Def]] you'll learn more about how to write a `build.sbt` file.
 
 If you plan to package your project in a jar, you will want to set at least
 the name and version in a `build.sbt`.
@@ -74,5 +74,5 @@ confusion.
 
 # Next
 
-Learn about the [[file and directory layout|Directory Structure]] of an sbt project.
+Learn about the [[file and directory layout|Getting Started Directories]] of an sbt project.
 

@@ -67,4 +67,4 @@ libraryDependencies <<= (scalaVersion, libraryDependencies) { (sv, deps) =>
 
 This works because your project definition is reloaded for each version of Scala you are building against.  `scalaVersion` contains the current version of Scala being used to build the project.
 
-As a final note, you can use `++ <version>` to temporarily switch the Scala version currently being used to build (see [[Running]] for details).
+As a final note, you can use `++ <version>` to temporarily switch the Scala version currently being used to build (see [[Running|Getting Started Running]] for details).

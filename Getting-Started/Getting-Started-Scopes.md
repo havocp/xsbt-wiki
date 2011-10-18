@@ -5,11 +5,11 @@ http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism
 # Scopes
 
 This page describes scopes. It assumes you've read and understood the
-previous page, [[Basic Build Definition]].
+previous page, [[basic build definition|Getting Started Basic Def]].
 
 ## The whole story about keys
 
-[[Previously|Basic Build Definition]] we pretended that a key like `name`
+[[Previously|Getting Started Basic Def]] we pretended that a key like `name`
 corresponded to one entry in sbt's map of key-value pairs. This was a
 simplification.
 
@@ -32,7 +32,7 @@ according to scope.
 However, there is a single value for a given _scoped_ key.
 
 If you think about sbt processing a list of settings to generate a key-value
-map describing the project, as [[discussed earlier|Basic Build Definition]],
+map describing the project, as [[discussed earlier|Getting Started Basic Def]],
 the keys in that key-value map are _scoped_ keys. Each setting defined in
 the build definition (for example in `build.sbt`) applies to a scoped key as
 well.
@@ -53,7 +53,7 @@ There are three scope axes:
 
 ### Scoping by project axis
 
-If you [[put multiple projects in a single build|Multi-Project Builds]], each
+If you [[put multiple projects in a single build|Getting Started Multi-Project]], each
 project needs its own settings. That is, keys can be scoped according to the
 project.
 
@@ -66,7 +66,7 @@ setting.
 
 A _configuration_ defines a flavor of build, potentially with its own
 classpath, sources, generated packages, etc. The configuration concept comes
-from Ivy, which sbt uses for [[managed dependencies|Library Dependencies]], and
+from Ivy, which sbt uses for [[managed dependencies|Getting Started Library Dependencies]], and
 from [MavenScopes].
 
 Some configurations you'll see in sbt:
@@ -188,7 +188,7 @@ $ sbt
 ```
 
 On the first line, you can see this is a task (as opposed to a setting, as
-explained in [[Basic Build Definition]]). The value resulting from the task
+explained in [[basic build definition|Getting Started Basic Def]]). The value resulting from the task
 will have type `scala.collection.Seq[sbt.Attributed[java.io.File]]`.
 
 "Provided by" points you to the scoped key that defines the value, in this
@@ -197,7 +197,7 @@ is the `full-classpath` key scoped to the `test` configuration and the
 `{file:/home/hp/checkout/hello/}default-aea33a` project).
 
 "Dependencies" may not make sense yet; stay tuned for the
-[[next section|More About Settings]].
+[[next section|Getting Started More About Settings]].
 
 You can also see the delegates; if the value were not defined, sbt would
 search through:
@@ -245,7 +245,7 @@ Run sbt and `inspect name` to see that it's provided by
 
 `build.sbt` always defines settings for a single project, so the "current
 project" is the project you're defining in that particular `build.sbt`.
-(For [[multi-project builds|Multi-Project Builds]], each project has its own
+(For [[multi-project builds|Getting Started Multi-Project]], each project has its own
 `build.sbt`.)
 
 Keys have an overloaded method called `in` used to set the scope. The
@@ -317,4 +317,4 @@ project, global config, global task).
 
 ## Next
 
-Now that you understand scopes, you can [[learn more about settings|More About Settings]].
+Now that you understand scopes, you can [[learn more about settings|Getting Started More About Settings]].

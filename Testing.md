@@ -63,7 +63,7 @@ Tasks that are available for main sources are generally available for test sourc
 * `test:run`
 * `test:run-main`
 
-See [[Running]] for details on these tasks.
+See [[Running|Getting Started Running]] for details on these tasks.
 
 # Output
 

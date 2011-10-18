@@ -2,8 +2,8 @@ sbt is a build tool for Scala and Java projects that aims to do the basics well.
 
 ## Features
 * Easy to set up for simple projects
-* [[Basic build definition|Basic Build Definition]] uses a Scala-based "domain-specific language" (DSL)
-* More advanced [[full build definitions|Full Build Definition]] and [[extensions|Custom Settings and Tasks]] use the full flexibility of unrestricted Scala code
+* [[Basic build definition|Getting Started Basic Def]] uses a Scala-based "domain-specific language" (DSL)
+* More advanced [[full build definitions|Getting Started Full Def]] and [[extensions|Getting Started Custom Settings]] use the full flexibility of unrestricted Scala code
 * Accurate incremental recompilation using information extracted from the compiler
 * Continuous compilation and testing with [[triggered execution|Triggered Execution]]
 * Packages and publishes jars
@@ -11,21 +11,21 @@ sbt is a build tool for Scala and Java projects that aims to do the basics well.
 * Supports mixed Scala/[[Java|Java Sources]] projects
 * Supports [[Testing|testing]] with ScalaCheck, specs, and ScalaTest (JUnit is supported by a plugin)
 * Starts the Scala REPL with project classes and dependencies on the classpath
-* [[Sub-project|Multi-Project Builds]] support (put multiple packages in one project)
+* [[Sub-project|Getting Started Multi-Project]] support (put multiple packages in one project)
 * [[External project|External Projects]] support (list a git repository as a dependency!)
 * Parallel task execution, including parallel test execution
 * [[Library management support|Library Management]]: inline declarations, external Ivy or Maven configuration files, or manual management
 
 ## Getting Started
 
-To get started, start with [[Setup]], and continue through the other Getting
+To get started, start with [[Setup|Getting Started Setup]], and continue through the other Getting
 Started pages listed in the sidebar on the right. It's best to read in
 order, as later pages in the Getting Started series build on concepts
 introduced earlier.
 
 _Please read the Getting Started pages._ You will save yourself a _lot_ of
 time if you have the right understanding of the big picture
-up-front. [[Start with setup|Setup]].
+up-front. [[Start with setup|Getting Started Setup]].
 
 If you are familiar with 0.7.x, please see the
 [[migration page|Migrating from sbt 0.7.x to 0.10.x]]. Documentation for

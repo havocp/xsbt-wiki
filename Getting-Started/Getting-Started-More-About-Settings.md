@@ -4,18 +4,18 @@
 # More Kinds of Setting
 
 This page explains other ways to create a `Setting`, beyond the basic `:=`
-method. It assumes you've read [[Basic Build Definition]] and [[Scopes]].
+method. It assumes you've read [[basic build definition|Getting Started Basic Def]] and [[scopes|Getting Started Scopes]].
 
 ## Refresher: Settings
 
-[[Remember|Basic Build Definition]], a build definition creates a list of
+[[Remember|Getting Started Basic Def]], a build definition creates a list of
 `Setting`, which is then used to transform sbt's description of the build
 (which is a map of key-value pairs). A `Setting` is a transformation with
 sbt's earlier map as input and a new map as output. The new map becomes
 sbt's new state.
 
 Different settings transform the map in different
-ways. [[Earlier|Basic Build Definition]], you read about the `:=` method.
+ways. [[Earlier|Getting Started Basic Def]], you read about the `:=` method.
 
 The `Setting` which `:=` creates puts a fixed, constant value in the new,
 transformed map. For example, if you transform a map with the setting
@@ -24,7 +24,7 @@ transformed map. For example, if you transform a map with the setting
 
 Settings must end up in the master list of settings to do any good (all
 lines in a `build.sbt` automatically end up in the list, but in a
-[[full build definition|Full Build Definition]] you can get it wrong).
+[[full build definition|Getting Started Full Def]] you can get it wrong).
 
 ## Appending to previous values: `+=` and `++=`
 
@@ -264,14 +264,14 @@ Whenever a setting uses `~=` or `<<=` to create a dependency on itself or
 another key's value, the value it depends on must exist. If it does not,
 sbt will complain. It might say _"Reference to undefined setting"_, for
 example. When this happens, be sure you're using the key in the
-[[scope|Scopes]] that defines it.
+[[scope|Getting Started Scopes]] that defines it.
 
 It's possible to create cycles, which is an error; sbt will tell you if you
 do this.
 
 ### Tasks with dependencies
 
-As noted in [[Basic Build Definition]], task keys create a
+As noted in [[more about settings|Getting Started Basic Def]], task keys create a
 `Setting[Task[T]]` rather than a `Setting[T]` when you build a setting with
 `:=`, `<<=`, etc. Similarly, task keys are instances of
 `Initialize[Task[T]]` rather than `Initialize[T]` and `<<=` on a task key
@@ -404,4 +404,4 @@ cleanFiles <+= (name) { n => file("coverage-report-" + n + ".txt") }
 
 At this point you know how to get things done with settings, so we can move
 on to a specific key that comes up often: `libraryDependencies`.
-[[Learn about library dependencies|Library Dependencies]].
+[[Learn about library dependencies|Getting Started Library Dependencies]].

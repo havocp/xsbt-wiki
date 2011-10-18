@@ -1,8 +1,8 @@
 # Full Build Definition
 
 This page is part of a Getting Started series, and it assumes you've read
-previous pages in the series, _especially_ [[Basic Build Definition]] and
-[[More About Settings]].
+previous pages in the series, _especially_ [[basic build definition|Getting Started Basic Def]] and
+[[more about settings|Getting Started More About Settings]].
 
 ## sbt is recursive
 
@@ -79,7 +79,7 @@ _`.sbt` files in the base directory for a project become part of the
 `project` build definition project also located in that base directory._
 
 `build.sbt`, also known as a
-[[basic build definition|Basic Build Definition]], is a convenient shorthand
+[[basic build definition|Getting Started Basic Def]], is a convenient shorthand
 for adding settings to the build definition project.
 
 A _full build definition_ is a build definition that includes `.scala` files
@@ -207,7 +207,8 @@ nested project inside your main project. `.sbt` ("basic") and `.scala`
 ("full") files are compiled together to create that single definition.
 
 `.scala` files are also required to define multiple projects in a single
-build. More on that is coming up in [[Multi-Project Builds]].
+build. More on that is coming up in
+[[Multi-Project Builds|Getting Started Multi-Project]].
 
 ## The build definition project in interactive mode
 
@@ -246,7 +247,7 @@ this order:
  - Settings from `Build.settings` and `Project.settings` in your `.scala` files.
  - Your user-global settings; for example in `~/.sbt/build.sbt` you can
    define settings affecting _all_ your projects.
- - Settings injected by plugins, see [[Using Plugins]] coming up next.
+ - Settings injected by plugins, see [[using plugins|Getting Started Using Plugins]] coming up next.
  - Settings from `.sbt` files in the project.
  - FIXME parse this: "settings that configure the global plugin definition for a
    project-level plugin definition as if it were declared locally"
@@ -256,4 +257,4 @@ build definition.
 
 ## Next
 
-Move on to [[Using Plugins]].
+Move on to [[using plugins|Getting Started Using Plugins]].
