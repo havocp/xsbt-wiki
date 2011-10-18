@@ -280,7 +280,7 @@ do this.
 As noted in [[.sbt build definition|Getting Started Basic Def]], task keys create a
 `Setting[Task[T]]` rather than a `Setting[T]` when you build a setting with
 `:=`, `<<=`, etc. Similarly, task keys are instances of
-`Initialize[Task[T]]` rather than `Initialize[T]` and `<<=` on a task key
+`Initialize[Task[T]]` rather than `Initialize[T]`, and `<<=` on a task key
 takes an `Initialize[Task[T]]` parameter.
 
 The practical importance of this is that you can't have tasks as
@@ -316,12 +316,13 @@ scalacOptions <<= checksums map identity
 
 (`identity` is a standard Scala function that returns its input as its result.)
 
-There is no way to go the _other_ direction, that is, a setting key can't
-depend on a task key. That's because a setting key is cached, so the task
-would not be re-run every time, and tasks expect to re-run every time.
+There is no way to go the _other_ direction, that is, a setting
+key can't depend on a task key. That's because a setting key is
+only computed once on project load, so the task would not be
+re-run every time, and tasks expect to re-run every time.
 
 A task can depend on both settings and other tasks, though, just use `map`
-rather than `apply` to you build an `Initialize[Task[T]]` rather than an `Initialize[T]`.
+rather than `apply` to build an `Initialize[Task[T]]` rather than an `Initialize[T]`.
 Remember the usage of `apply` with a non-task setting looks like this:
 
 ```scala
