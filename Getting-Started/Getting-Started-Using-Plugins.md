@@ -213,7 +213,7 @@ Learn more about creating a plugin at [[Plugins]] and [[Plugins Best Practices]]
 Plugins can be installed for all your projects at once by dropping them in
 `~/.sbt/plugins/`. `~/.sbt/plugins/` is an sbt project whose classpath is
 exported to all sbt build definition projects. Roughly speaking, any `.sbt`
-fils in `~/.sbt/plugins/` behave as if they were in the
+files in `~/.sbt/plugins/` behave as if they were in the
 `project/` directory for all projects, and any `.scala` files in
 `~/.sbt/plugins/project/` behave as if they were in the `project/project/`
 directory for all projects.
