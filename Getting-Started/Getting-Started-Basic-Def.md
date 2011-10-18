@@ -127,8 +127,8 @@ Replacement with `:=` is the simplest transformation, but there are several
 others. For example you can append to a list value with `+=`.
 
 The other transformations require an understanding of [[scopes|Getting Started Scopes]], so the
-[[next section|Getting Started Scopes]] is about scopes and the
-[[section after that|Getting Started More About Settings]] goes into more detail about settings.
+[[next page|Getting Started Scopes]] is about scopes and the
+[[page after that|Getting Started More About Settings]] goes into more detail about settings.
 
 ## Task Keys
 

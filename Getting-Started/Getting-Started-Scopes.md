@@ -200,7 +200,7 @@ is the `full-classpath` key scoped to the `test` configuration and the
 `{file:/home/hp/checkout/hello/}default-aea33a` project).
 
 "Dependencies" may not make sense yet; stay tuned for the
-[[next section|Getting Started More About Settings]].
+[[next page|Getting Started More About Settings]].
 
 You can also see the delegates; if the value were not defined, sbt would
 search through:
