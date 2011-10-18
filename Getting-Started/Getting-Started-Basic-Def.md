@@ -157,7 +157,7 @@ later on.
 
 There are three flavors of key:
 
- - `SettingKey[T]`: a key with a value that never changes (the value is
+ - `SettingKey[T]`: a key with a value computed once (the value is
    computed one time when loading the project, and kept around).
  - `TaskKey[T]`: a key with a value that has to be recomputed each time,
    potentially creating side effects.

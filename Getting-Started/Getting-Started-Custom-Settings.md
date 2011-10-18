@@ -38,7 +38,7 @@ building."`).
 Remember from [[basic build definition|Getting Started Basic Def]] that the type parameter `T` in `SettingKey[T]`
 indicates the type of value a setting has. `T` in `TaskKey[T]` indicates the
 type of the task's result. Also remember from [[basic build definition|Getting Started Basic Def]]
-that a setting has a fixed value cached forever, while a task is re-computed
+that a setting has a fixed value until project reload, while a task is re-computed
 for every "task execution" (every time someone types a command at the sbt
 interactive prompt or in batch mode).
 
