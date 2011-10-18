@@ -83,8 +83,8 @@ this is that you can't define a `val` or `object` in `build.sbt`.
 
 On the left, `name`, `version`, and `scalaVersion` are _keys_. A
 key is an instance of `SettingKey[T]`, `TaskKey[T]`, or
-`InputKey[T]` where `T` is the expected value type. The kinds
-of key are explained more below.
+`InputKey[T]` where `T` is the expected value type. The kinds of
+key are explained more below.
 
 Keys have a method called `:=`, which returns a `Setting[T]`. You could
 use a Java-like syntax to call the method:
@@ -123,6 +123,33 @@ others. For example you can append to a list value with `+=`.
 The other transformations require an understanding of [[scopes|Getting Started Scopes]], so the
 [[next section|Getting Started Scopes]] is about scopes and the
 [[section after that|Getting Started More About Settings]] goes into more detail about settings.
+
+## Adding library dependencies
+
+To depend on third-party libraries, there are two options. The
+first is to drop jars in `lib/` (unmanaged dependencies) and the
+other is to add managed dependencies, which will look like this in
+`build.sbt`:
+
+```scala
+libraryDependencies += "org.apache.derby" % "derby" % "10.4.1.3"
+```
+
+This is how you add a managed dependency on the Apache Derby
+library, version 10.4.1.3.
+
+The `libraryDependencies` key involves two complexities: `+=`
+rather than `:=`, and the `%` method. `+=` appends to the key's
+old value rather than replacing it, this is explained in
+[[more about settings|Getting Started More About Settings]]. The
+`%` method is used to construct an Ivy module ID from strings,
+explained in
+[[library dependencies|Getting Started Library Dependencies]].
+
+We'll skip over the details of library dependencies until later in
+the Getting Started Guide. There's a
+[[whole page|Getting Started Library Dependencies]] covering it
+later on.
 
 ## Task Keys
 
