@@ -1,5 +1,9 @@
 sbt is a build tool for Scala and Java projects that aims to do the basics well. It requires Java 1.6 or later.
 
+## Install
+
+See the [[install instructions|Getting Started Setup]].
+
 ## Features
 * Easy to set up for simple projects
 * [[.sbt build definition|Getting Started Basic Def]] uses a Scala-based "domain-specific language" (DSL)
