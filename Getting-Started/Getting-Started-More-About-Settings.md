@@ -277,7 +277,7 @@ do this.
 
 ### Tasks with dependencies
 
-As noted in [[more about settings|Getting Started Basic Def]], task keys create a
+As noted in [[.sbt build definition|Getting Started Basic Def]], task keys create a
 `Setting[Task[T]]` rather than a `Setting[T]` when you build a setting with
 `:=`, `<<=`, etc. Similarly, task keys are instances of
 `Initialize[Task[T]]` rather than `Initialize[T]` and `<<=` on a task key
