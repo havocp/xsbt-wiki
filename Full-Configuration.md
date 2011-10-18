@@ -69,7 +69,7 @@ import sbt._
 import Keys._
 
 object MyBuild extends Build {
-  lazy val projectA = Project("a", file("subA"), settings = Seq(name := "From Scratch"))
+  lazy val projectA = Project("a", file("subA")) settings (name := "From Scratch")
 }
 ```
 
