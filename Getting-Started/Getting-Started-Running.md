@@ -84,6 +84,13 @@ Here are some of the most common sbt commands. For a more complete list, see [[F
   Reloads the build definition (`build.sbt`, `project/*.scala`,
   `project/*.sbt` files). Needed if you change the build definition.
 
+## Tab completion
+
+Interactive mode has tab completion, including at an empty
+prompt. A special sbt convention is that pressing tab once may
+show only a subset of most likely completions, while pressing it
+more times shows more verbose choices.
+
 ## History Commands
 
 Interactive mode remembers history, even if you exit sbt and restart it.
