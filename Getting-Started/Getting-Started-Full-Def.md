@@ -198,7 +198,7 @@ In `.scala` files, you are not limited to a series of settings
 expressions. You can write any Scala code including `val`, `object`, and
 method definitions.
 
-_The recommended approach is to define settings in `.sbt` files, using
+_One recommended approach is to define settings in `.sbt` files, using
 `.scala` files when you need to factor out a `val` or `object` or method
 definition._
 
@@ -213,6 +213,13 @@ nested project inside your main project. `.sbt` ("basic") and `.scala`
 `.scala` files are also required to define multiple projects in a single
 build. More on that is coming up in
 [[Multi-Project Builds|Getting Started Multi-Project]].
+
+(A disadvantage of using `.sbt` files in a
+[[multi-project build|Getting Started Multi-Project]] is that
+they'll be spread around in different directories; for that
+reason, some people prefer to put settings in their `.scala` files
+if they have sub-projects. This will be clearer after you see
+how [[multi-project builds|Getting Started Multi-Project]] work.)
 
 ## The build definition project in interactive mode
 

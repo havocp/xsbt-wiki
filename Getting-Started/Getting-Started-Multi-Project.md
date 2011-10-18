@@ -86,6 +86,10 @@ directory of that project_, while the `.scala` file can be as simple as the
 one shown above, listing the projects and base directories. _There is no need
 to put settings in the `.scala` file._
 
+You may find it cleaner to put everything including settings in
+`.scala` files in order to keep all build definition under a
+single `project` directory, however. It's up to you.
+
 You cannot have a `project` subdirectory or `project/*.scala` files in the
 sub-projects. `foo/project/Build.scala` would be ignored.
 
