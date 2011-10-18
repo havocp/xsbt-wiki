@@ -189,6 +189,157 @@ See the [[Index]] of commonly used methods, values, and types.  See also the [AP
 
 See the [[Index]] of commonly used methods, values, and types.  See also the [API Documentation] and the [hyperlinked sources].
 
+## Errors
+
+### Type error, found: `Initialize[Task[String]]`, required: `Initialize[String]` or found: `TaskKey[String]` required: `Initialize[String]`
+
+This means that you are trying to supply a task when defining a
+setting key. See
+[[.sbt build definition|Getting Started Basic Def]] for the
+difference between task and setting keys, and
+[[more about settings|Getting Started More About Settings]] for
+more on how to define one key in terms of other keys.
+
+Setting keys are only evaluated once, on project load, while tasks
+are evaluated repeatedly. Defining a setting in terms of a task does
+not make sense because tasks must be re-evaluated every time.
+
+One way to get a task when you didn't want one is to use the `map`
+method instead of the `apply`
+method. [[More about settings|Getting Started More About Settings]]
+covers this topic as well.
+
+Suppose we define these keys, in `./project/Build.scala` (For
+details, see [[.scala build definition|Getting Started Full Def]]).
+
+```
+val baseSetting = SettingKey[String]("base-setting")
+val derivedSetting = SettingKey[String]("derived-setting")
+val baseTask = TaskKey[Long]("base-task")
+val derivedTask = TaskKey[String]("derived-task")
+```
+
+Let's define an initialization for `base-setting` and `base-task`. We will then use these as inputs to other setting and task initializations.
+
+```scala
+baseSetting := "base setting"
+
+baseTask := { System.currentTimeMillis() }
+```
+
+Then this will not work:
+
+```
+// error: found: Initialize[Task[String]], required: Initialize[String]
+derivedSetting <<= baseSetting.map(_.toString),
+derivedSetting <<= baseTask.map(_.toString),
+derivedSetting <<= (baseSetting, baseTask).map((a, b) => a.toString + b.toString),
+```
+
+One or more settings can be used as inputs to initialize another setting, using the `apply` method.
+
+```
+derivedSetting <<= baseSetting.apply(_.toString)
+
+derivedSetting <<= baseSetting(_.toString)
+
+derivedSetting <<= (baseSetting, baseSetting)((a, b) => a.toString + b.toString)
+```
+
+Both settings and tasks can be used to initialize a task, using the `map` method.
+
+```
+derivedTask <<= baseSetting.map(_.toString)
+
+derivedTask <<= baseTask.map(_.toString)
+
+derivedTask <<= (baseSetting, baseTask).map((a, b) => a.toString + b.toString)
+```
+
+But, it is a compile time error to use `map` to initialize a setting:
+
+```
+// error: found: Initialize[Task[String]], required: Initialize[String]
+derivedSetting <<= baseSetting.map(_.toString),
+derivedSetting <<= baseTask.map(_.toString),
+derivedSetting <<= (baseSetting, baseTask).map((a, b) => a.toString + b.toString),
+```
+
+It is not allowed to use a task as input to a settings initialization with `apply`:
+
+```
+// error: value apply is not a member of TaskKey[Long]
+derivedSetting <<= baseTask.apply(_.toString)
+
+// error: value apply is not a member of TaskKey[Long]
+derivedTask <<= baseTask.apply(_.toString)
+
+// error: value apply is not a member of (sbt.SettingKey[String], sbt.TaskKey[Long])
+derivedTask <<= (baseSetting, baseTask).apply((a, b) => a.toString + b.toString)
+```
+
+Finally, it is not directly possible to use `apply` to initialize a task.
+
+```
+// error: found String, required Task[String]
+derivedTask <<= baseSetting.apply(_.toString)
+```
+
+### On project load, "Reference to uninitialized setting"
+
+Setting initializers are executed in order. If the initialization
+of a setting depends on other settings that has not been
+initialized, sbt will stop loading. This can happen using `+=`,
+`++=`, `<<=`, `<+=`, `<++=`, and `~=`. (To understand those
+methods, [[read this|Getting Started More About Settings]].)
+
+In this example, we try to append a library to `libraryDependencies` before it is initialized with an empty sequence.
+
+```
+object MyBuild extends Build {
+  val root = Project(id = "root", base = file("."),
+    settings = Seq(
+      libraryDependencies += "commons-io" % "commons-io" % "1.4" % "test"
+    )
+  )
+}
+```
+
+To correct this, include the default settings, which includes `libraryDependencies := Seq()`.
+
+```
+settings = Defaults.defaultSettings ++ Seq(
+  libraryDependencies += "commons-io" % "commons-io" % "1.4" % "test"
+)
+```
+
+A more subtle variation of this error occurs when using
+[[scoped settings|Getting Started Scopes]].
+
+```
+// error: Reference to uninitialized setting
+settings = Defaults.defaultSettings ++ Seq(
+  libraryDependencies += "commons-io" % "commons-io" % "1.2" % "test",
+  fullClasspath ~= (_.filterNot(_.data.name.contains("commons-io")))
+)
+```
+
+Generally, all of the update operators can be expressed in terms of `<<=`. To better understand the error, we can rewrite the setting as:
+
+```
+// error: Reference to uninitialized setting
+fullClasspath <<= (fullClasspath).map(_.filterNot(_.data.name.contains("commons-io")))
+```
+
+This setting varies between the test and compile scopes. The solution is use the scoped setting, both as the input to the initializer, and the setting that we update.
+
+```
+fullClasspath in Compile <<= (fullClasspath in Compile).map(_.filterNot(_.data.name.contains("commons-io")))
+
+// or equivalently
+fullClasspath in Compile ~= (_.filterNot(_.data.name.contains("commons-io")))
+```
+
 ## Dependency Management
 
 ### How do I resolve a checksum error?
