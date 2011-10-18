@@ -77,9 +77,10 @@ scalaVersion := "2.9.1"
 A `build.sbt` file is a list of `Setting`, separated by blank lines. Each
 `Setting` is defined with a Scala expression.
 
-The expressions in `build.sbt` are independent of one another, and they are
-expressions, rather than complete lines of Scala code. An implication of
-this is that you can't define a `val` or `object` in `build.sbt`.
+The expressions in `build.sbt` are independent of one another, and
+they are expressions, rather than complete Scala statements. An
+implication of this is that you can't define a top-level `val`,
+`object`, class, or method in `build.sbt`.
 
 On the left, `name`, `version`, and `scalaVersion` are _keys_. A
 key is an instance of `SettingKey[T]`, `TaskKey[T]`, or
@@ -109,10 +110,11 @@ name := 42  // will not compile
 
 ## Keys are defined in the Keys object
 
-Keys are just fields in an object called [Keys]. A `build.sbt` implicitly
-has an `import sbt.Keys._`, so `sbt.Keys.name` can be referred to as `name`.
+The built-in keys are just fields in an object called [Keys]. A
+`build.sbt` implicitly has an `import sbt.Keys._`, so
+`sbt.Keys.name` can be referred to as `name`.
 
-Custom keys could also be defined in a
+Custom keys may be defined in a
 [[full build definition|Getting Started Full Def]] or a [[plugin|Getting Started Using Plugins]].
 
 ## Other ways to transform settings
@@ -180,7 +182,7 @@ _A given key always refers to either a task or a plain setting._ That is,
 "taskiness" (whether to re-run each time) is a property of the key, not the
 value.
 
-Using `:=`, you can assign a function to a task, and that function will be
+Using `:=`, you can assign a computation to a task, and that computation will be
 re-run each time:
 
 ```scala
@@ -199,11 +201,15 @@ re-run. More on this in [[more about settings|Getting Started More About Setting
 
 ## Keys in sbt interactive mode
 
-In sbt's interactive mode, you can type the name of any key to retrieve
-the value of that key. If the key represents a task, then the task will be
-executed.
+In sbt's interactive mode, you can type the name of any task to
+execute that task. This is why typing `compile` runs the compile
+task. `compile` is a task key.
 
-This is why typing `compile` runs the compile task. `compile` is a task key.
+If you type the name of a setting key rather than a task key, the
+value of the setting key will be displayed. Typing a task key name
+executes the task but doesn't display the resulting value; to see
+a task's result, use `show <task name>` rather than plain `<task
+name>`.
 
 In build definition files, keys are named with `camelCase` following Scala
 convention, but the sbt command line uses `hyphen-separated-words`
