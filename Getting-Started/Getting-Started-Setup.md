@@ -26,7 +26,7 @@ Download [sbt-launch.jar] and place it in `~/bin`.
 Create a script to run the jar, by placing this in a file called `sbt` in your `~/bin` directory:
 
 ```text
-java -Dsbt.boot.directory=$HOME/.sbt/boot/ -Xmx512M -jar `dirname $0`/sbt-launch.jar "$@"
+java -Xmx512M -jar `dirname $0`/sbt-launch.jar "$@"
 ```
 
 Make the script executable:

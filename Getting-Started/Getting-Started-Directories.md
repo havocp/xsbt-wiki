@@ -51,17 +51,10 @@ files appear in a `project` subdirectory.
 [[full build definitions|Getting Started Full Def]], when you're doing
 something too complex for a `.sbt` file.
 
-sbt-launch.jar automatically downloads the Scala compiler, sbt itself, and
-any dependencies to the `project/boot` directory. These tools are used to
-compile the build definition. If you've configured a shared `~/.sbt/boot`
-directory in your sbt script, [[as suggested|Setup Notes]], then you may not
-have much in `project/boot`.
-
 ```text
   build.sbt
   project/
     Build.scala
-    boot/
 ```
 
 You may see `.sbt` files inside `project/` but they are not equivalent to
@@ -79,10 +72,11 @@ Your `.gitignore` (or equivalent for other version control systems) should conta
 
 ```text
   target/
-  project/boot/
 ```
 
-These directories are automatically created and managed by sbt and need not be kept in version control.
+Note that this deliberately has a trailing `/` (to match only
+directories) and it deliberately has no leading `/` (to match
+`project/target/` in addition to plain `target/`).
 
 # Next
 
