@@ -47,9 +47,9 @@ Other directories in `src/` will be ignored.  Additionally, all hidden directori
 You've already seen `build.sbt` in the project's base directory. Other sbt
 files appear in a `project` subdirectory.
 
-`project` can contain `.scala` files, also called
-[[full build definitions|Getting Started Full Def]], when you're doing
-something too complex for a `.sbt` file.
+`project` can contain `.scala` files, which are combined with
+`.sbt` files to form the complete build definition. See
+[[.scala build definitions|Getting Started Full Def]] for more.
 
 ```text
   build.sbt

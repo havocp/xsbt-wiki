@@ -18,7 +18,7 @@ to know.
  - the basics of Scala. It's undeniably helpful to be familiar with Scala
    syntax. [Programming in Scala](http://www.artima.com/shop/programming_in_scala_2ed)
    written by the creator of Scala is a great introduction.
- - [[Basic build definition|Getting Started Basic Def]]
+ - [[.sbt build definition|Getting Started Basic Def]]
    - your build definition is one big list of `Setting` objects, where a
      `Setting` transforms the set of key-value pairs sbt uses to perform tasks.
    - to create a `Setting`, call one of a few methods on a key (the `:=` and
@@ -39,9 +39,9 @@ to know.
      per-task, or per-configuration.
    - the per-project axis also supports "entire build" scope.
    - scopes "fall back to" or delegate to more general scopes.
- - Basic vs. [[Full|Getting Started Full Def]]
-   - put most of your settings in basic (`build.sbt`), but use the full
-     build definition to
+ - `.sbt` vs. [[.scala|Getting Started Full Def]] build definition
+   - put most of your settings in `build.sbt`, but use `.scala`
+     build definition files to
      [[define multiple subprojects|Getting Started Multi-Project]], and to factor out
      common values, objects, and methods.
    - the build definition is an sbt project in its own right,

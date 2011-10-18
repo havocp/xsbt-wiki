@@ -8,7 +8,7 @@ This page introduces multiple projects in a single build.
 Please read the earlier pages in the Getting Started Guide first,
 in particular you need to understand
 [[build.sbt|Getting Started Basic Def]] and
-[[full build definition|Getting Started Full Def]] before reading
+[[.scala build definition|Getting Started Full Def]] before reading
 this page.
 
 ## Multiple projects

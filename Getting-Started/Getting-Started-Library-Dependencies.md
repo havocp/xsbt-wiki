@@ -13,7 +13,7 @@
 9 of 14._ [[Next|Getting Started Full Def]]
 
 This page assumes you've read the earlier Getting Started pages, in particular
-[[basic build definition|Getting Started Basic Def]],
+[[.sbt build definition|Getting Started Basic Def]],
 [[scopes|Getting Started Scopes]], and [[more about settings|Getting Started More About Settings]].
 
 Library dependencies can be added in two ways:
@@ -230,4 +230,4 @@ dependencies [[on this page|Library-Management]], if you didn't find an
 answer on this introductory page.
 
 If you're reading Getting Started in order, for now, you might move on to
-read [[full build definition|Getting Started Full Def]].
+read [[.scala build definition|Getting Started Full Def]].

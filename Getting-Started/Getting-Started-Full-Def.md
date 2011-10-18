@@ -1,11 +1,11 @@
-# Full Build Definition
+# `.scala` Build Definition
 
 [[Previous|Getting Started Library Dependencies]] _Getting Started Guide page
 10 of 14._ [[Next|Getting Started Using Plugins]]
 
 This page assumes you've read previous pages in the Getting
 Started Guide, _especially_
-[[basic build definition|Getting Started Basic Def]] and
+[[.sbt build definition|Getting Started Basic Def]] and
 [[more about settings|Getting Started More About Settings]].
 
 ## sbt is recursive
@@ -58,7 +58,7 @@ By the way: any files ending in `.scala` or `.sbt` are used, naming them
 `build.sbt` and `Build.scala` are conventions only. This also means that
 multiple files are allowed.
 
-## "full build definition" means a `.scala` file in the build definition project
+## `.scala` source files in the build definition project
 
 `.sbt` files are merged into their sibling `project`
 directory. Looking back at the project layout:
@@ -82,12 +82,8 @@ The Scala expressions in `build.sbt` are compiled alongside and merged with
 _`.sbt` files in the base directory for a project become part of the
 `project` build definition project also located in that base directory._
 
-`build.sbt`, also known as a
-[[basic build definition|Getting Started Basic Def]], is a convenient shorthand
-for adding settings to the build definition project.
-
-A _full build definition_ is a build definition that includes `.scala` files
-underneath `project/`.
+The `.sbt` file format is a convenient shorthand for adding
+settings to the build definition project.
 
 ## Relating `build.sbt` to `Build.scala`
 
@@ -206,9 +202,9 @@ Because the `.sbt` format allows only single expressions, it doesn't give
 you a way to share code among expressions. When you need to share code, you
 need a `.scala` file so you can set common variables or define methods.
 
-You could think of it this way: there's one build definition, which is a
-nested project inside your main project. `.sbt` ("basic") and `.scala`
-("full") files are compiled together to create that single definition.
+There's one build definition, which is a nested project inside
+your main project.  `.sbt` and `.scala` files are compiled
+together to create that single definition.
 
 `.scala` files are also required to define multiple projects in a single
 build. More on that is coming up in

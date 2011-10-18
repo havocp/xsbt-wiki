@@ -16,7 +16,7 @@ It is _highly recommended_ to read the Getting Started Guide!
 
 If you are in a huge hurry, the most important conceptual
 background can be found in
-[[basic build definition|Getting Started Basic Def]],
+[[.sbt build definition|Getting Started Basic Def]],
 [[scopes|Getting Started Scopes]], and
 [[more about settings|Getting Started More About Settings]].  But
 we don't promise that it's a good idea to skip the other pages in

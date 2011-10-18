@@ -8,7 +8,7 @@
 
 
 This page explains other ways to create a `Setting`, beyond the basic `:=`
-method. It assumes you've read [[basic build definition|Getting Started Basic Def]] and [[scopes|Getting Started Scopes]].
+method. It assumes you've read [[.sbt build definition|Getting Started Basic Def]] and [[scopes|Getting Started Scopes]].
 
 ## Refresher: Settings
 
@@ -28,7 +28,7 @@ transformed map. For example, if you transform a map with the setting
 
 Settings must end up in the master list of settings to do any good (all
 lines in a `build.sbt` automatically end up in the list, but in a
-[[full build definition|Getting Started Full Def]] you can get it wrong).
+[[.scala file|Getting Started Full Def]] you can get it wrong).
 
 ## Appending to previous values: `+=` and `++=`
 

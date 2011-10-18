@@ -1,6 +1,6 @@
 [Keys]: http://harrah.github.com/xsbt/latest/sxr/Keys.scala.html
 
-# Basic Build Definition
+# `.sbt` Build Definition
 
 [[Previous|Getting Started Running]] _Getting Started Guide page 6 of 14._ [[Next|Getting Started Scopes]]
 
@@ -8,19 +8,23 @@ This page describes sbt build definitions, including some "theory" and the
 syntax of `build.sbt`. It assumes you know how to [[use sbt|Getting Started Running]] and
 have read the previous pages in the Getting Started Guide.
 
-## Basic vs. Full Definition
+## `.sbt` vs. `.scala` Definition
 
-An sbt build definition can contain "basic" files, ending in `.sbt`, and
-"full" files, ending in `.scala`. You can use either one exclusively, or use
-both. A good approach is to use basic `.sbt` files for most purposes, and
-use `.scala` files only to contain what can't be done in `.sbt`:
+An sbt build definition can contain files ending in `.sbt`,
+located in the base directory, and files ending in `.scala`,
+located in the `project` subdirectory of the base directory.
+
+You can use either one exclusively, or use both. A good approach
+is to use `.sbt` files for most purposes, and use `.scala` files
+only to contain what can't be done in `.sbt`:
 
  - to customize sbt (add new settings or tasks)
  - to define nested sub-projects
 
-This page discusses "basic" build definition, that is, `.sbt` files.  See
-[[full build definition|Getting Started Full Def]] (later in Getting Started) for more on full build
-files and how they relate to basic build files.
+This page discusses `.sbt` files.  See
+[[.scala build definition|Getting Started Full Def]] (later in
+Getting Started) for more on `.scala` files and how they relate to
+`.sbt` files.
 
 ## What is a build definition?
 
@@ -115,7 +119,7 @@ The built-in keys are just fields in an object called [Keys]. A
 `sbt.Keys.name` can be referred to as `name`.
 
 Custom keys may be defined in a
-[[full build definition|Getting Started Full Def]] or a [[plugin|Getting Started Using Plugins]].
+[[.scala file|Getting Started Full Def]] or a [[plugin|Getting Started Using Plugins]].
 
 ## Other ways to transform settings
 
@@ -240,10 +244,10 @@ import Process._
 import Keys._
 ```
 
-(In addition, if you have a [[full build definition|Getting Started Full Def]],
-the contents of any `Build` or `Plugin` objects in that definition will be
+(In addition, if you have [[.scala files|Getting Started Full Def]],
+the contents of any `Build` or `Plugin` objects in those files will be
 imported. More on that when we get to
-[[full build definitions|Getting Started Full Def]].)
+[[.scala build definitions|Getting Started Full Def]].)
 
 ## Next
 

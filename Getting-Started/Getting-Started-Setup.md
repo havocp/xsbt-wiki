@@ -13,7 +13,7 @@ To create an sbt project, you'll need to take these steps:
     - Create a project directory with source files in it.
     - Create your build definition.
  - Move on to [[running|Getting Started Running]] to learn how to run sbt.
- - Then move on to [[basic build definition|Getting Started Basic Def]] to learn more about build definitions.
+ - Then move on to [[.sbt build definition|Getting Started Basic Def]] to learn more about build definitions.
 
 # Installing sbt
 

@@ -4,11 +4,11 @@
     * [[Hello, World|Getting Started Hello]] - Create a simple project
     * [[Directory Layout|Getting Started Directories]] - Basic project layout
     * [[Running|Getting Started Running]] - The command line and interactive mode
-    * [[Basic Build Definition|Getting Started Basic Def]] - Understanding build.sbt settings
+    * [[.sbt Build Definition|Getting Started Basic Def]] - Understanding build.sbt settings
     * [[Scopes|Getting Started Scopes]] - Put settings in context
     * [[More About Settings|Getting Started More About Settings]] - Settings based on other settings
     * [[Library Dependencies|Getting Started Library Dependencies]] - Adding jars or managed dependencies
-    * [[Full Build Definition|Getting Started Full Def]] - When build.sbt is not enough
+    * [[.scala Build Definition|Getting Started Full Def]] - When build.sbt is not enough
     * [[Using Plugins|Getting Started Using Plugins]] - Adding plugins to the build
     * [[Multi-Project Builds|Getting Started Multi-Project]] - Adding sub-projects to the build
     * [[Custom Settings and Tasks|Getting Started Custom Settings]] - Intro to extending sbt

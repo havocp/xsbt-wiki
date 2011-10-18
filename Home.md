@@ -2,8 +2,8 @@ sbt is a build tool for Scala and Java projects that aims to do the basics well.
 
 ## Features
 * Easy to set up for simple projects
-* [[Basic build definition|Getting Started Basic Def]] uses a Scala-based "domain-specific language" (DSL)
-* More advanced [[full build definitions|Getting Started Full Def]] and [[extensions|Getting Started Custom Settings]] use the full flexibility of unrestricted Scala code
+* [[.sbt build definition|Getting Started Basic Def]] uses a Scala-based "domain-specific language" (DSL)
+* More advanced [[.scala build definitions|Getting Started Full Def]] and [[extensions|Getting Started Custom Settings]] use the full flexibility of unrestricted Scala code
 * Accurate incremental recompilation using information extracted from the compiler
 * Continuous compilation and testing with [[triggered execution|Triggered Execution]]
 * Packages and publishes jars

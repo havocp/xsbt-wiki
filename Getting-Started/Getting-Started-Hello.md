@@ -43,8 +43,8 @@ try out live Scala examples based on your project's code.
 
 ## Build definition
 
-Most projects will need some manual setup. Basic build definitions are done
-in a file called `build.sbt` placed in the project's base directory.
+Most projects will need some manual setup. Basic build settings go
+in a file called `build.sbt`, located in the project's base directory.
 
 For example, if your project is in the directory `hello`, in `hello/build.sbt` you might write:
 
@@ -56,7 +56,7 @@ version := "1.0"
 scalaVersion := "2.9.1"
 ```
 
-In [[basic build definition|Getting Started Basic Def]] you'll learn more about how to write a `build.sbt` file.
+In [[.sbt build definition|Getting Started Basic Def]] you'll learn more about how to write a `build.sbt` file.
 
 If you plan to package your project in a jar, you will want to set at least
 the name and version in a `build.sbt`.

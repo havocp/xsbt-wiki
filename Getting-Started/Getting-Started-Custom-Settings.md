@@ -21,7 +21,7 @@ before reading this page.
 keys. Most of the keys are implemented in [Defaults].
 
 Keys have one of three types. `SettingKey` and `TaskKey` are described in
-[[basic build definition|Getting Started Basic Def]]. Read about `InputKey` on the [[Input Tasks]]
+[[.sbt build definition|Getting Started Basic Def]]. Read about `InputKey` on the [[Input Tasks]]
 page.
 
 Some examples from [Keys]:
@@ -35,15 +35,15 @@ The key constructors have two string parameters: the name of the key
 (`"scala-version"`) and a documentation string (`"The version of scala used for
 building."`).
 
-Remember from [[basic build definition|Getting Started Basic Def]] that the type parameter `T` in `SettingKey[T]`
+Remember from [[.sbt build definition|Getting Started Basic Def]] that the type parameter `T` in `SettingKey[T]`
 indicates the type of value a setting has. `T` in `TaskKey[T]` indicates the
-type of the task's result. Also remember from [[basic build definition|Getting Started Basic Def]]
+type of the task's result. Also remember from [[.sbt build definition|Getting Started Basic Def]]
 that a setting has a fixed value until project reload, while a task is re-computed
 for every "task execution" (every time someone types a command at the sbt
 interactive prompt or in batch mode).
 
 Keys may be defined in a `.scala` file (as described in
-[[full build definition|Getting Started Full Def]]), or in a plugin (as described in
+[[.scala build definition|Getting Started Full Def]]), or in a plugin (as described in
 [[using plugins|Getting Started Using Plugins]]).
 
 ## Implementing a task

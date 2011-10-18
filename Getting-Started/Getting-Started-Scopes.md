@@ -8,7 +8,7 @@ http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism
 7 of 14._ [[Next|Getting Started More About Settings]]
 
 This page describes scopes. It assumes you've read and understood the
-previous page, [[basic build definition|Getting Started Basic Def]].
+previous page, [[.sbt build definition|Getting Started Basic Def]].
 
 ## The whole story about keys
 
@@ -191,7 +191,7 @@ $ sbt
 ```
 
 On the first line, you can see this is a task (as opposed to a setting, as
-explained in [[basic build definition|Getting Started Basic Def]]). The value resulting from the task
+explained in [[.sbt build definition|Getting Started Basic Def]]). The value resulting from the task
 will have type `scala.collection.Seq[sbt.Attributed[java.io.File]]`.
 
 "Provided by" points you to the scoped key that defines the value, in this
