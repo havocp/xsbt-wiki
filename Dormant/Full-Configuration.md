@@ -1,5 +1,33 @@
 [#35]: https://github.com/harrah/xsbt/issues/35
 
+_Wiki Maintenance Note:_ This page has been _mostly_ replaced by
+[[Getting Started Full Def]] and other pages. It has some obsolete
+terminology:
+
+ - we now avoid referring to build definition as "configuration"
+   to avoid confusion with compile configurations
+ - we now avoid referring to basic/light/quick vs. full
+   configuration, in favor of ".sbt build definition files" and
+   ".scala build definition files"
+
+However, it may still be worth combing this page for examples or
+points that are not made in new pages. Some stuff that may not be
+elsewhere:
+
+ - discussion of cycles
+ - discussion of build-level settings
+ - discussion of omitting or augmenting defaults
+
+Also, the discussion of configuration delegation which is teased
+here, needs to exist somewhere.
+
+After extracting useful content, this page could simply be a
+redirect (delete the content, link to the new pages about build
+definition).
+
+There is a related page [[Introduction to Full Configurations]]
+which could benefit from cleanup at the same time.
+
 # Full Configuration (Draft)
 
 A full configuration consists of one or more Scala source files that define concrete Builds.

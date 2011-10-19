@@ -1,3 +1,10 @@
+_Wiki Maintenance Note:_ This page has been _mostly_ replaced by
+[[Getting Started Full Def]] and other pages. See the note at the
+top of [[Full Configuration]] for details. If we can establish
+(or cause to be true) that everything in here is covered
+elsewhere, this page can be empty except for links to the new pages.
+
+
 There are two types of file for configuring a build: a `build.sbt` file in you project root directory, or a `Build.scala` file in your `project/` directory.  The former is often referred to as a "light", "quick" or "basic" configuration and the latter is often referred to as "full" configuration.  This page is about "full" configuration.
 
 # Naming the Scala build file
