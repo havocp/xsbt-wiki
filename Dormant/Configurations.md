@@ -8,6 +8,12 @@ those points moved somewhere (maybe the [[FAQ]] or an "advanced
 library deps" page). Then this page could become a redirect with
 no content except a link pointing to the new page(s).
 
+_Wiki Maintenance Note 2:_ There probably should be a page called
+Configurations that's less about library dependency management and
+more about listing all the configurations that exist and
+describing what they are used for. This would complement the way
+this page is linked, for example in [[Index]].
+
 # Configurations
 
 Ivy configurations are a useful feature for your build when you use managed dependencies.  They are essentially named sets of dependencies.  You can read the [Ivy documentation] for details.  Their use in sbt is described on this page.
