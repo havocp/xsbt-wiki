@@ -9,6 +9,23 @@
 [TaskKey]: http://harrah.github.com/xsbt/latest/api/sbt/TaskKey.html
 [Append]: http://harrah.github.com/xsbt/latest/api/sbt/Append$.html
 
+This page has been partly replaced by [[Getting Started Basic Def]] and
+[[Getting Started More About Settings]]. It has some obsolete
+terminology:
+
+ - we now avoid referring to build definition as "configuration"
+   to avoid confusion with compile configurations
+ - we now avoid referring to basic/light/quick vs. full
+   configuration, in favor of ".sbt build definition files" and
+   ".scala build definition files"
+
+However, it may still be worth combing this page for examples or
+points that are not made in new pages. We may want to add FAQs or
+topic pages to supplement the Getting Started pages with some of
+that information. After doing so, this page could simply be a
+redirect (delete the content, link to the new pages about build
+definition).
+
 ## Introduction
 
 A build definition is written in Scala.
