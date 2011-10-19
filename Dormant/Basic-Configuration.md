@@ -6,6 +6,25 @@
 [Defaults]: http://harrah.github.com/xsbt/latest/sxr/Defaults.scala.html
 [Keys]: http://harrah.github.com/xsbt/latest/sxr/Keys.scala.html
 
+This page has been replaced a couple of times; first by
+[[Settings]] and most recently by [[Getting Started Basic Def]] and
+[[Getting Started More About Settings]]. It has some obsolete
+terminology:
+
+ - we now avoid referring to build definition as "configuration"
+   to avoid confusion with compile configurations
+ - we now avoid referring to basic/light/quick vs. full
+   configuration, in favor of ".sbt build definition files" and
+   ".scala build definition files"
+
+However, it may still be worth combing this page for examples or
+points that are not made in new pages. After doing so, this page
+could simply be a redirect (delete the content, link to the new
+pages about build definition).
+
+
+# Configuration
+
 A build definition is written in Scala.  There are two types of definitions: light and full.  A light definition is a quick way of configuring a build.  It consists of a list of Scala expressions describing project settings in one or more ".sbt" files located in the base directory of the project. This also applies to sub-projects.
 
 A full definition is made up of one or more Scala source files that describe relationships between projects, introduce new configurations and settings, and define more complex aspects of the build.  The capabilities of a light definition are a proper subset of those of a full definition.
