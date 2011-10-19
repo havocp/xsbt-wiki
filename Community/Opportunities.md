@@ -36,3 +36,21 @@ Below is a running list of potential areas of contribution.  This list may becom
 8. There is more aggressive incremental compilation in sbt 0.11.  I expect it to be more difficult to reproduce bugs.  It would be helpful to have a mode that generates a diff between successive compilations and records the options passed to scalac.  This could be replayed or inspected to try to find the cause.
 9. Take the webstart support from 0.7 and make it a 0.11 plugin
 10. Take ownership of the 0.7 installer plugin and make it an independent 0.11 plugin
+
+# Documentation
+
+1. There's a lot to do with this wiki. If you check the wiki out
+from git, there's a directory called Dormant with some content
+that needs going through.
+
+2. the [[Home]] page mentions external project references (e.g. to a
+git repo) but doesn't have anything to link to that explains how
+to use those.
+
+3. the [[Configurations]] page is missing a list of the built-in
+configurations and the purpose of each.
+
+4. grep the wiki's git checkout for "Wiki Maintenance Note" and
+work on some of those
+
+5. API docs are much needed.
