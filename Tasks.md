@@ -5,6 +5,16 @@
 
 # Tasks
 
+Tasks and settings are now introduced in the
+[[getting started guide|Getting Started Basic Def]], which you may
+wish to read first. This older page has some additional detail.
+
+_Wiki Maintenance Note:_ This page should have its overlap with
+the getting started guide cleaned up, and just have any advanced
+or additional notes. It should maybe also be consolidated with
+[[TaskInputs]].
+
+
 # Introduction
 
 sbt 0.10+ has a new task system that integrates with the new settings system.

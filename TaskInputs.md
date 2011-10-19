@@ -1,5 +1,16 @@
 # Task Inputs/Dependencies
 
+Tasks with dependencies are now introduced in the
+[[getting started guide|Getting Started More About Settings]],
+which you may wish to read first. This older page may have some
+additional detail.
+
+_Wiki Maintenance Note:_ This page should have its overlap with
+the getting started guide cleaned up, and just have any advanced
+or additional notes. It should maybe also be consolidated with
+[[Tasks]].
+
+
 An important aspect of the task system introduced in sbt 0.10 is to combine two common, related steps in a build:
 
 1. Ensure some other task is performed.
