@@ -186,14 +186,23 @@ sbt -Dsbt.log.noformat=true
 
 ## Build definitions
 
-### What does `:=`, `%`, ... mean?
+### What are the `:=`, `~=`, `<<=`, `+=`, `++=`, `<+=`, and `<++=` methods?
 
-See the [[Index]] of commonly used methods, values, and types.  See also the [API Documentation] and the [hyperlinked sources].
+These are methods on keys used to construct a `Setting`. The Getting Started Guide covers all these methods, see [[.sbt build definition|Getting Started Basic Def]] and
+[[more about settings|Getting Started More About Settings]] for example.
+
+### What is the `%` method?
+
+It's used to create a `ModuleID` from strings, when specifying
+managed dependencies. Read the Getting Started Guide about
+[[library dependencies|Getting Started Library Dependencies]].
 
 ### What is `ModuleID`, `Project`, ...?
 
-See the [[Index]] of commonly used methods, values, and types.  See also the [API Documentation] and the [hyperlinked sources].
-
+To figure out an unknown type or method, have a look at the
+[[Getting Started Guide|Getting Started Welcome]] if you have
+not. Also try the [[Index]] of commonly used methods, values, and
+types, the [API Documentation], and the [hyperlinked sources].
 
 ### How do I add files to a jar package?
 
