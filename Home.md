@@ -16,9 +16,9 @@ See the [[install instructions|Getting Started Setup]].
 * Supports [[Testing|testing]] with ScalaCheck, specs, and ScalaTest (JUnit is supported by a plugin)
 * Starts the Scala REPL with project classes and dependencies on the classpath
 * [[Sub-project|Getting Started Multi-Project]] support (put multiple packages in one project)
-* [[External project|External Projects]] support (list a git repository as a dependency!)
+* External project support (list a git repository as a dependency!)
 * Parallel task execution, including parallel test execution
-* [[Library management support|Library Management]]: inline declarations, external Ivy or Maven configuration files, or manual management
+* [[Library management support|Getting Started Library Dependencies]]: inline declarations, external Ivy or Maven configuration files, or manual management
 
 ## Getting Started
 
