@@ -6,3 +6,10 @@
 * [[Examples]]
 * [[Detailed Topics]] - deep dive docs
 * [[Extending sbt|Extending]] - internals docs
+    * [[API Documentation|http://harrah.github.com/xsbt/latest/api/index.html]]
+    * [[Commands]]
+    * [[Input Tasks]]
+    * [[Plugins Best Practices]]
+    * [[Plugins]]
+    * [[Settings engine|Settings Core]]
+    * [[State objects|Build State]]
