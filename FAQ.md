@@ -1,27 +1,27 @@
-[mailing list]: http://groups.google.com/group/simple-build-tool/topics
-[issue tracker]: https://github.com/harrah/xsbt/issues
-[migration page]: https://github.com/harrah/xsbt/wiki/Migrating-from-SBT-0.7.x-to-0.10.x
-[checksum report]: https://issues.sonatype.org/browse/MVNCENTRAL-46
-[original proposal]: https://gist.github.com/404272
 [API Documentation]: http://harrah.github.com/xsbt/latest/api/index.html
-[hyperlinked sources]: http://harrah.github.com/xsbt/latest/sxr/index.html
-[sbt-launch.jar]: http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.11.0/sbt-launch.jar
-[mailing list]: http://groups.google.com/group/simple-build-tool/
-[xsbt-web-plugin]: https://github.com/siasia/xsbt-web-plugin
-[xsbt-webstart]: https://github.com/ritschwumm/xsbt-webstart
+[ChangeReport]: http://harrah.github.com/xsbt/latest/api/sbt/ChangeReport.html
+[FileFunction.cached]: http://harrah.github.com/xsbt/latest/api/sbt/FileFunction$.html
 [FileUtilities]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/FileUtilities$object.html
+[FilesInfo API]: http://harrah.github.com/xsbt/latest/api/sbt/FilesInfo$.html
 [IO]: http://harrah.github.com/xsbt/latest/api/sbt/IO$.html
+[Path 0.11]: http://harrah.github.com/xsbt/latest/api/sbt/Path$.html
 [Path 0.7]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/Path.html
 [Path object]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/Path$.html
-[Path 0.11]: http://harrah.github.com/xsbt/latest/api/sbt/Path$.html
+[PathFinder 0.11]: http://harrah.github.com/xsbt/latest/api/sbt/PathFinder.html
 [PathFinder 0.7]: http://simple-build-tool.googlecode.com/svn/artifacts/latest/api/sbt/PathFinder.html
 [PathFinder object]: http://harrah.github.com/xsbt/latest/api/sbt/PathFinder$.html
-[PathFinder 0.11]: http://harrah.github.com/xsbt/latest/api/sbt/PathFinder.html
 [RichFile]: http://harrah.github.com/xsbt/latest/api/sbt/RichFile.html
-[FileFunction.cached]: http://harrah.github.com/xsbt/latest/api/sbt/FileFunction$.html
-[FilesInfo API]: http://harrah.github.com/xsbt/latest/api/sbt/FilesInfo$.html
-[ChangeReport]: http://harrah.github.com/xsbt/latest/api/sbt/ChangeReport.html
 [State]: http://harrah.github.com/xsbt/latest/api/sbt/State$.html
+[checksum report]: https://issues.sonatype.org/browse/MVNCENTRAL-46
+[hyperlinked sources]: http://harrah.github.com/xsbt/latest/sxr/index.html
+[issue tracker]: https://github.com/harrah/xsbt/issues
+[mailing list]: http://groups.google.com/group/simple-build-tool/
+[mailing list]: http://groups.google.com/group/simple-build-tool/topics
+[migration page]: https://github.com/harrah/xsbt/wiki/Migrating-from-SBT-0.7.x-to-0.10.x
+[original proposal]: https://gist.github.com/404272
+[sbt-launch.jar]: http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/0.11.0/sbt-launch.jar
+[xsbt-web-plugin]: https://github.com/siasia/xsbt-web-plugin
+[xsbt-webstart]: https://github.com/ritschwumm/xsbt-webstart
 [xsbti.ComponentProvider]: http://harrah.github.com/xsbt/latest/api/xsbti/ComponentProvider.html
 
 # Frequently Asked Questions
