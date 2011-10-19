@@ -1,7 +1,7 @@
 [Ivy documentation]: http://ant.apache.org/ivy/history/2.2.0/tutorial/conf.html
 [Maven Scopes]: http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Scope
 
-Most of what's on this page is now covered in
+_Wiki Maintenance Note:_ Most of what's on this page is now covered in
 [[Getting Started Library Dependencies]]. This page should be
 analyzed for any points that aren't covered on the new page, and
 those points moved somewhere (maybe the [[FAQ]] or an "advanced

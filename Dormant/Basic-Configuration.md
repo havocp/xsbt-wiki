@@ -6,7 +6,7 @@
 [Defaults]: http://harrah.github.com/xsbt/latest/sxr/Defaults.scala.html
 [Keys]: http://harrah.github.com/xsbt/latest/sxr/Keys.scala.html
 
-This page has been replaced a couple of times; first by
+_Wiki Maintenance Note:_ This page has been replaced a couple of times; first by
 [[Settings]] and most recently by [[Getting Started Basic Def]] and
 [[Getting Started More About Settings]]. It has some obsolete
 terminology:

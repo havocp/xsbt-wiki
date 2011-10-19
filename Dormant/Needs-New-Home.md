@@ -1,3 +1,7 @@
+_Wiki Maintenance Note:_ This page is a dumping ground for little
+bits of text, examples, and information that needs to find a new
+home somewhere else on the wiki.
+
 # Snippets of docs that need to move to another page
 
 
