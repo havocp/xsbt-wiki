@@ -61,7 +61,8 @@ See [[Triggered Execution]] for more details.
 
 ## Common actions
 
-Here are some of the most common sbt commands. For a more complete list, see [[FIXME]].
+Here are some of the most common sbt commands. For a more complete
+list, see [[Command Line Reference]].
 
 * `clean`
   Deletes all generated files (the `target` directory).

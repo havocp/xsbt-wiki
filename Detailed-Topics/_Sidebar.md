@@ -8,6 +8,7 @@
     * [[Artifacts]]   what to publish
     * [[Best Practices]]
     * [[Classpaths]]
+    * [[Command Line Reference]]
     * [[Compiler Plugins]]
     * [[Console Project]]
     * [[Cross Build]]
