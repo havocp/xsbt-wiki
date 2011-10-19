@@ -387,3 +387,9 @@ The GSG on multi-project builds doesn't describe delegation among
 configurations. The FAQ entry about porting multi-project build
 from 0.7 mentions "configuration dependencies" but there's nothing
 really to link to that explains them.
+
+### These should be FAQs (maybe just pointing to topic pages)
+* Run your program in its own VM
+* Run your program with a particular version of Scala
+* Run your webapp within an embedded jetty server
+* Create a WAR that can be deployed to an external app server
