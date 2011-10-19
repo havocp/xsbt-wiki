@@ -1,6 +1,13 @@
 [Ivy documentation]: http://ant.apache.org/ivy/history/2.2.0/tutorial/conf.html
 [Maven Scopes]: http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Scope
 
+Most of what's on this page is now covered in
+[[Getting Started Library Dependencies]]. This page should be
+analyzed for any points that aren't covered on the new page, and
+those points moved somewhere (maybe the [[FAQ]] or an "advanced
+library deps" page). Then this page could become a redirect with
+no content except a link pointing to the new page(s).
+
 # Configurations
 
 Ivy configurations are a useful feature for your build when you use managed dependencies.  They are essentially named sets of dependencies.  You can read the [Ivy documentation] for details.  Their use in sbt is described on this page.
