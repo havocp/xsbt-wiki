@@ -1,8 +1,9 @@
 [sbt.SettingDefinition]: http://harrah.github.com/xsbt/latest/api/sbt/Init$SettingsDefinition.html
 
-Listed here are some examples of settings (each setting is independent).  See [[Basic Configuration]] for details.
+Listed here are some examples of settings (each setting is
+independent).  See [[.sbt build definition|Getting Started Basic Def]] for details.
 
-_Please note_ that blank lines are used to separate individual settings. Avoid using blank lines within a single multiline expression.  As explained in [[Settings]], each setting is otherwise a normal Scala expression with expected type [sbt.SettingDefinition].
+_Please note_ that blank lines are used to separate individual settings. Avoid using blank lines within a single multiline expression.  As explained in [[.sbt build definition|Getting Started Basic Def]], each setting is otherwise a normal Scala expression with expected type [sbt.SettingDefinition].
 
 ```scala
 // set the name of the project

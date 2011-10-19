@@ -44,7 +44,9 @@ For available plugins, see [[sbt 0.10 plugins list]].
 * [Artifact] represents a single artifact (such as a jar or a pom) to be built and published.  See [[Library Management]] and [[Artifacts]].
 * A [Resolver] can resolve and retrieve dependencies.  Many types of Resolvers can publish dependencies as well.  A repository is a closely linked idea that typically refers to the actual location of the dependencies.  However, sbt is not very consistent with this terminology and repository and resolver are occasionally used interchangeably.
 * A [ModuleConfiguration] defines a specific resolver to use for a group of dependencies.
-* A [Configuration] is a useful Ivy construct for grouping dependencies.  See [[Configurations]].  It is also used for scoping [[Settings]].
+* A [Configuration] is a useful Ivy construct for grouping
+  dependencies.  See [[Configurations]].  It is also used for
+  [[scoping settings|Getting Started Scopes]].
 * `Compile`, `Test`, `Runtime`, `Provided`, and `Optional` are predefined [[Configurations]].
 
 ### Settings and Tasks
@@ -74,12 +76,17 @@ For available plugins, see [[sbt 0.10 plugins list]].
 
 ### Settings and Tasks
 
-See [[Settings]] and [[Tasks]] for details.
+See the [[Getting Started Guide|Getting Started Basic Def]] for details.
 
-* `:=`, `<<=`, `+=`, `++=`, `~=`, `<+=`, `<++=`  These construct a [Setting], which is the fundamental type in the [[Settings]] system.
-* `map`  This defines a task initialization that uses other tasks or settings.  See [[Tasks]].  It is a common name used for many other types in Scala, such as collections.
-* `apply` This defines a setting initialization using other settings.  It is not typically written out.  See [[Settings]].  This is a common name in Scala.
-* `in` specifies the [Scope] or part of the [Scope] of a setting being referenced.  See [[Settings]].
+* `:=`, `<<=`, `+=`, `++=`, `~=`, `<+=`, `<++=`  These construct a
+  [Setting], which is the fundamental type in the
+  [[settings|Getting Started Basic Def]] system.
+* `map`  This defines a task initialization that uses other tasks
+  or settings.  See
+  [[more about settings|Getting Started More About Settings]].  It is a common name used for many other types in Scala, such as collections.
+* `apply` This defines a setting initialization using other settings.  It is not typically written out.  See [[more about settings|Getting Started More About Settings]].  This is a common name in Scala.
+* `in` specifies the [Scope] or part of the [Scope] of a setting
+  being referenced.  See [[scopes|Getting Started Scopes]].
 
 ### File and IO
 

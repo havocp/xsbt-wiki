@@ -35,7 +35,9 @@ There are several features of the task system:
 6. Each task has access to its own Logger that by default persists the logging for that task at a more verbose level than is initially printed to the screen.
 
 These features are discussed in detail in the following sections.
-The context for the code snippets will be either the body of a `Build` object in a [[Full Configuration]] or an expression in a `build.sbt` [[Basic Configuration]].
+The context for the code snippets will be either the body of a
+`Build` object in a [[.scala file|Getting Started Full Def]] or an
+expression in a [[build.sbt|Getting Started Basic Def]].
 
 # Defining a New Task
 

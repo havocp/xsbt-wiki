@@ -2,7 +2,7 @@
 
 Central to sbt is the new configuration system, which is designed to enable extensive customization.
 The goal of this page is to explain the general model behind the configuration system and how to work with it.
-[[Basic Configuration]] describes how to define settings; this page describes interacting with them and exploring them at the command line.
+The Getting Started Guide (see [[.sbt files|Getting Started Basic Def]]) describes how to define settings; this page describes interacting with them and exploring them at the command line.
 
 # Selecting commands, tasks, and settings
 
