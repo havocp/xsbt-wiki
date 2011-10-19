@@ -307,9 +307,11 @@ To change the value associated with the `compile` key, you need to write
 define a new compile task scoped to the current project, rather than
 overriding the standard compile tasks which are scoped to a configuration.
 
-If you get an error like _"Reference to undefined setting"_, often you've
-failed to specify a scope, or you've specified the wrong scope. The key
-you're using may be defined in some other scope.
+If you get an error like _"Reference to undefined setting"_, often
+you've failed to specify a scope, or you've specified the wrong
+scope. The key you're using may be defined in some other
+scope. sbt will try to suggest what you meant as part of the error
+message; look for "Did you mean compile:compile?"
 
 One way to think of it is that a name is only _part_ of a key. In reality,
 all keys consist of both a name, and a scope (where the scope has three

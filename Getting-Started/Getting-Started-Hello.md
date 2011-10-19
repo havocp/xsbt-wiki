@@ -20,7 +20,8 @@ A valid sbt project can be a directory containing a single source file. You coul
   Hi!
 ```
 
-In this case, sbt works purely by convention. You don't need to tell sbt about:
+In this case, sbt works purely by convention. sbt will find the
+following automatically:
 
  - Sources in the base directory
  - Sources in `src/main/scala` or `src/main/java`
@@ -29,13 +30,6 @@ In this case, sbt works purely by convention. You don't need to tell sbt about:
  - jars in `lib`
 
 By default, sbt will build projects with the same version of Scala used to run sbt itself.
-
-When you run `sbt` and there is no build definition, it assumes default settings:
-
- - main Scala sources go in the base directory or in `src/main/scala`
- - test Scala sources go in `src/test/scala`
- - unmanaged dependencies (jars) go in `lib/`
- - the Scala version used to run sbt is used to build the project
 
 You can run the project with `sbt run` or enter the [Scala REPL](http://www.scala-lang.org/node/2097)
 with `sbt console`. `sbt console` sets up your project's classpath so you can
@@ -70,7 +64,7 @@ In this file, write:
 sbt.version=0.11.0
 ```
 
-From 0.10 onwards, sbt is 99% compatible from release to release. Still,
+From 0.10 onwards, sbt is 99% source compatible from release to release. Still,
 setting the sbt version in `project/build.properties` avoids any potential
 confusion.
 
